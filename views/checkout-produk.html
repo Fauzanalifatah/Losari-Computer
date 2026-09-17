@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout Pesanan - Losari Computer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+<style>
+/* Modern Checkout Reset */
+:root {
+  --primary: #0369a1; /* rich blue */
+  --primary-hover: #0284c7;
+  --primary-light: #e0f2fe;
+  --bg-color: #f8fafc;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --card-bg: #ffffff;
+  --success: #10b981;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg-color); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.5; }
+
+/* Header */
+.chk-header {
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+.chk-header-inner {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.chk-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.chk-brand img { height: 32px; }
+.chk-brand h1 { margin: 0; font-size: 20px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
+.chk-secure {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--success);
+  background: #ecfdf5;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+.chk-secure svg { width: 14px; height: 14px; }
+
+/* Main Layout */
+.chk-wrap {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Back Link */
+.chk-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 24px;
+  transition: color 0.2s;
+}
+.chk-back:hover { color: var(--primary); }
+
+/* Card & Sections */
+.chk-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02), 0 2px 4px -1px rgba(0,0,0,0.02);
+  padding: 28px;
+  margin-bottom: 24px;
+}
+.chk-card-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 24px 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+.chk-step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Form Styles */
+.chk-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.chk-form-grid.full { grid-template-columns: 1fr; }
+.chk-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.chk-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+.chk-input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-main);
+  transition: all 0.2s;
+  outline: none;
+}
+.chk-input:focus {
+  background: white;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+textarea.chk-input {
+  resize: vertical;
+}
+
+/* Payment Methods */
+.chk-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.chk-method-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+  overflow: hidden;
+}
+.chk-method-card:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+.chk-method-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+.chk-method-card.active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+.chk-method-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 32px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.icon-qris { background: #ffe4e6; color: #e11d48; }
+.icon-gopay { background: #e0f2fe; color: #0284c7; }
+.icon-dana { background: #dbeafe; color: #2563eb; }
+.icon-bri { background: #e0e7ff; color: #4338ca; }
+
+.chk-method-info {
+  flex: 1;
+  min-width: 0;
+}
+.chk-method-info strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+.chk-method-info span {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+.chk-pay-note {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  border-left: 4px solid var(--primary);
+  font-size: 13px;
+  color: #334155;
+}
+.chk-pay-note svg {
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Sidebar Summary */
+.chk-sidebar {
+  /* removed sticky behavior so it scrolls normally */
+}
+.chk-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.chk-item {
+  display: flex;
+  gap: 16px;
+}
+.chk-item-img {
+  width: 72px;
+  height: 72px;
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  flex-shrink: 0;
+}
+.chk-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.chk-item-info {
+  flex: 1;
+  min-width: 0;
+}
+.chk-item-brand {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.chk-item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chk-item-price {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.chk-item-total {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 4px;
+}
+
+/* Breakdown */
+.chk-breakdown {
+  border-top: 1px dashed var(--border-color);
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chk-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.chk-row strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+.chk-free { color: var(--success) !important; }
+
+/* Grand Total */
+.chk-grand-total {
+  border-top: 1px solid var(--border-color);
+  margin-top: 16px;
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chk-grand-total span {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.chk-grand-total strong {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+/* Submit Button */
+.chk-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(3, 105, 161, 0.25);
+  transition: all 0.2s;
+}
+.chk-btn:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 6px 16px rgba(3, 105, 161, 0.35);
+  transform: translateY(-2px);
+}
+.chk-btn:active {
+  transform: translateY(0);
+}
+.chk-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Guarantee badge */
+.chk-guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+.chk-guarantee svg { color: #f59e0b; }
+
+/* Mobile Responsive */
+@media (max-width: 992px) {
+  .chk-wrap { grid-template-columns: 1fr; }
+  .chk-sidebar { position: static; }
+}
+@media (max-width: 640px) {
+  .chk-wrap { padding: 16px 16px 40px; gap: 16px; }
+  .chk-card { padding: 20px 16px; margin-bottom: 16px; }
+  .chk-header-inner { flex-direction: column; gap: 12px; align-items: flex-start; }
+  .chk-secure { align-self: flex-start; }
+  .chk-form-grid, .chk-methods { grid-template-columns: 1fr; }
+  .chk-grand-total span { font-size: 13px; }
+  .chk-grand-total strong { font-size: 20px; }
+  .chk-btn { padding: 12px; font-size: 14px; margin-top: 18px; }
+}
+</style>
+</head>
+<body>
+
+<header class="chk-header">
+  <div class="chk-header-inner">
+    <a href="/" class="chk-brand">
+      <img src="/static/videos/img/Logo.png" alt="Losari Computer">
+      <h1>Checkout Pesanan</h1>
+    </a>
+    <div class="chk-secure">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+      Enkripsi 256-bit SSL
+    </div>
+  </div>
+<div style="max-width: 1150px; margin: 0 auto; padding: 32px 24px 0;">
+  <a class="chk-back" href="/laptop" style="margin-bottom: 0;">← Kembali ke Katalog</a>
+</div>
+
+<main class="chk-wrap" style="padding-top: 24px;">
+  <div class="chk-main">
+    <div class="chk-card">
+      <h2 class="chk-card-title"><span class="chk-step-num">1</span> Informasi Pengiriman</h2>
+      <div class="chk-form-grid">
+        <div class="chk-input-group">
+          <label class="chk-label">Nama Lengkap</label>
+          <input type="text" id="name" class="chk-input" placeholder="Masukkan nama lengkap" required>
+        </div>
+        <div class="chk-input-group">
+          <label class="chk-label">Nomor WhatsApp Aktif</label>
+          <input type="tel" id="phone" class="chk-input" placeholder="Contoh: 081234567890" required>
+        </div>
+        <div class="chk-input-group full">
+          <label class="chk-label">Alamat Lengkap Pengiriman</label>
+          <textarea id="address" class="chk-input" rows="3" placeholder="Nama jalan, gedung, RT/RW, kelurahan, kecamatan, kota/kabupaten, kode pos" required></textarea>
+        </div>
+        <div class="chk-input-group full">
+          <label class="chk-label">Catatan Pesanan (Opsional)</label>
+          <input type="text" id="notes" class="chk-input" placeholder="Misal: Request install Microsoft Office, wajib packing kayu, dll">
+        </div>
+      </div>
+    </div>
+
+    <div class="chk-card">
+      <h2 class="chk-card-title"><span class="chk-step-num">2</span> Metode Pembayaran</h2>
+      <div class="chk-methods">
+        <label class="chk-method-card active" data-method="QRIS">
+          <input type="radio" name="payment" value="QRIS" checked>
+          <div class="chk-method-icon icon-qris">QRIS</div>
+          <div class="chk-method-info">
+            <strong>QRIS Real-Time</strong>
+            <span>Scan instan dari semua e-Wallet & M-Banking.</span>
+          </div>
+        </label>
+        
+        <label class="chk-method-card" data-method="GOPAY">
+          <input type="radio" name="payment" value="GOPAY">
+          <div class="chk-method-icon icon-gopay">GoPay</div>
+          <div class="chk-method-info">
+            <strong>GoPay / GoPayLater</strong>
+            <span>Bayar praktis melalui aplikasi GoPay.</span>
+          </div>
+        </label>
+
+        <label class="chk-method-card" data-method="DANA">
+          <input type="radio" name="payment" value="DANA">
+          <div class="chk-method-icon icon-dana">DANA</div>
+          <div class="chk-method-info">
+            <strong>DANA Wallet</strong>
+            <span>Proses otomatis 24 jam tanpa biaya admin.</span>
+          </div>
+        </label>
+
+        <label class="chk-method-card" data-method="BRI">
+          <input type="radio" name="payment" value="BRI">
+          <div class="chk-method-icon icon-bri">BRI</div>
+          <div class="chk-method-info">
+            <strong>Transfer BRI (VA)</strong>
+            <span>Pembayaran Virtual Account via BRImo & ATM.</span>
+          </div>
+        </label>
+      </div>
+
+      <div class="chk-pay-note" id="payNote">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        <span id="payNoteText">QRIS dipilih. Setelah checkout, barcode QRIS resmi toko akan ditampilkan untuk dipindai.</span>
+      </div>
+    </div>
+  </div>
+
+  <aside class="chk-sidebar">
+    <div class="chk-card">
+      <h2 class="chk-card-title" style="margin-bottom: 20px;">Ringkasan Pesanan</h2>
+      
+      <div class="chk-items" id="items">
+        <!-- JS INJECTS ITEMS HERE -->
+      </div>
+      
+      <div class="chk-breakdown">
+        <div class="chk-row">
+          <span>Subtotal Harga</span>
+          <strong id="subtotal">Rp0</strong>
+        </div>
+        <div class="chk-row">
+          <span>Biaya Pengiriman</span>
+          <strong class="chk-free">Gratis Promo</strong>
+        </div>
+        <div class="chk-row">
+          <span>Proteksi & Packing Kayu</span>
+          <strong class="chk-free">Termasuk</strong>
+        </div>
+        <div class="chk-row">
+          <span>Garansi Toko 1 Bulan</span>
+          <strong class="chk-free">Aktif</strong>
+        </div>
+      </div>
+
+      <div class="chk-grand-total">
+        <span>Total Pembayaran</span>
+        <strong id="total">Rp0</strong>
+      </div>
+
+      <button class="chk-btn" id="checkoutBtn" type="button">
+        Lanjut ke Pembayaran 
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+
+      <div class="chk-guarantee">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        <span>Garansi retur 100% jika unit tidak sesuai deskripsi.</span>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<script>
+const CART_KEY = 'losari-cart';
+const rupiah = n => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n);
+
+function resolveProductImage(item) {
+  if (item.image) return item.image;
+  const lower = (item.name || '').toLowerCase();
+  if (lower.includes('thinkpad') && (lower.includes('t14') || lower.includes('gen 1'))) return '/static/images/laptop/thinkpad-t14.jpg';
+  if (lower.includes('thinkpad') || lower.includes('t490')) return '/static/images/laptop/thinkpad-t490.jpg';
+  if (lower.includes('tuf') || lower.includes('a15')) return '/static/images/laptop/asus-tuf-a15.jpg';
+  if (lower.includes('elitebook') || lower.includes('840')) return '/static/images/laptop/hp-elitebook-840.jpg';
+  if (lower.includes('macbook') || lower.includes('m1') || lower.includes('apple')) return '/static/images/laptop/macbook-air-m1.jpg';
+  if (lower.includes('latitude') || lower.includes('5410')) return '/static/images/laptop/dell-latitude-5410.jpg';
+  if (lower.includes('swift') || (lower.includes('acer') && lower.includes('swift'))) return '/static/images/laptop/acer-swift-3.jpg';
+  if (lower.includes('nitro') || lower.includes('nitro 5')) return '/static/images/laptop/acer-nitro-5.jpg';
+  if (lower.includes('ideapad') || lower.includes('gaming 3')) return '/static/images/laptop/lenovo-ideapad-gaming-3.jpg';
+  if (lower.includes('xps') || lower.includes('xps 13')) return '/static/images/laptop/dell-xps-13.jpg';
+  if (lower.includes('vivobook') && lower.includes('pro')) return '/static/images/laptop/asus-vivobook-pro-14.jpg';
+  if (lower.includes('vivobook')) return '/static/images/laptop/asus-vivobook-14.jpg';
+  return '/static/images/laptop/thinkpad-t490.jpg';
+}
+
+function resolveProductBrand(item) {
+  if (item.brand) return item.brand.toUpperCase();
+  const lower = (item.name || '').toLowerCase();
+  if (lower.includes('thinkpad') || lower.includes('ideapad') || lower.includes('lenovo')) return 'LENOVO';
+  if (lower.includes('tuf') || lower.includes('vivobook') || lower.includes('asus')) return 'ASUS';
+  if (lower.includes('elitebook') || lower.includes('hp')) return 'HP';
+  if (lower.includes('macbook') || lower.includes('apple')) return 'APPLE';
+  if (lower.includes('latitude') || lower.includes('xps') || lower.includes('dell')) return 'DELL';
+  if (lower.includes('nitro') || lower.includes('swift') || lower.includes('acer')) return 'ACER';
+  return 'LAPTOP';
+}
+
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch(e) {}
+
+let checkoutData = {};
+try { checkoutData = JSON.parse(localStorage.getItem('checkoutData') || '{}'); } catch(e) {}
+
+// Pre-fill fields
+const nameInput = document.getElementById('name');
+const phoneInput = document.getElementById('phone');
+const addressInput = document.getElementById('address');
+const notesInput = document.getElementById('notes');
+
+if (checkoutData.name && nameInput) nameInput.value = checkoutData.name;
+if (checkoutData.phone && phoneInput) phoneInput.value = checkoutData.phone;
+if (checkoutData.address && addressInput) addressInput.value = checkoutData.address;
+if (checkoutData.notes && notesInput) notesInput.value = checkoutData.notes;
+
+const itemsEl = document.getElementById('items');
+const subtotalEl = document.getElementById('subtotal');
+const totalEl = document.getElementById('total');
+const btn = document.getElementById('checkoutBtn');
+
+const total = cart.reduce((s, i) => s + (Number(i.price) || 0) * (Number(i.qty) || 0), 0);
+
+if (cart.length) {
+  itemsEl.innerHTML = cart.map(i => {
+    const imgSrc = resolveProductImage(i);
+    const brand = resolveProductBrand(i);
+    return `
+      <div class="chk-item">
+        <div class="chk-item-img">
+          <img src="${imgSrc}" alt="${i.name}">
+        </div>
+        <div class="chk-item-info">
+          <div class="chk-item-brand">${brand}</div>
+          <div class="chk-item-name" title="${i.name}">${i.name}</div>
+          <div class="chk-item-price">${i.qty} unit × ${rupiah(i.price)}</div>
+          <div class="chk-item-total">${rupiah(i.price * i.qty)}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+} else {
+  itemsEl.innerHTML = '<p style="color:#64748b; margin:0; text-align:center; padding: 20px 0; background: #f8fafc; border-radius: 8px;">Keranjang belanja Anda masih kosong.</p>';
+}
+
+subtotalEl.textContent = rupiah(total);
+totalEl.textContent = rupiah(total);
+btn.disabled = !cart.length;
+
+let method = 'QRIS';
+const notes = {
+  QRIS: 'QRIS dipilih. Setelah checkout, barcode QRIS resmi toko akan ditampilkan untuk dipindai.',
+  GOPAY: 'GoPay dipilih. Setelah checkout, Anda akan diarahkan ke instruksi pembayaran GoPay.',
+  DANA: 'DANA dipilih. Setelah checkout, Anda akan diarahkan ke instruksi transfer DANA.',
+  BRI: 'Bank BRI dipilih. Setelah checkout, nomor Rekening Virtual Account BRI toko akan ditampilkan.'
+};
+
+document.querySelectorAll('.chk-method-card').forEach(b => {
+  b.onclick = () => {
+    method = b.dataset.method;
+    // Update radio button state
+    b.querySelector('input[type="radio"]').checked = true;
+    
+    document.querySelectorAll('.chk-method-card').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('payNoteText').textContent = notes[method];
+  };
+});
+
+btn.onclick = () => {
+  const data = {
+    orderId: checkoutData.orderId || ('ORD-' + Date.now().toString().slice(-8)),
+    name: (nameInput ? nameInput.value.trim() : '') || 'Pelanggan Losari',
+    phone: phoneInput ? phoneInput.value.trim() : '',
+    address: addressInput ? addressInput.value.trim() : '',
+    notes: notesInput ? notesInput.value.trim() : '',
+    total,
+    method,
+    items: cart
+  };
+
+  localStorage.setItem('checkoutData', JSON.stringify(data));
+  localStorage.setItem('paymentStatus', 'pending');
+  window.location.href = '/payment';
+};
+</script>
+</body>
+</html>

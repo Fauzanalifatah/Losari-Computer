@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout Produk - Losari Computer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7fa;color:#17202a;font-family:Inter,Arial,sans-serif}
+.wrap{width:min(1050px,calc(100% - 28px));margin:auto;padding:28px 0 50px}
+.back{display:inline-flex;align-items:center;gap:6px;color:#344054;text-decoration:none;font-weight:700;margin-bottom:16px;font-size:14px;transition:color .2s}
+.back:hover{color:#075ec5}
+.head{background:linear-gradient(135deg,#071a2d,#0b243b);color:#fff;border-radius:20px;padding:27px 30px;margin-bottom:18px;box-shadow:0 10px 25px rgba(7,26,45,.12);border:1px solid rgba(19,200,184,.2)}
+.head small{color:#74f7d8;font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:12px}
+.head h1{margin:8px 0;font-size:32px;font-weight:900}
+.head p{margin:0;color:#d2dae2;font-size:14px}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.card{background:#fff;border:1px solid #e4e7eb;border-radius:18px;padding:22px;box-shadow:0 8px 25px rgba(0,0,0,.04)}
+h2{margin:0 0 16px;font-size:18px;font-weight:800;color:#0f172a;display:flex;align-items:center;gap:8px}
+.items{display:flex;flex-direction:column;gap:12px}
+.checkout-item{display:flex;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #edf0f2}
+.checkout-item:last-child{border-bottom:0}
+.item-thumb{width:64px;height:64px;border-radius:10px;background:#f8fafc;border:1px solid #edf2f7;display:grid;place-items:center;overflow:hidden;flex:0 0 64px}
+.item-thumb img{width:100%;height:100%;object-fit:contain;padding:2px}
+.item-info{flex:1;min-width:0}
+.item-brand{font-size:10.5px;font-weight:800;color:#075ec5;letter-spacing:.05em;text-transform:uppercase;display:block;margin-bottom:2px}
+.item-name{font-size:13.5px;font-weight:700;color:#0f172a;line-height:1.35;margin-bottom:3px}
+.item-meta{font-size:12px;color:#64748b}
+.item-subtotal{font-weight:800;font-size:14px;color:#0f172a;white-space:nowrap;margin-left:auto}
+.breakdown{margin-top:16px;padding-top:14px;border-top:1px solid #edf0f2;display:flex;flex-direction:column;gap:8px}
+.breakdown-row{display:flex;justify-content:space-between;font-size:13px;color:#64748b}
+.breakdown-row strong{color:#0f172a;font-weight:700}
+.total{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:2px solid #eef1f4;margin-top:4px;font-size:16px;font-weight:800;color:#0f172a}
+.total strong{font-size:22px;font-weight:900;color:#075ec5}
+label.field{display:block;font-size:12px;font-weight:800;color:#475569;text-transform:uppercase;letter-spacing:.03em;margin-top:14px}
+input,textarea{width:100%;padding:11px 13px;border:1px solid #d7dde4;border-radius:10px;margin-top:6px;font-size:13.5px;background:#f8fafc;font-family:inherit;transition:border-color .2s,box-shadow .2s;outline:none}
+input:focus,textarea:focus{border-color:#075ec5;box-shadow:0 0 0 3px rgba(7,94,197,.12);background:#fff}
+.methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.method{border:1px solid #dce1e6;border-radius:13px;background:#fff;padding:14px;text-align:left;cursor:pointer;transition:all .2s}
+.method:hover{border-color:#075ec5}
+.method.active{border:2px solid #075ec5;background:#f0f6ff;padding:13px}
+.method b{display:block;font-size:14px;color:#0f172a}
+.method span{display:block;font-size:12px;color:#6b7280;margin-top:3px}
+.logo{display:inline-grid;place-items:center;width:38px;height:28px;border-radius:7px;font-size:11px;font-weight:900;margin-bottom:8px}
+.q{background:#ffe5ee;color:#d5165a}
+.g{background:#e3f5ff;color:#0075b6}
+.d{background:#e3efff;color:#0874c5}
+.b{background:#dfeaff;color:#174fa9}
+.pay-note{margin-top:14px;padding:12px 14px;border-radius:10px;background:#f6f8fa;color:#475569;font-size:13px;line-height:1.5;border-left:3px solid #075ec5}
+.btn{width:100%;border:0;border-radius:30px;padding:15px;margin-top:18px;background:linear-gradient(135deg,#075ec5 0%,#054ca5 100%);color:#fff;font-weight:800;font-size:15px;cursor:pointer;box-shadow:0 4px 16px rgba(7,94,197,.30);transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{background:linear-gradient(135deg,#096ee6 0%,#075ec5 100%);box-shadow:0 6px 20px rgba(7,94,197,.40);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.head h1{font-size:26px}}
+@media(max-width:470px){.methods{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="/laptop">← Kembali ke Belanja</a>
+<section class="head">
+  <small>LOSARI COMPUTER · CHECKOUT AMAN & TERPERCAYA</small>
+  <h1>Checkout Pesanan</h1>
+  <p>Periksa detail unit pesanan, data pengiriman, dan pilih metode pembayaran resmi Losari Computer.</p>
+</section>
+
+<div class="grid">
+  <section class="card">
+    <h2><span>👤</span> Data Pembeli & Pengiriman</h2>
+    <label class="field">Nama Lengkap<input id="name" placeholder="Masukkan nama lengkap Anda"></label>
+    <label class="field">Nomor WhatsApp Aktif<input id="phone" placeholder="contoh: 08123456789" inputmode="tel"></label>
+    <label class="field">Alamat Penerimaan Lengkap<textarea id="address" rows="3" placeholder="Nama jalan, nomor rumah, kecamatan, kabupaten/kota"></textarea></label>
+    <label class="field">Catatan Khusus / Request (Opsional)<input id="notes" placeholder="Request install aplikasi kantor, packing bubble tebal, dll."></label>
+  </section>
+
+  <section class="card">
+    <h2><span>🛍️</span> Ringkasan Pesanan Kamu</h2>
+    <div id="items" class="items"></div>
+    
+    <div class="breakdown">
+      <div class="breakdown-row">
+        <span>Harga Subtotal:</span>
+        <strong id="subtotal">Rp0</strong>
+      </div>
+      <div class="breakdown-row">
+        <span>Ongkos Kirim & Packing Kayu:</span>
+        <strong style="color:#0d9488">Gratis Promo</strong>
+      </div>
+      <div class="breakdown-row">
+        <span>Garansi Toko 1 Bulan:</span>
+        <strong style="color:#0d9488">Included</strong>
+      </div>
+    </div>
+
+    <div class="total">
+      <span>Total Biaya:</span>
+      <strong id="total">Rp0</strong>
+    </div>
+  </section>
+</div>
+
+<section class="card" style="margin-top:18px">
+  <h2><span>💳</span> Pilih Metode Pembayaran</h2>
+  <div class="methods">
+    <button class="method active" data-method="QRIS" type="button"><span class="logo q">QRIS</span><b>QRIS Real-Time</b><span>Scan QR instan semua e-wallet & m-banking</span></button>
+    <button class="method" data-method="GOPAY" type="button"><span class="logo g">GoPay</span><b>GoPay / GoPayLater</b><span>Bayar praktis melalui aplikasi GoPay</span></button>
+    <button class="method" data-method="DANA" type="button"><span class="logo d">DANA</span><b>DANA Wallet</b><span>Verifikasi otomatis 24 jam</span></button>
+    <button class="method" data-method="BRI" type="button"><span class="logo b">BRI</span><b>Bank BRI (Virtual Account)</b><span>Transfer via ATM & BRImo</span></button>
+  </div>
+  <div class="pay-note" id="payNote">QRIS dipilih. Setelah checkout, barcode QRIS resmi toko akan ditampilkan untuk dipindai.</div>
+  <button class="btn" id="checkoutBtn" type="button">
+    <span>Lanjut ke Pembayaran</span>
+    <span>→</span>
+  </button>
+</section>
+</main>
+
+  <!-- Losari Computer Premium Wavy Footer -->
+  <footer class="ld-wave-footer" id="siteFooter">
+    <!-- Top Organic SVG Wave -->
+    <div class="ld-wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,28 C180,4 360,68 620,72 C880,76 1060,8 1240,12 C1340,14 1400,34 1440,42 L1440,90 L0,90 Z" fill="#0b1626"></path>
+      </svg>
+    </div>
+
+    <!-- Main Footer Body -->
+    <div class="ld-wave-body">
+      <!-- Ambient decorative glow shapes -->
+      <div class="ld-footer-decor-bubble bubble-1" aria-hidden="true"></div>
+      <div class="ld-footer-decor-bubble bubble-2" aria-hidden="true"></div>
+
+      <div class="ld-wave-inner">
+        <!-- Top Row: Brand Info & Socials -->
+        <div class="ld-top-row">
+          <div class="ld-brand-block">
+            <a href="/" class="ld-brand-badge" aria-label="Losari Computer">
+              <img src="/static/videos/img/Logo.png" alt="Losari Computer" class="ld-brand-logo-img">
+              <div class="ld-brand-meta">
+                <span class="ld-brand-name">Losari Computer</span>
+                <span class="ld-brand-tagline">Spesialis Laptop Second Berkualitas & IT Solution</span>
+              </div>
+            </a>
+            <p class="ld-brand-desc">
+              Pusat penjualan laptop second teruji melalui 20+ titik Quality Control ketat, bergaransi resmi toko, dan siap kirim aman ke seluruh Indonesia.
+            </p>
+          </div>
+
+          <!-- Social Icons on Top Right -->
+          <div class="ld-social-icons">
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="ld-soc-link" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="ld-soc-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="ld-soc-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="ld-soc-link" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 5 Tailored Store Navigation Columns -->
+        <div class="ld-columns-grid">
+          <!-- Column 1: Katalog Laptop -->
+          <div class="ld-nav-col">
+            <h4 class="ld-col-head col-head--blue">Katalog Laptop</h4>
+            <ul class="ld-nav-list">
+              <li><a href="/laptop?category=office">ThinkPad & Laptop Bisnis</a></li>
+              <li><a href="/laptop?category=gaming">ASUS TUF & Gaming Series</a></li>
+              <li><a href="/laptop?category=creative">MacBook & Content Creator</a></li>
+              <li><a href="/laptop?category=business">HP EliteBook & Ultrabook</a></li>
+              <li><a href="/laptop">Semua Koleksi Laptop</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Layanan Servis -->
+          <div class="ld-nav-col">
+            <h4 class="ld-col-head col-head--emerald">Layanan & Servis</h4>
+            <ul class="ld-nav-list">
+              <li><a href="/layanan">Upgrade SSD & Tambah RAM</a></li>
+              <li><a href="/layanan">Ganti Keyboard & Baterai</a></li>
+              <li><a href="/layanan">Instal Ulang OS & Software</a></li>
+              <li><a href="/layanan">Servis Mainboard & Kipas</a></li>
+              <li><a href="/layanan">Pembersihan Thermal Paste</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Tentang Toko -->
+          <div class="ld-nav-col">
+            <h4 class="ld-col-head col-head--amber">Tentang Toko</h4>
+            <ul class="ld-nav-list">
+              <li><a href="/tentang">Profil Losari Computer</a></li>
+              <li><a href="/tentang">Standar QC 20+ Titik</a></li>
+              <li><a href="/tentang">Kebijakan Garansi Toko</a></li>
+              <li><a href="/#testimonials">Ulasan & Testimoni</a></li>
+              <li><a href="/tentang">Kenapa Pilih Kami</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Bantuan & Belanja -->
+          <div class="ld-nav-col">
+            <h4 class="ld-col-head col-head--purple">Bantuan Belanja</h4>
+            <ul class="ld-nav-list">
+              <li><a href="/checkout-produk">Keranjang & Checkout</a></li>
+              <li><a href="/laptop">Panduan Memilih Laptop</a></li>
+              <li><a href="/kontak">Cara Pembayaran & Transfer</a></li>
+              <li><a href="/kontak">Cek Resi & Pengiriman</a></li>
+              <li><a href="/kontak">Syarat Klaim Garansi</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 5: Hubungi Kami -->
+          <div class="ld-nav-col ld-nav-col--contact">
+            <h4 class="ld-col-head col-head--rose">Hubungi Kami</h4>
+            <div class="ld-contact-info">
+              <div class="ld-contact-item">
+                <span class="ld-c-icon">📍</span>
+                <span>Losari, Cirebon — Jawa Barat</span>
+              </div>
+              <div class="ld-contact-item">
+                <span class="ld-c-icon">💬</span>
+                <span>WhatsApp: <strong>0812-3456-7890</strong></span>
+              </div>
+              <div class="ld-contact-item">
+                <span class="ld-c-icon">⏰</span>
+                <span>Setiap Hari: 09.00 - 21.00 WIB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Copyright & Nav Links -->
+        <div class="ld-bottom-row">
+          <p class="ld-copyright-text">
+            &copy; 2026 <strong>Losari Computer</strong>. Hak Cipta Dilindungi. Pusat Laptop Second & IT Solution Terpercaya.
+          </p>
+          <div class="ld-bottom-nav">
+            <a href="/">Home</a>
+            <span>•</span>
+            <a href="/laptop">Shop</a>
+            <span>•</span>
+            <a href="/layanan">Service</a>
+            <span>•</span>
+            <a href="/tentang">Tentang</a>
+            <span>•</span>
+            <a href="/kontak">Kontak</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+        <!-- Bottom Row: Copyright & Nav Links -->
+        <div class="ld-bottom-row">
+          <p class="ld-copyright-text">
+            &copy; 2026 <strong>Losari Computer</strong>. Hak Cipta Dilindungi. Pusat Laptop Second & IT Solution Terpercaya.
+          </p>
+          <div class="ld-bottom-nav">
+            <a href="/">Home</a>
+            <span>•</span>
+            <a href="/laptop">Shop</a>
+            <span>•</span>
+            <a href="/layanan">Service</a>
+            <span>•</span>
+            <a href="/tentang">Tentang</a>
+            <span>•</span>
+            <a href="/kontak">Kontak</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+const CART_KEY = 'losari-cart';
+const rupiah = n => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n);
+
+function resolveProductImage(item) {
+  if (item.image) return item.image;
+  const lower = (item.name || '').toLowerCase();
+  if (lower.includes('thinkpad') && (lower.includes('t14') || lower.includes('gen 1'))) return '/static/images/laptop/thinkpad-t14.jpg';
+  if (lower.includes('thinkpad') || lower.includes('t490')) return '/static/images/laptop/thinkpad-t490.jpg';
+  if (lower.includes('tuf') || lower.includes('a15')) return '/static/images/laptop/asus-tuf-a15.jpg';
+  if (lower.includes('elitebook') || lower.includes('840')) return '/static/images/laptop/hp-elitebook-840.jpg';
+  if (lower.includes('macbook') || lower.includes('m1') || lower.includes('apple')) return '/static/images/laptop/macbook-air-m1.jpg';
+  if (lower.includes('latitude') || lower.includes('5410')) return '/static/images/laptop/dell-latitude-5410.jpg';
+  if (lower.includes('swift') || (lower.includes('acer') && lower.includes('swift'))) return '/static/images/laptop/acer-swift-3.jpg';
+  if (lower.includes('nitro') || lower.includes('nitro 5')) return '/static/images/laptop/acer-nitro-5.jpg';
+  if (lower.includes('ideapad') || lower.includes('gaming 3')) return '/static/images/laptop/lenovo-ideapad-gaming-3.jpg';
+  if (lower.includes('xps') || lower.includes('xps 13')) return '/static/images/laptop/dell-xps-13.jpg';
+  if (lower.includes('vivobook') && lower.includes('pro')) return '/static/images/laptop/asus-vivobook-pro-14.jpg';
+  if (lower.includes('vivobook')) return '/static/images/laptop/asus-vivobook-14.jpg';
+  return '/static/images/laptop/thinkpad-t490.jpg';
+}
+
+function resolveProductBrand(item) {
+  if (item.brand) return item.brand.toUpperCase();
+  const lower = (item.name || '').toLowerCase();
+  if (lower.includes('thinkpad') || lower.includes('ideapad') || lower.includes('lenovo')) return 'LENOVO';
+  if (lower.includes('tuf') || lower.includes('vivobook') || lower.includes('asus')) return 'ASUS';
+  if (lower.includes('elitebook') || lower.includes('hp')) return 'HP';
+  if (lower.includes('macbook') || lower.includes('apple')) return 'APPLE';
+  if (lower.includes('latitude') || lower.includes('xps') || lower.includes('dell')) return 'DELL';
+  if (lower.includes('nitro') || lower.includes('swift') || lower.includes('acer')) return 'ACER';
+  return 'LAPTOP';
+}
+
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch(e) {}
+
+let checkoutData = {};
+try { checkoutData = JSON.parse(localStorage.getItem('checkoutData') || '{}'); } catch(e) {}
+
+// Pre-fill fields
+const nameInput = document.getElementById('name');
+const phoneInput = document.getElementById('phone');
+const addressInput = document.getElementById('address');
+const notesInput = document.getElementById('notes');
+
+if (checkoutData.name && nameInput) nameInput.value = checkoutData.name;
+if (checkoutData.phone && phoneInput) phoneInput.value = checkoutData.phone;
+if (checkoutData.address && addressInput) addressInput.value = checkoutData.address;
+if (checkoutData.notes && notesInput) notesInput.value = checkoutData.notes;
+
+const itemsEl = document.getElementById('items');
+const subtotalEl = document.getElementById('subtotal');
+const totalEl = document.getElementById('total');
+const btn = document.getElementById('checkoutBtn');
+
+const total = cart.reduce((s, i) => s + (Number(i.price) || 0) * (Number(i.qty) || 0), 0);
+
+if (cart.length) {
+  itemsEl.innerHTML = cart.map(i => {
+    const imgSrc = resolveProductImage(i);
+    const brand = resolveProductBrand(i);
+    return `
+      <div class="checkout-item">
+        <div class="item-thumb">
+          <img src="${imgSrc}" alt="${i.name}">
+        </div>
+        <div class="item-info">
+          <span class="item-brand">${brand}</span>
+          <div class="item-name">${i.name}</div>
+          <div class="item-meta">${i.qty} unit × ${rupiah(i.price)}</div>
+        </div>
+        <div class="item-subtotal">${rupiah(i.price * i.qty)}</div>
+      </div>
+    `;
+  }).join('');
+} else {
+  itemsEl.innerHTML = '<p style="color:#64748b; margin:15px 0;">Keranjang kosong. Silakan kembali dan pilih produk dari katalog.</p>';
+}
+
+subtotalEl.textContent = rupiah(total);
+totalEl.textContent = rupiah(total);
+btn.disabled = !cart.length;
+
+let method = 'QRIS';
+const notes = {
+  QRIS: 'QRIS dipilih. Setelah checkout, barcode QRIS resmi toko akan ditampilkan untuk dipindai.',
+  GOPAY: 'GoPay dipilih. Setelah checkout, Anda akan diarahkan ke instruksi pembayaran GoPay.',
+  DANA: 'DANA dipilih. Setelah checkout, Anda akan diarahkan ke instruksi transfer DANA.',
+  BRI: 'Bank BRI dipilih. Setelah checkout, nomor Rekening Virtual Account BRI toko akan ditampilkan.'
+};
+
+document.querySelectorAll('.method').forEach(b => {
+  b.onclick = () => {
+    method = b.dataset.method;
+    document.querySelectorAll('.method').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('payNote').textContent = notes[method];
+  };
+});
+
+btn.onclick = () => {
+  const data = {
+    orderId: checkoutData.orderId || ('ORD-' + Date.now().toString().slice(-8)),
+    name: (nameInput ? nameInput.value.trim() : '') || 'Pelanggan Losari',
+    phone: phoneInput ? phoneInput.value.trim() : '',
+    address: addressInput ? addressInput.value.trim() : '',
+    notes: notesInput ? notesInput.value.trim() : '',
+    total,
+    method,
+    items: cart
+  };
+
+  localStorage.setItem('checkoutData', JSON.stringify(data));
+  localStorage.setItem('paymentStatus', 'pending');
+  window.location.href = '/payment';
+};
+</script>
+</body>
+</html>

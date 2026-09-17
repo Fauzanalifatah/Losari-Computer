@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Losari Computer — Laptop Second Berkualitas</title>
+  <meta name="description" content="Losari Computer — laptop second berkualitas, teruji dan bergaransi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/laptop-catalog.css">
+</head>
+
+<body>
+  <div class="store-topline">
+    <div class="store-shell store-topline-inner">
+      <div class="brand-family">
+        <span>LOSARI COMPUTER</span>
+        <span class="family-separator"></span>
+        <span class="muted-brand">SECOND LAPTOP</span>
+        <span class="family-separator"></span>
+        <span class="muted-brand">IT SOLUTION</span>
+      </div>
+      <div class="top-links">
+        <a href="#">Promo</a>
+        <a href="#">Garansi</a>
+        <a href="#">Bantuan</a>
+        <a href="/kontak">Kontak</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="store-header" id="site-header">
+    <div class="store-shell nav-inner">
+      <a class="store-logo" href="/" aria-label="Losari Computer">
+        <img src="/static/videos/img/Logo.png" alt="Losari Computer">
+        <span>Losari Computer</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <a class="active" href="/">Home</a>
+        <a href="/laptop">Shop</a>
+        <a href="/layanan">Service</a>
+        <a href="/tentang">Tentang</a>
+      </nav>
+
+      <div class="nav-tools">
+        <a class="support-link" href="/kontak">Support</a>
+        <button class="icon-button" type="button" aria-label="Cari"
+          onclick="document.querySelector('#catalog').scrollIntoView({behavior:'smooth'})">⌕</button>
+
+        <!-- User Profile Trigger & Dropdown Modal matching Image 1 -->
+        <div class="user-menu-wrap" id="userMenuWrap">
+          <button class="user-avatar-btn" id="userAvatarBtn" type="button" aria-label="Profil Akun Pengguna"
+            aria-expanded="false">
+            <div class="user-avatar-circle" id="userAvatarCircle">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </div>
+            <span class="user-badge-count" id="userBadgeCount" style="display:none;">0</span>
+          </button>
+
+          <!-- Dropdown Card matching Image 2 -->
+          <div class="user-dropdown-card" id="userDropdownCard">
+            <!-- Header section matching user screenshot -->
+            <div class="user-dropdown-header">
+              <h4 class="user-name" id="dropdownUserName">Tamu Nusantara</h4>
+              <p class="user-status-text" id="dropdownUserStatus">Belum tersambung Google</p>
+              <div class="user-pill-badge" id="dropdownPillBadge">
+                <span id="dropdownPillText">MODE TAMU / OFFLINE</span>
+              </div>
+            </div>
+            <div class="user-dropdown-divider"></div>
+
+            <!-- List section -->
+            <div class="user-dropdown-list">
+              <!-- Item 1: Favorit Saya -->
+              <button type="button" class="user-menu-item" id="itemFavorites">
+                <div class="user-item-icon-box box--pink">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ef4444" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                  </svg>
+                </div>
+                <div class="user-item-texts">
+                  <span class="user-item-title">Favorit Saya</span>
+                  <span class="user-item-sub" id="favSubCount">Laptop tersimpan</span>
+                </div>
+              </button>
+
+              <!-- Item 2: Keranjang Belanja -->
+              <button type="button" class="user-menu-item" id="itemCart">
+                <div class="user-item-icon-box box--amber">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                  </svg>
+                  <span class="item-inner-badge" id="cartItemInnerBadge" style="display:none;">0</span>
+                </div>
+                <div class="user-item-texts">
+                  <span class="user-item-title">Keranjang Belanja</span>
+                  <span class="user-item-sub" id="cartSubCount">Total 0 item</span>
+                </div>
+              </button>
+
+              <!-- Item 3: Pusat Informasi -->
+              <div class="user-menu-item item--highlight" id="itemInfoCenter" role="button" tabindex="0">
+                <div class="user-item-icon-box box--blue">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3b82f6" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                  </svg>
+                  <span class="item-inner-badge badge--red" id="infoCenterBadge">3</span>
+                </div>
+                <div class="user-item-texts">
+                  <span class="user-item-title">Pusat Informasi</span>
+                  <span class="user-item-sub">Info Promo & Pembaruan</span>
+                </div>
+              </div>
+
+              <!-- Item 4: Edit Profil / Hubungkan Google -->
+              <button type="button" class="user-menu-item item--google" id="btnConnectGoogle">
+                <div class="user-item-icon-box box--gray" id="googleBoxIcon">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#64748b" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div class="user-item-texts">
+                  <span class="user-item-title" id="googleActionTitle">Edit Profil</span>
+                  <span class="user-item-sub" id="googleActionSub">Nama Lengkap & Kontak</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="menu-button" id="menuButton" type="button" aria-label="Buka menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="/">Home</a>
+      <a href="/laptop">Shop</a>
+      <a href="/layanan">Service</a>
+      <a href="/tentang">Tentang</a>
+      <a href="/kontak">Support</a>
+    </div>
+  </header>
+
+  <div class="promo-bar" aria-label="Informasi promosi">
+    <div class="promo-marquee">
+      <div class="promo-track">
+        <div class="promo-group" aria-hidden="false">
+          <span>LAPTOP SECOND</span><b>•</b>
+          <span>UNIT TERUJI</span><b>•</b>
+          <span>GARANSI TOKO</span><b>•</b>
+          <span>SIAP KIRIM KE SELURUH KOTA MAKASSAR</span><b>•</b>
+        </div>
+        <div class="promo-group" aria-hidden="true">
+          <span>LAPTOP SECOND</span><b>•</b>
+          <span>UNIT TERUJI</span><b>•</b>
+          <span>GARANSI TOKO</span><b>•</b>
+          <span>SIAP KIRIM KE SELURUH KOTA MAKASSAR</span><b>•</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="store-hero" aria-label="Banner Losari Computer">
+      <div class="hero-slideshow" id="heroSlideshow">
+        <div class="hero-slide active">
+          <img src="/static/images/slide1.png" alt="Banner Losari Computer 1" fetchpriority="high">
+        </div>
+
+        <div class="hero-slide">
+          <img src="/static/images/slide2.png" alt="Banner Losari Computer 2" loading="lazy">
+        </div>
+
+        <div class="hero-slide">
+          <img src="/static/images/slide3.png" alt="Banner Losari Computer 3" loading="lazy">
+        </div>
+
+        <div class="hero-slide">
+          <img src="/static/images/slide4.png" alt="Banner Losari Computer 4" loading="lazy">
+        </div>
+      </div>
+
+      <button class="hero-arrow hero-prev" id="heroPrev" type="button" aria-label="Banner sebelumnya">‹</button>
+      <button class="hero-arrow hero-next" id="heroNext" type="button" aria-label="Banner berikutnya">›</button>
+
+      <div class="hero-dots" aria-label="Navigasi banner">
+        <button class="active" type="button" data-slide="0" aria-label="Banner 1"></button>
+        <button type="button" data-slide="1" aria-label="Banner 2"></button>
+        <button type="button" data-slide="2" aria-label="Banner 3"></button>
+        <button type="button" data-slide="3" aria-label="Banner 4"></button>
+      </div>
+    </section>
+
+    <section class="quick-categories store-shell" id="catalog">
+      <div class="section-title">
+        <div>
+          <small>SHOP BY CATEGORY</small>
+          <h2>Pilih sesuai kebutuhan</h2>
+        </div>
+        <span class="disabled-link" aria-disabled="true">Lihat semua →</span>
+      </div>
+
+      <div class="category-grid">
+        <a href="/laptop" class="category-card">
+          <span class="category-number">01</span>
+          <div>
+            <h3>Office & Kuliah</h3>
+            <p>Ringan, nyaman, dan siap untuk aktivitas harian.</p>
+          </div>
+          <span class="category-arrow">↗</span>
+        </a>
+        <a href="/laptop" class="category-card">
+          <span class="category-number">02</span>
+          <div>
+            <h3>Desain & Kreatif</h3>
+            <p>Performa lebih untuk editing, desain, dan produksi.</p>
+          </div>
+          <span class="category-arrow">↗</span>
+        </a>
+        <a href="/laptop" class="category-card">
+          <span class="category-number">03</span>
+          <div>
+            <h3>Gaming</h3>
+            <p>Performa tinggi untuk game dan pekerjaan berat.</p>
+          </div>
+          <span class="category-arrow">↗</span>
+        </a>
+        <a href="/laptop" class="category-card">
+          <span class="category-number">04</span>
+          <div>
+            <h3>Bisnis</h3>
+            <p>Notebook profesional untuk mobilitas dan produktivitas.</p>
+          </div>
+          <span class="category-arrow">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS / KATA MEREKA SECTION -->
+    <section class="testimonials-section" id="testimonials" aria-label="Kata Mereka / Testimoni Pelanggan">
+      <div class="testimonials-header">
+        <span class="testimonials-label">KATA MEREKA</span>
+        <h2 class="testimonials-title">Apa Kata Pelanggan LOSARI COMPUTER</h2>
+      </div>
+
+      <div class="testimonials-marquee-wrapper">
+        <div class="testimonials-track">
+          <!-- CARD 1 -->
+          <article class="testimonial-card">
+            <div>
+              <div class="testimonial-stars" aria-label="Rating 5 dari 5 bintang">★★★★★</div>
+              <p class="testimonial-quote">“Awalnya takut beli laptop second online karena gapaham cek mesin. Ternyata
+                di LOSARI unitnya mulus 98%, baterai tahan lama, dan langsung siap pakai untuk skripsi. Skripsi saya
+                jadi lebih cepat selesai!”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SN</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Siti Nur Aini</h4>
+                <p class="testimonial-role">Mahasiswa S1 Psikologi, Universitas Gadjah Mada</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 2 -->
+          <article class="testimonial-card">
+            <div>
+              <div class="testimonial-stars" aria-label="Rating 5 dari 5 bintang">★★★★★</div>
+              <p class="testimonial-quote">“Beli ThinkPad di LOSARI sangat membantu saat pengolahan data penelitian.
+                Spesifikasi jujur transparan, packing kayu super aman sampai ke luar pulau, dan garansi toko
+                terpercaya.”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar avatar--blue">MF</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Muhammad Fajar</h4>
+                <p class="testimonial-role">Peneliti, Lembaga Riset & Analisis Data</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 3 -->
+          <article class="testimonial-card">
+            <div>
+              <div class="testimonial-stars" aria-label="Rating 5 dari 5 bintang">★★★★★</div>
+              <p class="testimonial-quote">“Sudah coba beberapa toko laptop second, tapi LOSARI yang paling lengkap &
+                rapi — QC 20+ titik benar-benar terbukti, keyboard empuk, layar jernih, dan teknisi siap bantu
+                konsultasi.”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar avatar--emerald">RP</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Ratna Puspitasari</h4>
+                <p class="testimonial-role">Dosen & Peneliti Pendidikan</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 4 -->
+          <article class="testimonial-card">
+            <div>
+              <div class="testimonial-stars" aria-label="Rating 5 dari 5 bintang">★★★★★</div>
+              <p class="testimonial-quote">“Laptop Asus ROG dari LOSARI sangat membantu project 3D rendering dan coding
+                tesis saya — performanya kencang, suhu adem, dan harganya jauh lebih hemat dibanding beli baru.”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar avatar--purple">AR</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Anisa Rahmawati</h4>
+                <p class="testimonial-role">Mahasiswa S2 Teknik Informatika</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 5 -->
+          <article class="testimonial-card">
+            <div>
+              <div class="testimonial-stars" aria-label="Rating 5 dari 5 bintang">★★★★★</div>
+              <p class="testimonial-quote">“Pengadaan 5 unit laptop kantor untuk tim marketing berjalan lancar tanpa
+                kendala. Respon admin gercep, faktur lengkap, dan unitnya semua prima siap pakai.”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar avatar--amber">DK</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Dedi Kurniawan</h4>
+                <p class="testimonial-role">Operational Manager, Tech Agency</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 6 -->
+          <article class="testimonial-card">
+            <div>
+              <div class="testimonial-stars" aria-label="Rating 5 dari 5 bintang">★★★★★</div>
+              <p class="testimonial-quote">“Pelayanan ramah banget! Dikasi rekomendasi laptop gaming sesuai budget tanpa
+                dipaksa beli yang mahal. Packing bubble wrap tebal dan pengiriman instan cepat sampai.”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar avatar--rose">FA</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Fauzan Akbar</h4>
+                <p class="testimonial-role">Graphic Designer & Freelancer Makassar</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- DUPLICATE SET FOR INFINITE SMOOTH LOOP -->
+          <!-- CARD 1 (DUP) -->
+          <article class="testimonial-card" aria-hidden="true">
+            <div>
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-quote">“Awalnya takut beli laptop second online karena gapaham cek mesin. Ternyata
+                di LOSARI unitnya mulus 98%, baterai tahan lama, dan langsung siap pakai untuk skripsi. Skripsi saya
+                jadi lebih cepat selesai!”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SN</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Siti Nur Aini</h4>
+                <p class="testimonial-role">Mahasiswa S1 Psikologi, Universitas Gadjah Mada</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 2 (DUP) -->
+          <article class="testimonial-card" aria-hidden="true">
+            <div>
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-quote">“Beli ThinkPad di LOSARI sangat membantu saat pengolahan data penelitian.
+                Spesifikasi jujur transparan, packing kayu super aman sampai ke luar pulau, dan garansi toko
+                terpercaya.”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar avatar--blue">MF</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Muhammad Fajar</h4>
+                <p class="testimonial-role">Peneliti, Lembaga Riset & Analisis Data</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 3 (DUP) -->
+          <article class="testimonial-card" aria-hidden="true">
+            <div>
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-quote">“Sudah coba beberapa toko laptop second, tapi LOSARI yang paling lengkap &
+                rapi — QC 20+ titik benar-benar terbukti, keyboard empuk, layar jernih, dan teknisi siap bantu
+                konsultasi.”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar avatar--emerald">RP</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Ratna Puspitasari</h4>
+                <p class="testimonial-role">Dosen & Peneliti Pendidikan</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 4 (DUP) -->
+          <article class="testimonial-card" aria-hidden="true">
+            <div>
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-quote">“Laptop Asus ROG dari LOSARI sangat membantu project 3D rendering dan coding
+                tesis saya — performanya kencang, suhu adem, dan harganya jauh lebih hemat dibanding beli baru.”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar avatar--purple">AR</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Anisa Rahmawati</h4>
+                <p class="testimonial-role">Mahasiswa S2 Teknik Informatika</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 5 (DUP) -->
+          <article class="testimonial-card" aria-hidden="true">
+            <div>
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-quote">“Pengadaan 5 unit laptop kantor untuk tim marketing berjalan lancar tanpa
+                kendala. Respon admin gercep, faktur lengkap, dan unitnya semua prima siap pakai.”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar avatar--amber">DK</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Dedi Kurniawan</h4>
+                <p class="testimonial-role">Operational Manager, Tech Agency</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 6 (DUP) -->
+          <article class="testimonial-card" aria-hidden="true">
+            <div>
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-quote">“Pelayanan ramah banget! Dikasi rekomendasi laptop gaming sesuai budget tanpa
+                dipaksa beli yang mahal. Packing bubble wrap tebal dan pengiriman instan cepat sampai.”</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar avatar--rose">FA</div>
+              <div class="testimonial-meta">
+                <h4 class="testimonial-name">Fauzan Akbar</h4>
+                <p class="testimonial-role">Graphic Designer & Freelancer Makassar</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Losari Computer — Simple Professional Footer -->
+  <footer class="ld-wave-footer" id="siteFooter">
+    <div class="ld-wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,32 C240,6 480,62 720,56 C960,50 1200,10 1440,28 L1440,72 L0,72 Z" fill="#090f1c"></path>
+      </svg>
+    </div>
+    <div class="ld-wave-body">
+      <div class="ld-wave-inner">
+        <div class="ld-footer-grid">
+          <div class="ld-brand-block">
+            <a href="/" class="ld-brand-badge" aria-label="Losari Computer">
+              <img src="/static/videos/img/Logo.png" alt="Losari Computer" class="ld-brand-logo-img">
+              <div class="ld-brand-meta">
+                <span class="ld-brand-name">Losari Computer</span>
+                <span class="ld-brand-tagline">Spesialis Laptop Second &amp; IT Solution</span>
+              </div>
+            </a>
+            <p class="ld-brand-desc">Pusat laptop second berkualitas. Teruji 20+ titik QC, bergaransi toko, siap kirim ke seluruh Indonesia.</p>
+            <ul class="ld-social-icons">
+              <li class="ld-soc-item soc-wa">
+                <span class="ld-soc-tooltip">WhatsApp</span>
+                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="ld-soc-link" aria-label="WhatsApp">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+              </li>
+              <li class="ld-soc-item soc-instagram">
+                <span class="ld-soc-tooltip">Instagram</span>
+                <a href="https://instagram.com" target="_blank" rel="noopener" class="ld-soc-link" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+              </li>
+              <li class="ld-soc-item soc-tiktok">
+                <span class="ld-soc-tooltip">TikTok</span>
+                <a href="https://tiktok.com" target="_blank" rel="noopener" class="ld-soc-link" aria-label="TikTok">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+                </a>
+              </li>
+              <li class="ld-soc-item soc-youtube">
+                <span class="ld-soc-tooltip">YouTube</span>
+                <a href="https://youtube.com" target="_blank" rel="noopener" class="ld-soc-link" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+              </li>
+            </ul>
+            </div>
+          <div class="ld-nav-col">
+            <h4 class="ld-col-head">Navigasi</h4>
+            <ul class="ld-nav-list">
+              <li><a href="/">Beranda</a></li>
+              <li><a href="/laptop">Katalog Laptop</a></li>
+              <li><a href="/layanan">Layanan &amp; Servis</a></li>
+              <li><a href="/tentang">Tentang Kami</a></li>
+              <li><a href="/kontak">Kontak</a></li>
+            </ul>
+          </div>
+          <div class="ld-nav-col">
+            <h4 class="ld-col-head">Hubungi Kami</h4>
+            <div class="ld-contact-info">
+              <div class="ld-contact-item">
+                <span class="ld-c-icon ld-c-loc"><div class="ld-loc-loader"></div></span>
+                <span>Losari, Cirebon &#8212; Jawa Barat</span>
+              </div>
+              <div class="ld-contact-item">
+                <span class="ld-c-icon ld-c-phone"><svg class="ld-icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.47 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WA: <strong>0812-3456-7890</strong></a>
+              </div>
+              <div class="ld-contact-item">
+                <span class="ld-c-icon ld-c-clock"><svg class="ld-icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+                <span>Setiap Hari: 09.00 &#8211; 21.00 WIB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ld-bottom-row">
+          <p class="ld-copyright-text">&copy; 2026 <strong>Losari Computer</strong>. Hak Cipta Dilindungi.</p>
+          <div class="ld-bottom-nav">
+            <a href="/">Home</a><span>·</span><a href="/laptop">Shop</a><span>·</span><a href="/layanan">Service</a><span>·</span><a href="/tentang">Tentang</a><span>·</span><a href="/kontak">Kontak</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-Over Cart Drawer matching Image 2 -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Keranjang belanja" aria-hidden="true">
+    <!-- Header -->
+    <div class="cart-drawer-head">
+      <div class="cart-head-left">
+        <div class="cart-head-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+        </div>
+        <div class="cart-head-title-wrap">
+          <h3>Keranjang Belanja</h3>
+          <span class="cart-head-subtitle" id="cartCountSubtitle">0 BARANG PILIHAN</span>
+        </div>
+      </div>
+      <button class="cart-close" id="cartClose" type="button" aria-label="Tutup keranjang">×</button>
+    </div>
+
+    <!-- Scrollable Body -->
+    <div class="cart-scroll-body" id="cartScrollBody">
+      <!-- Section: DETAIL ITEM -->
+      <div class="cart-section-head">
+        <span>DETAIL ITEM</span>
+        <button class="cart-clear-link" id="cartClear" type="button">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6" />
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+          </svg>
+          <span>Bersihkan Keranjang</span>
+        </button>
+      </div>
+
+      <!-- Items List -->
+      <div class="cart-items" id="cartItems"></div>
+
+      <!-- Empty State -->
+      <div class="cart-empty-state" id="cartEmpty">
+        <div class="cart-empty-icon">🛒</div>
+        <h4>Keranjang Belanja Kosong</h4>
+        <p>Belum ada unit laptop yang dipilih dari katalog.</p>
+        <a href="/laptop" class="cart-empty-browse-btn" style="text-decoration:none; display:inline-block;">+ Pilih
+          Laptop di Katalog</a>
+      </div>
+
+      <!-- Form Pengiriman -->
+      <div class="cart-form-section" id="cartFormSection">
+        <h4 class="cart-form-heading">FORM PENGIRIMAN</h4>
+
+        <div class="cart-form-group">
+          <label class="cart-form-label" for="cartPhone">Nomor WhatsApp Aktif</label>
+          <input type="tel" class="cart-form-input" id="cartPhone" placeholder="contoh: 08123456789">
+        </div>
+
+        <div class="cart-form-group">
+          <label class="cart-form-label" for="cartAddress">Alamat Penerimaan Lengkap</label>
+          <input type="text" class="cart-form-input" id="cartAddress"
+            placeholder="Nama jalan, nomor rumah, kecamatan, kabupaten">
+        </div>
+
+        <div class="cart-form-group">
+          <label class="cart-form-label" for="cartNotes">Catatan Tambahan (Opsional)</label>
+          <input type="text" class="cart-form-input" id="cartNotes"
+            placeholder="Request install software, packing kayu, dsb.">
+        </div>
+      </div>
+
+      <!-- Cost Breakdown -->
+      <div class="cart-cost-breakdown" id="cartBreakdown">
+        <div class="cart-breakdown-row">
+          <span>Harga Subtotal:</span>
+          <strong id="cartSubtotalText">Rp0</strong>
+        </div>
+        <div class="cart-breakdown-row">
+          <span>Ongkos Kirim & Packing:</span>
+          <strong style="color:#0d9488">Gratis Promo</strong>
+        </div>
+        <div class="cart-breakdown-row total-row">
+          <span>Total Biaya:</span>
+          <strong id="cartTotalPrice">Rp0</strong>
+        </div>
+
+        <button class="cart-checkout-pill-btn" id="cartCheckout" type="button">
+          <span>Checkout</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Slide-Over Google Connect Drawer matching user screenshot -->
+  <div class="google-drawer-overlay" id="googleDrawerOverlay"></div>
+  <aside class="google-drawer" id="googleDrawer" aria-label="Hubungkan Akun Google" aria-hidden="true">
+    <!-- Header with Dark Background & Losari Computer branding -->
+    <div class="google-drawer-head">
+      <div class="google-drawer-head-left">
+        <img src="/static/videos/img/Logo.png" alt="Losari Computer" class="google-drawer-logo">
+        <div class="google-drawer-title-wrap">
+          <h3 class="google-drawer-brand-title">Selamat Datang di Losari Computer</h3>
+          <span class="google-drawer-subtitle">Silakan Hubungkan Akun Google</span>
+        </div>
+      </div>
+      <button class="google-drawer-close" id="googleDrawerClose" type="button" aria-label="Tutup">✕</button>
+    </div>
+
+    <!-- Scrollable Body -->
+    <div class="google-drawer-body">
+      <!-- Main Verification Card -->
+      <div class="google-verify-card">
+        <div class="google-lock-badge">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#00b894" stroke-width="2.3"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="3" ry="3"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+
+        <h4 class="google-verify-title">Verifikasi Akun Google Losari Computer</h4>
+
+        <p class="google-verify-desc">
+          Untuk pengalaman belanja yang lebih mudah, menyimpan unit favorit, serta menyinkronkan keranjang belanja,
+          silakan hubungkan akun Google Anda terlebih dahulu.
+        </p>
+
+        <!-- Action Button: Masuk menggunakan Google -->
+        <button type="button" class="google-login-action-btn" id="btnConfirmGoogleLogin">
+          <svg class="google-btn-icon" width="20" height="20" viewBox="0 0 24 24">
+            <path fill="#4285F4"
+              d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z" />
+            <path fill="#34A853"
+              d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z" />
+            <path fill="#FBBC05"
+              d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 10.02 0 12s.45 3.82 1.25 5.42l4.03-3.15z" />
+            <path fill="#EA4335"
+              d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z" />
+          </svg>
+          <span>Masuk menggunakan Google</span>
+        </button>
+
+        <!-- Footer Info -->
+        <div class="google-security-tag">
+          <span class="security-dot"></span>
+          <span>Layanan Otentikasi Losari Computer Terenkripsi</span>
+        </div>
+      </div>
+
+      <!-- Notification / Callout Banner at the bottom -->
+      <div class="google-ar-info-banner">
+        <div class="google-ar-banner-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+        </div>
+        <div class="google-ar-banner-text">
+          Akun Google Anda digunakan dengan aman untuk mempermudah transaksi dan sinkronisasi pesanan laptop di Losari
+          Computer.
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Slide-Over Pusat Informasi Drawer matching Image 1 -->
+  <div class="info-drawer-overlay" id="infoDrawerOverlay"></div>
+  <aside class="info-drawer" id="infoDrawer" aria-label="Pusat Informasi" aria-hidden="true">
+    <!-- Header -->
+    <div class="info-drawer-head">
+      <div class="info-drawer-head-left">
+        <div class="info-drawer-head-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+          </svg>
+        </div>
+        <div class="info-drawer-head-titles">
+          <h3>Pusat Informasi</h3>
+          <span>Pembaruan & Diskon</span>
+        </div>
+      </div>
+      <button class="info-drawer-close" id="infoDrawerClose" type="button" aria-label="Tutup pusat informasi">✕</button>
+    </div>
+
+    <!-- Scrollable Body -->
+    <div class="info-drawer-body">
+      <!-- Tab Segmented Control -->
+      <div class="info-tabs-row">
+        <button type="button" class="info-tab-pill active" id="tabUnread">Belum Dibaca (<span
+            id="unreadCountBadge">3</span>)</button>
+        <button type="button" class="info-tab-pill" id="tabAll">Semua (<span id="allCountBadge">3</span>)</button>
+      </div>
+      <p class="info-helper-note">Menampilkan info baru. Klik "Tandai Sudah Dibaca" untuk mengarsipkannya.</p>
+
+      <!-- Cards Container -->
+      <div class="info-cards-list" id="infoCardsList">
+        <!-- Card 1 -->
+        <div class="info-item-box accent-teal" data-id="info-1">
+          <div class="info-item-topbar">
+            <span class="info-item-category">GARANSI RESMI TOKO</span>
+            <span class="info-unread-dot"></span>
+          </div>
+          <h4 class="info-item-title">Unit Teruji & Bergaransi Penuh</h4>
+          <p class="info-item-desc">Semua laptop second di Losari Computer lolos uji 21 titik teknisi (layar, keyboard,
+            baterai, suhu, charging). Garansi toko 1 bulan siap lindungi unit Anda.</p>
+          <button type="button" class="info-mark-read-btn" data-action="mark-read">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Tandai Sudah Dibaca</span>
+          </button>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="info-item-box accent-amber" data-id="info-2">
+          <div class="info-item-topbar">
+            <span class="info-item-category">PROMO SPESIAL</span>
+            <span class="info-unread-dot"></span>
+          </div>
+          <h4 class="info-item-title">Gratis Ongkir Makassar & Bonus Aksesoris</h4>
+          <p class="info-item-desc">Dapatkan pengiriman gratis instan untuk area Makassar, bonus tas laptop eksklusif,
+            serta gratis instalasi software/Office siap pakai setiap transaksi.</p>
+          <button type="button" class="info-mark-read-btn" data-action="mark-read">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Tandai Sudah Dibaca</span>
+          </button>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="info-item-box accent-slate" data-id="info-3">
+          <div class="info-item-topbar">
+            <span class="info-item-category">STOK TERBARU</span>
+            <span class="info-unread-dot"></span>
+          </div>
+          <h4 class="info-item-title">Unit Laptop Baru Masuk Pekan Ini</h4>
+          <p class="info-item-desc">Koleksi ThinkPad series, ASUS ROG, Acer Nitro, dan MacBook second mulus telah
+            diperbarui di katalog. Cek sekarang sebelum kehabisan!</p>
+          <button type="button" class="info-mark-read-btn" data-action="mark-read">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Tandai Sudah Dibaca</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div class="info-empty-state" id="infoEmptyState" style="display: none;">
+        <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+        </svg>
+        <h5>Semua Informasi Telah Dibaca</h5>
+        <p>Tidak ada pesan baru saat ini. Anda dapat melihat kembali arsip di tab <strong>Semua</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Bottom Footer Button -->
+    <div class="info-drawer-footer">
+      <button type="button" class="info-btn-mark-all" id="btnMarkAllRead">Tandai Semua Sudah Dibaca</button>
+    </div>
+  </aside>
+
+  <!-- Slide-Over Koleksi Favorit Drawer matching Image 1 & 2 -->
+  <div class="favorite-drawer-overlay" id="favoriteDrawerOverlay"></div>
+  <aside class="favorite-drawer" id="favoriteDrawer" aria-label="Koleksi Favorit" aria-hidden="true">
+    <!-- Header -->
+    <div class="favorite-drawer-head">
+      <div class="favorite-drawer-head-left">
+        <div class="favorite-drawer-head-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#008080">
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+          </svg>
+        </div>
+        <div class="favorite-drawer-head-titles">
+          <h3>Koleksi Favorit</h3>
+          <span id="favDrawerCountText">0 LAPTOP DISUKAI</span>
+        </div>
+      </div>
+      <button class="favorite-drawer-close" id="favoriteDrawerClose" type="button"
+        aria-label="Tutup koleksi favorit">✕</button>
+    </div>
+
+    <!-- Body -->
+    <div class="favorite-drawer-body">
+      <!-- Empty State (Image 1) -->
+      <div class="favorite-empty-state" id="favEmptyState">
+        <div class="favorite-empty-icon-circle">
+          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#f43f5e" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+        </div>
+        <h4 class="favorite-empty-title">Daftar Favorit Kosong</h4>
+        <p class="favorite-empty-desc">
+          Tandai produk laptop kesukaan Anda dengan mengetuk ikon hati agar tersimpan di katalog pribadi ini.
+        </p>
+      </div>
+
+      <!-- Populated Cards List (Image 2) -->
+      <div class="favorite-cards-list" id="favCardsList" style="display:none;"></div>
+    </div>
+  </aside>
+
+  <!-- Toast Notification -->
+  <div class="user-toast" id="userToast">
+    <span id="toastMsg">✓ Akun Google berhasil terhubung!</span>
+  </div>
+
+  <script>
+    const header = document.getElementById('site-header');
+    const menuButton = document.getElementById('menuButton');
+    const mobileNav = document.getElementById('mobileNav');
+
+    function updateHeader() {
+      if (header) {
+        header.classList.toggle('is-scrolled', window.scrollY > 20);
+      }
+    }
+
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+
+    const footerBackToTop = document.getElementById('footerBackToTop');
+    if (footerBackToTop) {
+      footerBackToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    if (menuButton && mobileNav) {
+      menuButton.addEventListener('click', () => {
+        header.classList.toggle('menu-open');
+      });
+
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          header.classList.remove('menu-open');
+        });
+      });
+    }
+
+    /* =========================
+       4 FOTO LANDING SLIDESHOW
+       ========================= */
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dots button');
+    const prev = document.getElementById('heroPrev');
+    const next = document.getElementById('heroNext');
+
+    let currentSlide = 0;
+    let sliderTimer;
+
+    function showSlide(index) {
+      if (!slides.length) return;
+
+      currentSlide = (index + slides.length) % slides.length;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === currentSlide);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    function restartSlider() {
+      clearInterval(sliderTimer);
+
+      sliderTimer = setInterval(() => {
+        showSlide(currentSlide + 1);
+      }, 5000);
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        showSlide(index);
+        restartSlider();
+      });
+    });
+
+    if (prev) {
+      prev.addEventListener('click', () => {
+        showSlide(currentSlide - 1);
+        restartSlider();
+      });
+    }
+
+    if (next) {
+      next.addEventListener('click', () => {
+        showSlide(currentSlide + 1);
+        restartSlider();
+      });
+    }
+
+    /* Swipe untuk HP */
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const slideshow = document.getElementById('heroSlideshow');
+
+    if (slideshow) {
+      slideshow.addEventListener('touchstart', event => {
+        touchStartX = event.changedTouches[0].screenX;
+      }, { passive: true });
+
+      slideshow.addEventListener('touchend', event => {
+        touchEndX = event.changedTouches[0].screenX;
+
+        const distance = touchEndX - touchStartX;
+
+        if (Math.abs(distance) < 45) return;
+
+        if (distance < 0) {
+          showSlide(currentSlide + 1);
+        } else {
+          showSlide(currentSlide - 1);
+        }
+
+        restartSlider();
+      }, { passive: true });
+    }
+
+    showSlide(0);
+    restartSlider();
+
+    /* =====================================================
+       INFINITE PROMO MARQUEE — no empty gap, responsive
+       The track contains enough repeated groups to cover
+       the viewport. We move exactly one group width and
+       then continue from the next identical group.
+       ===================================================== */
+    (function initPromoMarquee() {
+      const marquee = document.querySelector('.promo-marquee');
+      const track = document.querySelector('.promo-track');
+      const sourceGroup = track ? track.querySelector('.promo-group') : null;
+      if (!marquee || !track || !sourceGroup) return;
+
+      let rafId = null;
+      let lastTime = 0;
+      let offset = 0;
+      let loopWidth = 0;
+      let speed = 90; // px/s; readable on desktop and mobile
+      let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      function rebuild() {
+        cancelAnimationFrame(rafId);
+        track.querySelectorAll('.promo-group:not(:first-child)').forEach(el => el.remove());
+
+        // Measure the first complete promo group.
+        loopWidth = sourceGroup.getBoundingClientRect().width;
+        if (!loopWidth) return;
+
+        // Keep at least ~2.5 viewport widths of content, plus one extra group.
+        const targetWidth = marquee.clientWidth * 3 + loopWidth;
+        while (track.scrollWidth < targetWidth) {
+          const clone = sourceGroup.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          track.appendChild(clone);
+        }
+
+        offset = 0;
+        track.style.transform = 'translate3d(0,0,0)';
+        lastTime = performance.now();
+        if (!reducedMotion.matches) rafId = requestAnimationFrame(tick);
+      }
+
+      function tick(now) {
+        const dt = Math.min(50, now - lastTime);
+        lastTime = now;
+        offset -= speed * dt / 1000;
+
+        if (offset <= -loopWidth) {
+          offset += loopWidth;
+        }
+
+        track.style.transform = `translate3d(${offset}px,0,0)`;
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function handleMotionChange() {
+        cancelAnimationFrame(rafId);
+        if (reducedMotion.matches) {
+          track.style.transform = 'translate3d(0,0,0)';
+        } else {
+          lastTime = performance.now();
+          rafId = requestAnimationFrame(tick);
+        }
+      }
+
+      rebuild();
+      window.addEventListener('resize', rebuild, { passive: true });
+      if (reducedMotion.addEventListener) {
+        reducedMotion.addEventListener('change', handleMotionChange);
+      } else if (reducedMotion.addListener) {
+        reducedMotion.addListener(handleMotionChange);
+      }
+    })();
+
+    /* =====================================================
+       USER PROFILE DROPDOWN & GOOGLE ACCOUNT CONTROLLER
+       ===================================================== */
+    (function initUserProfile() {
+      const STORAGE_KEY = 'losari_google_user';
+      const CART_KEY = 'losari-cart';
+      const FAV_KEY = 'losari_favorites';
+
+      const avatarBtn = document.getElementById('userAvatarBtn');
+      const dropdownCard = document.getElementById('userDropdownCard');
+      const avatarCircle = document.getElementById('userAvatarCircle');
+      const badgeCount = document.getElementById('userBadgeCount');
+
+      const userNameEl = document.getElementById('dropdownUserName');
+      const userStatusEl = document.getElementById('dropdownUserStatus');
+      const pillBadgeEl = document.getElementById('dropdownPillBadge');
+      const pillTextEl = document.getElementById('dropdownPillText');
+
+      const favSubCount = document.getElementById('favSubCount');
+      const cartSubCount = document.getElementById('cartSubCount');
+      const cartInnerBadge = document.getElementById('cartItemInnerBadge');
+
+      const btnConnectGoogle = document.getElementById('btnConnectGoogle');
+      const googleBoxIcon = document.getElementById('googleBoxIcon');
+      const googleActionTitle = document.getElementById('googleActionTitle');
+      const googleActionSub = document.getElementById('googleActionSub');
+
+      const googleDrawerOverlay = document.getElementById('googleDrawerOverlay');
+      const googleDrawer = document.getElementById('googleDrawer');
+      const googleDrawerClose = document.getElementById('googleDrawerClose');
+      const btnConfirmGoogleLogin = document.getElementById('btnConfirmGoogleLogin');
+
+      const itemInfoCenter = document.getElementById('itemInfoCenter');
+      const infoCenterBadge = document.getElementById('infoCenterBadge');
+      const infoDrawer = document.getElementById('infoDrawer');
+      const infoDrawerOverlay = document.getElementById('infoDrawerOverlay');
+      const infoDrawerClose = document.getElementById('infoDrawerClose');
+      const tabUnread = document.getElementById('tabUnread');
+      const tabAll = document.getElementById('tabAll');
+      const unreadCountBadge = document.getElementById('unreadCountBadge');
+      const allCountBadge = document.getElementById('allCountBadge');
+      const infoCardsList = document.getElementById('infoCardsList');
+      const infoEmptyState = document.getElementById('infoEmptyState');
+      const btnMarkAllRead = document.getElementById('btnMarkAllRead');
+      const INFO_STORAGE_KEY = 'losari-info-read';
+      const userToast = document.getElementById('userToast');
+      const toastMsg = document.getElementById('toastMsg');
+
+      function showToast(text) {
+        if (!userToast || !toastMsg) return;
+        toastMsg.textContent = text;
+        userToast.classList.add('is-show');
+        setTimeout(() => {
+          userToast.classList.remove('is-show');
+        }, 3000);
+      }
+
+      function getSavedUser() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY));
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function getCartCount() {
+        try {
+          const cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+          if (!Array.isArray(cart)) return 0;
+          return cart.reduce((sum, i) => sum + (Number(i.qty) || 1), 0);
+        } catch (e) {
+          return 0;
+        }
+      }
+
+      function getFavCount() {
+        try {
+          const favs = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+          return Array.isArray(favs) ? favs.length : 0;
+        } catch (e) {
+          return 0;
+        }
+      }
+
+      function syncCounts() {
+        const cartCnt = getCartCount();
+        const favCnt = getFavCount();
+        if (cartSubCount) {
+          cartSubCount.textContent = `Total ${cartCnt} item`;
+        }
+        if (cartInnerBadge) {
+          cartInnerBadge.textContent = cartCnt;
+          cartInnerBadge.style.display = cartCnt > 0 ? 'inline-flex' : 'none';
+        }
+        if (favSubCount) {
+          favSubCount.textContent = 'Laptop tersimpan';
+        }
+        if (badgeCount) {
+          badgeCount.textContent = String(cartCnt);
+          badgeCount.style.display = cartCnt > 0 ? 'grid' : 'none';
+        }
+        if (typeof updateInfoUI === 'function') {
+          updateInfoUI();
+        }
+      }
+
+      function renderUserState() {
+        syncCounts();
+        const user = getSavedUser();
+        if (user && user.connected) {
+          // Connected with Google
+          if (userNameEl) userNameEl.textContent = user.name || 'Fauzan Ali Fatah';
+          if (userStatusEl) userStatusEl.textContent = user.email || 'fauzan.losari@gmail.com';
+          if (pillBadgeEl) {
+            pillBadgeEl.style.display = 'inline-block';
+            pillBadgeEl.className = 'user-pill-badge is-connected';
+            if (pillTextEl) pillTextEl.textContent = 'TERHUBUNG GOOGLE ✓';
+          }
+
+          // Update avatar circle
+          if (avatarCircle) {
+            if (user.avatar) {
+              avatarCircle.innerHTML = `<img src="${user.avatar}" alt="${user.name}">`;
+            } else {
+              const initial = (user.name || 'G').charAt(0).toUpperCase();
+              avatarCircle.innerHTML = `<span style="font-weight:800; font-size:16px; color:#075ec5;">${initial}</span>`;
+            }
+          }
+
+          // Update Google action button to Disconnect
+          if (googleBoxIcon) {
+            googleBoxIcon.className = 'user-item-icon-box box--pink';
+            googleBoxIcon.innerHTML = `
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+            `;
+          }
+          if (googleActionTitle) {
+            googleActionTitle.textContent = 'Putuskan Akun Google';
+            googleActionTitle.style.color = '#ef4444';
+          }
+          if (googleActionSub) {
+            googleActionSub.textContent = 'Keluar dari akun Google ini';
+          }
+        } else {
+          // Guest mode matching user screenshot
+          if (userNameEl) userNameEl.textContent = 'Tamu Losari Computer';
+          if (userStatusEl) userStatusEl.textContent = 'Belum tersambung Google';
+          if (pillBadgeEl) {
+            pillBadgeEl.style.display = 'inline-block';
+            pillBadgeEl.className = 'user-pill-badge';
+            if (pillTextEl) pillTextEl.textContent = 'MODE TAMU / OFFLINE';
+          }
+
+          if (avatarCircle) {
+            avatarCircle.innerHTML = `
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            `;
+          }
+
+          if (googleBoxIcon) {
+            googleBoxIcon.className = 'user-item-icon-box box--gray';
+            googleBoxIcon.innerHTML = `
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            `;
+          }
+          if (googleActionTitle) {
+            googleActionTitle.textContent = 'Edit Profil';
+            googleActionTitle.style.color = '#0f172a';
+          }
+          if (googleActionSub) {
+            googleActionSub.textContent = 'Nama Lengkap & Kontak';
+          }
+        }
+      }
+
+      // Dropdown toggle
+      if (avatarBtn && dropdownCard) {
+        avatarBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = dropdownCard.classList.toggle('is-open');
+          avatarBtn.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!dropdownCard.contains(e.target) && !avatarBtn.contains(e.target)) {
+            dropdownCard.classList.remove('is-open');
+            avatarBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // Info center drawer toggle & controller
+      function getReadInfoIds() {
+        try {
+          return JSON.parse(localStorage.getItem(INFO_STORAGE_KEY)) || [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveReadInfoIds(ids) {
+        try {
+          localStorage.setItem(INFO_STORAGE_KEY, JSON.stringify(ids));
+        } catch (e) { }
+      }
+
+      let currentInfoTab = 'unread';
+
+      function updateInfoUI() {
+        const readIds = getReadInfoIds();
+        const unreadCount = Math.max(0, 3 - readIds.length);
+
+        if (unreadCountBadge) unreadCountBadge.textContent = unreadCount;
+        if (allCountBadge) allCountBadge.textContent = '3';
+
+        if (infoCenterBadge) {
+          infoCenterBadge.textContent = unreadCount;
+          infoCenterBadge.style.display = unreadCount > 0 ? 'inline-flex' : 'none';
+        }
+
+        const cards = infoCardsList ? infoCardsList.querySelectorAll('.info-item-box') : [];
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const cardId = card.getAttribute('data-id');
+          const isRead = readIds.includes(cardId);
+          const readBtn = card.querySelector('.info-mark-read-btn');
+
+          if (isRead) {
+            card.classList.add('is-read');
+            if (readBtn) {
+              readBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Sudah Dibaca</span>
+              `;
+              readBtn.disabled = true;
+            }
+          } else {
+            card.classList.remove('is-read');
+            if (readBtn) {
+              readBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Tandai Sudah Dibaca</span>
+              `;
+              readBtn.disabled = false;
+            }
+          }
+
+          if (currentInfoTab === 'unread') {
+            if (isRead) {
+              card.style.display = 'none';
+            } else {
+              card.style.display = 'block';
+              visibleCount++;
+            }
+          } else {
+            card.style.display = 'block';
+            visibleCount++;
+          }
+        });
+
+        if (infoEmptyState) {
+          infoEmptyState.style.display = (visibleCount === 0 && currentInfoTab === 'unread') ? 'block' : 'none';
+        }
+
+        if (btnMarkAllRead) {
+          if (unreadCount === 0) {
+            btnMarkAllRead.textContent = 'Semua Sudah Dibaca ✓';
+            btnMarkAllRead.style.opacity = '0.7';
+          } else {
+            btnMarkAllRead.textContent = 'Tandai Semua Sudah Dibaca';
+            btnMarkAllRead.style.opacity = '1';
+          }
+        }
+      }
+
+      function openInfoDrawer() {
+        if (dropdownCard) dropdownCard.classList.remove('is-open');
+        if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'false');
+        if (infoDrawer) {
+          infoDrawer.classList.add('is-open');
+          infoDrawer.setAttribute('aria-hidden', 'false');
+        }
+        if (infoDrawerOverlay) infoDrawerOverlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        updateInfoUI();
+      }
+
+      function closeInfoDrawer() {
+        if (infoDrawer) {
+          infoDrawer.classList.remove('is-open');
+          infoDrawer.setAttribute('aria-hidden', 'true');
+        }
+        if (infoDrawerOverlay) infoDrawerOverlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      if (itemInfoCenter) {
+        itemInfoCenter.addEventListener('click', openInfoDrawer);
+      }
+      if (infoDrawerClose) {
+        infoDrawerClose.addEventListener('click', closeInfoDrawer);
+      }
+      if (infoDrawerOverlay) {
+        infoDrawerOverlay.addEventListener('click', closeInfoDrawer);
+      }
+
+      if (tabUnread) {
+        tabUnread.addEventListener('click', () => {
+          currentInfoTab = 'unread';
+          tabUnread.classList.add('active');
+          if (tabAll) tabAll.classList.remove('active');
+          updateInfoUI();
+        });
+      }
+      if (tabAll) {
+        tabAll.addEventListener('click', () => {
+          currentInfoTab = 'all';
+          tabAll.classList.add('active');
+          if (tabUnread) tabUnread.classList.remove('active');
+          updateInfoUI();
+        });
+      }
+
+      if (infoCardsList) {
+        infoCardsList.addEventListener('click', (e) => {
+          const btn = e.target.closest('.info-mark-read-btn');
+          if (!btn || btn.disabled) return;
+          const card = btn.closest('.info-item-box');
+          if (!card) return;
+          const cardId = card.getAttribute('data-id');
+          const readIds = getReadInfoIds();
+          if (!readIds.includes(cardId)) {
+            readIds.push(cardId);
+            saveReadInfoIds(readIds);
+            updateInfoUI();
+          }
+        });
+      }
+
+      if (btnMarkAllRead) {
+        btnMarkAllRead.addEventListener('click', () => {
+          const readIds = ['info-1', 'info-2', 'info-3'];
+          saveReadInfoIds(readIds);
+          updateInfoUI();
+        });
+      }
+
+      // Initial call to sync badge
+      updateInfoUI();
+
+      function openGoogleDrawer() {
+        if (!googleDrawer) return;
+        googleDrawer.classList.add('is-open');
+        googleDrawer.setAttribute('aria-hidden', 'false');
+        if (googleDrawerOverlay) googleDrawerOverlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeGoogleDrawer() {
+        if (!googleDrawer) return;
+        googleDrawer.classList.remove('is-open');
+        googleDrawer.setAttribute('aria-hidden', 'true');
+        if (googleDrawerOverlay) googleDrawerOverlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      // Google connect / disconnect action
+      if (btnConnectGoogle) {
+        btnConnectGoogle.addEventListener('click', () => {
+          if (dropdownCard) dropdownCard.classList.remove('is-open');
+          if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'false');
+          const user = getSavedUser();
+          if (user && user.connected) {
+            // Disconnect
+            localStorage.removeItem(STORAGE_KEY);
+            renderUserState();
+            showToast('Akun Google telah diputuskan. Mode Tamu aktif.');
+          } else {
+            // Open Google Drawer matching user mockup
+            openGoogleDrawer();
+          }
+        });
+      }
+
+      // Google Drawer close handlers
+      if (googleDrawerClose) googleDrawerClose.addEventListener('click', closeGoogleDrawer);
+      if (googleDrawerOverlay) googleDrawerOverlay.addEventListener('click', closeGoogleDrawer);
+
+      // Confirm Google Login
+      if (btnConfirmGoogleLogin) {
+        btnConfirmGoogleLogin.addEventListener('click', () => {
+          const googleUser = {
+            name: 'Fauzan Ali Fatah',
+            email: 'fauzan.losari@gmail.com',
+            avatar: '',
+            connected: true,
+            connectedAt: new Date().toISOString()
+          };
+
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(googleUser));
+          closeGoogleDrawer();
+          renderUserState();
+          showToast('✓ Berhasil terhubung dengan Akun Google (Fauzan Ali Fatah)');
+        });
+      }
+
+      /* =====================================================
+         CART DRAWER CONTROLLER (HOME PAGE)
+         ===================================================== */
+      const rupiah = (n) => new Intl.NumberFormat('id-ID', {
+        style: 'currency', currency: 'IDR', maximumFractionDigits: 0
+      }).format(n);
+
+      // Pre-populate demo item if cart empty so it matches Image 2
+      try {
+        const existingCart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+        if (!Array.isArray(existingCart) || existingCart.length === 0) {
+          localStorage.setItem(CART_KEY, JSON.stringify([
+            {
+              name: 'Acer Nitro 5 (RAM: Bawaan, SSD: Upgrade 1TB)',
+              price: 7750000,
+              qty: 1,
+              image: '/static/images/laptop/acer-nitro-5.jpg',
+              brand: 'ACER'
+            }
+          ]));
+        }
+      } catch (e) {
+        localStorage.setItem(CART_KEY, JSON.stringify([
+          {
+            name: 'Acer Nitro 5 (RAM: Bawaan, SSD: Upgrade 1TB)',
+            price: 7750000,
+            qty: 1,
+            image: '/static/images/laptop/acer-nitro-5.jpg',
+            brand: 'ACER'
+          }
+        ]));
+      }
+
+      function resolveProductImage(item) {
+        if (item.image) return item.image;
+        const lower = (item.name || '').toLowerCase();
+        if (lower.includes('nitro')) return '/static/images/laptop/acer-nitro-5.jpg';
+        if (lower.includes('thinkpad') && (lower.includes('t14') || lower.includes('gen 1'))) return '/static/images/laptop/thinkpad-t14.jpg';
+        if (lower.includes('thinkpad') || lower.includes('t490')) return '/static/images/laptop/thinkpad-t490.jpg';
+        if (lower.includes('tuf') || lower.includes('a15')) return '/static/images/laptop/asus-tuf-a15.jpg';
+        if (lower.includes('elitebook') || lower.includes('840')) return '/static/images/laptop/hp-elitebook-840.jpg';
+        if (lower.includes('macbook') || lower.includes('m1') || lower.includes('apple')) return '/static/images/laptop/macbook-air-m1.jpg';
+        if (lower.includes('latitude') || lower.includes('5410')) return '/static/images/laptop/dell-latitude-5410.jpg';
+        if (lower.includes('swift') || lower.includes('acer')) return '/static/images/laptop/acer-swift-3.jpg';
+        if (lower.includes('xps')) return '/static/images/laptop/dell-xps-13.jpg';
+        if (lower.includes('vivobook') && lower.includes('pro')) return '/static/images/laptop/asus-vivobook-pro-14.jpg';
+        if (lower.includes('vivobook')) return '/static/images/laptop/asus-vivobook-14.jpg';
+        return '/static/images/laptop/thinkpad-t490.jpg';
+      }
+
+      function resolveProductBrand(item) {
+        if (item.brand) return item.brand.toUpperCase();
+        const lower = (item.name || '').toLowerCase();
+        if (lower.includes('nitro') || lower.includes('swift') || lower.includes('acer')) return 'ACER';
+        if (lower.includes('thinkpad') || lower.includes('ideapad') || lower.includes('lenovo')) return 'LENOVO';
+        if (lower.includes('tuf') || lower.includes('vivobook') || lower.includes('asus')) return 'ASUS';
+        if (lower.includes('elitebook') || lower.includes('hp')) return 'HP';
+        if (lower.includes('macbook') || lower.includes('apple')) return 'APPLE';
+        if (lower.includes('latitude') || lower.includes('xps') || lower.includes('dell')) return 'DELL';
+        return 'LAPTOP';
+      }
+
+      function getCart() {
+        try {
+          return JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveCart(cart) {
+        try {
+          localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        } catch (e) { }
+      }
+
+      const cartDrawer = document.getElementById('cartDrawer');
+      const cartOverlay = document.getElementById('cartOverlay');
+      const cartClose = document.getElementById('cartClose');
+      const cartClear = document.getElementById('cartClear');
+      const cartItemsEl = document.getElementById('cartItems');
+      const cartEmptyEl = document.getElementById('cartEmpty');
+      const cartFormSection = document.getElementById('cartFormSection');
+      const cartBreakdown = document.getElementById('cartBreakdown');
+      const cartCheckout = document.getElementById('cartCheckout');
+
+      function openCart() {
+        if (!cartDrawer) return;
+        renderCart();
+        cartDrawer.classList.add('is-open');
+        cartDrawer.setAttribute('aria-hidden', 'false');
+        if (cartOverlay) cartOverlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+
+        try {
+          const saved = JSON.parse(localStorage.getItem('checkoutData') || '{}');
+          const phoneInput = document.getElementById('cartPhone');
+          const addressInput = document.getElementById('cartAddress');
+          const notesInput = document.getElementById('cartNotes');
+          if (phoneInput && !phoneInput.value && saved.phone) phoneInput.value = saved.phone;
+          if (addressInput && !addressInput.value && saved.address) addressInput.value = saved.address;
+          if (notesInput && !notesInput.value && saved.notes) notesInput.value = saved.notes;
+        } catch (e) { }
+      }
+
+      function closeCart() {
+        if (!cartDrawer) return;
+        cartDrawer.classList.remove('is-open');
+        cartDrawer.setAttribute('aria-hidden', 'true');
+        if (cartOverlay) cartOverlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      function changeQty(name, delta) {
+        const cart = getCart();
+        const item = cart.find(i => i.name === name);
+        if (!item) return;
+        item.qty = Math.max(0, (Number(item.qty) || 1) + delta);
+        const next = item.qty <= 0 ? cart.filter(i => i.name !== name) : cart;
+        saveCart(next);
+        renderCart();
+        syncCounts();
+      }
+
+      function removeFromCart(name) {
+        saveCart(getCart().filter(i => i.name !== name));
+        renderCart();
+        syncCounts();
+      }
+
+      function clearCart() {
+        saveCart([]);
+        renderCart();
+        syncCounts();
+      }
+
+      function renderCart() {
+        if (!cartItemsEl) return;
+        const cart = getCart();
+        const totalQty = cart.reduce((sum, item) => sum + (Number(item.qty) || 1), 0);
+        const totalPrice = cart.reduce((sum, item) => sum + (Number(item.qty) || 1) * item.price, 0);
+
+        const cartSubtitle = document.getElementById('cartCountSubtitle');
+        if (cartSubtitle) {
+          cartSubtitle.textContent = `${totalQty} BARANG PILIHAN`;
+        }
+
+        const subtotalText = document.getElementById('cartSubtotalText');
+        if (subtotalText) {
+          subtotalText.textContent = rupiah(totalPrice);
+        }
+
+        const totalPriceEl = document.getElementById('cartTotalPrice');
+        if (totalPriceEl) {
+          totalPriceEl.textContent = rupiah(totalPrice);
+        }
+
+        const isEmpty = cart.length === 0;
+        if (cartEmptyEl) cartEmptyEl.style.display = isEmpty ? 'flex' : 'none';
+        if (cartItemsEl) cartItemsEl.style.display = isEmpty ? 'none' : 'flex';
+        if (cartFormSection) cartFormSection.style.display = isEmpty ? 'none' : 'flex';
+        if (cartBreakdown) cartBreakdown.style.display = isEmpty ? 'none' : 'flex';
+
+        cartItemsEl.innerHTML = cart.map(item => {
+          const imgSrc = resolveProductImage(item);
+          const brand = resolveProductBrand(item);
+          const itemQty = Number(item.qty) || 1;
+          return `
+            <div class="cart-item" data-name="${item.name}">
+              <div class="cart-item-thumb">
+                <img src="${imgSrc}" alt="${item.name}" loading="lazy">
+              </div>
+              <div class="cart-item-info">
+                <span class="cart-item-brand">${brand}</span>
+                <h4 class="cart-item-title">${item.name}</h4>
+                <div class="cart-item-price">${rupiah(item.price)}</div>
+                <div class="cart-item-bottom">
+                  <div class="cart-item-stepper">
+                    <button type="button" class="qty-btn" data-action="minus" data-name="${item.name}" aria-label="Kurangi">−</button>
+                    <span class="qty-val">${itemQty}</span>
+                    <button type="button" class="qty-btn" data-action="plus" data-name="${item.name}" aria-label="Tambah">+</button>
+                  </div>
+                  <button type="button" class="cart-item-trash" data-action="remove" data-name="${item.name}" title="Hapus produk">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                      <line x1="10" y1="11" x2="10" y2="17"/>
+                      <line x1="14" y1="11" x2="14" y2="17"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+        syncCounts();
+      }
+
+      if (cartItemsEl) {
+        cartItemsEl.addEventListener('click', (event) => {
+          const target = event.target.closest('[data-action]');
+          if (!target) return;
+          const { action, name } = target.dataset;
+          if (action === 'plus') changeQty(name, 1);
+          if (action === 'minus') changeQty(name, -1);
+          if (action === 'remove') removeFromCart(name);
+        });
+      }
+
+      if (cartClose) cartClose.addEventListener('click', closeCart);
+      if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
+      if (cartClear) cartClear.addEventListener('click', clearCart);
+
+      if (cartCheckout) {
+        cartCheckout.addEventListener('click', () => {
+          const cart = getCart();
+          if (cart.length === 0) {
+            alert('Keranjang belanja Anda masih kosong.');
+            return;
+          }
+
+          const phone = document.getElementById('cartPhone')?.value?.trim() || '';
+          const address = document.getElementById('cartAddress')?.value?.trim() || '';
+          const notes = document.getElementById('cartNotes')?.value?.trim() || '';
+
+          const checkoutData = {
+            items: cart,
+            phone: phone,
+            address: address,
+            notes: notes,
+            subtotal: cart.reduce((sum, item) => sum + (Number(item.qty) || 1) * item.price, 0),
+            total: cart.reduce((sum, item) => sum + (Number(item.qty) || 1) * item.price, 0)
+          };
+
+          localStorage.setItem('checkoutData', JSON.stringify(checkoutData));
+          window.location.href = '/checkout-produk';
+        });
+      }
+
+      // Hook click on Keranjang Belanja in User Profile Menu
+      const itemCartBtn = document.getElementById('itemCart');
+      if (itemCartBtn) {
+        itemCartBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const currentCart = getCart();
+          if (!Array.isArray(currentCart) || currentCart.length === 0) {
+            saveCart([
+              {
+                name: 'Acer Nitro 5 (RAM: Bawaan, SSD: Upgrade 1TB)',
+                price: 7750000,
+                qty: 1,
+                image: '/static/images/laptop/acer-nitro-5.jpg',
+                brand: 'ACER'
+              }
+            ]);
+            syncCounts();
+          }
+          if (dropdownCard) dropdownCard.classList.remove('is-open');
+          if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'false');
+          openCart();
+        });
+      }
+
+      // Keep in sync with other windows / tabs
+      window.addEventListener('storage', (e) => {
+        if (e.key === CART_KEY) {
+          renderCart();
+          syncCounts();
+        }
+        if (e.key === INFO_STORAGE_KEY) {
+          updateInfoUI();
+        }
+      });
+
+      // Check url parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('connected') === '1' && !localStorage.getItem(STORAGE_KEY)) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          name: 'Fauzan Ali Fatah',
+          email: 'fauzan.losari@gmail.com',
+          avatar: '',
+          connected: true,
+          connectedAt: new Date().toISOString()
+        }));
+      }
+
+      // Initial render
+      renderUserState();
+      renderCart();
+
+      // Open if query param exists e.g. ?openProfile=1 or ?openCart=1 or ?openFavorites=1
+      if (urlParams.get('openProfile') === '1' && dropdownCard) {
+        dropdownCard.classList.add('is-open');
+        if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'true');
+      }
+      if (urlParams.get('openCart') === '1') {
+        openCart();
+      }
+      if (urlParams.get('openFavorites') === '1' || urlParams.get('openWishlist') === '1') {
+        if (window.LOSARI_FAVORITES) window.LOSARI_FAVORITES.open();
+      }
+      if (urlParams.get('openGoogle') === '1' || urlParams.get('openAuth') === '1') {
+        openGoogleDrawer();
+      }
+    })();
+
+  </script>
+  <script src="/static/favorite-drawer.js"></script>
+</body>
+
+</html>

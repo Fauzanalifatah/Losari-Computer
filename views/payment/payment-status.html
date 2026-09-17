@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    *{box-sizing:border-box}
+    :root{
+      --navy:#071a2d;--blue:#075ec5;--teal:#13c8b8;--ink:#151922;
+      --muted:#687383;--line:#e5e7eb;--soft:#f6f8fa;--white:#fff;
+    }
+    body{margin:0;background:#f5f7fa;color:var(--ink);font-family:Inter,Arial,sans-serif}
+    .wrap{width:min(1080px,calc(100% - 32px));margin:auto;padding:28px 0 50px}
+    .back{display:inline-flex;gap:8px;align-items:center;text-decoration:none;color:#344054;font-weight:700;font-size:14px;margin-bottom:18px}
+    .head{background:linear-gradient(135deg,var(--navy),#0c3150);color:#fff;border-radius:22px;padding:30px;margin-bottom:18px}
+    .head small{color:#75ffd8;font-weight:800;letter-spacing:.12em}
+    .head h1{margin:8px 0 7px;font-size:clamp(26px,4vw,38px);letter-spacing:-.04em}
+    .head p{margin:0;color:rgba(255,255,255,.72);line-height:1.6}
+    .grid{display:grid;grid-template-columns:1.35fr .8fr;gap:18px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(7,26,45,.06)}
+    .card h2{margin:0 0 17px;font-size:19px}
+    .methods{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .method-btn{border:1px solid var(--line);background:#fff;border-radius:15px;padding:15px;text-align:left;cursor:pointer;transition:.2s}
+    .method-btn:hover{border-color:#aab4bf;transform:translateY(-1px)}
+    .method-btn.active{border:2px solid var(--teal);background:#f0fffc;padding:14px}
+    .method-top{display:flex;align-items:center;gap:11px}
+    .logo{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;font-weight:900;font-size:12px}
+    .qris{background:#ffe4ee;color:#d81b60}.gopay{background:#e1f5ff;color:#0072b8}
+    .dana{background:#e3f0ff;color:#0877c9}.bri{background:#dfeaff;color:#1453b8}
+    .method-btn strong{font-size:15px}.method-btn span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+    .pay-panel{margin-top:18px;border-radius:17px;background:var(--soft);padding:20px}
+    .pay-panel.hidden{display:none}
+    .pay-title{font-weight:800;font-size:17px;margin-bottom:7px}
+    .instruction{color:#5f6b78;font-size:14px;line-height:1.65;margin:0 0 15px}
+    .amount-label{font-size:12px;color:var(--muted);font-weight:700}
+    .amount{font-size:28px;font-weight:900;margin:3px 0 16px}
+    .qr-box{width:210px;height:210px;margin:8px auto 14px;border-radius:12px;background:#fff;border:1px solid #d9dee5;display:grid;place-items:center;text-align:center;padding:22px}
+    .qr-pattern{width:145px;height:145px;position:relative;background:
+      repeating-linear-gradient(0deg,#111 0 5px,#fff 5px 10px),
+      repeating-linear-gradient(90deg,transparent 0 5px,#111 5px 10px);
+      opacity:.82
+    }
+    .qr-note{font-size:12px;color:var(--muted);text-align:center;line-height:1.5}
+    .detail{display:grid;gap:10px}
+    .detail-row{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding:10px 0;font-size:14px}
+    .detail-row:last-child{border:0}.detail-row span:first-child{color:var(--muted)}.detail-row strong{text-align:right}
+    .account{background:#fff;border:1px dashed #cbd5df;border-radius:13px;padding:14px;margin-top:10px}
+    .account .number{font-size:20px;font-weight:900;letter-spacing:.04em}
+    .copy{margin-top:10px;border:0;border-radius:10px;background:var(--navy);color:#fff;padding:10px 13px;font-weight:800;cursor:pointer}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .btn{border:0;border-radius:12px;padding:13px 17px;font-weight:800;cursor:pointer;text-decoration:none;text-align:center;font-size:14px}
+    .primary{background:var(--navy);color:#fff}.success{background:#dcfce7;color:#166534}.secondary{background:#eef2f6;color:#27303a}
+    .status{margin-top:16px;padding:12px 14px;border-radius:12px;background:#fff7ed;color:#9a5b00;font-size:13px;font-weight:700}
+    @media(max-width:780px){.grid{grid-template-columns:1fr}.methods{grid-template-columns:1fr 1fr}}
+    @media(max-width:500px){.wrap{width:min(100% - 20px,1080px);padding-top:14px}.head,.card{padding:19px;border-radius:17px}.methods{grid-template-columns:1fr}.detail-row{align-items:flex-start}.actions>*{width:100%}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="/checkout-produk">← Kembali ke Checkout</a>
+
+  <section class="head">
+    <small>LOSARI COMPUTER · CHECKOUT</small>
+    <h1>Pilih Metode Pembayaran</h1>
+    <p>Silakan pilih metode pembayaran yang paling nyaman. Setelah transfer atau pembayaran selesai, tekan tombol “Saya Sudah Bayar”.</p>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Metode Pembayaran</h2>
+      <div class="methods">
+        <button class="method-btn active" data-method="QRIS">
+          <div class="method-top"><div class="logo qris">QRIS</div><div><strong>QRIS</strong><span>Scan dengan e-wallet / mobile banking</span></div></div>
+        </button>
+        <button class="method-btn" data-method="GOPAY">
+          <div class="method-top"><div class="logo gopay">G</div><div><strong>GoPay</strong><span>Bayar melalui aplikasi GoPay</span></div></div>
+        </button>
+        <button class="method-btn" data-method="DANA">
+          <div class="method-top"><div class="logo dana">D</div><div><strong>DANA</strong><span>Bayar melalui aplikasi DANA</span></div></div>
+        </button>
+        <button class="method-btn" data-method="BRI">
+          <div class="method-top"><div class="logo bri">BRI</div><div><strong>Bank BRI</strong><span>Transfer ke rekening BRI</span></div></div>
+        </button>
+      </div>
+
+      <div id="payPanel" class="pay-panel"></div>
+
+      <div class="actions">
+        <button class="btn success" id="paidBtn">✓ Saya Sudah Bayar</button>
+        <button class="btn secondary" id="pendingBtn">Tetap Menunggu</button>
+      </div>
+      <div id="status" class="status">Status: Menunggu pembayaran.</div>
+    </section>
+
+    <aside class="card">
+      <h2>Ringkasan Pesanan</h2>
+      <div class="detail">
+        <div class="detail-row"><span>Order</span><strong id="orderId">ORD-</strong></div>
+        <div class="detail-row"><span>Nama</span><strong id="customerName">-</strong></div>
+        <div class="detail-row"><span>Nomor</span><strong id="customerPhone">-</strong></div>
+        <div class="detail-row"><span>Metode</span><strong id="paymentMethod">QRIS</strong></div>
+        <div class="detail-row"><span>Total</span><strong id="totalAmount">Rp 0</strong></div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+  <!-- Losari Computer — Simple Professional Footer -->
+  <footer class="ld-wave-footer" id="siteFooter">
+    <div class="ld-wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,32 C240,6 480,62 720,56 C960,50 1200,10 1440,28 L1440,72 L0,72 Z" fill="#090f1c"></path>
+      </svg>
+    </div>
+    <div class="ld-wave-body">
+      <div class="ld-wave-inner">
+        <div class="ld-footer-grid">
+          <div class="ld-brand-block">
+            <a href="/" class="ld-brand-badge" aria-label="Losari Computer">
+              <img src="/static/videos/img/Logo.png" alt="Losari Computer" class="ld-brand-logo-img">
+              <div class="ld-brand-meta">
+                <span class="ld-brand-name">Losari Computer</span>
+                <span class="ld-brand-tagline">Spesialis Laptop Second &amp; IT Solution</span>
+              </div>
+            </a>
+            <p class="ld-brand-desc">Pusat laptop second berkualitas. Teruji 20+ titik QC, bergaransi toko, siap kirim ke seluruh Indonesia.</p>
+            <ul class="ld-social-icons">
+              <li class="ld-soc-item soc-wa">
+                <span class="ld-soc-tooltip">WhatsApp</span>
+                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="ld-soc-link" aria-label="WhatsApp">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+              </li>
+              <li class="ld-soc-item soc-instagram">
+                <span class="ld-soc-tooltip">Instagram</span>
+                <a href="https://instagram.com" target="_blank" rel="noopener" class="ld-soc-link" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+              </li>
+              <li class="ld-soc-item soc-tiktok">
+                <span class="ld-soc-tooltip">TikTok</span>
+                <a href="https://tiktok.com" target="_blank" rel="noopener" class="ld-soc-link" aria-label="TikTok">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+                </a>
+              </li>
+              <li class="ld-soc-item soc-youtube">
+                <span class="ld-soc-tooltip">YouTube</span>
+                <a href="https://youtube.com" target="_blank" rel="noopener" class="ld-soc-link" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+              </li>
+            </ul>
+            </div>
+          <div class="ld-nav-col">
+            <h4 class="ld-col-head">Navigasi</h4>
+            <ul class="ld-nav-list">
+              <li><a href="/">Beranda</a></li>
+              <li><a href="/laptop">Katalog Laptop</a></li>
+              <li><a href="/layanan">Layanan &amp; Servis</a></li>
+              <li><a href="/tentang">Tentang Kami</a></li>
+              <li><a href="/kontak">Kontak</a></li>
+            </ul>
+          </div>
+          <div class="ld-nav-col">
+            <h4 class="ld-col-head">Hubungi Kami</h4>
+            <div class="ld-contact-info">
+              <div class="ld-contact-item">
+                <span class="ld-c-icon ld-c-loc"><div class="ld-loc-loader"></div></span>
+                <span>Losari, Cirebon &#8212; Jawa Barat</span>
+              </div>
+              <div class="ld-contact-item">
+                <span class="ld-c-icon ld-c-phone"><svg class="ld-icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.47 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WA: <strong>0812-3456-7890</strong></a>
+              </div>
+              <div class="ld-contact-item">
+                <span class="ld-c-icon ld-c-clock"><svg class="ld-icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+                <span>Setiap Hari: 09.00 &#8211; 21.00 WIB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ld-bottom-row">
+          <p class="ld-copyright-text">&copy; 2026 <strong>Losari Computer</strong>. Hak Cipta Dilindungi.</p>
+          <div class="ld-bottom-nav">
+            <a href="/">Home</a><span>·</span><a href="/laptop">Shop</a><span>·</span><a href="/layanan">Service</a><span>·</span><a href="/tentang">Tentang</a><span>·</span><a href="/kontak">Kontak</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  const params=new URLSearchParams(location.search);
+  let data={};
+  try{data=JSON.parse(localStorage.getItem("checkoutData")||"{}")}catch(e){}
+  const rupiah=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(Number(n)||0);
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v??"-"};
+  const total=data.total||data.grandTotal||data.amount||0;
+  const orderId=data.orderId||("ORD-"+Date.now().toString().slice(-8));
+  set("orderId",orderId);set("customerName",data.name||data.customerName||"-");
+  set("customerPhone",data.phone||data.number||data.customerPhone||"-");set("totalAmount",rupiah(total));
+
+  const configs={
+    QRIS:{title:"Bayar dengan QRIS",instruction:"Buka aplikasi mobile banking atau e-wallet yang mendukung QRIS, lalu scan kode QR pembayaran toko.",html:`<div class="qr-box"><div><div class="qr-pattern"></div><b>QRIS TOKO</b></div></div><div class="qr-note">Ganti area QR di atas dengan QRIS merchant milik toko kamu.</div>`},
+    GOPAY:{title:"Bayar dengan GoPay",instruction:"Buka aplikasi GoPay, pilih pembayaran/transfer, lalu gunakan nomor GoPay toko berikut.",html:`<div class="account"><div class="amount-label">Nomor GoPay Toko</div><div class="number">08XX-XXXX-XXXX</div><button class="copy" data-copy="08XX-XXXX-XXXX">Salin Nomor</button></div>`},
+    DANA:{title:"Bayar dengan DANA",instruction:"Buka aplikasi DANA dan kirim pembayaran ke nomor DANA toko berikut.",html:`<div class="account"><div class="amount-label">Nomor DANA Toko</div><div class="number">08XX-XXXX-XXXX</div><button class="copy" data-copy="08XX-XXXX-XXXX">Salin Nomor</button></div>`},
+    BRI:{title:"Transfer Bank BRI",instruction:"Silakan transfer sesuai total pembayaran ke rekening BRI toko berikut.",html:`<div class="account"><div class="amount-label">Bank BRI · Nama Rekening</div><div class="number">0000-0000-000</div><div style="font-weight:700;margin-top:4px">LOSARI COMPUTER</div><button class="copy" data-copy="0000000000">Salin Nomor Rekening</button></div>`}
+  };
+
+  function render(method){
+    const c=configs[method]||configs.QRIS;
+    set("paymentMethod",method);
+    document.getElementById("payPanel").innerHTML=
+      `<div class="pay-title">${c.title}</div>
+       <p class="instruction">${c.instruction}</p>
+       <div class="amount-label">Total yang harus dibayar</div>
+       <div class="amount">${rupiah(total)}</div>${c.html}`;
+    document.querySelectorAll(".method-btn").forEach(b=>b.classList.toggle("active",b.dataset.method===method));
+    const copy=document.querySelector(".copy");
+    if(copy)copy.onclick=async()=>{try{await navigator.clipboard.writeText(copy.dataset.copy);copy.textContent="✓ Tersalin"}catch(e){copy.textContent="Salin manual"}};
+  }
+  render("QRIS");
+
+  document.querySelectorAll(".method-btn").forEach(btn=>btn.addEventListener("click",()=>render(btn.dataset.method)));
+
+  function setStatus(s){
+    const el=document.getElementById("status");
+    if(s==="paid"){el.textContent="Status: Pembayaran sudah ditandai berhasil.";el.style.background="#ecfdf3";el.style.color="#16704a";localStorage.setItem("paymentStatus","paid")}
+    else{el.textContent="Status: Menunggu pembayaran.";el.style.background="#fff7ed";el.style.color="#9a5b00";localStorage.setItem("paymentStatus","pending")}
+  }
+  setStatus(params.get("status")==="paid"||localStorage.getItem("paymentStatus")==="paid"?"paid":"pending");
+  document.getElementById("paidBtn").onclick=()=>setStatus("paid");
+  document.getElementById("pendingBtn").onclick=()=>setStatus("pending");
+})();
+</script>
+</body>
+</html>
