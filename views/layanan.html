@@ -1,10 +1,714 @@
 <!DOCTYPE html>
 <html lang="id">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Layanan</title><link rel="stylesheet" href="/static/style.css"></head>
-<body>
-<header><nav class="navbar"><div class="logo">WebsiteSaya</div><button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="main-menu"><span></span><span></span><span></span></button><div class="menu" id="main-menu"><a href="/">Beranda</a><a href="/tentang">Tentang</a><a href="/layanan">Layanan</a><a href="/kontak">Kontak</a></div></nav><button class="menu-overlay" type="button" aria-label="Tutup menu"></button></header>
-<main class="page"><section class="page-content"><p class="label">LAYANAN</p><h1>Layanan Kami</h1><div class="service-grid"><div class="service"><h3>Company Profile</h3><p>Website profesional untuk memperkenalkan bisnis Anda.</p></div><div class="service"><h3>Landing Page</h3><p>Halaman promosi yang fokus pada konversi.</p></div><div class="service"><h3>Website Custom</h3><p>Website sesuai kebutuhan bisnis Anda.</p></div></div></section></main>
-  <!-- Losari Computer — Simple Professional Footer -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layanan Servis IT & Laptop — Losari Computer Makassar</title>
+  <meta name="description" content="Losari Computer — Pusat servis laptop, komputer, dan solusi IT terpercaya di Makassar. Cek gratis, teknisi berpengalaman, garansi hingga 90 hari, pengerjaan cepat.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/laptop-catalog.css?v=5">
+  <link rel="stylesheet" href="/static/service-page.css">
+</head>
+<body class="laptop-page">
+
+  <!-- TOP STRIP -->
+  <div class="store-topline">
+    <div class="store-shell store-topline-inner">
+      <div class="brand-family">
+        <span>LOSARI COMPUTER</span>
+        <span class="family-separator"></span>
+        <span class="muted-brand">SECOND LAPTOP</span>
+        <span class="family-separator"></span>
+        <span class="muted-brand">IT SOLUTION</span>
+      </div>
+      <div class="top-links">
+        <a href="/">Promo</a>
+        <a href="#">Garansi</a>
+        <a href="#">Bantuan</a>
+        <a href="/kontak">Kontak</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="store-header" id="site-header">
+    <div class="store-shell nav-inner">
+      <a class="store-logo" href="/" aria-label="Losari Computer">
+        <img src="/static/videos/img/Logo.png" alt="Losari Computer">
+        <span>Losari Computer</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <a href="/">Home</a>
+        <a href="/laptop">Shop</a>
+        <a class="active" href="/layanan">Service</a>
+        <a href="/tentang">Tentang</a>
+      </nav>
+
+      <div class="nav-tools">
+        <a class="support-link" href="/kontak">Support</a>
+        <button class="icon-button" type="button" aria-label="Cari" onclick="document.getElementById('svEstimatorSection').scrollIntoView({behavior:'smooth'})">⌕</button>
+
+        <!-- User Profile -->
+        <div class="user-menu-wrap" id="userMenuWrap">
+          <button class="user-avatar-btn" id="userAvatarBtn" type="button" aria-label="Profil Akun Pengguna" aria-expanded="false">
+            <div class="user-avatar-circle" id="userAvatarCircle">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <span class="user-badge-count" id="userBadgeCount" style="display:none;">0</span>
+          </button>
+
+          <div class="user-dropdown-card" id="userDropdownCard">
+            <div class="user-dropdown-header">
+              <h4 class="user-name" id="dropdownUserName">Tamu Losari Computer</h4>
+              <p class="user-status-text" id="dropdownUserStatus">Belum tersambung Google</p>
+              <div class="user-pill-badge" id="dropdownPillBadge">
+                <span id="dropdownPillText">MODE TAMU / OFFLINE</span>
+              </div>
+            </div>
+            <div class="user-dropdown-divider"></div>
+            <div class="user-dropdown-list">
+              <button type="button" class="user-menu-item" id="itemFavorites">
+                <div class="user-item-icon-box box--pink">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
+                </div>
+                <div class="user-item-texts">
+                  <span class="user-item-title">Favorit Saya</span>
+                  <span class="user-item-sub" id="favSubCount">Laptop tersimpan</span>
+                </div>
+              </button>
+              <button type="button" class="user-menu-item" id="itemCart">
+                <div class="user-item-icon-box box--amber">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                  </svg>
+                  <span class="item-inner-badge" id="cartItemInnerBadge" style="display:none;">0</span>
+                </div>
+                <div class="user-item-texts">
+                  <span class="user-item-title">Keranjang Belanja</span>
+                  <span class="user-item-sub" id="cartSubCount">Total 0 item</span>
+                </div>
+              </button>
+              <a href="/?openGoogle=1" class="user-menu-item item--google" id="btnConnectGoogle" style="text-decoration:none;">
+                <div class="user-item-icon-box box--gray" id="googleBoxIcon">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </div>
+                <div class="user-item-texts">
+                  <span class="user-item-title" id="googleActionTitle">Edit Profil</span>
+                  <span class="user-item-sub" id="googleActionSub">Nama Lengkap &amp; Kontak</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <button class="menu-button" id="menuButton" type="button" aria-label="Buka menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="/">Home</a>
+      <a href="/laptop">Shop</a>
+      <a href="/layanan" class="active">Service</a>
+      <a href="/tentang">Tentang</a>
+      <a href="/kontak">Kontak</a>
+    </div>
+  </header>
+
+  <!-- SERVICE PROMO MARQUEE -->
+  <div class="sv-marquee" aria-label="Info layanan">
+    <div class="sv-marquee-track" id="svMarqueeTrack">
+      <div class="sv-marquee-group">
+        <span>🔧</span> PUSAT SERVIS & IT SOLUTION MAKASSAR
+        <span>•</span> CEK KERUSAKAN GRATIS
+        <span>•</span> GARANSI HINGGA 90 HARI
+        <span>•</span> TEKNISI BERPENGALAMAN
+        <span>•</span> SPAREPART ORIGINAL & GRADE A
+        <span>•</span> PENGERJAAN EXPRESS BISA DITUNGGU
+        <span>•</span> DATA RECOVERY 100% AMAN
+        <span>•</span>
+      </div>
+      <div class="sv-marquee-group" aria-hidden="true">
+        <span>🔧</span> PUSAT SERVIS & IT SOLUTION MAKASSAR
+        <span>•</span> CEK KERUSAKAN GRATIS
+        <span>•</span> GARANSI HINGGA 90 HARI
+        <span>•</span> TEKNISI BERPENGALAMAN
+        <span>•</span> SPAREPART ORIGINAL & GRADE A
+        <span>•</span> PENGERJAAN EXPRESS BISA DITUNGGU
+        <span>•</span> DATA RECOVERY 100% AMAN
+        <span>•</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="sv-hero" id="svHero">
+      <img class="sv-hero-bg" src="/static/images/service-hero-banner.jpg" alt="Workshop Servis IT Losari Computer">
+      <div class="sv-hero-overlay"></div>
+      <div class="sv-hero-inner">
+        <p class="sv-eyebrow">
+          <span class="sv-eyebrow-dot"></span>
+          Pusat Servis IT & Laptop Makassar
+        </p>
+        <h1 class="sv-hero-title">
+          Spesialis Servis Laptop &amp; <span>Solusi IT Terpercaya</span> di Makassar
+        </h1>
+        <p class="sv-hero-sub">
+          Teknisi berpengalaman siap menangani segala kerusakan laptop, komputer, dan kebutuhan IT bisnis Anda. Diagnosa transparan, sparepart asli, garansi pengerjaan hingga 90 hari.
+        </p>
+        <div class="sv-hero-pillars">
+          <div class="sv-pillar">
+            <span class="sv-pillar-icon">🔍</span>
+            Cek Kerusakan Gratis
+          </div>
+          <div class="sv-pillar">
+            <span class="sv-pillar-icon">⚡</span>
+            Pengerjaan Express
+          </div>
+          <div class="sv-pillar">
+            <span class="sv-pillar-icon">🛡️</span>
+            Garansi s/d 90 Hari
+          </div>
+          <div class="sv-pillar">
+            <span class="sv-pillar-icon">📦</span>
+            Sparepart Original
+          </div>
+        </div>
+        <div class="sv-hero-ctas">
+          <a class="sv-btn-wa" href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20mengenai%20layanan%20servis%20IT.%20Boleh%20saya%20tanyakan%20lebih%20lanjut%3F" target="_blank" rel="noopener" id="heroWaBtn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Konsultasi WhatsApp Gratis
+          </a>
+          <button class="sv-btn-outline" onclick="document.getElementById('svEstimatorSection').scrollIntoView({behavior:'smooth'})" id="heroEstBtn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Hitung Estimasi Biaya
+          </button>
+          <button class="sv-btn-outline" onclick="document.getElementById('svTrackerSection').scrollIntoView({behavior:'smooth'})" id="heroTrackBtn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Cek Status Servis
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="sv-stats">
+      <div class="sv-stat">
+        <div class="sv-stat-num">2.500+</div>
+        <div class="sv-stat-label">Unit Laptop Terservis</div>
+      </div>
+      <div class="sv-stat">
+        <div class="sv-stat-num">98%</div>
+        <div class="sv-stat-label">Tingkat Kepuasan Pelanggan</div>
+      </div>
+      <div class="sv-stat">
+        <div class="sv-stat-num">90 Hari</div>
+        <div class="sv-stat-label">Garansi Pengerjaan</div>
+      </div>
+      <div class="sv-stat">
+        <div class="sv-stat-num">1–3 Hari</div>
+        <div class="sv-stat-label">Rata-rata Durasi Servis</div>
+      </div>
+    </div>
+
+    <!-- ===================== LAYANAN CARDS ===================== -->
+    <section class="sv-section" id="svServicesSection">
+      <div class="sv-shell">
+        <div class="sv-section-head">
+          <span class="sv-section-eyebrow">Apa yang Kami Kerjakan</span>
+          <h2 class="sv-section-title">8 Layanan Servis IT Komprehensif</h2>
+          <p class="sv-section-sub">Dari kerusakan ringan hingga berat, laptop, komputer, hingga jaringan kantor — semua ditangani oleh teknisi berpengalaman dengan alat diagnostik profesional.</p>
+        </div>
+
+        <div class="sv-grid">
+
+          <!-- 1. Hardware & Motherboard -->
+          <div class="sv-card" style="--sv-card-color:#ef4444;--sv-card-bg:rgba(239,68,68,.09);">
+            <div class="sv-card-icon-wrap">🔬</div>
+            <span class="sv-card-badge sv-badge-pop">Paling Dicari</span>
+            <h3 class="sv-card-title">Servis Hardware & Motherboard</h3>
+            <p class="sv-card-desc">Perbaikan kerusakan tingkat komponen dengan alat diagnostik profesional. Reballing GPU/BGA, perbaikan IC power, dan short circuit.</p>
+            <ul class="sv-card-items">
+              <li>Laptop mati total / tidak menyala</li>
+              <li>Reballing GPU & IC Power BGA</li>
+              <li>Korslet / short circuit mainboard</li>
+              <li>Port USB, HDMI, charger rusak</li>
+              <li>Diagnosa komponen gratis</li>
+            </ul>
+            <div class="sv-card-price">
+              <strong>Mulai Rp 150.000</strong> — tergantung kerusakan
+            </div>
+          </div>
+
+          <!-- 2. Layar & Fisik -->
+          <div class="sv-card" style="--sv-card-color:#3b82f6;--sv-card-bg:rgba(59,130,246,.09);">
+            <div class="sv-card-icon-wrap">🖥️</div>
+            <h3 class="sv-card-title">Ganti Layar & Komponen Fisik</h3>
+            <p class="sv-card-desc">Penggantian LCD/LED laptop, perbaikan engsel patah, casing retak, keyboard macet dan touchpad tidak responsif.</p>
+            <ul class="sv-card-items">
+              <li>Layar retak / bergaris / blank</li>
+              <li>Engsel patah & casing pecah</li>
+              <li>Keyboard macet / tombol copot</li>
+              <li>Touchpad / trackpad tidak responsif</li>
+              <li>Baterai tidak terisi / bocor</li>
+            </ul>
+            <div class="sv-card-price">
+              <strong>Mulai Rp 200.000</strong> — tergantung merek & tipe
+            </div>
+          </div>
+
+          <!-- 3. Upgrade Performa -->
+          <div class="sv-card" style="--sv-card-color:#8b5cf6;--sv-card-bg:rgba(139,92,246,.09);">
+            <div class="sv-card-icon-wrap">🚀</div>
+            <span class="sv-card-badge sv-badge-new">Favorit</span>
+            <h3 class="sv-card-title">Upgrade Performa Laptop / PC</h3>
+            <p class="sv-card-desc">Naikkan performa laptop lama jadi terasa seperti baru. Ganti SSD NVMe yang 10x lebih cepat dan tambah kapasitas RAM untuk multitasking mulus.</p>
+            <ul class="sv-card-items">
+              <li>Upgrade SSD NVMe / SATA (120GB–4TB)</li>
+              <li>Tambah RAM DDR4 / DDR5</li>
+              <li>Cloning OS & data gratis tanpa install ulang</li>
+              <li>Upgrade VGA / GPU eksternal</li>
+              <li>Konsultasi spek sesuai kebutuhan</li>
+            </ul>
+            <div class="sv-card-price">
+              <strong>Mulai Rp 250.000</strong> + harga komponen
+            </div>
+          </div>
+
+          <!-- 4. Deep Cleaning -->
+          <div class="sv-card" style="--sv-card-color:#10b981;--sv-card-bg:rgba(16,185,129,.09);">
+            <div class="sv-card-icon-wrap">❄️</div>
+            <h3 class="sv-card-title">Deep Cleaning & Thermal Paste</h3>
+            <p class="sv-card-desc">Laptop cepat panas, kipas berisik, atau sering shutdown sendiri? Deep cleaning menyeluruh dan penggantian pasta pendingin premium menyelesaikannya.</p>
+            <ul class="sv-card-items">
+              <li>Bongkar & bersihkan heatsink + kipas</li>
+              <li>Ganti thermal paste Arctic / Noctua NT-H1</li>
+              <li>Periksa sistem pendinginan keseluruhan</li>
+              <li>Turunkan suhu CPU hingga 20–30°C</li>
+              <li>Gratis cek kondisi thermal setelah servis</li>
+            </ul>
+            <div class="sv-card-price">
+              <strong>Mulai Rp 120.000</strong> untuk laptop standar
+            </div>
+          </div>
+
+          <!-- 5. OS & Software -->
+          <div class="sv-card" style="--sv-card-color:#f59e0b;--sv-card-bg:rgba(245,158,11,.09);">
+            <div class="sv-card-icon-wrap">💿</div>
+            <h3 class="sv-card-title">Instalasi OS & Software</h3>
+            <p class="sv-card-desc">Instalasi sistem operasi bersih, driver lengkap, dan semua software yang Anda butuhkan — termasuk Office, Adobe, AutoCAD, dan keamanan antivirus.</p>
+            <ul class="sv-card-items">
+              <li>Windows 10 / Windows 11 (Original & Activated)</li>
+              <li>macOS (untuk unit Apple)</li>
+              <li>Driver VGA, LAN, Wi-Fi, audio lengkap</li>
+              <li>Microsoft Office, Adobe CC, AutoCAD</li>
+              <li>Antivirus & proteksi sistem</li>
+            </ul>
+            <div class="sv-card-price">
+              <strong>Mulai Rp 100.000</strong> untuk install OS clean
+            </div>
+          </div>
+
+          <!-- 6. Data Recovery -->
+          <div class="sv-card" style="--sv-card-color:#ec4899;--sv-card-bg:rgba(236,72,153,.09);">
+            <div class="sv-card-icon-wrap">💾</div>
+            <span class="sv-card-badge sv-badge-hot">Urgent</span>
+            <h3 class="sv-card-title">Data Recovery & Penyelamatan File</h3>
+            <p class="sv-card-desc">HDD atau SSD rusak, terformat, atau file hilang? Kami gunakan software recovery profesional dengan kerahasiaan data yang terjamin 100%.</p>
+            <ul class="sv-card-items">
+              <li>HDD / SSD rusak fisik atau logis</li>
+              <li>Partisi hilang atau terformat tidak sengaja</li>
+              <li>File foto, video, dokumen terhapus</li>
+              <li>Kerahasiaan & privasi data terjamin</li>
+              <li>Cek kemungkinan recovery dulu sebelum bayar</li>
+            </ul>
+            <div class="sv-card-price">
+              <strong>Mulai Rp 200.000</strong> — tergantung tingkat kerusakan
+            </div>
+          </div>
+
+          <!-- 7. PC Rakit & Servis -->
+          <div class="sv-card" style="--sv-card-color:#06b6d4;--sv-card-bg:rgba(6,182,212,.09);">
+            <div class="sv-card-icon-wrap">🖥️</div>
+            <h3 class="sv-card-title">Servis & Rakit PC Desktop</h3>
+            <p class="sv-card-desc">Bangun PC impian Anda dari nol atau perbaiki PC yang bermasalah. Kami rekomendasikan komponen sesuai budget dan kebutuhan: gaming, desain, atau perkantoran.</p>
+            <ul class="sv-card-items">
+              <li>Konsultasi spek PC sesuai kebutuhan & budget</li>
+              <li>Rakit PC Gaming, Desain, Office</li>
+              <li>Cable management rapi & estetis</li>
+              <li>Install OS + stress test 24 jam</li>
+              <li>Servis PC mati, restart sendiri, blue screen</li>
+            </ul>
+            <div class="sv-card-price">
+              <strong>Jasa Rakit Mulai Rp 200.000</strong> + harga komponen
+            </div>
+          </div>
+
+          <!-- 8. IT Solution B2B -->
+          <div class="sv-card" style="--sv-card-color:#0ea5e9;--sv-card-bg:rgba(14,165,233,.09);">
+            <div class="sv-card-icon-wrap">🏢</div>
+            <span class="sv-card-badge sv-badge-new">B2B</span>
+            <h3 class="sv-card-title">IT Solution Kantor & Bisnis</h3>
+            <p class="sv-card-desc">Solusi IT komprehensif untuk bisnis dan instansi. Dari setup jaringan LAN/Wi-Fi, Mikrotik, pengadaan unit, hingga maintenance berkala.</p>
+            <ul class="sv-card-items">
+              <li>Setup jaringan Wi-Fi & LAN kantor</li>
+              <li>Konfigurasi Mikrotik & manajemen bandwidth</li>
+              <li>Printer sharing & peripheral setup</li>
+              <li>Pengadaan & maintenance unit laptop/PC</li>
+              <li>Kontrak perawatan IT berkala (SLA)</li>
+            </ul>
+            <div class="sv-card-price">
+              <strong>Hubungi kami</strong> untuk penawaran korporat
+            </div>
+          </div>
+
+        </div><!-- /sv-grid -->
+      </div>
+    </section>
+
+    <!-- ===================== FLOW 4 LANGKAH ===================== -->
+    <section class="sv-section-alt" id="svFlowSection">
+      <div class="sv-shell">
+        <div class="sv-section-head">
+          <span class="sv-section-eyebrow">Proses Servis</span>
+          <h2 class="sv-section-title">Alur Pengerjaan 4 Langkah</h2>
+          <p class="sv-section-sub">Transparan dari awal hingga akhir — Anda selalu tahu apa yang sedang dikerjakan dan berapa biayanya sebelum kami mulai.</p>
+        </div>
+
+        <div class="sv-flow">
+          <div class="sv-step">
+            <div class="sv-step-num">1</div>
+            <div class="sv-step-label">Konsultasi & Antar Unit</div>
+            <div class="sv-step-desc">Ceritakan keluhan laptop / PC Anda via WhatsApp atau langsung ke toko. Kami siapkan nota servis resmi.</div>
+          </div>
+          <div class="sv-step">
+            <div class="sv-step-num">2</div>
+            <div class="sv-step-label">Diagnosa & Konfirmasi Biaya</div>
+            <div class="sv-step-desc">Teknisi melakukan pemeriksaan menyeluruh — gratis. Kami informasikan estimasi biaya dan durasi sebelum pengerjaan dimulai.</div>
+          </div>
+          <div class="sv-step">
+            <div class="sv-step-num">3</div>
+            <div class="sv-step-label">Pengerjaan & Stress Test</div>
+            <div class="sv-step-desc">Perbaikan dilakukan oleh teknisi tersertifikasi menggunakan sparepart original. Selesai, unit diuji stress test dan burn-in penuh.</div>
+          </div>
+          <div class="sv-step">
+            <div class="sv-step-num">4</div>
+            <div class="sv-step-label">Serah Terima & Garansi</div>
+            <div class="sv-step-desc">Unit diserahkan lengkap dengan nota garansi resmi hingga 90 hari. Ada masalah lagi? Kami tangani tanpa biaya tambahan.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ESTIMATOR ===================== -->
+    <section class="sv-section" id="svEstimatorSection">
+      <div class="sv-shell">
+        <div class="sv-section-head">
+          <span class="sv-section-eyebrow">Kalkulator Biaya</span>
+          <h2 class="sv-section-title">Estimasi Biaya Servis Cepat</h2>
+          <p class="sv-section-sub">Pilih jenis perangkat dan kendala Anda — kami tampilkan perkiraan biaya transparan dan hubungkan langsung ke WhatsApp kami.</p>
+        </div>
+
+        <div class="sv-estimator">
+          <div class="sv-estimator-inner">
+            <div class="sv-est-form">
+              <div class="sv-est-title">Kalkulator Diagnosa & Estimasi</div>
+              <div class="sv-est-sub">Pilih perangkat dan jenis kendala untuk mendapatkan perkiraan biaya seketika.</div>
+
+              <span class="sv-est-label">Jenis Perangkat</span>
+              <div class="sv-est-options" id="estDeviceOpts">
+                <button class="sv-est-opt active" data-type="device" data-val="laptop" id="optLaptop">💻 Laptop</button>
+                <button class="sv-est-opt" data-type="device" data-val="pc" id="optPC">🖥️ PC Desktop</button>
+                <button class="sv-est-opt" data-type="device" data-val="mac" id="optMac">🍎 MacBook / iMac</button>
+              </div>
+
+              <span class="sv-est-label">Kendala / Layanan yang Diinginkan</span>
+              <div class="sv-est-options" id="estProblemOpts">
+                <button class="sv-est-opt" data-type="problem" data-val="mati" id="optMati">💀 Mati Total</button>
+                <button class="sv-est-opt" data-type="problem" data-val="layar" id="optLayar">🖥️ Layar Rusak</button>
+                <button class="sv-est-opt" data-type="problem" data-val="panas" id="optPanas">🌡️ Overheat</button>
+                <button class="sv-est-opt" data-type="problem" data-val="upgrade" id="optUpgrade">🚀 Upgrade SSD/RAM</button>
+                <button class="sv-est-opt" data-type="problem" data-val="os" id="optOS">💿 Install OS</button>
+                <button class="sv-est-opt" data-type="problem" data-val="data" id="optData">💾 Data Recovery</button>
+                <button class="sv-est-opt" data-type="problem" data-val="cleaning" id="optCleaning">🧹 Deep Cleaning</button>
+                <button class="sv-est-opt" data-type="problem" data-val="rakit" id="optRakit">🔧 Rakit / Pasang</button>
+              </div>
+            </div>
+
+            <div class="sv-est-result" id="estResult">
+              <div class="sv-est-placeholder" id="estPlaceholder">
+                <div class="sv-est-placeholder-icon">🔧</div>
+                <div class="sv-est-placeholder-text">Pilih perangkat dan kendala di sebelah kiri untuk melihat estimasi biaya servis Anda.</div>
+              </div>
+              <div id="estResultContent" style="display:none;">
+                <div class="sv-est-price-range" id="estPriceLabel">ESTIMASI BIAYA</div>
+                <div class="sv-est-price-val" id="estPriceVal">–</div>
+                <div class="sv-est-duration" id="estDuration">Estimasi durasi: –</div>
+                <ul class="sv-est-items-list" id="estItemsList"></ul>
+                <a class="sv-est-wa-btn" id="estWaBtn" href="#" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Konsultasi WhatsApp Sekarang
+                </a>
+                <p class="sv-est-note">* Estimasi belum termasuk harga sparepart. Biaya final dikonfirmasi setelah diagnosa gratis.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TRACKER ===================== -->
+    <section class="sv-section-alt" id="svTrackerSection">
+      <div class="sv-shell">
+        <div class="sv-section-head">
+          <span class="sv-section-eyebrow">Pantau Servis Anda</span>
+          <h2 class="sv-section-title">Cek Status Pengerjaan Unit</h2>
+          <p class="sv-section-sub">Masukkan kode nota servis Anda untuk memantau progress pengerjaan laptop atau PC secara real-time.</p>
+        </div>
+
+        <div class="sv-tracker-wrap">
+          <div class="sv-tracker-form">
+            <input type="text" class="sv-tracker-input" id="trackerInput" placeholder="Masukkan kode nota, mis: LC-2026-00145" maxlength="20" autocomplete="off">
+            <button class="sv-tracker-btn" id="trackerBtn" type="button">Cek Status</button>
+          </div>
+
+          <div>
+            <p style="font-size:12.5px;color:#8898aa;margin:0 0 10px;">Coba kode demo:</p>
+            <div class="sv-tracker-demos">
+              <button class="sv-demo-code" data-code="LC-2026-00145" type="button">LC-2026-00145</button>
+              <button class="sv-demo-code" data-code="LC-2026-00201" type="button">LC-2026-00201</button>
+              <button class="sv-demo-code" data-code="LC-2026-00089" type="button">LC-2026-00089</button>
+            </div>
+          </div>
+
+          <div class="sv-tracker-steps" id="trackerSteps">
+            <div class="sv-track-step pending" data-step="0">
+              <div class="sv-track-dot">📋</div>
+              <div class="sv-track-info">
+                <div class="sv-track-title">Unit Diterima & Nota Dibuat</div>
+                <div class="sv-track-desc">Unit Anda telah diterima oleh staf kami. Nomor nota servis resmi telah dibuat dan data pelanggan tercatat.</div>
+              </div>
+            </div>
+            <div class="sv-track-step pending" data-step="1">
+              <div class="sv-track-dot">🔍</div>
+              <div class="sv-track-info">
+                <div class="sv-track-title">Diagnosa Kerusakan</div>
+                <div class="sv-track-desc">Teknisi melakukan pemeriksaan menyeluruh untuk mengidentifikasi akar masalah dan komponen yang perlu diganti.</div>
+              </div>
+            </div>
+            <div class="sv-track-step pending" data-step="2">
+              <div class="sv-track-dot">🔧</div>
+              <div class="sv-track-info">
+                <div class="sv-track-title">Proses Pengerjaan</div>
+                <div class="sv-track-desc">Perbaikan sedang dilakukan oleh teknisi berpengalaman menggunakan sparepart original atau grade A sesuai konfirmasi.</div>
+              </div>
+            </div>
+            <div class="sv-track-step pending" data-step="3">
+              <div class="sv-track-dot">✅</div>
+              <div class="sv-track-info">
+                <div class="sv-track-title">Quality Control & Stress Test</div>
+                <div class="sv-track-desc">Unit melewati QC ketat: burn-in CPU/GPU, uji layar, keyboard, port, baterai, dan sistem pendingin selama minimal 2 jam.</div>
+              </div>
+            </div>
+            <div class="sv-track-step pending" data-step="4">
+              <div class="sv-track-dot">📦</div>
+              <div class="sv-track-info">
+                <div class="sv-track-title">Selesai — Siap Diambil / Dikirim</div>
+                <div class="sv-track-desc">Unit selesai dan siap diambil. Sertakan kartu garansi servis. Pengiriman ke seluruh Makassar juga tersedia.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRICE TABLE ===================== -->
+    <section class="sv-section" id="svPriceSection">
+      <div class="sv-shell">
+        <div class="sv-section-head">
+          <span class="sv-section-eyebrow">Tarif Resmi</span>
+          <h2 class="sv-section-title">Daftar Harga Servis Transparan</h2>
+          <p class="sv-section-sub">Tidak ada biaya tersembunyi. Semua harga di bawah adalah tarif jasa pengerjaan — biaya sparepart dikonfirmasi terpisah setelah diagnosa gratis.</p>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="sv-price-table">
+            <thead>
+              <tr>
+                <th>Jenis Layanan</th>
+                <th>Detail</th>
+                <th>Estimasi Tarif Jasa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cek / Diagnosa Kerusakan</td>
+                <td class="sv-price-note">Pemeriksaan menyeluruh oleh teknisi, tanpa komitmen</td>
+                <td class="sv-price-free">Gratis</td>
+              </tr>
+              <tr>
+                <td>Deep Cleaning + Thermal Paste</td>
+                <td class="sv-price-note">Bongkar total, bersih, pasta pendingin premium</td>
+                <td class="sv-price-range-cell">Rp 120.000 – 200.000</td>
+              </tr>
+              <tr>
+                <td>Instalasi OS (Windows / macOS)</td>
+                <td class="sv-price-note">Clean install, driver lengkap, aktivasi</td>
+                <td class="sv-price-range-cell">Rp 100.000 – 175.000</td>
+              </tr>
+              <tr>
+                <td>Instalasi Software Produktivitas</td>
+                <td class="sv-price-note">Office, Adobe, AutoCAD, Antivirus, dll.</td>
+                <td class="sv-price-range-cell">Rp 50.000 – 150.000</td>
+              </tr>
+              <tr>
+                <td>Upgrade SSD / RAM (jasa pasang)</td>
+                <td class="sv-price-note">Termasuk cloning data OS gratis</td>
+                <td class="sv-price-range-cell">Rp 50.000 – 100.000</td>
+              </tr>
+              <tr>
+                <td>Ganti LCD / Layar</td>
+                <td class="sv-price-note">Tergantung merek & resolusi layar</td>
+                <td class="sv-price-range-cell">Rp 200.000 – 500.000 + sparepart</td>
+              </tr>
+              <tr>
+                <td>Servis Motherboard / IC Power</td>
+                <td class="sv-price-note">Reballing BGA, IC power, korslet</td>
+                <td class="sv-price-range-cell">Rp 250.000 – 750.000</td>
+              </tr>
+              <tr>
+                <td>Data Recovery</td>
+                <td class="sv-price-note">HDD/SSD logis; fisik sesuai kondisi</td>
+                <td class="sv-price-range-cell">Rp 200.000 – 600.000</td>
+              </tr>
+              <tr>
+                <td>Jasa Rakit PC Desktop</td>
+                <td class="sv-price-note">Termasuk install OS & stress test</td>
+                <td class="sv-price-range-cell">Rp 200.000 – 400.000</td>
+              </tr>
+              <tr>
+                <td>IT Solution / Setup Jaringan</td>
+                <td class="sv-price-note">Wi-Fi, LAN, Mikrotik, printer sharing</td>
+                <td class="sv-price-range-cell">Hubungi Kami (Survei)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="sv-section-alt" id="svFaqSection">
+      <div class="sv-shell">
+        <div class="sv-section-head">
+          <span class="sv-section-eyebrow">Pertanyaan Umum</span>
+          <h2 class="sv-section-title">FAQ Layanan Servis</h2>
+          <p class="sv-section-sub">Pertanyaan yang paling sering ditanyakan pelanggan kami — semua dijawab secara transparan dan jujur.</p>
+        </div>
+
+        <div class="sv-faq-list" id="svFaqList">
+
+          <div class="sv-faq-item">
+            <button class="sv-faq-trigger" type="button">
+              <span class="sv-faq-q">Apakah biaya cek/diagnosa benar-benar gratis?</span>
+              <span class="sv-faq-chevron">▼</span>
+            </button>
+            <div class="sv-faq-body">
+              <div class="sv-faq-body-inner">Ya, <strong>100% gratis tanpa biaya tersembunyi</strong>. Kami melakukan pemeriksaan menyeluruh dan memberitahu Anda estimasi biaya serta sparepart yang dibutuhkan. Anda bebas memutuskan lanjut atau tidak — tidak ada kewajiban.</div>
+            </div>
+          </div>
+
+          <div class="sv-faq-item">
+            <button class="sv-faq-trigger" type="button">
+              <span class="sv-faq-q">Berapa lama garansi servis yang diberikan?</span>
+              <span class="sv-faq-chevron">▼</span>
+            </button>
+            <div class="sv-faq-body">
+              <div class="sv-faq-body-inner">Garansi pengerjaan kami berlaku <strong>hingga 90 hari</strong> tergantung jenis perbaikan. Jika masalah yang sama muncul kembali dalam masa garansi, kami tangani tanpa biaya tambahan. Garansi sparepart mengikuti garansi distributor resmi.</div>
+            </div>
+          </div>
+
+          <div class="sv-faq-item">
+            <button class="sv-faq-trigger" type="button">
+              <span class="sv-faq-q">Apakah data saya aman selama proses servis?</span>
+              <span class="sv-faq-chevron">▼</span>
+            </button>
+            <div class="sv-faq-body">
+              <div class="sv-faq-body-inner">Keamanan dan privasi data Anda adalah prioritas utama kami. Teknisi kami berkomitmen untuk <strong>tidak mengakses, menyalin, atau mendistribusikan</strong> data pribadi pelanggan. Untuk servis yang memerlukan install ulang OS, kami selalu konfirmasi dan backup data terlebih dahulu dengan izin Anda.</div>
+            </div>
+          </div>
+
+          <div class="sv-faq-item">
+            <button class="sv-faq-trigger" type="button">
+              <span class="sv-faq-q">Berapa lama proses servis berlangsung?</span>
+              <span class="sv-faq-chevron">▼</span>
+            </button>
+            <div class="sv-faq-body">
+              <div class="sv-faq-body-inner">Waktu pengerjaan bervariasi: <strong>Instalasi OS dan deep cleaning 1–3 jam (bisa ditunggu)</strong>, upgrade SSD/RAM 30–60 menit, perbaikan hardware ringan 1–2 hari, reballing motherboard atau servis berat 2–5 hari kerja. Kami selalu informasikan estimasi waktu di awal sebelum Anda meninggalkan unit.</div>
+            </div>
+          </div>
+
+          <div class="sv-faq-item">
+            <button class="sv-faq-trigger" type="button">
+              <span class="sv-faq-q">Apakah sparepart yang digunakan original?</span>
+              <span class="sv-faq-chevron">▼</span>
+            </button>
+            <div class="sv-faq-body">
+              <div class="sv-faq-body-inner">Kami menggunakan <strong>sparepart original (OEM) atau grade A yang berkualitas tinggi</strong>. Sebelum mengganti komponen, kami selalu konfirmasikan kepada pelanggan terkait pilihan sparepart beserta harganya. Anda berhak memilih sesuai kebutuhan dan budget.</div>
+            </div>
+          </div>
+
+          <div class="sv-faq-item">
+            <button class="sv-faq-trigger" type="button">
+              <span class="sv-faq-q">Bisakah laptop dikirim tanpa harus ke toko?</span>
+              <span class="sv-faq-chevron">▼</span>
+            </button>
+            <div class="sv-faq-body">
+              <div class="sv-faq-body-inner">Untuk area <strong>Makassar dan sekitarnya</strong>, tersedia layanan jemput-antar unit. Untuk luar kota, pengiriman via ekspedisi terpercaya (TIKI, JNE, J&T) dengan packing aman bisa dikoordinasikan. Hubungi kami via WhatsApp untuk informasi lebih lanjut.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA STRIP ===================== -->
+    <section class="sv-cta-strip" id="svCtaSection">
+      <div class="sv-shell sv-cta-inner">
+        <h2 class="sv-cta-title">Laptop Anda Bermasalah? Hubungi Kami Sekarang!</h2>
+        <p class="sv-cta-sub">Konsultasi gratis, diagnosa transparan, pengerjaan cepat. Kami siap setiap hari pukul 09.00 – 21.00 WIB di Karebosi Link, Makassar.</p>
+        <div class="sv-cta-btns">
+          <a class="sv-cta-wa" href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20mengenai%20layanan%20servis%20laptop%20dan%20IT.%20Bisakah%20dibantu%3F" target="_blank" rel="noopener" id="ctaWaBtn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Chat WhatsApp Admin
+          </a>
+          <a class="sv-cta-tel" href="tel:+6285332990156" id="ctaTelBtn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.47 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +62 853-3299-0156
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer class="ld-wave-footer" id="siteFooter">
     <div class="ld-wave-top" aria-hidden="true">
       <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +730,7 @@
             <ul class="ld-social-icons">
               <li class="ld-soc-item soc-wa">
                 <span class="ld-soc-tooltip">WhatsApp</span>
-                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F" target="_blank" rel="noopener" class="ld-soc-link" aria-label="WhatsApp">
+                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20layanan%20servis%20IT." target="_blank" rel="noopener" class="ld-soc-link" aria-label="WhatsApp">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 </a>
               </li>
@@ -42,9 +746,8 @@
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
                 </a>
               </li>
-
             </ul>
-            </div>
+          </div>
           <div class="ld-nav-col">
             <h4 class="ld-col-head">Navigasi</h4>
             <ul class="ld-nav-list">
@@ -64,7 +767,7 @@
               </div>
               <div class="ld-contact-item">
                 <span class="ld-c-icon ld-c-phone"><svg class="ld-icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.47 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WA: <strong class="js-site-wa-text">+62 853-3299-0156</strong></a>
+                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20layanan%20servis%20IT." target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WA: <strong class="js-site-wa-text">+62 853-3299-0156</strong></a>
               </div>
               <div class="ld-contact-item">
                 <span class="ld-c-icon ld-c-clock"><svg class="ld-icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
@@ -82,6 +785,189 @@
       </div>
     </div>
   </footer>
+
   <script src="/static/site-config.js"></script>
-<script>const menuToggle=document.querySelector('.menu-toggle');const menu=document.querySelector('#main-menu');const menuOverlay=document.querySelector('.menu-overlay');function setMenuState(isOpen){menu.classList.toggle('is-open',isOpen);menuOverlay.classList.toggle('is-open',isOpen);document.body.classList.toggle('menu-open',isOpen);menuToggle.setAttribute('aria-expanded',String(isOpen));menuToggle.setAttribute('aria-label',isOpen?'Tutup menu':'Buka menu')}menuToggle.addEventListener('click',()=>setMenuState(!menu.classList.contains('is-open')));menuOverlay.addEventListener('click',()=>setMenuState(false));menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenuState(false)));</script>
-</body></html>
+  <script src="/static/script.js"></script>
+
+  <script>
+    /* ==================== HEADER SCROLL ==================== */
+    const header = document.getElementById('site-header');
+    const menuButton = document.getElementById('menuButton');
+    const mobileNav = document.getElementById('mobileNav');
+
+    function updateHeader() {
+      if (header) header.classList.toggle('is-scrolled', window.scrollY > 20);
+    }
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+
+    if (menuButton && mobileNav) {
+      menuButton.addEventListener('click', () => {
+        header.classList.toggle('menu-open');
+      });
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => header.classList.remove('menu-open'));
+      });
+    }
+
+    /* ==================== ESTIMATOR WIDGET ==================== */
+    const EST_DATA = {
+      laptop: {
+        mati:     { price: 'Rp 150.000 – Rp 750.000', duration: '2 – 5 hari kerja', items: ['Diagnosa kerusakan komponen', 'Cek IC power, fuse, dan jalur daya', 'Reballing GPU/CPU jika diperlukan', 'Biaya sparepart dikonfirmasi terpisah'], wa: 'laptop+yang+mati+total%2C+tidak+bisa+menyala' },
+        layar:    { price: 'Rp 200.000 – Rp 500.000', duration: '1 – 2 hari kerja', items: ['Ganti LCD / LED panel', 'Cek kabel layar & soket konektor', 'Kalibrasi dan pengujian warna', 'Sparepart original / grade A tersedia'], wa: 'layar+laptop+yang+retak+atau+bergaris' },
+        panas:    { price: 'Rp 120.000 – Rp 200.000', duration: '1 – 3 jam (bisa ditunggu)', items: ['Deep cleaning total heatsink & kipas', 'Ganti thermal paste Arctic / Noctua', 'Turunkan suhu CPU hingga 20–30°C', 'Cek kondisi thermal setelah servis gratis'], wa: 'laptop+yang+cepat+panas+atau+overheat' },
+        upgrade:  { price: 'Rp 50.000 – Rp 100.000 (jasa pasang)', duration: '30 – 60 menit', items: ['Pasang SSD NVMe / SATA baru', 'Tambah RAM DDR4 / DDR5', 'Cloning OS & data ke SSD baru GRATIS', 'Konsultasi spek sesuai kebutuhan & budget'], wa: 'upgrade+SSD+atau+RAM+laptop' },
+        os:       { price: 'Rp 100.000 – Rp 175.000', duration: '1 – 3 jam (bisa ditunggu)', items: ['Clean install Windows 10 / 11', 'Driver VGA, LAN, Wi-Fi, Audio lengkap', 'Aktivasi Windows resmi', 'Install Office, Antivirus dasar'], wa: 'instalasi+ulang+sistem+operasi+Windows+laptop' },
+        data:     { price: 'Rp 200.000 – Rp 600.000', duration: '1 – 3 hari kerja', items: ['Cek kemungkinan recovery dulu, gratis', 'Recovery file foto, video, dokumen', 'HDD / SSD logis & fisik ditangani', 'Privasi & kerahasiaan data 100% terjamin'], wa: 'data+recovery+dari+HDD+SSD+laptop' },
+        cleaning: { price: 'Rp 120.000 – Rp 200.000', duration: '1 – 3 jam (bisa ditunggu)', items: ['Bongkar total body laptop', 'Bersihkan debu heatsink & kipas', 'Ganti thermal paste premium', 'Uji suhu setelah cleaning gratis'], wa: 'deep+cleaning+dan+ganti+thermal+paste+laptop' },
+        rakit:    { price: 'Rp 200.000 – Rp 400.000 (jasa rakit)', duration: '2 – 4 jam', items: ['Rakit komponen sesuai spek yang sudah ada', 'Cable management rapi & estetis', 'Install OS + driver lengkap', 'Stress test CPU, GPU, RAM 24 jam'], wa: 'jasa+rakit+PC+desktop' },
+      },
+      pc: {
+        mati:     { price: 'Rp 100.000 – Rp 500.000', duration: '1 – 3 hari kerja', items: ['Diagnosa PSU, motherboard, RAM', 'Cek jalur daya dan kapasitor', 'Ganti komponen bermasalah', 'Stress test setelah perbaikan'], wa: 'PC+desktop+yang+mati+total' },
+        layar:    { price: 'Rp 150.000 – Rp 400.000', duration: '1 – 2 hari kerja', items: ['Cek kabel VGA / HDMI / DisplayPort', 'Diagnosa GPU / VGA card', 'Ganti monitor jika diperlukan', 'Uji output display semua port'], wa: 'monitor+atau+layar+PC+yang+bermasalah' },
+        panas:    { price: 'Rp 100.000 – Rp 180.000', duration: '1 – 2 jam', items: ['Bersihkan casing dan heatsink total', 'Ganti thermal paste CPU', 'Cek aliran udara (airflow) casing', 'Rekomendasi cooling tambahan'], wa: 'PC+desktop+yang+overheat+atau+cepat+panas' },
+        upgrade:  { price: 'Rp 50.000 – Rp 100.000 (jasa pasang)', duration: '30 – 60 menit', items: ['Pasang SSD / HDD baru', 'Tambah RAM DDR4 / DDR5', 'Upgrade VGA card', 'Cloning data gratis'], wa: 'upgrade+komponen+PC+desktop' },
+        os:       { price: 'Rp 100.000 – Rp 150.000', duration: '1 – 2 jam', items: ['Install Windows 10 / 11 bersih', 'Driver chipset, VGA, LAN, audio', 'Aktivasi Windows', 'Install software dasar'], wa: 'instalasi+ulang+Windows+PC+desktop' },
+        data:     { price: 'Rp 200.000 – Rp 600.000', duration: '1 – 3 hari kerja', items: ['Recovery dari HDD / SSD', 'File foto, video, dokumen', 'Partisi yang terhapus / terformat', 'Data 100% aman & terjaga'], wa: 'data+recovery+dari+HDD+PC+desktop' },
+        cleaning: { price: 'Rp 80.000 – Rp 150.000', duration: '1 – 2 jam', items: ['Bersihkan debu seluruh casing', 'Ganti thermal paste CPU', 'Bersihkan kipas & heatsink', 'Cek kondisi pendinginan'], wa: 'deep+cleaning+PC+desktop' },
+        rakit:    { price: 'Rp 200.000 – Rp 400.000 (jasa rakit)', duration: '3 – 5 jam', items: ['Konsultasi spek sesuai budget', 'Rakit Gaming / Desain / Office', 'Cable management pro', 'Install OS + stress test 24 jam'], wa: 'jasa+rakit+PC+desktop+baru' },
+      },
+      mac: {
+        mati:     { price: 'Rp 300.000 – Rp 1.500.000', duration: '2 – 7 hari kerja', items: ['Diagnosa board Apple Silicon / Intel', 'Reballing chip T2 / M-series', 'Cek water damage & short circuit', 'Spesialis perangkat Apple'], wa: 'MacBook+iMac+yang+mati+total' },
+        layar:    { price: 'Rp 400.000 – Rp 1.200.000', duration: '1 – 3 hari kerja', items: ['Layar Retina MacBook retak / bergaris', 'iMac display replacement', 'Kalibrasi warna True Tone', 'Sparepart original Apple'], wa: 'layar+MacBook+yang+retak+atau+rusak' },
+        panas:    { price: 'Rp 200.000 – Rp 350.000', duration: '2 – 4 jam', items: ['Deep cleaning total MacBook', 'Ganti thermal paste Intel / Apple', 'Bersihkan kipas & heatsink', 'Cek sistem SMC / fan control'], wa: 'MacBook+yang+overheat+atau+cepat+panas' },
+        upgrade:  { price: 'Rp 100.000 – Rp 200.000 (jasa)', duration: '1 – 2 jam', items: ['Upgrade SSD MacBook Intel (tipe tertentu)', 'Konsultasi upgrade yang kompatibel', 'Cloning data ke SSD baru', 'Catatan: M-series memory tidak bisa upgrade'], wa: 'upgrade+SSD+MacBook' },
+        os:       { price: 'Rp 150.000 – Rp 250.000', duration: '2 – 4 jam', items: ['Install / reinstall macOS terbaru', 'Ventura, Sonoma, Sequoia tersedia', 'Recovery dari Apple server', 'Setup awal & transfer data'], wa: 'instalasi+ulang+macOS+di+MacBook' },
+        data:     { price: 'Rp 350.000 – Rp 800.000', duration: '2 – 5 hari kerja', items: ['Recovery dari SSD Apple', 'HFS+ / APFS file system', 'Time Machine restore', 'Data 100% aman & terjaga'], wa: 'data+recovery+dari+MacBook+atau+iMac' },
+        cleaning: { price: 'Rp 200.000 – Rp 350.000', duration: '2 – 4 jam', items: ['Deep cleaning MacBook total', 'Thermal paste berkualitas tinggi', 'Bersihkan keyboard & trackpad', 'Uji suhu setelah servis'], wa: 'deep+cleaning+MacBook' },
+        rakit:    { price: 'Hubungi Kami', duration: 'Konsultasi', items: ['Kami bisa membantu setup & konfigurasi Mac', 'Migrasi data dari PC ke Mac', 'Setup software produktivitas', 'Konsultasi pembelian unit Mac'], wa: 'setup+dan+konfigurasi+Mac' },
+      }
+    };
+
+    let estDevice = 'laptop';
+    let estProblem = null;
+
+    const estResult = document.getElementById('estResult');
+    const estPlaceholder = document.getElementById('estPlaceholder');
+    const estResultContent = document.getElementById('estResultContent');
+
+    function updateEstimator() {
+      if (!estProblem) return;
+
+      const data = EST_DATA[estDevice]?.[estProblem];
+      if (!data) return;
+
+      estResult.classList.add('has-result');
+      estPlaceholder.style.display = 'none';
+      estResultContent.style.display = 'block';
+
+      document.getElementById('estPriceVal').textContent = data.price;
+      document.getElementById('estDuration').textContent = 'Estimasi durasi: ' + data.duration;
+
+      const list = document.getElementById('estItemsList');
+      list.innerHTML = data.items.map(i => `<li>${i}</li>`).join('');
+
+      const deviceNames = { laptop: 'laptop', pc: 'PC desktop', mac: 'MacBook/iMac' };
+      const waMsg = `Halo+admin+Losari+Computer%2C+saya+ingin+konsultasi+mengenai+${data.wa}.+Bisa+dibantu%3F`;
+      document.getElementById('estWaBtn').href = `https://wa.me/6285332990156?text=${waMsg}`;
+    }
+
+    document.getElementById('estDeviceOpts').addEventListener('click', e => {
+      const btn = e.target.closest('.sv-est-opt[data-val]');
+      if (!btn || btn.dataset.type !== 'device') return;
+      document.querySelectorAll('#estDeviceOpts .sv-est-opt').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      estDevice = btn.dataset.val;
+      updateEstimator();
+    });
+
+    document.getElementById('estProblemOpts').addEventListener('click', e => {
+      const btn = e.target.closest('.sv-est-opt[data-val]');
+      if (!btn || btn.dataset.type !== 'problem') return;
+      document.querySelectorAll('#estProblemOpts .sv-est-opt').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      estProblem = btn.dataset.val;
+      updateEstimator();
+    });
+
+    /* ==================== TRACKER ==================== */
+    const DEMO_STATUSES = {
+      'LC-2026-00145': 3, // QC
+      'LC-2026-00201': 1, // Diagnosa
+      'LC-2026-00089': 4, // Selesai
+    };
+
+    function applyTrackStatus(currentStep) {
+      document.querySelectorAll('.sv-track-step').forEach((step, i) => {
+        step.classList.remove('done', 'active', 'pending');
+        if (i < currentStep) {
+          step.classList.add('done');
+          step.querySelector('.sv-track-dot').textContent = '✓';
+        } else if (i === currentStep) {
+          step.classList.add('active');
+          const icons = ['📋', '🔍', '🔧', '✅', '📦'];
+          step.querySelector('.sv-track-dot').textContent = icons[i];
+        } else {
+          step.classList.add('pending');
+          const icons = ['📋', '🔍', '🔧', '✅', '📦'];
+          step.querySelector('.sv-track-dot').textContent = icons[i];
+        }
+      });
+    }
+
+    function checkTracker() {
+      const code = document.getElementById('trackerInput').value.trim().toUpperCase();
+      if (!code) return;
+
+      const status = DEMO_STATUSES[code];
+      if (status !== undefined) {
+        applyTrackStatus(status);
+      } else {
+        // Reset to all pending (not found)
+        document.querySelectorAll('.sv-track-step').forEach((step, i) => {
+          step.classList.remove('done', 'active');
+          step.classList.add('pending');
+          const icons = ['📋', '🔍', '🔧', '✅', '📦'];
+          step.querySelector('.sv-track-dot').textContent = icons[i];
+        });
+        alert('Kode nota "' + code + '" tidak ditemukan. Pastikan kode sesuai nota fisik Anda, atau hubungi kami via WhatsApp.');
+      }
+    }
+
+    document.getElementById('trackerBtn').addEventListener('click', checkTracker);
+    document.getElementById('trackerInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') checkTracker();
+    });
+
+    document.querySelectorAll('.sv-demo-code').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const code = btn.dataset.code;
+        document.getElementById('trackerInput').value = code;
+        checkTracker();
+        document.getElementById('svTrackerSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+
+    /* ==================== FAQ ACCORDION ==================== */
+    document.querySelectorAll('.sv-faq-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.sv-faq-item');
+        const body = item.querySelector('.sv-faq-body');
+        const isOpen = item.classList.contains('is-open');
+
+        // Close all
+        document.querySelectorAll('.sv-faq-item.is-open').forEach(el => {
+          el.classList.remove('is-open');
+          el.querySelector('.sv-faq-body').style.maxHeight = '0';
+        });
+
+        // Open clicked if was closed
+        if (!isOpen) {
+          item.classList.add('is-open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
