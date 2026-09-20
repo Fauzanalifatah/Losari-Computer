@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* =========================================================
      TOMBOL BAGIKAN VIA WHATSAPP
-     Inject otomatis ke setiap card-actions-row.
+     Inject otomatis di samping nama produk (h3).
      Klik langsung buka WA dengan pesan tanya produk.
      ========================================================= */
   function buildShareWaUrl(productName, priceText, productId) {
@@ -352,10 +352,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.querySelectorAll('.laptop-card').forEach(card => {
-    const actionsRow = card.querySelector('.card-actions-row');
-    if (!actionsRow) return;
+    // Cari elemen link judul produk (.card-title-link)
+    const titleLink = card.querySelector('.card-title-link');
+    if (!titleLink) return;
 
-    // Ambil data produk dari card dan buy-button
+    // Ambil data produk dari card
     const productName = card.dataset.name || '';
     const productId   = card.dataset.id   || '';
     const rawPrice    = Number(card.dataset.price) || 0;
@@ -364,7 +365,13 @@ document.addEventListener('DOMContentLoaded', () => {
       : 'harga spesial';
     const waUrl = buildShareWaUrl(productName, priceText, productId);
 
-    // Buat tombol share
+    // Bungkus titleLink dalam wrapper .product-title-row (flex)
+    const wrapper = document.createElement('div');
+    wrapper.className = 'product-title-row';
+    titleLink.parentNode.insertBefore(wrapper, titleLink);
+    wrapper.appendChild(titleLink);
+
+    // Buat tombol share dan masukkan ke dalam wrapper
     const shareBtn = document.createElement('a');
     shareBtn.className = 'share-wa-btn';
     shareBtn.href = waUrl;
@@ -377,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </svg>
       <span class="share-wa-tooltip">Tanya Penjual</span>
     `;
-    actionsRow.appendChild(shareBtn);
+    wrapper.appendChild(shareBtn);
   });
 
   // Klik kartu laptop untuk membuka detail produk
