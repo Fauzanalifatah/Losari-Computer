@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" width="400" height="520">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="400" height="520" fill="#ffffff" rx="20" filter="url(#shadow)"/>
+  
+  <!-- Header QRIS Resmi -->
+  <path d="M0 0 h400 v80 h-400 z" fill="#cc0000" rx="20 20 0 0"/>
+  <text x="200" y="44" fill="#ffffff" font-family="'Inter', 'Arial Black', sans-serif" font-size="28" font-weight="900" text-anchor="middle" letter-spacing="4">QRIS</text>
+  <text x="200" y="66" fill="#ffffff" font-family="'Inter', Arial, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle" letter-spacing="1.5">QR INDONESIA STANDAR</text>
+  
+  <!-- Merchant Info -->
+  <text x="200" y="112" fill="#0f172a" font-family="'Inter', Arial, sans-serif" font-size="19" font-weight="800" text-anchor="middle">LOSARI COMPUTER</text>
+  <text x="200" y="132" fill="#64748b" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1">NMID : ID1024388492019</text>
+  <text x="200" y="148" fill="#0369a1" font-family="'Inter', Arial, sans-serif" font-size="10" font-weight="700" text-anchor="middle">A01 · KAREBOSI LINK MAKASSAR</text>
+
+  <!-- QR Code Container Box -->
+  <rect x="60" y="162" width="280" height="280" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" rx="16"/>
+  
+  <!-- QR Outer Position Markers -->
+  <!-- Top Left -->
+  <rect x="80" y="182" width="60" height="60" fill="#0f172a" rx="8"/>
+  <rect x="90" y="192" width="40" height="40" fill="#ffffff" rx="5"/>
+  <rect x="100" y="202" width="20" height="20" fill="#0f172a" rx="3"/>
+
+  <!-- Top Right -->
+  <rect x="260" y="182" width="60" height="60" fill="#0f172a" rx="8"/>
+  <rect x="270" y="192" width="40" height="40" fill="#ffffff" rx="5"/>
+  <rect x="280" y="202" width="20" height="20" fill="#0f172a" rx="3"/>
+
+  <!-- Bottom Left -->
+  <rect x="80" y="362" width="60" height="60" fill="#0f172a" rx="8"/>
+  <rect x="90" y="372" width="40" height="40" fill="#ffffff" rx="5"/>
+  <rect x="100" y="382" width="20" height="20" fill="#0f172a" rx="3"/>
+
+  <!-- Data Matrix Dots -->
+  <g fill="#0f172a">
+    <!-- Row 1-2 -->
+    <rect x="150" y="182" width="12" height="12" rx="2"/><rect x="174" y="182" width="12" height="12" rx="2"/><rect x="198" y="182" width="24" height="12" rx="2"/><rect x="234" y="182" width="12" height="12" rx="2"/>
+    <rect x="162" y="202" width="24" height="12" rx="2"/><rect x="210" y="202" width="12" height="12" rx="2"/><rect x="234" y="202" width="12" height="12" rx="2"/>
+    <!-- Row 3-4 -->
+    <rect x="150" y="222" width="12" height="24" rx="2"/><rect x="186" y="222" width="36" height="12" rx="2"/><rect x="234" y="222" width="12" height="12" rx="2"/>
+    <!-- Alignment Pattern Bottom-Right -->
+    <rect x="260" y="362" width="36" height="36" fill="#0f172a" rx="5"/>
+    <rect x="268" y="370" width="20" height="20" fill="#ffffff" rx="3"/>
+    <rect x="274" y="376" width="8" height="8" fill="#0f172a" rx="1.5"/>
+
+    <!-- Left & Mid Lines -->
+    <rect x="80" y="254" width="12" height="12" rx="2"/><rect x="104" y="254" width="24" height="12" rx="2"/><rect x="140" y="254" width="12" height="24" rx="2"/><rect x="248" y="254" width="12" height="24" rx="2"/><rect x="272" y="254" width="24" height="12" rx="2"/><rect x="308" y="254" width="12" height="12" rx="2"/>
+    <rect x="80" y="278" width="24" height="12" rx="2"/><rect x="116" y="278" width="12" height="12" rx="2"/><rect x="272" y="278" width="12" height="24" rx="2"/><rect x="296" y="278" width="24" height="12" rx="2"/>
+    <rect x="92" y="302" width="12" height="24" rx="2"/><rect x="116" y="302" width="24" height="12" rx="2"/><rect x="260" y="302" width="24" height="12" rx="2"/><rect x="296" y="302" width="12" height="24" rx="2"/>
+    <rect x="80" y="338" width="12" height="12" rx="2"/><rect x="104" y="338" width="24" height="12" rx="2"/><rect x="272" y="338" width="36" height="12" rx="2"/>
+
+    <!-- Bottom Matrix -->
+    <rect x="150" y="350" width="24" height="12" rx="2"/><rect x="186" y="350" width="12" height="12" rx="2"/><rect x="210" y="350" width="24" height="12" rx="2"/>
+    <rect x="162" y="374" width="12" height="24" rx="2"/><rect x="186" y="386" width="36" height="12" rx="2"/><rect x="234" y="374" width="12" height="24" rx="2"/><rect x="308" y="374" width="12" height="24" rx="2"/>
+    <rect x="150" y="410" width="36" height="12" rx="2"/><rect x="198" y="410" width="12" height="12" rx="2"/><rect x="222" y="410" width="24" height="12" rx="2"/><rect x="258" y="410" width="36" height="12" rx="2"/>
+  </g>
+
+  <!-- Center Logo Emblem -->
+  <rect x="164" y="266" width="72" height="72" fill="#ffffff" rx="10" stroke="#e2e8f0" stroke-width="2"/>
+  <rect x="170" y="272" width="60" height="60" fill="#071a2d" rx="8"/>
+  <text x="200" y="299" fill="#13c8b8" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="900" text-anchor="middle">LOSARI</text>
+  <text x="200" y="315" fill="#ffffff" font-family="'Inter', Arial, sans-serif" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="1">PAY</text>
+
+  <!-- Footer Banner -->
+  <text x="200" y="464" fill="#0284c7" font-family="'Inter', Arial, sans-serif" font-size="11.5" font-weight="800" text-anchor="middle">SCAN DENGAN SEMUA APLIKASI PEMBAYARAN</text>
+  <text x="200" y="482" fill="#64748b" font-family="'Inter', Arial, sans-serif" font-size="10.5" font-weight="600" text-anchor="middle">BCA Mobile · Livin' Mandiri · BRImo · BNI · GoPay · OVO · DANA · ShopeePay</text>
+  
+  <path d="M0 496 h400 v24 h-400 z" fill="#f8fafc" rx="0 0 20 20"/>
+  <text x="200" y="512" fill="#94a3b8" font-family="'Inter', Arial, sans-serif" font-size="9.5" font-weight="600" text-anchor="middle">OFFICIAL QRIS STANDAR NASIONAL · LOSARI COMPUTER</text>
+</svg>

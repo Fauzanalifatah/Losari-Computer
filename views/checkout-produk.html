@@ -7,10 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/style.css">
+<!-- Midtrans Snap JS (Production) -->
+<script src="https://app.midtrans.com/snap/snap.js" data-client-key="Mid-client-Ll8H0OZAIRotVdbn"></script>
 <style>
-/* Modern Checkout Reset */
+/* Modern Checkout Reset & Theme */
 :root {
-  --primary: #0369a1; /* rich blue */
+  --primary: #0369a1;
   --primary-hover: #0284c7;
   --primary-light: #e0f2fe;
   --bg-color: #f8fafc;
@@ -22,68 +24,120 @@
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg-color); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.5; }
+body {
+  margin: 0;
+  background: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
 
 /* Header */
 .chk-header {
   background: var(--card-bg);
   border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
 }
 .chk-header-inner {
   max-width: 1150px;
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: 14px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
 }
 .chk-brand {
   display: flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  min-width: 0;
 }
-.chk-brand img { height: 32px; }
-.chk-brand h1 { margin: 0; font-size: 20px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
+.chk-brand img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.chk-brand h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.4px;
+  white-space: nowrap;
+}
 .chk-secure {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--success);
   background: #ecfdf5;
+  border: 1px solid #d1fae5;
   padding: 6px 12px;
   border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.chk-secure svg { width: 14px; height: 14px; }
+.chk-secure svg {
+  width: 14px;
+  height: 14px;
+}
 
-/* Main Layout */
-.chk-wrap {
+/* Page Container */
+.chk-container {
   max-width: 1150px;
   margin: 0 auto;
-  padding: 32px 24px 64px;
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 32px;
-  align-items: start;
+  padding: 24px 24px 64px;
+  width: 100%;
 }
-
-/* Back Link */
+.chk-top-nav {
+  margin-bottom: 20px;
+}
 .chk-back {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   color: var(--text-muted);
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;
-  margin-bottom: 24px;
-  transition: color 0.2s;
+  transition: color 0.2s, transform 0.2s;
 }
-.chk-back:hover { color: var(--primary); }
+.chk-back:hover {
+  color: var(--primary);
+  transform: translateX(-2px);
+}
+.chk-back svg {
+  width: 16px;
+  height: 16px;
+}
 
-/* Card & Sections */
+/* Main Grid Layout */
+.chk-wrap {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.chk-main {
+  min-width: 0;
+}
+.chk-sidebar {
+  min-width: 0;
+  position: sticky;
+  top: 88px;
+}
+
+/* Card & Section Styles */
 .chk-card {
   background: var(--card-bg);
   border-radius: 16px;
@@ -91,14 +145,17 @@ body { margin: 0; background: var(--bg-color); color: var(--text-main); font-fam
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02), 0 2px 4px -1px rgba(0,0,0,0.02);
   padding: 28px;
   margin-bottom: 24px;
+  overflow: visible;
 }
 .chk-card-title {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 0 0 24px 0;
+  margin: 0 0 22px 0;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.3px;
 }
 .chk-step-num {
   display: flex;
@@ -109,21 +166,24 @@ body { margin: 0; background: var(--bg-color); color: var(--text-main); font-fam
   background: var(--primary);
   color: white;
   border-radius: 50%;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
 }
 
 /* Form Styles */
 .chk-form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 18px;
 }
-.chk-form-grid.full { grid-template-columns: 1fr; }
 .chk-input-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+.chk-input-group.full {
+  grid-column: 1 / -1;
 }
 .chk-label {
   font-size: 13px;
@@ -133,100 +193,130 @@ body { margin: 0; background: var(--bg-color); color: var(--text-main); font-fam
 .chk-input {
   width: 100%;
   max-width: 100%;
-  min-width: 100%;
+  box-sizing: border-box;
   padding: 12px 16px;
   background: #f8fafc;
-  border: 1px solid var(--border-color);
+  border: 1.5px solid var(--border-color);
   border-radius: 10px;
   font-size: 14px;
   font-family: inherit;
   color: var(--text-main);
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   outline: none;
 }
 .chk-input:focus {
-  background: white;
+  background: #ffffff;
   border-color: var(--primary);
   box-shadow: 0 0 0 4px var(--primary-light);
 }
 textarea.chk-input {
   resize: vertical;
+  min-height: 84px;
+  line-height: 1.5;
 }
 
-/* Payment Methods */
-.chk-methods {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+/* Midtrans Dedicated Payment Box */
+.chk-midtrans-box {
+  border: 2px solid var(--primary);
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(3, 105, 161, 0.08);
 }
-.chk-method-card {
-  position: relative;
+.chk-midtrans-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+}
+.chk-midtrans-brand {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 16px;
-  border: 2px solid var(--border-color);
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: white;
-  overflow: hidden;
+  gap: 14px;
+  flex: 1;
 }
-.chk-method-card:hover {
-  border-color: #cbd5e1;
-  background: #f8fafc;
-}
-.chk-method-card input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-}
-.chk-method-card.active {
-  border-color: var(--primary);
-  background: var(--primary-light);
-}
-.chk-method-icon {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 32px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
+.chk-midtrans-logo-badge {
+  background: #0369a1;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  padding: 7px 12px;
+  border-radius: 8px;
   flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(3, 105, 161, 0.2);
+  margin-top: 2px;
 }
-.icon-qris { background: #ffe4e6; color: #e11d48; }
-.icon-gopay { background: #e0f2fe; color: #0284c7; }
-.icon-dana { background: #dbeafe; color: #2563eb; }
-.icon-bri { background: #e0e7ff; color: #4338ca; }
-
-.chk-method-info {
+.chk-midtrans-title-wrap {
   flex: 1;
   min-width: 0;
 }
-.chk-method-info strong {
-  display: block;
-  font-size: 14px;
+.chk-midtrans-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chk-midtrans-badge {
+  background: #10b981;
+  color: #ffffff;
+  font-size: 11px;
   font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 4px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
 }
-.chk-method-info span {
-  display: block;
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.3;
+.chk-midtrans-desc {
+  font-size: 13px;
+  color: #475569;
+  margin-top: 6px;
+  line-height: 1.45;
 }
+.chk-midtrans-radio-indicator {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0369a1;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(3, 105, 161, 0.25);
+}
+.chk-midtrans-channels-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(3, 105, 161, 0.25);
+}
+.ch-badge {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* Pay Note */
 .chk-pay-note {
   display: flex;
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 18px;
   padding: 14px 16px;
   background: #f1f5f9;
   border-radius: 10px;
   border-left: 4px solid var(--primary);
   font-size: 13px;
   color: #334155;
+  line-height: 1.5;
 }
 .chk-pay-note svg {
   color: var(--primary);
@@ -234,7 +324,7 @@ textarea.chk-input {
   margin-top: 2px;
 }
 
-
+/* Order Summary Items */
 .chk-items {
   display: flex;
   flex-direction: column;
@@ -243,11 +333,12 @@ textarea.chk-input {
 }
 .chk-item {
   display: flex;
-  gap: 16px;
+  gap: 14px;
+  align-items: center;
 }
 .chk-item-img {
-  width: 72px;
-  height: 72px;
+  width: 68px;
+  height: 68px;
   background: #f8fafc;
   border: 1px solid var(--border-color);
   border-radius: 10px;
@@ -271,27 +362,27 @@ textarea.chk-input {
   color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 .chk-item-name {
   font-size: 14px;
   font-weight: 600;
   color: var(--text-main);
-  line-height: 1.4;
-  margin-bottom: 4px;
+  line-height: 1.35;
+  margin-bottom: 3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .chk-item-price {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-muted);
 }
 .chk-item-total {
   font-size: 14px;
   font-weight: 700;
   color: var(--text-main);
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 /* Breakdown */
@@ -332,6 +423,7 @@ textarea.chk-input {
   font-size: 24px;
   font-weight: 900;
   color: var(--primary);
+  letter-spacing: -0.5px;
 }
 
 /* Submit Button */
@@ -351,7 +443,9 @@ textarea.chk-input {
   align-items: center;
   gap: 8px;
   box-shadow: 0 4px 12px rgba(3, 105, 161, 0.25);
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  min-height: 52px;
+  touch-action: manipulation;
 }
 .chk-btn:hover {
   background: var(--primary-hover);
@@ -367,6 +461,19 @@ textarea.chk-input {
   transform: none;
   box-shadow: none;
 }
+.chk-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: chkSpin 0.75s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+@keyframes chkSpin {
+  to { transform: rotate(360deg); }
+}
 
 /* Guarantee badge */
 .chk-guarantee {
@@ -374,27 +481,168 @@ textarea.chk-input {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 20px;
+  margin-top: 18px;
   font-size: 12px;
   color: var(--text-muted);
   text-align: center;
+  line-height: 1.4;
 }
-.chk-guarantee svg { color: #f59e0b; }
+.chk-guarantee svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
 
-/* Mobile Responsive */
+/* =========================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================= */
+
+/* Tablets & Small Laptops (<= 992px) */
 @media (max-width: 992px) {
-  .chk-wrap { grid-template-columns: 1fr; }
-  .chk-sidebar { position: static; }
+  .chk-container {
+    padding: 20px 20px 48px;
+  }
+  .chk-wrap {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .chk-sidebar {
+    position: static;
+  }
 }
+
+/* Tablet Portrait & Large Phones (<= 768px) */
+@media (max-width: 768px) {
+  .chk-form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Mobile Devices (<= 640px) */
 @media (max-width: 640px) {
-  .chk-wrap { padding: 16px 16px 40px; gap: 16px; }
-  .chk-card { padding: 20px 16px; margin-bottom: 16px; }
-  .chk-header-inner { flex-direction: column; gap: 12px; align-items: flex-start; }
-  .chk-secure { align-self: flex-start; }
-  .chk-form-grid, .chk-methods { grid-template-columns: 1fr; }
-  .chk-grand-total span { font-size: 13px; }
-  .chk-grand-total strong { font-size: 20px; }
-  .chk-btn { padding: 12px; font-size: 14px; margin-top: 18px; }
+  .chk-header-inner {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .chk-brand img {
+    width: 32px;
+    height: 32px;
+  }
+  .chk-brand h1 {
+    font-size: 16px;
+  }
+  .chk-secure {
+    font-size: 11px;
+    padding: 4px 8px;
+    gap: 4px;
+  }
+  .chk-secure svg {
+    width: 12px;
+    height: 12px;
+  }
+  .chk-container {
+    padding: 14px 14px 40px;
+  }
+  .chk-top-nav {
+    margin-bottom: 14px;
+  }
+  .chk-card {
+    padding: 18px 14px;
+    margin-bottom: 16px;
+    border-radius: 14px;
+  }
+  .chk-card-title {
+    font-size: 16px;
+    margin-bottom: 16px;
+    gap: 10px;
+  }
+  .chk-step-num {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+  .chk-input {
+    font-size: 16px; /* Prevents auto-zoom in iOS Safari */
+    padding: 12px 14px;
+  }
+  .chk-midtrans-box {
+    padding: 16px 14px;
+    border-radius: 12px;
+  }
+  .chk-midtrans-brand {
+    gap: 10px;
+  }
+  .chk-midtrans-logo-badge {
+    font-size: 11px;
+    padding: 6px 9px;
+  }
+  .chk-midtrans-title {
+    font-size: 14px;
+    gap: 6px;
+  }
+  .chk-midtrans-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+  .chk-midtrans-desc {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  .chk-midtrans-radio-indicator {
+    width: 24px;
+    height: 24px;
+  }
+  .chk-midtrans-radio-indicator svg {
+    width: 14px;
+    height: 14px;
+  }
+  .chk-midtrans-channels-strip {
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 10px;
+  }
+  .ch-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+  .chk-pay-note {
+    padding: 12px 14px;
+    font-size: 12px;
+    margin-top: 14px;
+  }
+  .chk-grand-total span {
+    font-size: 14px;
+  }
+  .chk-grand-total strong {
+    font-size: 20px;
+  }
+  .chk-btn {
+    padding: 14px;
+    font-size: 15px;
+    margin-top: 18px;
+    min-height: 48px;
+  }
+}
+
+/* Extra Small Phones (<= 380px) */
+@media (max-width: 380px) {
+  .chk-container {
+    padding: 12px 10px 32px;
+  }
+  .chk-card {
+    padding: 16px 12px;
+  }
+  .chk-brand h1 {
+    font-size: 15px;
+  }
+  .chk-midtrans-head {
+    flex-wrap: wrap;
+  }
+  .chk-midtrans-brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
 </style>
 </head>
@@ -402,134 +650,135 @@ textarea.chk-input {
 
 <header class="chk-header">
   <div class="chk-header-inner">
-    <a href="/" class="chk-brand">
+    <a href="/" class="chk-brand" title="Kembali ke Beranda">
       <img src="/static/videos/img/Logo.png" alt="Losari Computer">
       <h1>Checkout Pesanan</h1>
     </a>
     <div class="chk-secure">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-      Enkripsi 256-bit SSL
+      <span>Enkripsi 256-bit SSL</span>
     </div>
   </div>
-<div style="max-width: 1150px; margin: 0 auto; padding: 32px 24px 0;">
-  <a class="chk-back" href="/laptop" style="margin-bottom: 0;">← Kembali ke Katalog</a>
-</div>
+</header>
 
-<main class="chk-wrap" style="padding-top: 24px;">
-  <div class="chk-main">
-    <div class="chk-card">
-      <h2 class="chk-card-title"><span class="chk-step-num">1</span> Informasi Pengiriman</h2>
-      <div class="chk-form-grid">
-        <div class="chk-input-group">
-          <label class="chk-label">Nama Lengkap</label>
-          <input type="text" id="name" class="chk-input" placeholder="Masukkan nama lengkap" required>
-        </div>
-        <div class="chk-input-group">
-          <label class="chk-label">Nomor WhatsApp Aktif</label>
-          <input type="tel" id="phone" class="chk-input" placeholder="Contoh: 081234567890" required>
-        </div>
-        <div class="chk-input-group full">
-          <label class="chk-label">Alamat Lengkap Pengiriman</label>
-          <textarea id="address" class="chk-input" rows="3" placeholder="Nama jalan, gedung, RT/RW, kelurahan, kecamatan, kota/kabupaten, kode pos" required></textarea>
-        </div>
-        <div class="chk-input-group full">
-          <label class="chk-label">Catatan Pesanan (Opsional)</label>
-          <input type="text" id="notes" class="chk-input" placeholder="Misal: Request install Microsoft Office, wajib packing kayu, dll">
+<div class="chk-container">
+  <div class="chk-top-nav">
+    <a class="chk-back" href="/laptop">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Kembali ke Katalog
+    </a>
+  </div>
+
+  <main class="chk-wrap">
+    <div class="chk-main">
+      <div class="chk-card">
+        <h2 class="chk-card-title"><span class="chk-step-num">1</span> Informasi Pengiriman</h2>
+        <div class="chk-form-grid">
+          <div class="chk-input-group">
+            <label class="chk-label" for="name">Nama Lengkap</label>
+            <input type="text" id="name" class="chk-input" placeholder="Masukkan nama lengkap" autocomplete="name" required>
+          </div>
+          <div class="chk-input-group">
+            <label class="chk-label" for="phone">Nomor WhatsApp Aktif</label>
+            <input type="tel" id="phone" class="chk-input" placeholder="Contoh: 081234567890" autocomplete="tel" required>
+          </div>
+          <div class="chk-input-group full">
+            <label class="chk-label" for="address">Alamat Lengkap Pengiriman</label>
+            <textarea id="address" class="chk-input" rows="3" placeholder="Nama jalan, gedung, RT/RW, kelurahan, kecamatan, kota/kabupaten, kode pos" autocomplete="street-address" required></textarea>
+          </div>
+          <div class="chk-input-group full">
+            <label class="chk-label" for="notes">Catatan Pesanan (Opsional)</label>
+            <input type="text" id="notes" class="chk-input" placeholder="Misal: Request install Microsoft Office, wajib packing kayu, dll">
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="chk-card">
-      <h2 class="chk-card-title"><span class="chk-step-num">2</span> Metode Pembayaran</h2>
-      <div class="chk-methods">
-        <label class="chk-method-card active" data-method="QRIS">
-          <input type="radio" name="payment" value="QRIS" checked>
-          <div class="chk-method-icon icon-qris">QRIS</div>
-          <div class="chk-method-info">
-            <strong>QRIS Real-Time</strong>
-            <span>Scan instan dari semua e-Wallet & M-Banking.</span>
-          </div>
-        </label>
+      <div class="chk-card">
+        <h2 class="chk-card-title"><span class="chk-step-num">2</span> Metode Pembayaran</h2>
         
-        <label class="chk-method-card" data-method="GOPAY">
-          <input type="radio" name="payment" value="GOPAY">
-          <div class="chk-method-icon icon-gopay">GoPay</div>
-          <div class="chk-method-info">
-            <strong>GoPay / GoPayLater</strong>
-            <span>Bayar praktis melalui aplikasi GoPay.</span>
+        <div class="chk-midtrans-box">
+          <div class="chk-midtrans-head">
+            <div class="chk-midtrans-brand">
+              <span class="chk-midtrans-logo-badge">MIDTRANS</span>
+              <div class="chk-midtrans-title-wrap">
+                <div class="chk-midtrans-title">
+                  <span>Midtrans Payment Gateway</span>
+                  <span class="chk-midtrans-badge">Otomatis &amp; Terverifikasi</span>
+                </div>
+                <div class="chk-midtrans-desc">
+                  Satu pintu pembayaran resmi untuk semua saluran: QRIS, GoPay, ShopeePay, Virtual Account Bank (BCA, Mandiri, BRI, BNI), Kartu Kredit &amp; Debit.
+                </div>
+              </div>
+            </div>
+            <div class="chk-midtrans-radio-indicator" title="Metode Terpilih">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
           </div>
-        </label>
 
-        <label class="chk-method-card" data-method="DANA">
-          <input type="radio" name="payment" value="DANA">
-          <div class="chk-method-icon icon-dana">DANA</div>
-          <div class="chk-method-info">
-            <strong>DANA Wallet</strong>
-            <span>Proses otomatis 24 jam tanpa biaya admin.</span>
+          <div class="chk-midtrans-channels-strip">
+            <span class="ch-badge">QRIS</span>
+            <span class="ch-badge">GoPay</span>
+            <span class="ch-badge">ShopeePay</span>
+            <span class="ch-badge">BCA VA</span>
+            <span class="ch-badge">BRI VA</span>
+            <span class="ch-badge">Mandiri Bill</span>
+            <span class="ch-badge">BNI VA</span>
+            <span class="ch-badge">Kartu Kredit</span>
           </div>
-        </label>
+        </div>
 
-        <label class="chk-method-card" data-method="BRI">
-          <input type="radio" name="payment" value="BRI">
-          <div class="chk-method-icon icon-bri">BRI</div>
-          <div class="chk-method-info">
-            <strong>Transfer BRI (VA)</strong>
-            <span>Pembayaran Virtual Account via BRImo & ATM.</span>
-          </div>
-        </label>
-      </div>
-
-      <div class="chk-pay-note" id="payNote">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-        <span id="payNoteText">QRIS dipilih. Setelah checkout, barcode QRIS resmi toko akan ditampilkan untuk dipindai.</span>
+        <div class="chk-pay-note" id="payNote">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span id="payNoteText">Pembayaran diproses secara instan &amp; aman 24/7 melalui Midtrans Payment Gateway. Popup Snap akan otomatis muncul setelah Anda klik tombol bayar.</span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <aside class="chk-sidebar">
-    <div class="chk-card">
-      <h2 class="chk-card-title" style="margin-bottom: 20px;">Ringkasan Pesanan</h2>
-      
-      <div class="chk-items" id="items">
-        <!-- JS INJECTS ITEMS HERE -->
-      </div>
-      
-      <div class="chk-breakdown">
-        <div class="chk-row">
-          <span>Subtotal Harga</span>
-          <strong id="subtotal">Rp0</strong>
+    <aside class="chk-sidebar">
+      <div class="chk-card">
+        <h2 class="chk-card-title">Ringkasan Pesanan</h2>
+        
+        <div class="chk-items" id="items">
+          <!-- JS INJECTS ITEMS HERE -->
         </div>
-        <div class="chk-row">
-          <span>Biaya Pengiriman</span>
-          <strong class="chk-free">Gratis Promo</strong>
+        
+        <div class="chk-breakdown">
+          <div class="chk-row">
+            <span>Subtotal Harga</span>
+            <strong id="subtotal">Rp0</strong>
+          </div>
+          <div class="chk-row">
+            <span>Biaya Pengiriman</span>
+            <strong class="chk-free">Gratis Promo</strong>
+          </div>
+          <div class="chk-row">
+            <span>Proteksi &amp; Packing Kayu</span>
+            <strong class="chk-free">Termasuk</strong>
+          </div>
+          <div class="chk-row">
+            <span>Garansi Toko 1 Bulan</span>
+            <strong class="chk-free">Aktif</strong>
+          </div>
         </div>
-        <div class="chk-row">
-          <span>Proteksi & Packing Kayu</span>
-          <strong class="chk-free">Termasuk</strong>
-        </div>
-        <div class="chk-row">
-          <span>Garansi Toko 1 Bulan</span>
-          <strong class="chk-free">Aktif</strong>
-        </div>
-      </div>
 
-      <div class="chk-grand-total">
-        <span>Total Pembayaran</span>
-        <strong id="total">Rp0</strong>
-      </div>
+        <div class="chk-grand-total">
+          <span>Total Pembayaran</span>
+          <strong id="total">Rp0</strong>
+        </div>
 
-      <button class="chk-btn" id="checkoutBtn" type="button">
-        Lanjut ke Pembayaran 
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </button>
+        <button class="chk-btn" id="checkoutBtn" type="button">
+          Bayar Sekarang dengan Midtrans
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
 
-      <div class="chk-guarantee">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-        <span>Garansi retur 100% jika unit tidak sesuai deskripsi.</span>
+        <div class="chk-guarantee">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <span>Garansi retur 100% jika unit tidak sesuai deskripsi.</span>
+        </div>
       </div>
-    </div>
-  </aside>
-</main>
+    </aside>
+  </main>
+</div>
 
   <!-- Losari Computer — Simple Professional Footer -->
   <footer class="ld-wave-footer" id="siteFooter">
@@ -694,41 +943,130 @@ subtotalEl.textContent = rupiah(total);
 totalEl.textContent = rupiah(total);
 btn.disabled = !cart.length;
 
-let method = 'QRIS';
-const notes = {
-  QRIS: 'QRIS dipilih. Setelah checkout, barcode QRIS resmi toko akan ditampilkan untuk dipindai.',
-  GOPAY: 'GoPay dipilih. Setelah checkout, Anda akan diarahkan ke instruksi pembayaran GoPay.',
-  DANA: 'DANA dipilih. Setelah checkout, Anda akan diarahkan ke instruksi transfer DANA.',
-  BRI: 'Bank BRI dipilih. Setelah checkout, nomor Rekening Virtual Account BRI toko akan ditampilkan.'
-};
+const method = 'MIDTRANS';
 
-document.querySelectorAll('.chk-method-card').forEach(b => {
-  b.onclick = () => {
-    method = b.dataset.method;
-    // Update radio button state
-    b.querySelector('input[type="radio"]').checked = true;
-    
-    document.querySelectorAll('.chk-method-card').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    document.getElementById('payNoteText').textContent = notes[method];
-  };
-});
+btn.innerHTML = `Bayar Sekarang dengan Midtrans <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`;
 
-btn.onclick = () => {
-  const data = {
-    orderId: checkoutData.orderId || ('ORD-' + Date.now().toString().slice(-8)),
-    name: (nameInput ? nameInput.value.trim() : '') || 'Pelanggan Losari',
-    phone: phoneInput ? phoneInput.value.trim() : '',
-    address: addressInput ? addressInput.value.trim() : '',
-    notes: notesInput ? notesInput.value.trim() : '',
+// =========================================================
+// CHECKOUT SUBMISSION LOGIC (MIDTRANS GATEWAY)
+// =========================================================
+btn.onclick = async () => {
+  const name = nameInput ? nameInput.value.trim() : '';
+  const phone = phoneInput ? phoneInput.value.trim() : '';
+  const address = addressInput ? addressInput.value.trim() : '';
+  const notesText = notesInput ? notesInput.value.trim() : '';
+
+  if (!name) {
+    alert('Silakan isi Nama Lengkap Anda terlebih dahulu.');
+    if (nameInput) {
+      nameInput.focus();
+      nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return;
+  }
+  if (!phone) {
+    alert('Silakan isi Nomor WhatsApp Aktif Anda.');
+    if (phoneInput) {
+      phoneInput.focus();
+      phoneInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return;
+  }
+  if (!address) {
+    alert('Silakan isi Alamat Lengkap Pengiriman.');
+    if (addressInput) {
+      addressInput.focus();
+      addressInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return;
+  }
+  if (!cart.length) {
+    alert('Keranjang belanja Anda masih kosong.');
+    return;
+  }
+
+  const originalBtnContent = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = `<span class="chk-spinner"></span> Menghubungkan Midtrans...`;
+
+  const orderId = 'LOSARI-' + Date.now().toString().slice(-6) + '-' + Math.floor(Math.random() * 900 + 100);
+
+  const orderData = {
+    orderId,
+    name,
+    phone,
+    address,
+    notes: notesText,
     total,
-    method,
+    method: 'MIDTRANS',
     items: cart
   };
 
-  localStorage.setItem('checkoutData', JSON.stringify(data));
-  localStorage.setItem('paymentStatus', 'pending');
-  window.location.href = '/payment';
+  try {
+    const res = await fetch('/api/midtrans/create-transaction', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        orderId,
+        amount: total,
+        customerDetails: { name, phone, address },
+        items: cart,
+        notes: notesText
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.ok || !data.token) {
+      throw new Error(data.message || 'Gagal memproses transaksi dengan Midtrans');
+    }
+
+    orderData.token = data.token;
+    orderData.redirectUrl = data.redirectUrl;
+    orderData.orderId = data.orderId;
+    localStorage.setItem('checkoutData', JSON.stringify(orderData));
+
+    // Buka Midtrans Snap Popup
+    if (window.snap && typeof window.snap.pay === 'function') {
+      window.snap.pay(data.token, {
+        onSuccess: function (result) {
+          localStorage.setItem('paymentStatus', 'paid');
+          localStorage.setItem('lastMidtransResult', JSON.stringify(result));
+          localStorage.removeItem(CART_KEY);
+          window.location.href = `/payment?order_id=${encodeURIComponent(data.orderId)}&status=paid`;
+        },
+        onPending: function (result) {
+          localStorage.setItem('paymentStatus', 'pending');
+          localStorage.setItem('lastMidtransResult', JSON.stringify(result));
+          localStorage.removeItem(CART_KEY);
+          window.location.href = `/payment?order_id=${encodeURIComponent(data.orderId)}&status=pending`;
+        },
+        onError: function (result) {
+          alert('Pembayaran gagal: ' + ((result && result.status_message) || 'Silakan coba lagi.'));
+          btn.disabled = false;
+          btn.innerHTML = originalBtnContent;
+        },
+        onClose: function () {
+          btn.disabled = false;
+          btn.innerHTML = originalBtnContent;
+          const openStatus = confirm('Anda menutup jendela pembayaran Midtrans. Apakah Anda ingin membuka halaman status pesanan untuk menyelesaikan nanti?');
+          if (openStatus) {
+            localStorage.setItem('paymentStatus', 'pending');
+            localStorage.removeItem(CART_KEY);
+            window.location.href = `/payment?order_id=${encodeURIComponent(data.orderId)}&status=pending`;
+          }
+        }
+      });
+    } else {
+      localStorage.removeItem(CART_KEY);
+      window.location.href = data.redirectUrl;
+    }
+  } catch (err) {
+    console.error('Midtrans Error:', err);
+    alert('Terjadi kendala saat menghubungkan ke Midtrans: ' + err.message);
+    btn.disabled = false;
+    btn.innerHTML = originalBtnContent;
+  }
 };
 </script>
 <script src="/static/site-config.js"></script>

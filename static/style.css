@@ -2432,7 +2432,7 @@ a {
   gap: 0 !important;
   white-space: nowrap;
   will-change: transform;
-  animation: promoSeamlessLoop 24s linear infinite !important;
+  animation: promoSeamlessLoop 32s linear infinite !important;
 }
 
 .promo-group {
@@ -2476,7 +2476,7 @@ a {
   }
 
   .promo-track {
-    animation-duration: 19s !important;
+    animation-duration: 25s !important;
   }
 
   .promo-group {

@@ -3,231 +3,598 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status Pembayaran - Losari Computer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
+  <!-- Midtrans Snap JS (Production) -->
+  <script src="https://app.midtrans.com/snap/snap.js" data-client-key="Mid-client-Ll8H0OZAIRotVdbn"></script>
   <style>
-    *{box-sizing:border-box}
-    :root{
-      --navy:#071a2d;--blue:#075ec5;--teal:#13c8b8;--ink:#151922;
-      --muted:#687383;--line:#e5e7eb;--soft:#f6f8fa;--white:#fff;
+    * { box-sizing: border-box; }
+    :root {
+      --navy: #071a2d;
+      --blue: #075ec5;
+      --teal: #13c8b8;
+      --ink: #151922;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --soft: #f8fafc;
+      --card: #ffffff;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
     }
-    body{margin:0;background:#f5f7fa;color:var(--ink);font-family:Inter,Arial,sans-serif}
-    .wrap{width:min(1080px,calc(100% - 32px));margin:auto;padding:28px 0 50px}
-    .back{display:inline-flex;gap:8px;align-items:center;text-decoration:none;color:#344054;font-weight:700;font-size:14px;margin-bottom:18px}
-    .head{background:linear-gradient(135deg,var(--navy),#0c3150);color:#fff;border-radius:22px;padding:30px;margin-bottom:18px}
-    .head small{color:#75ffd8;font-weight:800;letter-spacing:.12em}
-    .head h1{margin:8px 0 7px;font-size:clamp(26px,4vw,38px);letter-spacing:-.04em}
-    .head p{margin:0;color:rgba(255,255,255,.72);line-height:1.6}
-    .grid{display:grid;grid-template-columns:1.35fr .8fr;gap:18px}
-    .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(7,26,45,.06)}
-    .card h2{margin:0 0 17px;font-size:19px}
-    .methods{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    .method-btn{border:1px solid var(--line);background:#fff;border-radius:15px;padding:15px;text-align:left;cursor:pointer;transition:.2s}
-    .method-btn:hover{border-color:#aab4bf;transform:translateY(-1px)}
-    .method-btn.active{border:2px solid var(--teal);background:#f0fffc;padding:14px}
-    .method-top{display:flex;align-items:center;gap:11px}
-    .logo{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;font-weight:900;font-size:12px}
-    .qris{background:#ffe4ee;color:#d81b60}.gopay{background:#e1f5ff;color:#0072b8}
-    .dana{background:#e3f0ff;color:#0877c9}.bri{background:#dfeaff;color:#1453b8}
-    .method-btn strong{font-size:15px}.method-btn span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
-    .pay-panel{margin-top:18px;border-radius:17px;background:var(--soft);padding:20px}
-    .pay-panel.hidden{display:none}
-    .pay-title{font-weight:800;font-size:17px;margin-bottom:7px}
-    .instruction{color:#5f6b78;font-size:14px;line-height:1.65;margin:0 0 15px}
-    .amount-label{font-size:12px;color:var(--muted);font-weight:700}
-    .amount{font-size:28px;font-weight:900;margin:3px 0 16px}
-    .qr-box{width:210px;height:210px;margin:8px auto 14px;border-radius:12px;background:#fff;border:1px solid #d9dee5;display:grid;place-items:center;text-align:center;padding:22px}
-    .qr-pattern{width:145px;height:145px;position:relative;background:
-      repeating-linear-gradient(0deg,#111 0 5px,#fff 5px 10px),
-      repeating-linear-gradient(90deg,transparent 0 5px,#111 5px 10px);
-      opacity:.82
+    body {
+      margin: 0;
+      background: #f1f5f9;
+      color: var(--ink);
+      font-family: 'Inter', Arial, sans-serif;
+      line-height: 1.5;
     }
-    .qr-note{font-size:12px;color:var(--muted);text-align:center;line-height:1.5}
-    .detail{display:grid;gap:10px}
-    .detail-row{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding:10px 0;font-size:14px}
-    .detail-row:last-child{border:0}.detail-row span:first-child{color:var(--muted)}.detail-row strong{text-align:right}
-    .account{background:#fff;border:1px dashed #cbd5df;border-radius:13px;padding:14px;margin-top:10px}
-    .account .number{font-size:20px;font-weight:900;letter-spacing:.04em}
-    .copy{margin-top:10px;border:0;border-radius:10px;background:var(--navy);color:#fff;padding:10px 13px;font-weight:800;cursor:pointer}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-    .btn{border:0;border-radius:12px;padding:13px 17px;font-weight:800;cursor:pointer;text-decoration:none;text-align:center;font-size:14px}
-    .primary{background:var(--navy);color:#fff}.success{background:#dcfce7;color:#166534}.secondary{background:#eef2f6;color:#27303a}
-    .status{margin-top:16px;padding:12px 14px;border-radius:12px;background:#fff7ed;color:#9a5b00;font-size:13px;font-weight:700}
-    @media(max-width:780px){.grid{grid-template-columns:1fr}.methods{grid-template-columns:1fr 1fr}}
-    @media(max-width:500px){.wrap{width:min(100% - 20px,1080px);padding-top:14px}.head,.card{padding:19px;border-radius:17px}.methods{grid-template-columns:1fr}.detail-row{align-items:flex-start}.actions>*{width:100%}}
+    .pay-wrap {
+      width: min(960px, calc(100% - 32px));
+      margin: auto;
+      padding: 32px 0 64px;
+    }
+    .pay-back {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      text-decoration: none;
+      color: #475569;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 20px;
+      transition: color 0.2s;
+    }
+    .pay-back:hover { color: var(--blue); }
+    
+    .pay-header {
+      background: linear-gradient(135deg, #071a2d 0%, #0d3860 100%);
+      color: #fff;
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(7, 26, 45, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .pay-header-text small {
+      color: #75ffd8;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .pay-header-text h1 {
+      margin: 6px 0 4px;
+      font-size: clamp(22px, 3.5vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .pay-header-text p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+    }
+    .midtrans-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #e2e8f0;
+      backdrop-filter: blur(8px);
+    }
+    .midtrans-badge span.dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .pay-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+    }
+    .pay-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+    .pay-card h2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    /* Status Banner Box */
+    .status-box {
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: all 0.3s;
+    }
+    .status-box.pending {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      color: #92400e;
+    }
+    .status-box.success {
+      background: #ecfdf5;
+      border: 1px solid #d1fae5;
+      color: #065f46;
+    }
+    .status-box.failed {
+      background: #fef2f2;
+      border: 1px solid #fee2e2;
+      color: #991b1b;
+    }
+    .status-icon {
+      font-size: 28px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .status-info h3 {
+      margin: 0 0 4px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .status-info p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.5;
+      opacity: 0.9;
+    }
+
+    /* Actions */
+    .pay-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .btn-action {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-pay-now {
+      background: #0369a1;
+      color: white;
+      box-shadow: 0 4px 14px rgba(3, 105, 161, 0.25);
+    }
+    .btn-pay-now:hover {
+      background: #0284c7;
+      transform: translateY(-1px);
+    }
+    .btn-check-status {
+      background: #f1f5f9;
+      color: #1e293b;
+      border: 1px solid #cbd5e1;
+    }
+    .btn-check-status:hover {
+      background: #e2e8f0;
+    }
+    .btn-wa-confirm {
+      background: #25d366;
+      color: white;
+    }
+    .btn-wa-confirm:hover {
+      background: #1ebc57;
+    }
+
+    /* Detail Rows */
+    .detail-list {
+      display: grid;
+      gap: 12px;
+    }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 14px;
+    }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-row span:first-child { color: var(--muted); }
+    .detail-row strong { text-align: right; color: var(--ink); }
+
+    .items-container {
+      margin-top: 14px;
+      border-top: 1px dashed var(--line);
+      padding-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
+    .order-item-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f8fafc;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+    .order-item-card img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 2px;
+    }
+    .order-item-card-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .order-item-title {
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .order-item-sub {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .spinner-sm {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(0,0,0,0.2);
+      border-top-color: currentColor;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 768px) {
+      .pay-grid { grid-template-columns: 1fr; }
+      .pay-header { padding: 22px; border-radius: 16px; }
+      .pay-card { padding: 18px; }
+    }
   </style>
 </head>
 <body>
-<main class="wrap">
-  <a class="back" href="/checkout-produk">← Kembali ke Checkout</a>
 
-  <section class="head">
-    <small>LOSARI COMPUTER · CHECKOUT</small>
-    <h1>Pilih Metode Pembayaran</h1>
-    <p>Silakan pilih metode pembayaran yang paling nyaman. Setelah transfer atau pembayaran selesai, tekan tombol “Saya Sudah Bayar”.</p>
-  </section>
+<main class="pay-wrap">
+  <a class="pay-back" href="/laptop">← Kembali ke Katalog Laptop</a>
 
-  <div class="grid">
-    <section class="card">
-      <h2>Metode Pembayaran</h2>
-      <div class="methods">
-        <button class="method-btn active" data-method="QRIS">
-          <div class="method-top"><div class="logo qris">QRIS</div><div><strong>QRIS</strong><span>Scan dengan e-wallet / mobile banking</span></div></div>
-        </button>
-        <button class="method-btn" data-method="GOPAY">
-          <div class="method-top"><div class="logo gopay">G</div><div><strong>GoPay</strong><span>Bayar melalui aplikasi GoPay</span></div></div>
-        </button>
-        <button class="method-btn" data-method="DANA">
-          <div class="method-top"><div class="logo dana">D</div><div><strong>DANA</strong><span>Bayar melalui aplikasi DANA</span></div></div>
-        </button>
-        <button class="method-btn" data-method="BRI">
-          <div class="method-top"><div class="logo bri">BRI</div><div><strong>Bank BRI</strong><span>Transfer ke rekening BRI</span></div></div>
-        </button>
+  <header class="pay-header">
+    <div class="pay-header-text">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <img src="/static/videos/img/Logo.png" alt="Losari Computer" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+        <small>LOSARI COMPUTER · PAYMENT GATEWAY</small>
+      </div>
+      <h1>Status Pembayaran Pesanan</h1>
+      <p>Konfirmasi transaksi resmi terhubung langsung dengan sistem pembayaran Midtrans.</p>
+    </div>
+    <div class="midtrans-badge">
+      <span class="dot"></span> Midtrans Secured 256-bit
+    </div>
+  </header>
+
+  <div class="pay-grid">
+    <!-- Kolom Kiri: Status & Aksi Pembayaran -->
+    <section class="pay-card">
+      <h2>Status Transaksi</h2>
+      
+      <div id="statusBox" class="status-box pending">
+        <div class="status-icon" id="statusIcon">⏳</div>
+        <div class="status-info">
+          <h3 id="statusTitle">Menunggu Pembayaran</h3>
+          <p id="statusDesc">Pesanan Anda telah dibuat di Midtrans. Silakan selesaikan pembayaran melalui popup Snap atau aplikasi pilihan Anda.</p>
+        </div>
       </div>
 
-      <div id="payPanel" class="pay-panel"></div>
-
-      <div class="actions">
-        <button class="btn success" id="paidBtn">✓ Saya Sudah Bayar</button>
-        <button class="btn secondary" id="pendingBtn">Tetap Menunggu</button>
+      <div class="detail-list">
+        <div class="detail-row">
+          <span>Status Gateway</span>
+          <strong id="gwStatusText">Pending</strong>
+        </div>
+        <div class="detail-row">
+          <span>Metode Bayar</span>
+          <strong id="gwPaymentType">Midtrans Snap (QRIS / VA / e-Wallet)</strong>
+        </div>
+        <div class="detail-row">
+          <span>Total Tagihan</span>
+          <strong id="gwAmount" style="font-size: 18px; color: #0369a1;">Rp 0</strong>
+        </div>
+        <div class="detail-row" id="timeRow" style="display: none;">
+          <span>Waktu Transaksi</span>
+          <strong id="gwTime">-</strong>
+        </div>
       </div>
-      <div id="status" class="status">Status: Menunggu pembayaran.</div>
+
+      <div class="pay-actions">
+        <button class="btn-action btn-pay-now" id="btnPayNow">
+          💳 Bayar Sekarang dengan Midtrans
+        </button>
+        <button class="btn-action btn-check-status" id="btnCheckStatus">
+          🔄 Cek Status Terkini
+        </button>
+        <a class="btn-action btn-wa-confirm" id="btnWhatsApp" href="#" target="_blank" rel="noopener">
+          💬 Konfirmasi via WhatsApp Admin
+        </a>
+      </div>
     </section>
 
-    <aside class="card">
+    <!-- Kolom Kanan: Rincian Pesanan -->
+    <aside class="pay-card">
       <h2>Ringkasan Pesanan</h2>
-      <div class="detail">
-        <div class="detail-row"><span>Order</span><strong id="orderId">ORD-</strong></div>
-        <div class="detail-row"><span>Nama</span><strong id="customerName">-</strong></div>
-        <div class="detail-row"><span>Nomor</span><strong id="customerPhone">-</strong></div>
-        <div class="detail-row"><span>Metode</span><strong id="paymentMethod">QRIS</strong></div>
-        <div class="detail-row"><span>Total</span><strong id="totalAmount">Rp 0</strong></div>
+      <div class="detail-list">
+        <div class="detail-row">
+          <span>Order ID</span>
+          <strong id="dispOrderId">-</strong>
+        </div>
+        <div class="detail-row">
+          <span>Nama Penerima</span>
+          <strong id="dispName">-</strong>
+        </div>
+        <div class="detail-row">
+          <span>Nomor WhatsApp</span>
+          <strong id="dispPhone">-</strong>
+        </div>
+        <div class="detail-row">
+          <span>Alamat</span>
+          <strong id="dispAddress" style="max-width: 60%; word-break: break-word;">-</strong>
+        </div>
+      </div>
+
+      <div class="items-container" id="itemsList">
+        <!-- Render items from checkoutData -->
       </div>
     </aside>
   </div>
 </main>
 
-  <!-- Losari Computer — Simple Professional Footer -->
-  <footer class="ld-wave-footer" id="siteFooter">
-    <div class="ld-wave-top" aria-hidden="true">
-      <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,32 C240,6 480,62 720,56 C960,50 1200,10 1440,28 L1440,72 L0,72 Z" fill="#090f1c"></path>
-      </svg>
-    </div>
-    <div class="ld-wave-body">
-      <div class="ld-wave-inner">
-        <div class="ld-footer-grid">
-          <div class="ld-brand-block">
-            <a href="/" class="ld-brand-badge" aria-label="Losari Computer">
-              <img src="/static/videos/img/Logo.png" alt="Losari Computer" class="ld-brand-logo-img">
-              <div class="ld-brand-meta">
-                <span class="ld-brand-name">Losari Computer</span>
-                <span class="ld-brand-tagline">Spesialis Laptop Second &amp; IT Solution</span>
-              </div>
-            </a>
-            <p class="ld-brand-desc">Pusat laptop second berkualitas. Teruji 20+ titik QC, bergaransi toko, siap kirim ke seluruh Indonesia.</p>
-            <ul class="ld-social-icons">
-              <li class="ld-soc-item soc-wa">
-                <span class="ld-soc-tooltip">WhatsApp</span>
-                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F" target="_blank" rel="noopener" class="ld-soc-link" aria-label="WhatsApp">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                </a>
-              </li>
-              <li class="ld-soc-item soc-instagram">
-                <span class="ld-soc-tooltip">Instagram</span>
-                <a href="https://www.instagram.com/losari_computer/" target="_blank" rel="noopener" class="ld-soc-link js-site-ig" aria-label="Instagram">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-              </li>
-              <li class="ld-soc-item soc-tiktok">
-                <span class="ld-soc-tooltip">TikTok</span>
-                <a href="https://tiktok.com/@losaricomputer" target="_blank" rel="noopener" class="ld-soc-link js-site-tiktok" aria-label="TikTok">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
-                </a>
-              </li>
-
-            </ul>
+<!-- Losari Computer — Footer -->
+<footer class="ld-wave-footer" id="siteFooter">
+  <div class="ld-wave-top" aria-hidden="true">
+    <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,32 C240,6 480,62 720,56 C960,50 1200,10 1440,28 L1440,72 L0,72 Z" fill="#090f1c"></path>
+    </svg>
+  </div>
+  <div class="ld-wave-body">
+    <div class="ld-wave-inner">
+      <div class="ld-footer-grid">
+        <div class="ld-brand-block">
+          <a href="/" class="ld-brand-badge" aria-label="Losari Computer">
+            <img src="/static/videos/img/Logo.png" alt="Losari Computer" class="ld-brand-logo-img">
+            <div class="ld-brand-meta">
+              <span class="ld-brand-name">Losari Computer</span>
+              <span class="ld-brand-tagline">Spesialis Laptop Second &amp; IT Solution</span>
             </div>
-          <div class="ld-nav-col">
-            <h4 class="ld-col-head">Navigasi</h4>
-            <ul class="ld-nav-list">
-              <li><a href="/">Beranda</a></li>
-              <li><a href="/laptop">Katalog Laptop</a></li>
-              <li><a href="/layanan">Layanan &amp; Servis</a></li>
-              <li><a href="/tentang">Tentang Kami</a></li>
-              <li><a href="/kontak">Kontak</a></li>
-            </ul>
-          </div>
-          <div class="ld-nav-col">
-            <h4 class="ld-col-head">Hubungi Kami</h4>
-            <div class="ld-contact-info">
-              <div class="ld-contact-item">
-                <span class="ld-c-icon ld-c-loc"><div class="ld-loc-loader"></div></span>
-                <span>Karebosi Link, Makassar &#8212; Sulawesi Selatan</span>
-              </div>
-              <div class="ld-contact-item">
-                <span class="ld-c-icon ld-c-phone"><svg class="ld-icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.47 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WA: <strong class="js-site-wa-text">+62 853-3299-0156</strong></a>
-              </div>
-              <div class="ld-contact-item">
-                <span class="ld-c-icon ld-c-clock"><svg class="ld-icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-                <span>Setiap Hari: 09.00 &#8211; 21.00 WIB</span>
-              </div>
-            </div>
-          </div>
+          </a>
+          <p class="ld-brand-desc">Pusat laptop second berkualitas. Teruji 20+ titik QC, bergaransi toko, siap kirim ke seluruh Indonesia.</p>
         </div>
-        <div class="ld-bottom-row">
-          <p class="ld-copyright-text">&copy; 2026 <strong>Losari Computer</strong>. Hak Cipta Dilindungi.</p>
-          <div class="ld-bottom-nav">
-            <a href="/">Home</a><span>·</span><a href="/laptop">Shop</a><span>·</span><a href="/layanan">Service</a><span>·</span><a href="/tentang">Tentang</a><span>·</span><a href="/kontak">Kontak</a>
+        <div class="ld-nav-col">
+          <h4 class="ld-col-head">Navigasi</h4>
+          <ul class="ld-nav-list">
+            <li><a href="/">Beranda</a></li>
+            <li><a href="/laptop">Katalog Laptop</a></li>
+            <li><a href="/layanan">Layanan &amp; Servis</a></li>
+            <li><a href="/tentang">Tentang Kami</a></li>
+            <li><a href="/kontak">Kontak</a></li>
+          </ul>
+        </div>
+        <div class="ld-nav-col">
+          <h4 class="ld-col-head">Hubungi Kami</h4>
+          <div class="ld-contact-info">
+            <div class="ld-contact-item">
+              <span>Karebosi Link, Makassar — Sulawesi Selatan</span>
+            </div>
+            <div class="ld-contact-item">
+              <a href="https://wa.me/6285332990156" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WA: <strong>+62 853-3299-0156</strong></a>
+            </div>
+            <div class="ld-contact-item">
+              <span>Setiap Hari: 09.00 – 21.00 WITA</span>
+            </div>
           </div>
         </div>
       </div>
+      <div class="ld-bottom-row">
+        <p class="ld-copyright-text">&copy; 2026 <strong>Losari Computer</strong>. Hak Cipta Dilindungi.</p>
+      </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
 <script>
-(function(){
-  const params=new URLSearchParams(location.search);
-  let data={};
-  try{data=JSON.parse(localStorage.getItem("checkoutData")||"{}")}catch(e){}
-  const rupiah=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(Number(n)||0);
-  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v??"-"};
-  const total=data.total||data.grandTotal||data.amount||0;
-  const orderId=data.orderId||("ORD-"+Date.now().toString().slice(-8));
-  set("orderId",orderId);set("customerName",data.name||data.customerName||"-");
-  set("customerPhone",data.phone||data.number||data.customerPhone||"-");set("totalAmount",rupiah(total));
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  let checkoutData = {};
+  try {
+    checkoutData = JSON.parse(localStorage.getItem('checkoutData') || '{}');
+  } catch (e) {}
 
-  const configs={
-    QRIS:{title:"Bayar dengan QRIS",instruction:"Buka aplikasi mobile banking atau e-wallet yang mendukung QRIS, lalu scan kode QR pembayaran toko.",html:`<div class="qr-box"><div><div class="qr-pattern"></div><b>QRIS TOKO</b></div></div><div class="qr-note">Ganti area QR di atas dengan QRIS merchant milik toko kamu.</div>`},
-    GOPAY:{title:"Bayar dengan GoPay",instruction:"Buka aplikasi GoPay, pilih pembayaran/transfer, lalu gunakan nomor GoPay toko berikut.",html:`<div class="account"><div class="amount-label">Nomor GoPay Toko</div><div class="number">08XX-XXXX-XXXX</div><button class="copy" data-copy="08XX-XXXX-XXXX">Salin Nomor</button></div>`},
-    DANA:{title:"Bayar dengan DANA",instruction:"Buka aplikasi DANA dan kirim pembayaran ke nomor DANA toko berikut.",html:`<div class="account"><div class="amount-label">Nomor DANA Toko</div><div class="number">08XX-XXXX-XXXX</div><button class="copy" data-copy="08XX-XXXX-XXXX">Salin Nomor</button></div>`},
-    BRI:{title:"Transfer Bank BRI",instruction:"Silakan transfer sesuai total pembayaran ke rekening BRI toko berikut.",html:`<div class="account"><div class="amount-label">Bank BRI · Nama Rekening</div><div class="number">0000-0000-000</div><div style="font-weight:700;margin-top:4px">LOSARI COMPUTER</div><button class="copy" data-copy="0000000000">Salin Nomor Rekening</button></div>`}
+  const orderId = params.get('order_id') || checkoutData.orderId || ('LOSARI-' + Date.now().toString().slice(-6));
+  const urlStatus = params.get('status') || '';
+  const rupiah = n => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(Number(n) || 0);
+
+  // Set ringkasan pesanan
+  const dispOrderId = document.getElementById('dispOrderId');
+  const dispName = document.getElementById('dispName');
+  const dispPhone = document.getElementById('dispPhone');
+  const dispAddress = document.getElementById('dispAddress');
+  const gwAmount = document.getElementById('gwAmount');
+  const gwStatusText = document.getElementById('gwStatusText');
+  const gwPaymentType = document.getElementById('gwPaymentType');
+  const statusBox = document.getElementById('statusBox');
+  const statusIcon = document.getElementById('statusIcon');
+  const statusTitle = document.getElementById('statusTitle');
+  const statusDesc = document.getElementById('statusDesc');
+  const btnPayNow = document.getElementById('btnPayNow');
+  const btnCheckStatus = document.getElementById('btnCheckStatus');
+  const btnWhatsApp = document.getElementById('btnWhatsApp');
+  const itemsList = document.getElementById('itemsList');
+
+  if (dispOrderId) dispOrderId.textContent = orderId;
+  if (dispName) dispName.textContent = checkoutData.name || 'Pelanggan Losari';
+  if (dispPhone) dispPhone.textContent = checkoutData.phone || '-';
+  if (dispAddress) dispAddress.textContent = checkoutData.address || '-';
+  if (gwAmount) gwAmount.textContent = rupiah(checkoutData.total || 0);
+
+  // Render item list
+  if (Array.isArray(checkoutData.items) && checkoutData.items.length) {
+    itemsList.innerHTML = checkoutData.items.map(it => `
+      <div class="order-item-card">
+        <img src="${it.image || '/static/images/laptop/thinkpad-t490.jpg'}" alt="${it.name}">
+        <div class="order-item-card-info">
+          <div class="order-item-title">${it.name}</div>
+          <div class="order-item-sub">${it.qty || 1} unit × ${rupiah(it.price)}</div>
+        </div>
+      </div>
+    `).join('');
+  } else {
+    itemsList.innerHTML = '<p style="color:#64748b; font-size:13px; margin:0;">Tidak ada rincian item dalam cache.</p>';
+  }
+
+  // Update link WhatsApp konfirmasi
+  function updateWhatsAppLink(isPaid) {
+    const phone = '6285332990156';
+    const text = isPaid
+      ? `Halo Admin Losari Computer, saya sudah menyelesaikan pembayaran via Midtrans untuk Pesanan ${orderId} sebesar ${rupiah(checkoutData.total || 0)}. Mohon segera diproses dan dikirim ke ${checkoutData.address || 'alamat saya'}. Terima kasih!`
+      : `Halo Admin Losari Computer, saya ingin konfirmasi pesanan ${orderId} sebesar ${rupiah(checkoutData.total || 0)}. Apakah unit ini siap kirim?`;
+    btnWhatsApp.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  }
+  updateWhatsAppLink(false);
+
+  const qrisDirectBox = document.getElementById('qrisDirectBox');
+  const btnMarkPaidManual = document.getElementById('btnMarkPaidManual');
+
+  function applyStatus(status, paymentType, time) {
+    statusBox.className = 'status-box';
+    if (status === 'settlement' || status === 'capture' || status === 'paid') {
+      statusBox.classList.add('success');
+      statusIcon.textContent = '✅';
+      statusTitle.textContent = 'Pembayaran Berhasil Diterima!';
+      statusDesc.textContent = 'Terima kasih, pembayaran Anda telah berhasil diverifikasi oleh Midtrans. Pesanan sedang dipersiapkan untuk pengiriman ke alamat Anda.';
+      gwStatusText.textContent = 'Lunas (Verified Midtrans)';
+      gwStatusText.style.color = '#10b981';
+      btnPayNow.style.display = 'none';
+      updateWhatsAppLink(true);
+      localStorage.setItem('paymentStatus', 'paid');
+    } else if (status === 'pending') {
+      statusBox.classList.add('pending');
+      statusIcon.textContent = '⏳';
+      statusTitle.textContent = 'Menunggu Pembayaran';
+      statusDesc.textContent = 'Pesanan Anda telah tercatat di Midtrans. Silakan selesaikan pembayaran melalui popup Midtrans Snap atau cek status pembayaran terkini.';
+      gwStatusText.textContent = 'Menunggu Pembayaran (Pending)';
+      gwStatusText.style.color = '#f59e0b';
+      btnPayNow.style.display = 'flex';
+      updateWhatsAppLink(false);
+    } else if (status === 'expire' || status === 'cancel' || status === 'deny') {
+      statusBox.classList.add('failed');
+      statusIcon.textContent = '❌';
+      statusTitle.textContent = 'Transaksi Kedaluwarsa / Dibatalkan';
+      statusDesc.textContent = 'Waktu pembayaran telah habis atau transaksi dibatalkan. Silakan pesan kembali melalui katalog laptop.';
+      gwStatusText.textContent = 'Batal / Expire';
+      gwStatusText.style.color = '#ef4444';
+      btnPayNow.textContent = '🛍️ Pesan Kembali di Katalog';
+      btnPayNow.onclick = () => window.location.href = '/laptop';
+      btnPayNow.style.display = 'flex';
+    }
+
+    if (paymentType) {
+      gwPaymentType.textContent = paymentType.toUpperCase();
+    }
+    if (time) {
+      const timeRow = document.getElementById('timeRow');
+      const gwTime = document.getElementById('gwTime');
+      if (timeRow && gwTime) {
+        timeRow.style.display = 'flex';
+        gwTime.textContent = time;
+      }
+    }
+  }
+
+  // Cek status ke Midtrans backend
+  async function fetchMidtransStatus() {
+    if (!orderId) return;
+    const origText = btnCheckStatus.innerHTML;
+    btnCheckStatus.disabled = true;
+    btnCheckStatus.innerHTML = '<span class="spinner-sm"></span> Memeriksa status Midtrans...';
+
+    try {
+      const res = await fetch(`/api/midtrans/status/${encodeURIComponent(orderId)}`);
+      const resData = await res.json();
+
+      if (resData.ok && resData.status) {
+        applyStatus(resData.status, resData.paymentType, resData.transactionTime);
+      } else if (urlStatus === 'paid') {
+        applyStatus('paid', 'Midtrans Instant');
+      } else {
+        applyStatus('pending', checkoutData.method || 'Midtrans');
+      }
+    } catch (e) {
+      console.error('Error fetching status:', e);
+      if (urlStatus === 'paid') applyStatus('paid', 'Midtrans');
+    } finally {
+      btnCheckStatus.disabled = false;
+      btnCheckStatus.innerHTML = origText;
+    }
+  }
+
+  // Tombol Bayar Sekarang
+  btnPayNow.onclick = () => {
+    if (checkoutData.token && window.snap && typeof window.snap.pay === 'function') {
+      window.snap.pay(checkoutData.token, {
+        onSuccess: function (result) {
+          applyStatus('settlement', result.payment_type);
+          fetchMidtransStatus();
+        },
+        onPending: function (result) {
+          applyStatus('pending', result.payment_type);
+          fetchMidtransStatus();
+        },
+        onError: function (result) {
+          alert('Pembayaran gagal: ' + ((result && result.status_message) || 'Silakan ulangi'));
+        },
+        onClose: function () {
+          fetchMidtransStatus();
+        }
+      });
+    } else if (checkoutData.redirectUrl) {
+      window.open(checkoutData.redirectUrl, '_blank');
+    } else {
+      alert('Sesi pembayaran ini telah selesai atau belum dibuat. Silakan kembali ke katalog untuk memesan unit.');
+      window.location.href = '/laptop';
+    }
   };
 
-  function render(method){
-    const c=configs[method]||configs.QRIS;
-    set("paymentMethod",method);
-    document.getElementById("payPanel").innerHTML=
-      `<div class="pay-title">${c.title}</div>
-       <p class="instruction">${c.instruction}</p>
-       <div class="amount-label">Total yang harus dibayar</div>
-       <div class="amount">${rupiah(total)}</div>${c.html}`;
-    document.querySelectorAll(".method-btn").forEach(b=>b.classList.toggle("active",b.dataset.method===method));
-    const copy=document.querySelector(".copy");
-    if(copy)copy.onclick=async()=>{try{await navigator.clipboard.writeText(copy.dataset.copy);copy.textContent="✓ Tersalin"}catch(e){copy.textContent="Salin manual"}};
-  }
-  render("QRIS");
+  btnCheckStatus.onclick = fetchMidtransStatus;
 
-  document.querySelectorAll(".method-btn").forEach(btn=>btn.addEventListener("click",()=>render(btn.dataset.method)));
-
-  function setStatus(s){
-    const el=document.getElementById("status");
-    if(s==="paid"){el.textContent="Status: Pembayaran sudah ditandai berhasil.";el.style.background="#ecfdf3";el.style.color="#16704a";localStorage.setItem("paymentStatus","paid")}
-    else{el.textContent="Status: Menunggu pembayaran.";el.style.background="#fff7ed";el.style.color="#9a5b00";localStorage.setItem("paymentStatus","pending")}
-  }
-  setStatus(params.get("status")==="paid"||localStorage.getItem("paymentStatus")==="paid"?"paid":"pending");
-  document.getElementById("paidBtn").onclick=()=>setStatus("paid");
-  document.getElementById("pendingBtn").onclick=()=>setStatus("pending");
+  // Jalankan pengecekan status saat halaman dimuat
+  fetchMidtransStatus();
 })();
 </script>
 <script src="/static/site-config.js"></script>

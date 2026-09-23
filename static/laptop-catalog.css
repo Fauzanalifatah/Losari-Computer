@@ -1162,12 +1162,12 @@
 
 /* Laptop promo — match homepage rhythm, just slightly faster */
 .laptop-page .promo-track {
-  animation-duration: 19s !important;
+  animation-duration: 26s !important;
   animation-timing-function: linear !important;
 }
 @media (max-width: 760px) {
   .laptop-page .promo-track {
-    animation-duration: 15.5s !important;
+    animation-duration: 21s !important;
   }
 }
 
