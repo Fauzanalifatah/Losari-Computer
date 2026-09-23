@@ -47,9 +47,9 @@
 
     /* Container */
     .receipt-container {
-      width: min(1040px, calc(100% - 32px));
+      width: min(880px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 32px 0 80px;
+      padding: 20px 0 50px;
     }
 
     /* Top Navigation bar */
@@ -58,22 +58,22 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 24px;
+      gap: 10px;
+      margin-bottom: 16px;
     }
     .nav-back-link {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       color: #475569;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
-      padding: 8px 16px;
+      padding: 6px 12px;
       background: #ffffff;
       border: 1px solid var(--line);
-      border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      border-radius: 10px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
       transition: all 0.2s;
     }
     .nav-back-link:hover {
@@ -83,22 +83,22 @@
     }
     .nav-right-actions {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
     }
     .btn-print {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
+      gap: 6px;
+      padding: 6px 12px;
       background: #ffffff;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 10px;
       color: #334155;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
       transition: all 0.2s;
     }
     .btn-print:hover {
@@ -111,10 +111,10 @@
     .receipt-header-card {
       background: linear-gradient(135deg, #071a2d 0%, #0d3257 55%, #0f3f6e 100%);
       color: #ffffff;
-      border-radius: 24px;
-      padding: 32px 36px;
-      margin-bottom: 24px;
-      box-shadow: 0 16px 36px -10px rgba(7, 26, 45, 0.35);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 10px 25px -8px rgba(7, 26, 45, 0.3);
       position: relative;
       overflow: hidden;
     }
@@ -123,8 +123,8 @@
       position: absolute;
       top: -40%;
       right: -20%;
-      width: 380px;
-      height: 380px;
+      width: 300px;
+      height: 300px;
       background: radial-gradient(circle, rgba(19, 200, 184, 0.15) 0%, transparent 70%);
       pointer-events: none;
     }
@@ -133,26 +133,26 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      padding-bottom: 20px;
-      margin-bottom: 24px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
     }
     .brand-identity {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
     }
     .brand-logo-circle {
-      width: 44px;
-      height: 44px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 3px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      padding: 2px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     .brand-logo-circle img {
       width: 100%;
@@ -162,22 +162,22 @@
     }
     .brand-meta h2 {
       margin: 0;
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 800;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
     }
     .brand-meta p {
-      margin: 2px 0 0;
-      font-size: 12px;
+      margin: 1px 0 0;
+      font-size: 11px;
       color: rgba(255, 255, 255, 0.7);
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
     }
     .header-badges {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
     .official-badge {
       display: inline-flex;
@@ -185,19 +185,19 @@
       gap: 6px;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 6px 14px;
-      border-radius: 30px;
-      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
       font-weight: 700;
       color: #e2e8f0;
       backdrop-filter: blur(8px);
     }
     .official-badge .pulse-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       background: #10b981;
       border-radius: 50%;
-      box-shadow: 0 0 10px #10b981;
+      box-shadow: 0 0 8px #10b981;
     }
 
     .header-main-row {
@@ -205,62 +205,63 @@
       justify-content: space-between;
       align-items: flex-end;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 14px;
     }
     .header-title-box small {
       color: #38bdf8;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .header-title-box h1 {
-      margin: 0 0 6px;
-      font-size: clamp(22px, 3.2vw, 30px);
+      margin: 0 0 4px;
+      font-size: clamp(18px, 2.4vw, 22px);
       font-weight: 800;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
     }
     .header-title-box p {
       margin: 0;
       color: rgba(255, 255, 255, 0.8);
-      font-size: 14px;
-      max-width: 540px;
+      font-size: 12.5px;
+      max-width: 480px;
+      line-height: 1.45;
     }
     .invoice-tag-box {
       background: rgba(0, 0, 0, 0.25);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 14px;
-      padding: 12px 18px;
+      border-radius: 10px;
+      padding: 8px 12px;
       text-align: right;
     }
     .invoice-tag-box .inv-label {
-      font-size: 11px;
+      font-size: 10px;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.65);
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
     }
     .invoice-tag-box .inv-id {
-      font-size: 17px;
+      font-size: 13.5px;
       font-weight: 800;
       color: #ffffff;
       font-family: monospace;
       letter-spacing: 0.02em;
-      margin-top: 2px;
+      margin-top: 1px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       justify-content: flex-end;
     }
     .btn-copy-id {
       background: rgba(255, 255, 255, 0.15);
       border: none;
       color: #fff;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 11px;
+      padding: 3px 6px;
+      border-radius: 5px;
+      font-size: 10px;
       cursor: pointer;
       font-weight: 700;
       transition: background 0.2s;
@@ -273,10 +274,10 @@
     .receipt-stepper-card {
       background: var(--card-bg);
       border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 20px 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+      border-radius: 14px;
+      padding: 12px 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
     }
     .stepper-track {
       display: flex;
@@ -286,10 +287,10 @@
     .stepper-track::before {
       content: "";
       position: absolute;
-      top: 18px;
+      top: 14px;
       left: 5%;
       right: 5%;
-      height: 3px;
+      height: 2px;
       background: #e2e8f0;
       z-index: 1;
     }
@@ -303,19 +304,19 @@
       width: 25%;
     }
     .stepper-dot {
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: #f1f5f9;
-      border: 3px solid #cbd5e1;
+      border: 2px solid #cbd5e1;
       color: #64748b;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 14px;
+      font-size: 11.5px;
       transition: all 0.3s;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
     .stepper-item.completed .stepper-dot {
       background: #10b981;
@@ -326,17 +327,17 @@
       background: #0284c7;
       border-color: #bae6fd;
       color: #ffffff;
-      box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.2);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
     }
     .stepper-label {
-      font-size: 13px;
+      font-size: 11.5px;
       font-weight: 700;
       color: #334155;
     }
     .stepper-desc {
-      font-size: 11px;
+      font-size: 10px;
       color: #94a3b8;
-      margin-top: 2px;
+      margin-top: 1px;
     }
     .stepper-item.completed .stepper-label { color: #047857; }
     .stepper-item.active .stepper-label { color: #0369a1; }
@@ -345,7 +346,7 @@
     .receipt-grid {
       display: grid;
       grid-template-columns: 1.25fr 1fr;
-      gap: 24px;
+      gap: 16px;
       align-items: start;
     }
 
@@ -353,10 +354,10 @@
     .r-card {
       background: var(--card-bg);
       border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
-      margin-bottom: 24px;
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, 0.03);
+      margin-bottom: 16px;
     }
     .r-card:last-child {
       margin-bottom: 0;
@@ -365,36 +366,36 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 16px;
-      margin-bottom: 20px;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
       border-bottom: 1px solid var(--line-subtle);
     }
     .card-head h2 {
       margin: 0;
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--navy);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
     .card-head .card-tag {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 20px;
+      padding: 3px 8px;
+      border-radius: 12px;
       background: #f1f5f9;
       color: #475569;
     }
 
     /* Status Banner Modern */
     .status-banner {
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 24px;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
       display: flex;
       align-items: flex-start;
-      gap: 18px;
+      gap: 12px;
       transition: all 0.3s;
     }
     .status-banner.pending {
@@ -414,13 +415,17 @@
     }
 
     .banner-icon-box {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+    }
+    .banner-icon-box svg {
+      width: 18px;
+      height: 18px;
     }
     .status-banner.pending .banner-icon-box {
       background: #fef3c7;
@@ -436,92 +441,92 @@
     }
 
     .banner-text-box h3 {
-      margin: 0 0 4px;
-      font-size: 17px;
+      margin: 0 0 2px;
+      font-size: 14px;
       font-weight: 800;
       letter-spacing: -0.01em;
     }
     .banner-text-box p {
-      margin: 0 0 10px;
-      font-size: 13.5px;
-      line-height: 1.55;
+      margin: 0 0 6px;
+      font-size: 12px;
+      line-height: 1.45;
       opacity: 0.95;
     }
     .banner-pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 11px;
+      gap: 4px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 10px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
     }
     .status-banner.pending .banner-pill { background: #fde68a; color: #78350f; }
     .status-banner.success .banner-pill { background: #a7f3d0; color: #064e3b; }
     .status-banner.failed .banner-pill { background: #fecaca; color: #7f1d1d; }
 
-    /* Total Payment Hero Block */
+    /* Total Payment Hero Block (Sedang / Compact) */
     .total-pay-box {
       background: linear-gradient(to right, #f8fafc, #f1f5f9);
       border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 20px 24px;
+      border-radius: 12px;
+      padding: 12px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
+      margin-bottom: 14px;
     }
     .total-pay-meta small {
-      font-size: 12px;
+      font-size: 10.5px;
       font-weight: 700;
       color: #64748b;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
     .total-pay-meta .amount-val {
-      font-size: clamp(24px, 3vw, 30px);
-      font-weight: 900;
+      font-size: clamp(19px, 2.2vw, 22px);
+      font-weight: 800;
       color: #0369a1;
-      letter-spacing: -0.03em;
-      margin-top: 2px;
+      letter-spacing: -0.02em;
+      margin-top: 1px;
     }
     .payment-brand-badge {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 4px;
+      gap: 3px;
     }
     .payment-brand-badge span {
-      font-size: 11px;
+      font-size: 10px;
       color: #64748b;
       font-weight: 600;
     }
     .midtrans-official-tag {
       background: #0284c7;
       color: #fff;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 9.5px;
       font-weight: 800;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
     }
 
     /* Key-Value Details */
     .receipt-data-table {
       width: 100%;
       display: grid;
-      gap: 12px;
-      margin-bottom: 24px;
+      gap: 4px;
+      margin-bottom: 14px;
     }
     .data-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 0;
+      padding: 6px 0;
       border-bottom: 1px dashed #e2e8f0;
-      font-size: 14px;
+      font-size: 12.5px;
     }
     .data-row:last-child {
       border-bottom: none;
@@ -531,36 +536,48 @@
       font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      font-size: 12px;
+    }
+    .data-label svg {
+      width: 14px;
+      height: 14px;
     }
     .data-val {
       font-weight: 700;
       color: #0f172a;
       text-align: right;
+      font-size: 12.5px;
     }
     .data-val.highlight {
       color: #0284c7;
     }
 
-    /* Actions Button Group */
+    /* Actions Button Group (Sedang & Proporsional) */
     .action-group {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
     }
     .btn-receipt {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 15px 22px;
-      border-radius: 14px;
-      font-weight: 800;
-      font-size: 15px;
+      gap: 8px;
+      padding: 10px 14px;
+      min-height: 40px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13px;
       text-decoration: none;
       cursor: pointer;
       border: none;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-receipt svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
     }
     .btn-receipt:active {
       transform: scale(0.98);
@@ -568,18 +585,18 @@
     .btn-pay-snap {
       background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
       color: #ffffff;
-      box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.45);
+      box-shadow: 0 4px 12px -2px rgba(2, 132, 199, 0.35);
     }
     .btn-pay-snap:hover {
       background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px -4px rgba(2, 132, 199, 0.55);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px -2px rgba(2, 132, 199, 0.45);
     }
     .btn-refresh-status {
       background: #ffffff;
       color: #1e293b;
-      border: 1.5px solid #cbd5e1;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
     .btn-refresh-status:hover {
       background: #f8fafc;
@@ -588,42 +605,42 @@
     .btn-contact-wa {
       background: #10b981;
       color: #ffffff;
-      box-shadow: 0 8px 18px -4px rgba(16, 185, 129, 0.35);
+      box-shadow: 0 4px 12px -2px rgba(16, 185, 129, 0.3);
     }
     .btn-contact-wa:hover {
       background: #059669;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 22px -4px rgba(16, 185, 129, 0.45);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px -2px rgba(16, 185, 129, 0.4);
     }
 
     /* Product Item in Right Column */
     .receipt-items-wrap {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin-bottom: 14px;
     }
     .receipt-item-card {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 12px 14px;
+      border-radius: 10px;
+      padding: 8px 10px;
       transition: border-color 0.2s;
     }
     .receipt-item-card:hover {
       border-color: #cbd5e1;
     }
     .receipt-item-img {
-      width: 56px;
-      height: 56px;
+      width: 44px;
+      height: 44px;
       object-fit: contain;
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 4px;
+      border-radius: 8px;
+      padding: 2px;
       flex-shrink: 0;
     }
     .receipt-item-info {
@@ -631,16 +648,16 @@
       min-width: 0;
     }
     .receipt-item-title {
-      font-weight: 800;
-      font-size: 14px;
+      font-weight: 700;
+      font-size: 13px;
       color: #0f172a;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
     .receipt-item-meta {
-      font-size: 12.5px;
+      font-size: 11.5px;
       color: #64748b;
       display: flex;
       justify-content: space-between;
@@ -655,43 +672,48 @@
     .customer-info-box {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 20px;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
     }
     .customer-info-title {
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       color: #64748b;
       font-weight: 800;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+    }
+    .customer-info-title svg {
+      width: 13px;
+      height: 13px;
     }
     .customer-field {
-      margin-bottom: 8px;
-      font-size: 13.5px;
+      margin-bottom: 5px;
+      font-size: 12px;
     }
     .customer-field:last-child { margin-bottom: 0; }
     .customer-field span {
       color: #64748b;
-      font-size: 12px;
+      font-size: 11px;
       display: block;
     }
     .customer-field strong {
       color: #0f172a;
       font-weight: 700;
+      font-size: 12px;
     }
 
     /* Cost Summary Breakdown */
     .cost-breakdown {
       border-top: 1px solid #e2e8f0;
-      padding-top: 16px;
+      padding-top: 10px;
       display: grid;
-      gap: 10px;
-      font-size: 13.5px;
+      gap: 5px;
+      font-size: 12px;
     }
     .cost-row {
       display: flex;
@@ -704,38 +726,36 @@
     }
     .cost-row.total {
       border-top: 1px solid #cbd5e1;
-      padding-top: 12px;
-      margin-top: 4px;
-      font-size: 16px;
+      padding-top: 8px;
+      margin-top: 2px;
+      font-size: 13.5px;
       font-weight: 800;
       color: #0f172a;
     }
     .cost-row.total span:last-child {
       color: #0284c7;
-      font-size: 18px;
+      font-size: 15.5px;
     }
-
-
 
     /* Toast Notification */
     .toast-msg {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      bottom: 20px;
+      right: 20px;
       background: #0f172a;
       color: #ffffff;
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-size: 13px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 12.5px;
       font-weight: 700;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       transform: translateY(100px);
       opacity: 0;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 9999;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
     .toast-msg.show {
       transform: translateY(0);
@@ -743,8 +763,8 @@
     }
 
     .spinner-sm {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       border: 2px solid rgba(0,0,0,0.2);
       border-top-color: currentColor;
       border-radius: 50%;
@@ -755,33 +775,82 @@
 
     /* Responsive */
     @media (max-width: 860px) {
+      .receipt-container {
+        width: calc(100% - 24px);
+        padding: 16px 0 40px;
+      }
       .receipt-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
       }
       .receipt-header-card {
-        padding: 24px;
+        padding: 16px;
+        border-radius: 14px;
       }
       .header-main-row {
         flex-direction: column;
         align-items: flex-start;
+        gap: 10px;
       }
       .invoice-tag-box {
         text-align: left;
         width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
       .invoice-tag-box .inv-id {
-        justify-content: space-between;
+        margin-top: 0;
       }
       .stepper-desc {
         display: none;
       }
       .stepper-dot {
-        width: 30px;
-        height: 30px;
-        font-size: 12px;
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
       }
       .stepper-label {
+        font-size: 10.5px;
+      }
+      .r-card {
+        padding: 16px;
+        border-radius: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .receipt-container {
+        width: calc(100% - 16px);
+        padding: 12px 0 32px;
+      }
+      .receipt-nav {
+        margin-bottom: 12px;
+      }
+      .nav-back-link {
+        font-size: 12px;
+        padding: 5px 10px;
+      }
+      .btn-print {
         font-size: 11.5px;
+        padding: 5px 10px;
+      }
+      .receipt-header-card {
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+      .header-title-box h1 {
+        font-size: 17px;
+      }
+      .total-pay-box {
+        padding: 10px 12px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .btn-receipt {
+        padding: 9px 12px;
+        font-size: 12.5px;
+        min-height: 38px;
       }
     }
 
