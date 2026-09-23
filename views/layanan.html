@@ -810,6 +810,214 @@
       });
     }
 
+    /* ==================== USER PROFILE DROPDOWN CONTROLLER ==================== */
+    (function initUserProfile() {
+      const STORAGE_KEY = 'losari_google_user';
+      const CART_KEY = 'losari-cart';
+      const FAV_KEY = 'losari_favorites';
+
+      const avatarBtn = document.getElementById('userAvatarBtn');
+      const dropdownCard = document.getElementById('userDropdownCard');
+      const avatarCircle = document.getElementById('userAvatarCircle');
+      const badgeCount = document.getElementById('userBadgeCount');
+
+      const userNameEl = document.getElementById('dropdownUserName');
+      const userStatusEl = document.getElementById('dropdownUserStatus');
+      const pillBadgeEl = document.getElementById('dropdownPillBadge');
+      const pillTextEl = document.getElementById('dropdownPillText');
+
+      const itemFavorites = document.getElementById('itemFavorites');
+      const favSubCount = document.getElementById('favSubCount');
+      const itemCart = document.getElementById('itemCart');
+      const cartSubCount = document.getElementById('cartSubCount');
+      const cartInnerBadge = document.getElementById('cartItemInnerBadge');
+
+      const btnConnectGoogle = document.getElementById('btnConnectGoogle');
+      const googleBoxIcon = document.getElementById('googleBoxIcon');
+      const googleActionTitle = document.getElementById('googleActionTitle');
+      const googleActionSub = document.getElementById('googleActionSub');
+
+      function getSavedUser() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY));
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function getCartCount() {
+        try {
+          const cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+          if (!Array.isArray(cart)) return 0;
+          return cart.reduce((sum, i) => sum + (Number(i.qty) || 1), 0);
+        } catch (e) {
+          return 0;
+        }
+      }
+
+      function getFavCount() {
+        try {
+          const favs = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+          return Array.isArray(favs) ? favs.length : 0;
+        } catch (e) {
+          return 0;
+        }
+      }
+
+      function syncCounts() {
+        const cartCnt = getCartCount();
+        const favCnt = getFavCount();
+
+        if (cartSubCount) cartSubCount.textContent = `Total ${cartCnt} item`;
+        if (cartInnerBadge) {
+          cartInnerBadge.textContent = cartCnt;
+          cartInnerBadge.style.display = cartCnt > 0 ? 'inline-flex' : 'none';
+        }
+        if (badgeCount) {
+          badgeCount.textContent = String(cartCnt);
+          badgeCount.style.display = cartCnt > 0 ? 'grid' : 'none';
+        }
+        if (favSubCount) {
+          favSubCount.textContent = favCnt === 1 ? '1 laptop tersimpan' : `${favCnt} laptop tersimpan`;
+        }
+      }
+
+      function renderUserState() {
+        syncCounts();
+        const user = getSavedUser();
+
+        if (user && user.connected) {
+          if (userNameEl) userNameEl.textContent = user.name || 'Pengguna Losari';
+          if (userStatusEl) userStatusEl.textContent = user.email || 'fauzan.losari@gmail.com';
+          if (pillBadgeEl) {
+            pillBadgeEl.style.display = 'inline-block';
+            pillBadgeEl.className = 'user-pill-badge is-connected';
+            if (pillTextEl) pillTextEl.textContent = 'TERHUBUNG GOOGLE ✓';
+          }
+
+          if (avatarCircle) {
+            if (user.avatar) {
+              avatarCircle.innerHTML = `<img src="${user.avatar}" alt="${user.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+            } else {
+              const initial = (user.name || 'G').charAt(0).toUpperCase();
+              avatarCircle.innerHTML = `<span style="font-weight:800; font-size:16px; color:#075ec5;">${initial}</span>`;
+            }
+          }
+
+          if (googleBoxIcon) {
+            googleBoxIcon.className = 'user-item-icon-box box--pink';
+            googleBoxIcon.innerHTML = `
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+            `;
+          }
+          if (googleActionTitle) {
+            googleActionTitle.textContent = 'Putuskan Akun Google';
+            googleActionTitle.style.color = '#ef4444';
+          }
+          if (googleActionSub) {
+            googleActionSub.textContent = 'Keluar dari akun Google ini';
+          }
+        } else {
+          if (userNameEl) userNameEl.textContent = 'Tamu Losari Computer';
+          if (userStatusEl) userStatusEl.textContent = 'Belum tersambung Google';
+          if (pillBadgeEl) {
+            pillBadgeEl.style.display = 'inline-block';
+            pillBadgeEl.className = 'user-pill-badge';
+            if (pillTextEl) pillTextEl.textContent = 'MODE TAMU / OFFLINE';
+          }
+
+          if (avatarCircle) {
+            avatarCircle.innerHTML = `
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            `;
+          }
+
+          if (googleBoxIcon) {
+            googleBoxIcon.className = 'user-item-icon-box box--gray';
+            googleBoxIcon.innerHTML = `
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            `;
+          }
+          if (googleActionTitle) {
+            googleActionTitle.textContent = 'Edit Profil';
+            googleActionTitle.style.color = '#0f172a';
+          }
+          if (googleActionSub) {
+            googleActionSub.textContent = 'Nama Lengkap & Kontak';
+          }
+        }
+      }
+
+      // Dropdown toggle
+      if (avatarBtn && dropdownCard) {
+        avatarBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = dropdownCard.classList.toggle('is-open');
+          avatarBtn.setAttribute('aria-expanded', isOpen);
+          syncCounts();
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!dropdownCard.contains(e.target) && !avatarBtn.contains(e.target)) {
+            dropdownCard.classList.remove('is-open');
+            avatarBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // Item Actions
+      if (itemFavorites) {
+        itemFavorites.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (dropdownCard) dropdownCard.classList.remove('is-open');
+          if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'false');
+          window.location.href = '/laptop?openFavorites=1';
+        });
+      }
+
+      if (itemCart) {
+        itemCart.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (dropdownCard) dropdownCard.classList.remove('is-open');
+          if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'false');
+          window.location.href = '/laptop?openCart=1';
+        });
+      }
+
+      if (btnConnectGoogle) {
+        btnConnectGoogle.addEventListener('click', (e) => {
+          const user = getSavedUser();
+          if (user && user.connected) {
+            e.preventDefault();
+            if (confirm('Apakah Anda yakin ingin memutuskan akun Google dari sesi ini?')) {
+              localStorage.removeItem(STORAGE_KEY);
+              renderUserState();
+              if (dropdownCard) dropdownCard.classList.remove('is-open');
+              if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'false');
+              alert('Akun Google berhasil diputuskan.');
+            }
+          } else {
+            // Biarkan navigasi ke /?openGoogle=1
+          }
+        });
+      }
+
+      // Initial render & sync
+      renderUserState();
+      window.addEventListener('storage', renderUserState);
+      window.addEventListener('focus', renderUserState);
+    })();
+
     /* ==================== ESTIMATOR WIDGET ==================== */
     const EST_DATA = {
       laptop: {
