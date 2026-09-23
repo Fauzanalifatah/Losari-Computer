@@ -3,266 +3,780 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Status Pembayaran - Losari Computer</title>
+  <title>Bukti Transaksi & Status Pembayaran — Losari Computer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
   <!-- Midtrans Snap JS (Production) -->
   <script src="https://app.midtrans.com/snap/snap.js" data-client-key="Mid-client-Ll8H0OZAIRotVdbn"></script>
+  
   <style>
     * { box-sizing: border-box; }
     :root {
+      --bg-page: #f4f6fa;
       --navy: #071a2d;
-      --blue: #075ec5;
-      --teal: #13c8b8;
-      --ink: #151922;
+      --navy-dark: #040e19;
+      --blue: #0284c7;
+      --blue-hover: #0369a1;
+      --teal: #0d9488;
+      --ink: #0f172a;
       --muted: #64748b;
       --line: #e2e8f0;
-      --soft: #f8fafc;
-      --card: #ffffff;
+      --line-subtle: #edf2f7;
+      --card-bg: #ffffff;
       --success: #10b981;
+      --success-bg: #ecfdf5;
+      --success-border: #a7f3d0;
       --warning: #f59e0b;
+      --warning-bg: #fffbeb;
+      --warning-border: #fde68a;
       --danger: #ef4444;
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
     }
+
     body {
       margin: 0;
-      background: #f1f5f9;
+      background: var(--bg-page);
       color: var(--ink);
-      font-family: 'Inter', Arial, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
-    .pay-wrap {
-      width: min(960px, calc(100% - 32px));
-      margin: auto;
-      padding: 32px 0 64px;
+
+    /* Container */
+    .receipt-container {
+      width: min(1040px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 80px;
     }
-    .pay-back {
-      display: inline-flex;
-      gap: 8px;
+
+    /* Top Navigation bar */
+    .receipt-nav {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      text-decoration: none;
-      color: #475569;
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 20px;
-      transition: color 0.2s;
-    }
-    .pay-back:hover { color: var(--blue); }
-    
-    .pay-header {
-      background: linear-gradient(135deg, #071a2d 0%, #0d3860 100%);
-      color: #fff;
-      border-radius: 20px;
-      padding: 28px 32px;
+      flex-wrap: wrap;
+      gap: 12px;
       margin-bottom: 24px;
-      box-shadow: 0 10px 25px rgba(7, 26, 45, 0.12);
+    }
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #475569;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 16px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: all 0.2s;
+    }
+    .nav-back-link:hover {
+      color: var(--blue);
+      border-color: #cbd5e1;
+      transform: translateX(-2px);
+    }
+    .nav-right-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: all 0.2s;
+    }
+    .btn-print:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+
+    /* Hero Header Card */
+    .receipt-header-card {
+      background: linear-gradient(135deg, #071a2d 0%, #0d3257 55%, #0f3f6e 100%);
+      color: #ffffff;
+      border-radius: 24px;
+      padding: 32px 36px;
+      margin-bottom: 24px;
+      box-shadow: 0 16px 36px -10px rgba(7, 26, 45, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .receipt-header-card::after {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(19, 200, 184, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-top-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
     }
-    .pay-header-text small {
-      color: #75ffd8;
-      font-weight: 800;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+    .brand-identity {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
-    .pay-header-text h1 {
-      margin: 6px 0 4px;
-      font-size: clamp(22px, 3.5vw, 30px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
+    .brand-logo-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     }
-    .pay-header-text p {
+    .brand-logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    .brand-meta h2 {
       margin: 0;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 14px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
-    .midtrans-badge {
+    .brand-meta p {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .header-badges {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .official-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.12);
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 8px 14px;
+      padding: 6px 14px;
       border-radius: 30px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       color: #e2e8f0;
       backdrop-filter: blur(8px);
     }
-    .midtrans-badge span.dot {
+    .official-badge .pulse-dot {
       width: 8px;
       height: 8px;
       background: #10b981;
       border-radius: 50%;
-      box-shadow: 0 0 8px #10b981;
+      box-shadow: 0 0 10px #10b981;
     }
 
-    .pay-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 24px;
+    .header-main-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 20px;
     }
-    .pay-card {
-      background: var(--card);
+    .header-title-box small {
+      color: #38bdf8;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .header-title-box h1 {
+      margin: 0 0 6px;
+      font-size: clamp(22px, 3.2vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .header-title-box p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      max-width: 540px;
+    }
+    .invoice-tag-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      padding: 12px 18px;
+      text-align: right;
+    }
+    .invoice-tag-box .inv-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .invoice-tag-box .inv-id {
+      font-size: 17px;
+      font-weight: 800;
+      color: #ffffff;
+      font-family: monospace;
+      letter-spacing: 0.02em;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .btn-copy-id {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .btn-copy-id:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Stepper / Timeline */
+    .receipt-stepper-card {
+      background: var(--card-bg);
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
     }
-    .pay-card h2 {
-      margin: 0 0 16px;
-      font-size: 18px;
+    .stepper-track {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+    }
+    .stepper-track::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      left: 5%;
+      right: 5%;
+      height: 3px;
+      background: #e2e8f0;
+      z-index: 1;
+    }
+    .stepper-item {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 25%;
+    }
+    .stepper-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: 3px solid #cbd5e1;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      transition: all 0.3s;
+      margin-bottom: 8px;
+    }
+    .stepper-item.completed .stepper-dot {
+      background: #10b981;
+      border-color: #10b981;
+      color: #ffffff;
+    }
+    .stepper-item.active .stepper-dot {
+      background: #0284c7;
+      border-color: #bae6fd;
+      color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.2);
+    }
+    .stepper-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+    }
+    .stepper-desc {
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+    .stepper-item.completed .stepper-label { color: #047857; }
+    .stepper-item.active .stepper-label { color: #0369a1; }
+
+    /* Layout Grid */
+    .receipt-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* Cards */
+    .r-card {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+      margin-bottom: 24px;
+    }
+    .r-card:last-child {
+      margin-bottom: 0;
+    }
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--line-subtle);
+    }
+    .card-head h2 {
+      margin: 0;
+      font-size: 17px;
       font-weight: 800;
       color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-head .card-tag {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #f1f5f9;
+      color: #475569;
     }
 
-    /* Status Banner Box */
-    .status-box {
-      border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 20px;
+    /* Status Banner Modern */
+    .status-banner {
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
       display: flex;
       align-items: flex-start;
-      gap: 16px;
+      gap: 18px;
       transition: all 0.3s;
     }
-    .status-box.pending {
+    .status-banner.pending {
       background: #fffbeb;
-      border: 1px solid #fef3c7;
+      border: 1px solid #fde68a;
       color: #92400e;
     }
-    .status-box.success {
+    .status-banner.success {
       background: #ecfdf5;
-      border: 1px solid #d1fae5;
+      border: 1px solid #a7f3d0;
       color: #065f46;
     }
-    .status-box.failed {
+    .status-banner.failed {
       background: #fef2f2;
-      border: 1px solid #fee2e2;
+      border: 1px solid #fecaca;
       color: #991b1b;
     }
-    .status-icon {
-      font-size: 28px;
-      line-height: 1;
+
+    .banner-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
     }
-    .status-info h3 {
-      margin: 0 0 4px;
-      font-size: 16px;
-      font-weight: 800;
+    .status-banner.pending .banner-icon-box {
+      background: #fef3c7;
+      color: #d97706;
     }
-    .status-info p {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.5;
-      opacity: 0.9;
+    .status-banner.success .banner-icon-box {
+      background: #d1fae5;
+      color: #059669;
+    }
+    .status-banner.failed .banner-icon-box {
+      background: #fee2e2;
+      color: #dc2626;
     }
 
-    /* Actions */
-    .pay-actions {
+    .banner-text-box h3 {
+      margin: 0 0 4px;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .banner-text-box p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      opacity: 0.95;
+    }
+    .banner-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .status-banner.pending .banner-pill { background: #fde68a; color: #78350f; }
+    .status-banner.success .banner-pill { background: #a7f3d0; color: #064e3b; }
+    .status-banner.failed .banner-pill { background: #fecaca; color: #7f1d1d; }
+
+    /* Total Payment Hero Block */
+    .total-pay-box {
+      background: linear-gradient(to right, #f8fafc, #f1f5f9);
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .total-pay-meta small {
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .total-pay-meta .amount-val {
+      font-size: clamp(24px, 3vw, 30px);
+      font-weight: 900;
+      color: #0369a1;
+      letter-spacing: -0.03em;
+      margin-top: 2px;
+    }
+    .payment-brand-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+    .payment-brand-badge span {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .midtrans-official-tag {
+      background: #0284c7;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    /* Key-Value Details */
+    .receipt-data-table {
+      width: 100%;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 14px;
+    }
+    .data-row:last-child {
+      border-bottom: none;
+    }
+    .data-label {
+      color: #64748b;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .data-val {
+      font-weight: 700;
+      color: #0f172a;
+      text-align: right;
+    }
+    .data-val.highlight {
+      color: #0284c7;
+    }
+
+    /* Actions Button Group */
+    .action-group {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-top: 20px;
     }
-    .btn-action {
+    .btn-receipt {
       display: flex;
+      align-items: center;
       justify-content: center;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 20px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 15px;
-      cursor: pointer;
-      text-decoration: none;
-      border: none;
-      transition: all 0.2s;
-    }
-    .btn-pay-now {
-      background: #0369a1;
-      color: white;
-      box-shadow: 0 4px 14px rgba(3, 105, 161, 0.25);
-    }
-    .btn-pay-now:hover {
-      background: #0284c7;
-      transform: translateY(-1px);
-    }
-    .btn-check-status {
-      background: #f1f5f9;
-      color: #1e293b;
-      border: 1px solid #cbd5e1;
-    }
-    .btn-check-status:hover {
-      background: #e2e8f0;
-    }
-    .btn-wa-confirm {
-      background: #25d366;
-      color: white;
-    }
-    .btn-wa-confirm:hover {
-      background: #1ebc57;
-    }
-
-    /* Detail Rows */
-    .detail-list {
-      display: grid;
-      gap: 12px;
-    }
-    .detail-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 8px 0;
-      border-bottom: 1px solid #f1f5f9;
-      font-size: 14px;
-    }
-    .detail-row:last-child { border-bottom: none; }
-    .detail-row span:first-child { color: var(--muted); }
-    .detail-row strong { text-align: right; color: var(--ink); }
-
-    .items-container {
-      margin-top: 14px;
-      border-top: 1px dashed var(--line);
-      padding-top: 14px;
-      display: grid;
       gap: 10px;
+      padding: 15px 22px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .order-item-card {
+    .btn-receipt:active {
+      transform: scale(0.98);
+    }
+    .btn-pay-snap {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.45);
+    }
+    .btn-pay-snap:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -4px rgba(2, 132, 199, 0.55);
+    }
+    .btn-refresh-status {
+      background: #ffffff;
+      color: #1e293b;
+      border: 1.5px solid #cbd5e1;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .btn-refresh-status:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .btn-contact-wa {
+      background: #10b981;
+      color: #ffffff;
+      box-shadow: 0 8px 18px -4px rgba(16, 185, 129, 0.35);
+    }
+    .btn-contact-wa:hover {
+      background: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px -4px rgba(16, 185, 129, 0.45);
+    }
+
+    /* Product Item in Right Column */
+    .receipt-items-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .receipt-item-card {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       background: #f8fafc;
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 13px;
-    }
-    .order-item-card img {
-      width: 44px;
-      height: 44px;
-      object-fit: contain;
-      background: #fff;
       border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 2px;
+      border-radius: 14px;
+      padding: 12px 14px;
+      transition: border-color 0.2s;
     }
-    .order-item-card-info {
+    .receipt-item-card:hover {
+      border-color: #cbd5e1;
+    }
+    .receipt-item-img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+    .receipt-item-info {
       flex: 1;
       min-width: 0;
     }
-    .order-item-title {
-      font-weight: 700;
+    .receipt-item-title {
+      font-weight: 800;
+      font-size: 14px;
+      color: #0f172a;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      margin-bottom: 3px;
     }
-    .order-item-sub {
-      color: var(--muted);
+    .receipt-item-meta {
+      font-size: 12.5px;
+      color: #64748b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .receipt-item-subtotal {
+      font-weight: 800;
+      color: #0284c7;
+    }
+
+    /* Customer Info Box */
+    .customer-info-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .customer-info-title {
       font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #64748b;
+      font-weight: 800;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .customer-field {
+      margin-bottom: 8px;
+      font-size: 13.5px;
+    }
+    .customer-field:last-child { margin-bottom: 0; }
+    .customer-field span {
+      color: #64748b;
+      font-size: 12px;
+      display: block;
+    }
+    .customer-field strong {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* Cost Summary Breakdown */
+    .cost-breakdown {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 16px;
+      display: grid;
+      gap: 10px;
+      font-size: 13.5px;
+    }
+    .cost-row {
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+    }
+    .cost-row.free span:last-child {
+      color: #10b981;
+      font-weight: 700;
+    }
+    .cost-row.total {
+      border-top: 1px solid #cbd5e1;
+      padding-top: 12px;
+      margin-top: 4px;
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .cost-row.total span:last-child {
+      color: #0284c7;
+      font-size: 18px;
+    }
+
+    /* Trust Guarantee Strip */
+    .trust-strip {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px 24px;
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .trust-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0284c7;
+      flex-shrink: 0;
+    }
+    .trust-text h4 {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 800;
+      color: #1e293b;
+    }
+    .trust-text p {
+      margin: 2px 0 0;
+      font-size: 11.5px;
+      color: #64748b;
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toast-msg.show {
+      transform: translateY(0);
+      opacity: 1;
     }
 
     .spinner-sm {
@@ -276,105 +790,397 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    @media (max-width: 768px) {
-      .pay-grid { grid-template-columns: 1fr; }
-      .pay-header { padding: 22px; border-radius: 16px; }
-      .pay-card { padding: 18px; }
+    /* Responsive */
+    @media (max-width: 860px) {
+      .receipt-grid {
+        grid-template-columns: 1fr;
+      }
+      .receipt-header-card {
+        padding: 24px;
+      }
+      .header-main-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .invoice-tag-box {
+        text-align: left;
+        width: 100%;
+      }
+      .invoice-tag-box .inv-id {
+        justify-content: space-between;
+      }
+      .stepper-desc {
+        display: none;
+      }
+      .stepper-dot {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+      }
+      .stepper-label {
+        font-size: 11.5px;
+      }
+    }
+
+    /* Print Mode Styles */
+    @media print {
+      body {
+        background: #ffffff;
+        color: #000000;
+      }
+      .receipt-nav,
+      .btn-receipt,
+      .trust-strip,
+      #siteFooter {
+        display: none !important;
+      }
+      .receipt-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+      }
+      .receipt-header-card {
+        background: #071a2d !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .receipt-grid {
+        display: block;
+      }
+      .r-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-<main class="pay-wrap">
-  <a class="pay-back" href="/laptop">← Kembali ke Katalog Laptop</a>
-
-  <header class="pay-header">
-    <div class="pay-header-text">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
-        <img src="/static/videos/img/Logo.png" alt="Losari Computer" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-        <small>LOSARI COMPUTER · PAYMENT GATEWAY</small>
-      </div>
-      <h1>Status Pembayaran Pesanan</h1>
-      <p>Konfirmasi transaksi resmi terhubung langsung dengan sistem pembayaran Midtrans.</p>
+<main class="receipt-container">
+  
+  <!-- Navigation & Action Bar -->
+  <div class="receipt-nav">
+    <a class="nav-back-link" href="/laptop">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      <span>Kembali ke Katalog Laptop</span>
+    </a>
+    <div class="nav-right-actions">
+      <button class="btn-print" type="button" onclick="window.print()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        <span>Cetak Bukti Transaksi</span>
+      </button>
     </div>
-    <div class="midtrans-badge">
-      <span class="dot"></span> Midtrans Secured 256-bit
+  </div>
+
+  <!-- Header Invoice Resmi -->
+  <header class="receipt-header-card">
+    <div class="header-top-row">
+      <div class="brand-identity">
+        <div class="brand-logo-circle">
+          <img src="/static/videos/img/Logo.png" alt="Losari Computer">
+        </div>
+        <div class="brand-meta">
+          <h2>Losari Computer</h2>
+          <p>Official Store &amp; IT Service Hub Makassar</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <div class="official-badge">
+          <span class="pulse-dot"></span>
+          <span>Midtrans Verified Gateway</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-main-row">
+      <div class="header-title-box">
+        <small>Bukti Transaksi Resmi · Digital Receipt</small>
+        <h1>Konfirmasi Status Pesanan</h1>
+        <p>Halaman ini terhubung secara real-time dengan server pembayaran Midtrans untuk verifikasi transaksi secara instan.</p>
+      </div>
+
+      <div class="invoice-tag-box">
+        <div class="inv-label">Nomor Transaksi (Order ID)</div>
+        <div class="inv-id">
+          <span id="dispOrderIdText">LOSARI-XXXXXX</span>
+          <button class="btn-copy-id" id="btnCopyOrderId" type="button" title="Salin Order ID">
+            Salin
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
-  <div class="pay-grid">
-    <!-- Kolom Kiri: Status & Aksi Pembayaran -->
-    <section class="pay-card">
-      <h2>Status Transaksi</h2>
-      
-      <div id="statusBox" class="status-box pending">
-        <div class="status-icon" id="statusIcon">⏳</div>
-        <div class="status-info">
-          <h3 id="statusTitle">Menunggu Pembayaran</h3>
-          <p id="statusDesc">Pesanan Anda telah dibuat di Midtrans. Silakan selesaikan pembayaran melalui popup Snap atau aplikasi pilihan Anda.</p>
-        </div>
+  <!-- Progress Stepper (Timeline Transaksi) -->
+  <section class="receipt-stepper-card">
+    <div class="stepper-track">
+      <div class="stepper-item completed" id="step1">
+        <div class="stepper-dot">✓</div>
+        <div class="stepper-label">Pesanan Dibuat</div>
+        <div class="stepper-desc">Rincian dicatat</div>
       </div>
+      <div class="stepper-item active" id="step2">
+        <div class="stepper-dot">2</div>
+        <div class="stepper-label" id="step2Label">Menunggu Bayar</div>
+        <div class="stepper-desc" id="step2Desc">Midtrans Snap</div>
+      </div>
+      <div class="stepper-item" id="step3">
+        <div class="stepper-dot">3</div>
+        <div class="stepper-label">Verifikasi Sukses</div>
+        <div class="stepper-desc">Lunas otomatis</div>
+      </div>
+      <div class="stepper-item" id="step4">
+        <div class="stepper-dot">4</div>
+        <div class="stepper-label">Siap Dikirim</div>
+        <div class="stepper-desc">QC &amp; Packing kayu</div>
+      </div>
+    </div>
+  </section>
 
-      <div class="detail-list">
-        <div class="detail-row">
-          <span>Status Gateway</span>
-          <strong id="gwStatusText">Pending</strong>
+  <!-- Konten Utama 2 Kolom -->
+  <div class="receipt-grid">
+    
+    <!-- KOLOM KIRI: STATUS & AKSI PEMBAYARAN -->
+    <div class="grid-left-col">
+      <section class="r-card">
+        <div class="card-head">
+          <h2>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
+            Status Pembayaran
+          </h2>
+          <span class="card-tag" id="channelTag">Midtrans 24/7</span>
         </div>
-        <div class="detail-row">
-          <span>Metode Bayar</span>
-          <strong id="gwPaymentType">Midtrans Snap (QRIS / VA / e-Wallet)</strong>
-        </div>
-        <div class="detail-row">
-          <span>Total Tagihan</span>
-          <strong id="gwAmount" style="font-size: 18px; color: #0369a1;">Rp 0</strong>
-        </div>
-        <div class="detail-row" id="timeRow" style="display: none;">
-          <span>Waktu Transaksi</span>
-          <strong id="gwTime">-</strong>
-        </div>
-      </div>
 
-      <div class="pay-actions">
-        <button class="btn-action btn-pay-now" id="btnPayNow">
-          💳 Bayar Sekarang dengan Midtrans
-        </button>
-        <button class="btn-action btn-check-status" id="btnCheckStatus">
-          🔄 Cek Status Terkini
-        </button>
-        <a class="btn-action btn-wa-confirm" id="btnWhatsApp" href="#" target="_blank" rel="noopener">
-          💬 Konfirmasi via WhatsApp Admin
-        </a>
-      </div>
-    </section>
+        <!-- Banner Status -->
+        <div id="statusBanner" class="status-banner pending">
+          <div class="banner-icon-box" id="bannerIconBox">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="banner-text-box">
+            <h3 id="bannerTitle">Menunggu Pembayaran</h3>
+            <p id="bannerDesc">Tagihan Anda telah terdaftar resmi di Midtrans Payment Gateway. Silakan lakukan pembayaran sebelum batas waktu berakhir.</p>
+            <div class="banner-pill" id="bannerBadge">STATUS: PENDING</div>
+          </div>
+        </div>
 
-    <!-- Kolom Kanan: Rincian Pesanan -->
-    <aside class="pay-card">
-      <h2>Ringkasan Pesanan</h2>
-      <div class="detail-list">
-        <div class="detail-row">
-          <span>Order ID</span>
-          <strong id="dispOrderId">-</strong>
+        <!-- Total Tagihan Hero Block -->
+        <div class="total-pay-box">
+          <div class="total-pay-meta">
+            <small>Total Tagihan Final</small>
+            <div class="amount-val" id="dispTotalAmount">Rp 0</div>
+          </div>
+          <div class="payment-brand-badge">
+            <div class="midtrans-official-tag">MIDTRANS SNAP</div>
+            <span id="dispPaymentChannel">QRIS / VA / E-Wallet</span>
+          </div>
         </div>
-        <div class="detail-row">
-          <span>Nama Penerima</span>
-          <strong id="dispName">-</strong>
-        </div>
-        <div class="detail-row">
-          <span>Nomor WhatsApp</span>
-          <strong id="dispPhone">-</strong>
-        </div>
-        <div class="detail-row">
-          <span>Alamat</span>
-          <strong id="dispAddress" style="max-width: 60%; word-break: break-word;">-</strong>
-        </div>
-      </div>
 
-      <div class="items-container" id="itemsList">
-        <!-- Render items from checkoutData -->
-      </div>
-    </aside>
+        <!-- Tabel Detail Teknis Gateway -->
+        <div class="receipt-data-table">
+          <div class="data-row">
+            <span class="data-label">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              Status Gateway
+            </span>
+            <span class="data-val" id="gwStatusText" style="color: #f59e0b;">Menunggu Pembayaran</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+              Metode Pembayaran
+            </span>
+            <span class="data-val highlight" id="gwMethodName">Midtrans Official (Semua Saluran)</span>
+          </div>
+          <div class="data-row" id="rowTxTime" style="display: none;">
+            <span class="data-label">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              Waktu Transaksi
+            </span>
+            <span class="data-val" id="gwTimeVal">-</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+              Verifikasi Otomatis
+            </span>
+            <span class="data-val" style="color: #10b981;">Aktif (Real-Time Webhook)</span>
+          </div>
+        </div>
+
+        <!-- Tombol Aksi Utama -->
+        <div class="action-group">
+          <button class="btn-receipt btn-pay-snap" id="btnPayNow" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
+            <span>Bayar Sekarang (Buka Midtrans Snap)</span>
+          </button>
+
+          <button class="btn-receipt btn-refresh-status" id="btnCheckStatus" type="button">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+            <span>Perbarui / Cek Status Terkini</span>
+          </button>
+
+          <a class="btn-receipt btn-contact-wa" id="btnWhatsApp" href="#" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span>Konfirmasi dengan Admin WhatsApp</span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- KOLOM KANAN: RINCIAN PRODUK & PENGIRIMAN -->
+    <div class="grid-right-col">
+      <section class="r-card">
+        <div class="card-head">
+          <h2>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            Rincian Pembelian
+          </h2>
+          <span class="card-tag" id="dispItemsCount">1 Item</span>
+        </div>
+
+        <!-- Daftar Unit Laptop -->
+        <div class="receipt-items-wrap" id="receiptItemsContainer">
+          <!-- Item dirender via JS -->
+        </div>
+
+        <!-- Alamat & Kontak Penerima -->
+        <div class="customer-info-box">
+          <div class="customer-info-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Tujuan Pengiriman &amp; Penerima
+          </div>
+          <div class="customer-field">
+            <span>Nama Lengkap:</span>
+            <strong id="dispCustomerName">-</strong>
+          </div>
+          <div class="customer-field">
+            <span>Nomor WhatsApp:</span>
+            <strong id="dispCustomerPhone">-</strong>
+          </div>
+          <div class="customer-field">
+            <span>Alamat Lengkap:</span>
+            <strong id="dispCustomerAddress">-</strong>
+          </div>
+        </div>
+
+        <!-- Breakdown Biaya -->
+        <div class="cost-breakdown">
+          <div class="cost-row">
+            <span>Subtotal Produk</span>
+            <span id="dispSubtotal">Rp 0</span>
+          </div>
+          <div class="cost-row free">
+            <span>Biaya Pengiriman</span>
+            <span>Gratis Promo (Rp 0)</span>
+          </div>
+          <div class="cost-row free">
+            <span>Packing Kayu &amp; Bubble Wrap</span>
+            <span>Termasuk Gratis</span>
+          </div>
+          <div class="cost-row free">
+            <span>Garansi Toko Resmi</span>
+            <span>1 Bulan Aktif</span>
+          </div>
+          <div class="cost-row total">
+            <span>Total Akhir</span>
+            <span id="dispTotalFinal">Rp 0</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
   </div>
+
+  <!-- Trust & Security Strip -->
+  <section class="trust-strip">
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+      </div>
+      <div class="trust-text">
+        <h4>Garansi Toko 1 Bulan</h4>
+        <p>Jaminan unit original &amp; siap pakai</p>
+      </div>
+    </div>
+
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </div>
+      <div class="trust-text">
+        <h4>Enkripsi 256-Bit SSL</h4>
+        <p>Transaksi aman via Midtrans</p>
+      </div>
+    </div>
+
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <div class="trust-text">
+        <h4>QC 20+ Titik Ketat</h4>
+        <p>Hardware, baterai, layar teruji</p>
+      </div>
+    </div>
+
+    <div class="trust-item">
+      <div class="trust-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+      <div class="trust-text">
+        <h4>Bantuan CS Ramah</h4>
+        <p>Siap bantu via WhatsApp 24/7</p>
+      </div>
+    </div>
+  </section>
+
 </main>
+
+<!-- Toast -->
+<div class="toast-msg" id="toastMsg">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  <span id="toastText">Order ID berhasil disalin!</span>
+</div>
 
 <!-- Losari Computer — Footer -->
 <footer class="ld-wave-footer" id="siteFooter">
@@ -394,7 +1200,7 @@
               <span class="ld-brand-tagline">Spesialis Laptop Second &amp; IT Solution</span>
             </div>
           </a>
-          <p class="ld-brand-desc">Pusat laptop second berkualitas. Teruji 20+ titik QC, bergaransi toko, siap kirim ke seluruh Indonesia.</p>
+          <p class="ld-brand-desc">Pusat laptop second berkualitas di Makassar. Teruji 20+ titik QC, bergaransi toko, siap kirim ke seluruh Indonesia.</p>
         </div>
         <div class="ld-nav-col">
           <h4 class="ld-col-head">Navigasi</h4>
@@ -407,22 +1213,22 @@
           </ul>
         </div>
         <div class="ld-nav-col">
-          <h4 class="ld-col-head">Hubungi Kami</h4>
+          <h4 class="ld-col-head">Pusat Bantuan</h4>
           <div class="ld-contact-info">
             <div class="ld-contact-item">
-              <span>Karebosi Link, Makassar — Sulawesi Selatan</span>
+              <span>Karebosi Link Blok B, Makassar</span>
             </div>
             <div class="ld-contact-item">
               <a href="https://wa.me/6285332990156" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WA: <strong>+62 853-3299-0156</strong></a>
             </div>
             <div class="ld-contact-item">
-              <span>Setiap Hari: 09.00 – 21.00 WITA</span>
+              <span>Buka Setiap Hari: 09.00 – 21.00 WITA</span>
             </div>
           </div>
         </div>
       </div>
       <div class="ld-bottom-row">
-        <p class="ld-copyright-text">&copy; 2026 <strong>Losari Computer</strong>. Hak Cipta Dilindungi.</p>
+        <p class="ld-copyright-text">&copy; 2026 <strong>Losari Computer Makassar</strong>. All rights reserved.</p>
       </div>
     </div>
   </div>
@@ -434,166 +1240,296 @@
   let checkoutData = {};
   try {
     checkoutData = JSON.parse(localStorage.getItem('checkoutData') || '{}');
-  } catch (e) {}
+  } catch (e) {
+    checkoutData = {};
+  }
 
   const orderId = params.get('order_id') || checkoutData.orderId || ('LOSARI-' + Date.now().toString().slice(-6));
   const urlStatus = params.get('status') || '';
   const rupiah = n => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(Number(n) || 0);
 
-  // Set ringkasan pesanan
-  const dispOrderId = document.getElementById('dispOrderId');
-  const dispName = document.getElementById('dispName');
-  const dispPhone = document.getElementById('dispPhone');
-  const dispAddress = document.getElementById('dispAddress');
-  const gwAmount = document.getElementById('gwAmount');
+  // Bind DOM elements
+  const dispOrderIdText = document.getElementById('dispOrderIdText');
+  const btnCopyOrderId = document.getElementById('btnCopyOrderId');
+  const toastMsg = document.getElementById('toastMsg');
+  const toastText = document.getElementById('toastText');
+
+  const step2 = document.getElementById('step2');
+  const step2Label = document.getElementById('step2Label');
+  const step2Desc = document.getElementById('step2Desc');
+  const step3 = document.getElementById('step3');
+  const step4 = document.getElementById('step4');
+
+  const statusBanner = document.getElementById('statusBanner');
+  const bannerIconBox = document.getElementById('bannerIconBox');
+  const bannerTitle = document.getElementById('bannerTitle');
+  const bannerDesc = document.getElementById('bannerDesc');
+  const bannerBadge = document.getElementById('bannerBadge');
+
+  const dispTotalAmount = document.getElementById('dispTotalAmount');
+  const dispSubtotal = document.getElementById('dispSubtotal');
+  const dispTotalFinal = document.getElementById('dispTotalFinal');
+  const dispPaymentChannel = document.getElementById('dispPaymentChannel');
   const gwStatusText = document.getElementById('gwStatusText');
-  const gwPaymentType = document.getElementById('gwPaymentType');
-  const statusBox = document.getElementById('statusBox');
-  const statusIcon = document.getElementById('statusIcon');
-  const statusTitle = document.getElementById('statusTitle');
-  const statusDesc = document.getElementById('statusDesc');
+  const gwMethodName = document.getElementById('gwMethodName');
+  const rowTxTime = document.getElementById('rowTxTime');
+  const gwTimeVal = document.getElementById('gwTimeVal');
+
   const btnPayNow = document.getElementById('btnPayNow');
   const btnCheckStatus = document.getElementById('btnCheckStatus');
   const btnWhatsApp = document.getElementById('btnWhatsApp');
-  const itemsList = document.getElementById('itemsList');
 
-  if (dispOrderId) dispOrderId.textContent = orderId;
-  if (dispName) dispName.textContent = checkoutData.name || 'Pelanggan Losari';
-  if (dispPhone) dispPhone.textContent = checkoutData.phone || '-';
-  if (dispAddress) dispAddress.textContent = checkoutData.address || '-';
-  if (gwAmount) gwAmount.textContent = rupiah(checkoutData.total || 0);
+  const receiptItemsContainer = document.getElementById('receiptItemsContainer');
+  const dispItemsCount = document.getElementById('dispItemsCount');
+  const dispCustomerName = document.getElementById('dispCustomerName');
+  const dispCustomerPhone = document.getElementById('dispCustomerPhone');
+  const dispCustomerAddress = document.getElementById('dispCustomerAddress');
 
-  // Render item list
-  if (Array.isArray(checkoutData.items) && checkoutData.items.length) {
-    itemsList.innerHTML = checkoutData.items.map(it => `
-      <div class="order-item-card">
-        <img src="${it.image || '/static/images/laptop/thinkpad-t490.jpg'}" alt="${it.name}">
-        <div class="order-item-card-info">
-          <div class="order-item-title">${it.name}</div>
-          <div class="order-item-sub">${it.qty || 1} unit × ${rupiah(it.price)}</div>
+  // Set ID & Customer Info
+  if (dispOrderIdText) dispOrderIdText.textContent = orderId;
+  if (dispCustomerName) dispCustomerName.textContent = checkoutData.name || 'Pelanggan Losari';
+  if (dispCustomerPhone) dispCustomerPhone.textContent = checkoutData.phone || '-';
+  if (dispCustomerAddress) dispCustomerAddress.textContent = checkoutData.address || 'Alamat Penerima';
+
+  const finalTotal = Number(checkoutData.total) || 0;
+  if (dispTotalAmount) dispTotalAmount.textContent = rupiah(finalTotal);
+  if (dispSubtotal) dispSubtotal.textContent = rupiah(finalTotal);
+  if (dispTotalFinal) dispTotalFinal.textContent = rupiah(finalTotal);
+
+  // Render items list
+  const items = Array.isArray(checkoutData.items) && checkoutData.items.length ? checkoutData.items : [];
+  if (dispItemsCount) dispItemsCount.textContent = `${items.length || 1} Item`;
+
+  if (items.length > 0) {
+    receiptItemsContainer.innerHTML = items.map(it => `
+      <div class="receipt-item-card">
+        <img class="receipt-item-img" src="${it.image || '/static/images/laptop/thinkpad-t490.jpg'}" alt="${it.name || 'Laptop'}">
+        <div class="receipt-item-info">
+          <div class="receipt-item-title">${it.name || 'Laptop Pilihan'}</div>
+          <div class="receipt-item-meta">
+            <span>${it.qty || 1} unit × ${rupiah(it.price || finalTotal)}</span>
+            <span class="receipt-item-subtotal">${rupiah((it.qty || 1) * (it.price || finalTotal))}</span>
+          </div>
         </div>
       </div>
     `).join('');
   } else {
-    itemsList.innerHTML = '<p style="color:#64748b; font-size:13px; margin:0;">Tidak ada rincian item dalam cache.</p>';
+    receiptItemsContainer.innerHTML = `
+      <div class="receipt-item-card">
+        <img class="receipt-item-img" src="/static/videos/img/Logo.png" alt="Pesanan Losari">
+        <div class="receipt-item-info">
+          <div class="receipt-item-title">Pesanan Laptop Losari Computer</div>
+          <div class="receipt-item-meta">
+            <span>1 unit</span>
+            <span class="receipt-item-subtotal">${rupiah(finalTotal)}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Copy Order ID Toast
+  function showToast(msg) {
+    if (!toastMsg) return;
+    if (toastText) toastText.textContent = msg;
+    toastMsg.classList.add('show');
+    setTimeout(() => toastMsg.classList.remove('show'), 2500);
+  }
+
+  if (btnCopyOrderId) {
+    btnCopyOrderId.addEventListener('click', () => {
+      navigator.clipboard.writeText(orderId).then(() => {
+        showToast(`Order ID ${orderId} berhasil disalin!`);
+      }).catch(() => {
+        showToast(`Order ID: ${orderId}`);
+      });
+    });
   }
 
   // Update link WhatsApp konfirmasi
   function updateWhatsAppLink(isPaid) {
     const phone = '6285332990156';
     const text = isPaid
-      ? `Halo Admin Losari Computer, saya sudah menyelesaikan pembayaran via Midtrans untuk Pesanan ${orderId} sebesar ${rupiah(checkoutData.total || 0)}. Mohon segera diproses dan dikirim ke ${checkoutData.address || 'alamat saya'}. Terima kasih!`
-      : `Halo Admin Losari Computer, saya ingin konfirmasi pesanan ${orderId} sebesar ${rupiah(checkoutData.total || 0)}. Apakah unit ini siap kirim?`;
-    btnWhatsApp.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+      ? `Halo Admin Losari Computer, saya sudah menyelesaikan pembayaran via Midtrans untuk Pesanan ${orderId} senilai ${rupiah(finalTotal)}. Mohon segera dicek dan dikirim ke alamat saya: ${checkoutData.address || '-'}. Terima kasih!`
+      : `Halo Admin Losari Computer, saya sedang memproses pembayaran untuk Pesanan ${orderId} senilai ${rupiah(finalTotal)}. Mohon bantuannya jika butuh bantuan pembayaran. Terima kasih!`;
+    if (btnWhatsApp) {
+      btnWhatsApp.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+    }
   }
   updateWhatsAppLink(false);
 
-  const qrisDirectBox = document.getElementById('qrisDirectBox');
-  const btnMarkPaidManual = document.getElementById('btnMarkPaidManual');
-
+  // Apply visual status update
   function applyStatus(status, paymentType, time) {
-    statusBox.className = 'status-box';
+    statusBanner.className = 'status-banner';
+
     if (status === 'settlement' || status === 'capture' || status === 'paid') {
-      statusBox.classList.add('success');
-      statusIcon.textContent = '✅';
-      statusTitle.textContent = 'Pembayaran Berhasil Diterima!';
-      statusDesc.textContent = 'Terima kasih, pembayaran Anda telah berhasil diverifikasi oleh Midtrans. Pesanan sedang dipersiapkan untuk pengiriman ke alamat Anda.';
-      gwStatusText.textContent = 'Lunas (Verified Midtrans)';
+      statusBanner.classList.add('success');
+      bannerIconBox.innerHTML = `
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      `;
+      bannerTitle.textContent = 'Pembayaran Berhasil Diterima & Terverifikasi!';
+      bannerDesc.textContent = 'Selamat! Transaksi Anda telah dikonfirmasi sah oleh Midtrans. Tim teknisi kami sedang mempersiapkan unit laptop, melakukan final QC, dan mengemas pesanan dengan packing kayu aman.';
+      bannerBadge.textContent = 'STATUS: LUNAS (VERIFIED)';
+
+      gwStatusText.textContent = 'Lunas Terverifikasi (Settlement)';
       gwStatusText.style.color = '#10b981';
-      btnPayNow.style.display = 'none';
+
+      // Stepper updates
+      step2.className = 'stepper-item completed';
+      step2.querySelector('.stepper-dot').textContent = '✓';
+      step3.className = 'stepper-item completed';
+      step3.querySelector('.stepper-dot').textContent = '✓';
+      step4.className = 'stepper-item active';
+
+      if (btnPayNow) btnPayNow.style.display = 'none';
       updateWhatsAppLink(true);
       localStorage.setItem('paymentStatus', 'paid');
+
     } else if (status === 'pending') {
-      statusBox.classList.add('pending');
-      statusIcon.textContent = '⏳';
-      statusTitle.textContent = 'Menunggu Pembayaran';
-      statusDesc.textContent = 'Pesanan Anda telah tercatat di Midtrans. Silakan selesaikan pembayaran melalui popup Midtrans Snap atau cek status pembayaran terkini.';
+      statusBanner.classList.add('pending');
+      bannerIconBox.innerHTML = `
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+      `;
+      bannerTitle.textContent = 'Menunggu Pembayaran';
+      bannerDesc.textContent = 'Pesanan Anda telah tercatat resmi di sistem Midtrans. Silakan selesaikan pembayaran Anda melalui QRIS, Virtual Account, atau e-Wallet pada jendela Midtrans Snap.';
+      bannerBadge.textContent = 'STATUS: MENUNGGU PEMBAYARAN';
+
       gwStatusText.textContent = 'Menunggu Pembayaran (Pending)';
       gwStatusText.style.color = '#f59e0b';
-      btnPayNow.style.display = 'flex';
+
+      step2.className = 'stepper-item active';
+      step3.className = 'stepper-item';
+      step4.className = 'stepper-item';
+
+      if (btnPayNow) {
+        btnPayNow.style.display = 'flex';
+        btnPayNow.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+            <line x1="1" y1="10" x2="23" y2="10"></line>
+          </svg>
+          <span>Bayar Sekarang (Buka Midtrans Snap)</span>
+        `;
+      }
       updateWhatsAppLink(false);
+
     } else if (status === 'expire' || status === 'cancel' || status === 'deny') {
-      statusBox.classList.add('failed');
-      statusIcon.textContent = '❌';
-      statusTitle.textContent = 'Transaksi Kedaluwarsa / Dibatalkan';
-      statusDesc.textContent = 'Waktu pembayaran telah habis atau transaksi dibatalkan. Silakan pesan kembali melalui katalog laptop.';
+      statusBanner.classList.add('failed');
+      bannerIconBox.innerHTML = `
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
+      `;
+      bannerTitle.textContent = 'Transaksi Kedaluwarsa / Dibatalkan';
+      bannerDesc.textContent = 'Batas waktu pembayaran untuk transaksi ini telah habis atau dibatalkan oleh sistem. Anda dapat membuat pesanan baru kapan saja melalui katalog.';
+      bannerBadge.textContent = 'STATUS: KEDALUWARSA / BATAL';
+
       gwStatusText.textContent = 'Batal / Expire';
       gwStatusText.style.color = '#ef4444';
-      btnPayNow.textContent = '🛍️ Pesan Kembali di Katalog';
-      btnPayNow.onclick = () => window.location.href = '/laptop';
-      btnPayNow.style.display = 'flex';
+
+      step2.className = 'stepper-item';
+      step3.className = 'stepper-item';
+      step4.className = 'stepper-item';
+
+      if (btnPayNow) {
+        btnPayNow.style.display = 'flex';
+        btnPayNow.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span>Pesan Kembali di Katalog Laptop</span>
+        `;
+        btnPayNow.onclick = () => window.location.href = '/laptop';
+      }
     }
 
     if (paymentType) {
-      gwPaymentType.textContent = paymentType.toUpperCase();
+      const typeUpper = String(paymentType).replace(/_/g, ' ').toUpperCase();
+      gwMethodName.textContent = typeUpper;
+      if (dispPaymentChannel) dispPaymentChannel.textContent = typeUpper;
     }
+
     if (time) {
-      const timeRow = document.getElementById('timeRow');
-      const gwTime = document.getElementById('gwTime');
-      if (timeRow && gwTime) {
-        timeRow.style.display = 'flex';
-        gwTime.textContent = time;
+      if (rowTxTime && gwTimeVal) {
+        rowTxTime.style.display = 'flex';
+        gwTimeVal.textContent = time;
       }
     }
   }
 
-  // Cek status ke Midtrans backend
+  // Fetch status directly from backend
   async function fetchMidtransStatus() {
     if (!orderId) return;
-    const origText = btnCheckStatus.innerHTML;
+    const origHTML = btnCheckStatus.innerHTML;
     btnCheckStatus.disabled = true;
-    btnCheckStatus.innerHTML = '<span class="spinner-sm"></span> Memeriksa status Midtrans...';
+    btnCheckStatus.innerHTML = '<span class="spinner-sm"></span> <span>Memeriksa Midtrans...</span>';
 
     try {
       const res = await fetch(`/api/midtrans/status/${encodeURIComponent(orderId)}`);
       const resData = await res.json();
 
       if (resData.ok && resData.status) {
-        applyStatus(resData.status, resData.paymentType, resData.transactionTime);
-      } else if (urlStatus === 'paid') {
+        applyStatus(resData.status, resData.paymentType, resData.transactionTime || resData.settlementTime);
+      } else if (urlStatus === 'paid' || urlStatus === 'finish') {
         applyStatus('paid', 'Midtrans Instant');
       } else {
         applyStatus('pending', checkoutData.method || 'Midtrans');
       }
     } catch (e) {
       console.error('Error fetching status:', e);
-      if (urlStatus === 'paid') applyStatus('paid', 'Midtrans');
+      if (urlStatus === 'paid' || urlStatus === 'finish') {
+        applyStatus('paid', 'Midtrans');
+      }
     } finally {
       btnCheckStatus.disabled = false;
-      btnCheckStatus.innerHTML = origText;
+      btnCheckStatus.innerHTML = origHTML;
     }
   }
 
-  // Tombol Bayar Sekarang
-  btnPayNow.onclick = () => {
-    if (checkoutData.token && window.snap && typeof window.snap.pay === 'function') {
-      window.snap.pay(checkoutData.token, {
-        onSuccess: function (result) {
-          applyStatus('settlement', result.payment_type);
-          fetchMidtransStatus();
-        },
-        onPending: function (result) {
-          applyStatus('pending', result.payment_type);
-          fetchMidtransStatus();
-        },
-        onError: function (result) {
-          alert('Pembayaran gagal: ' + ((result && result.status_message) || 'Silakan ulangi'));
-        },
-        onClose: function () {
-          fetchMidtransStatus();
-        }
-      });
-    } else if (checkoutData.redirectUrl) {
-      window.open(checkoutData.redirectUrl, '_blank');
-    } else {
-      alert('Sesi pembayaran ini telah selesai atau belum dibuat. Silakan kembali ke katalog untuk memesan unit.');
-      window.location.href = '/laptop';
-    }
-  };
+  // Button Bayar Sekarang Snap
+  if (btnPayNow) {
+    btnPayNow.addEventListener('click', () => {
+      if (checkoutData.token && window.snap && typeof window.snap.pay === 'function') {
+        window.snap.pay(checkoutData.token, {
+          onSuccess: function (result) {
+            applyStatus('settlement', result.payment_type);
+            fetchMidtransStatus();
+          },
+          onPending: function (result) {
+            applyStatus('pending', result.payment_type);
+            fetchMidtransStatus();
+          },
+          onError: function (result) {
+            alert('Pembayaran gagal: ' + ((result && result.status_message) || 'Silakan coba lagi.'));
+          },
+          onClose: function () {
+            fetchMidtransStatus();
+          }
+        });
+      } else if (checkoutData.redirectUrl) {
+        window.open(checkoutData.redirectUrl, '_blank');
+      } else {
+        alert('Sesi Snap telah selesai atau belum dibuat. Mengarahkan Anda ke katalog laptop...');
+        window.location.href = '/laptop';
+      }
+    });
+  }
 
-  btnCheckStatus.onclick = fetchMidtransStatus;
+  if (btnCheckStatus) {
+    btnCheckStatus.addEventListener('click', fetchMidtransStatus);
+  }
 
-  // Jalankan pengecekan status saat halaman dimuat
+  // Initial fetch status on load
   fetchMidtransStatus();
 })();
 </script>
