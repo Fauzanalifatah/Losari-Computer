@@ -155,7 +155,7 @@ app.post("/api/midtrans/create-transaction", async (req, res) => {
       item_details: formattedItems,
       customer_details: formattedCustomer,
       callbacks: {
-        finish: `http://${req.headers.host || "localhost:3000"}/payment?order_id=${cleanOrderId}&status=finish`
+        finish: `${req.headers["x-forwarded-proto"] || req.protocol || "http"}://${req.headers.host || "localhost:3000"}/payment?order_id=${cleanOrderId}&status=finish`
       }
     };
 
