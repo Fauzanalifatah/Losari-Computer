@@ -36,6 +36,11 @@
       --danger-border: #fecaca;
     }
 
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     body {
       margin: 0;
       background: var(--bg-page);
@@ -48,8 +53,10 @@
     /* Container */
     .receipt-container {
       width: min(880px, calc(100% - 32px));
+      max-width: 100%;
       margin: 0 auto;
       padding: 20px 0 50px;
+      box-sizing: border-box;
     }
 
     /* Top Navigation bar */
@@ -230,16 +237,17 @@
       line-height: 1.45;
     }
     .invoice-tag-box {
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: 10px;
       padding: 8px 12px;
       text-align: right;
+      box-sizing: border-box;
     }
     .invoice-tag-box .inv-label {
       font-size: 10px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.65);
+      color: rgba(255, 255, 255, 0.7);
       font-weight: 700;
       letter-spacing: 0.06em;
     }
@@ -247,7 +255,7 @@
       font-size: 13.5px;
       font-weight: 800;
       color: #ffffff;
-      font-family: monospace;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
       letter-spacing: 0.02em;
       margin-top: 1px;
       display: flex;
@@ -255,19 +263,35 @@
       gap: 6px;
       justify-content: flex-end;
     }
+    .invoice-tag-box .inv-id span {
+      white-space: nowrap;
+    }
     .btn-copy-id {
-      background: rgba(255, 255, 255, 0.15);
-      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
-      padding: 3px 6px;
-      border-radius: 5px;
-      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 10.5px;
       cursor: pointer;
       font-weight: 700;
-      transition: background 0.2s;
+      transition: all 0.2s;
+      flex-shrink: 0;
     }
     .btn-copy-id:hover {
       background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+    .btn-copy-id:active {
+      transform: scale(0.96);
+    }
+    .btn-copy-id svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
     }
 
     /* Stepper / Timeline */
@@ -348,6 +372,12 @@
       grid-template-columns: 1.25fr 1fr;
       gap: 16px;
       align-items: start;
+      max-width: 100%;
+    }
+    .grid-left-col,
+    .grid-right-col {
+      min-width: 0;
+      max-width: 100%;
     }
 
     /* Cards */
@@ -358,6 +388,9 @@
       padding: 18px 20px;
       box-shadow: 0 3px 12px rgba(15, 23, 42, 0.03);
       margin-bottom: 16px;
+      box-sizing: border-box;
+      max-width: 100%;
+      min-width: 0;
     }
     .r-card:last-child {
       margin-bottom: 0;
@@ -366,9 +399,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
       padding-bottom: 10px;
       margin-bottom: 14px;
       border-bottom: 1px solid var(--line-subtle);
+      min-width: 0;
     }
     .card-head h2 {
       margin: 0;
@@ -378,6 +413,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      min-width: 0;
     }
     .card-head .card-tag {
       font-size: 11px;
@@ -386,6 +422,8 @@
       border-radius: 12px;
       background: #f1f5f9;
       color: #475569;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     /* Status Banner Modern */
@@ -519,14 +557,17 @@
       display: grid;
       gap: 4px;
       margin-bottom: 14px;
+      min-width: 0;
     }
     .data-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
       padding: 6px 0;
       border-bottom: 1px dashed #e2e8f0;
       font-size: 12.5px;
+      min-width: 0;
     }
     .data-row:last-child {
       border-bottom: none;
@@ -538,16 +579,20 @@
       align-items: center;
       gap: 6px;
       font-size: 12px;
+      flex-shrink: 0;
     }
     .data-label svg {
       width: 14px;
       height: 14px;
+      flex-shrink: 0;
     }
     .data-val {
       font-weight: 700;
       color: #0f172a;
       text-align: right;
       font-size: 12.5px;
+      word-break: break-word;
+      min-width: 0;
     }
     .data-val.highlight {
       color: #0284c7;
@@ -559,12 +604,14 @@
       flex-direction: column;
       gap: 10px;
       width: 100%;
+      min-width: 0;
     }
     .action-subgroup {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
       width: 100%;
+      min-width: 0;
     }
     .btn-receipt {
       display: inline-flex;
@@ -585,6 +632,7 @@
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       width: 100%;
       text-align: center;
+      min-width: 0;
     }
     .btn-receipt span {
       white-space: nowrap;
@@ -804,7 +852,7 @@
         padding: 16px 0 40px;
       }
       .receipt-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 14px;
       }
       .receipt-header-card {
@@ -813,18 +861,52 @@
       }
       .header-main-row {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+        align-items: stretch;
+        gap: 12px;
       }
       .invoice-tag-box {
-        text-align: left;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 10px 14px;
+        background: rgba(0, 0, 0, 0.35);
+        box-sizing: border-box;
+      }
+      .invoice-tag-box .inv-label {
+        font-size: 10px;
+        letter-spacing: 0.05em;
+      }
+      .invoice-tag-box .inv-id {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-      }
-      .invoice-tag-box .inv-id {
+        gap: 8px;
         margin-top: 0;
+      }
+      .invoice-tag-box .inv-id span {
+        font-size: 14px;
+        font-weight: 800;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        letter-spacing: 0.03em;
+      }
+      .btn-copy-id {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 5px 12px;
+        font-size: 11px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.2);
+        flex-shrink: 0;
+      }
+      .receipt-stepper-card {
+        padding: 12px 10px;
       }
       .stepper-desc {
         display: none;
@@ -833,43 +915,189 @@
         width: 24px;
         height: 24px;
         font-size: 11px;
+        margin-bottom: 3px;
+      }
+      .stepper-track::before {
+        top: 12px;
+        left: 8%;
+        right: 8%;
       }
       .stepper-label {
         font-size: 10.5px;
+        line-height: 1.25;
       }
       .r-card {
-        padding: 16px;
+        padding: 16px 14px;
         border-radius: 14px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .receipt-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .nav-back-link {
+        flex: 1;
+        min-width: 0;
+        justify-content: center;
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+      .nav-back-link span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .nav-right-actions {
+        flex-shrink: 0;
+      }
+      .btn-print {
+        padding: 7px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .header-top-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+      }
+      .official-badge {
+        align-self: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .data-row {
+        padding: 7px 0;
+        gap: 8px;
+        align-items: flex-start;
+      }
+      .data-label {
+        font-size: 11.5px;
+      }
+      .data-val {
+        font-size: 12px;
+        max-width: 58%;
+        word-break: break-word;
+        text-align: right;
       }
     }
 
     @media (max-width: 480px) {
       .receipt-container {
-        width: calc(100% - 16px);
+        width: calc(100% - 20px);
         padding: 12px 0 32px;
       }
-      .receipt-nav {
-        margin-bottom: 12px;
-      }
       .nav-back-link {
-        font-size: 12px;
-        padding: 5px 10px;
+        font-size: 11.5px;
+        padding: 6px 8px;
       }
       .btn-print {
         font-size: 11.5px;
-        padding: 5px 10px;
+        padding: 6px 10px;
       }
       .receipt-header-card {
-        padding: 14px;
+        padding: 14px 12px;
         margin-bottom: 12px;
+        border-radius: 12px;
+      }
+      .header-title-box small {
+        font-size: 10px;
       }
       .header-title-box h1 {
         font-size: 17px;
+        line-height: 1.3;
+        margin-bottom: 4px;
+      }
+      .header-title-box p {
+        font-size: 11.5px;
+        line-height: 1.4;
+      }
+      .receipt-stepper-card {
+        padding: 10px 6px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+      }
+      .stepper-dot {
+        width: 22px;
+        height: 22px;
+        font-size: 10px;
+        margin-bottom: 2px;
+      }
+      .stepper-track::before {
+        top: 11px;
+        left: 10%;
+        right: 10%;
+      }
+      .stepper-label {
+        font-size: 9.5px;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+      }
+      .r-card {
+        padding: 14px 12px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+      }
+      .card-head {
+        padding-bottom: 8px;
+        margin-bottom: 12px;
+      }
+      .card-head h2 {
+        font-size: 14px;
+        gap: 6px;
+      }
+      .card-head h2 svg {
+        width: 17px;
+        height: 17px;
+      }
+      .card-head .card-tag {
+        font-size: 10px;
+        padding: 2px 7px;
+      }
+      .status-banner {
+        padding: 10px 12px;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .banner-icon-box {
+        width: 30px;
+        height: 30px;
+      }
+      .banner-icon-box svg {
+        width: 16px;
+        height: 16px;
+      }
+      .banner-text-box h3 {
+        font-size: 13px;
+      }
+      .banner-text-box p {
+        font-size: 11.5px;
+        margin-bottom: 6px;
+      }
+      .banner-pill {
+        font-size: 9.5px;
+        padding: 2px 6px;
       }
       .total-pay-box {
         padding: 10px 12px;
-        flex-wrap: wrap;
-        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .total-pay-meta .amount-val {
+        font-size: 18px;
+      }
+      .midtrans-official-tag {
+        font-size: 9px;
+        padding: 2px 6px;
+      }
+      .payment-brand-badge span {
+        font-size: 9.5px;
       }
       .action-subgroup {
         gap: 8px;
@@ -889,6 +1117,19 @@
         height: 42px;
         min-height: 42px;
         font-size: 12.5px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .action-subgroup {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .stepper-label {
+        font-size: 9px;
+      }
+      .invoice-tag-box .inv-id span {
+        font-size: 13px;
       }
     }
 
@@ -982,7 +1223,11 @@
         <div class="inv-id">
           <span id="dispOrderIdText">LOSARI-XXXXXX</span>
           <button class="btn-copy-id" id="btnCopyOrderId" type="button" title="Salin Order ID">
-            Salin
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="btnCopyText">Salin</span>
           </button>
         </div>
       </div>
@@ -1358,8 +1603,13 @@
 
   if (btnCopyOrderId) {
     btnCopyOrderId.addEventListener('click', () => {
+      const copySpan = document.getElementById('btnCopyText');
       navigator.clipboard.writeText(orderId).then(() => {
         showToast(`Order ID ${orderId} berhasil disalin!`);
+        if (copySpan) copySpan.textContent = 'Disalin!';
+        setTimeout(() => {
+          if (copySpan) copySpan.textContent = 'Salin';
+        }, 2000);
       }).catch(() => {
         showToast(`Order ID: ${orderId}`);
       });
