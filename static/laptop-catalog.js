@@ -80,6 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lower.includes('xps') || lower.includes('xps 13')) return '/static/images/laptop/dell-xps-13.jpg';
     if (lower.includes('vivobook') && lower.includes('pro')) return '/static/images/laptop/asus-vivobook-pro-14.jpg';
     if (lower.includes('vivobook')) return '/static/images/laptop/asus-vivobook-14.jpg';
+    if (lower.includes('iphone')) return '/static/images/products/iphone-11-second.jpg';
+    if (lower.includes('printer') || lower.includes('iware')) return '/static/images/products/thermal-printer-80mm.jpg';
+    if (lower.includes('gamepad') || lower.includes('rexus')) return '/static/images/products/rexus-gamepad-gx500v2.jpg';
+    if (lower.includes('ezviz') || lower.includes('cctv')) return '/static/images/products/ezviz-c6n-cctv.jpg';
     return '/static/images/laptop/thinkpad-t490.jpg';
   }
 
@@ -89,10 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lower.includes('thinkpad') || lower.includes('ideapad') || lower.includes('lenovo')) return 'LENOVO';
     if (lower.includes('tuf') || lower.includes('vivobook') || lower.includes('asus')) return 'ASUS';
     if (lower.includes('elitebook') || lower.includes('hp')) return 'HP';
-    if (lower.includes('macbook') || lower.includes('apple')) return 'APPLE';
+    if (lower.includes('macbook') || lower.includes('apple') || lower.includes('iphone')) return 'APPLE';
     if (lower.includes('latitude') || lower.includes('xps') || lower.includes('dell')) return 'DELL';
     if (lower.includes('nitro') || lower.includes('swift') || lower.includes('acer')) return 'ACER';
-    return 'LAPTOP';
+    if (lower.includes('iware') || lower.includes('printer')) return 'IWARE';
+    if (lower.includes('rexus') || lower.includes('gamepad')) return 'REXUS';
+    if (lower.includes('ezviz') || lower.includes('cctv')) return 'EZVIZ';
+    return 'GADGET';
   }
 
   function addToCart(name, priceValue, image, brand) {
