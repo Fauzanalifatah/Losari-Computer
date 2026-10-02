@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Laptop — Losari Computer</title>
-  <meta name="description" content="Katalog laptop second Losari Computer. Pilih berdasarkan kebutuhan, spesifikasi, dan budget.">
+  <meta name="description"
+    content="Katalog laptop second Losari Computer. Pilih berdasarkan kebutuhan, spesifikasi, dan budget.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/laptop-catalog.css?v=7">
   <link rel="stylesheet" href="/static/splash-screen.css">
   <script src="/static/splash-screen.js"></script>
 </head>
+
 <body class="laptop-page">
   <!-- Preloader Splash Screen (Losari Computer) -->
   <div id="losari-splash" aria-label="Memuat Losari Computer">
@@ -68,14 +73,17 @@
       </nav>
 
       <div class="nav-tools">
-        <button class="icon-button" type="button" aria-label="Cari" onclick="document.getElementById('catalogSearch').focus()">⌕</button>
+        <button class="icon-button" type="button" aria-label="Cari"
+          onclick="document.getElementById('catalogSearch').focus()">⌕</button>
         <!-- User Profile Trigger & Dropdown Modal matching Image 1 & 2 -->
         <div class="user-menu-wrap" id="userMenuWrap">
-          <button class="user-avatar-btn" id="userAvatarBtn" type="button" aria-label="Profil Akun Pengguna" aria-expanded="false">
+          <button class="user-avatar-btn" id="userAvatarBtn" type="button" aria-label="Profil Akun Pengguna"
+            aria-expanded="false">
             <div class="user-avatar-circle" id="userAvatarCircle">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
               </svg>
             </div>
             <span class="user-badge-count" id="userBadgeCount" style="display:none;">0</span>
@@ -98,8 +106,10 @@
               <!-- Item 1: Favorit Saya -->
               <button type="button" class="user-menu-item" id="itemFavorites">
                 <div class="user-item-icon-box box--pink">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ef4444" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                   </svg>
                 </div>
                 <div class="user-item-texts">
@@ -111,10 +121,11 @@
               <!-- Item 2: Keranjang Belanja -->
               <button type="button" class="user-menu-item" id="itemCart">
                 <div class="user-item-icon-box box--amber">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                    <line x1="3" y1="6" x2="21" y2="6"/>
-                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
                   </svg>
                   <span class="item-inner-badge" id="cartItemInnerBadge" style="display:none;">0</span>
                 </div>
@@ -127,9 +138,10 @@
               <!-- Item 3: Pusat Informasi -->
               <div class="user-menu-item item--highlight" id="itemInfoCenter" role="button" tabindex="0">
                 <div class="user-item-icon-box box--blue">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3b82f6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3b82f6" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
                   </svg>
                   <span class="item-inner-badge badge--red" id="infoCenterBadge">3</span>
                 </div>
@@ -140,11 +152,13 @@
               </div>
 
               <!-- Item 4: Edit Profil / Hubungkan Google -->
-              <a href="/?openGoogle=1" class="user-menu-item item--google" id="btnConnectGoogle" style="text-decoration:none;">
+              <a href="/?openGoogle=1" class="user-menu-item item--google" id="btnConnectGoogle"
+                style="text-decoration:none;">
                 <div class="user-item-icon-box box--gray" id="googleBoxIcon">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#64748b" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
                   </svg>
                 </div>
                 <div class="user-item-texts">
@@ -203,7 +217,7 @@
         </article>
       </div>
     </section>
-<section class="store-shell catalog-wrap">
+    <section class="store-shell catalog-wrap">
       <div class="catalog-toolbar">
         <div>
           <small>UNIT TERSEDIA</small>
@@ -214,7 +228,8 @@
       <div class="catalog-controls">
         <label class="search-box">
           <span>⌕</span>
-          <input id="catalogSearch" type="search" placeholder="Cari laptop, mis. ThinkPad, ASUS, MacBook..." autocomplete="off">
+          <input id="catalogSearch" type="search" placeholder="Cari laptop, mis. ThinkPad, ASUS, MacBook..."
+            autocomplete="off">
         </label>
 
         <label class="select-box">
@@ -245,16 +260,21 @@
       </div>
 
       <div class="product-grid" id="productGrid">
-        <article class="laptop-card" data-id="lenovo-thinkpad-t490" data-category="office" data-brand="lenovo" data-price="4250000" data-name="Lenovo ThinkPad T490">
+        <article class="laptop-card" data-id="lenovo-thinkpad-t490" data-category="office" data-brand="lenovo"
+          data-price="4250000" data-name="Lenovo ThinkPad T490">
           <a href="/detail-produk?id=lenovo-thinkpad-t490" class="card-visual-link">
             <div class="product-visual product-visual--black">
               <span class="product-badge">Grade A+</span>
-              <button type="button" class="product-fav-btn" data-id="lenovo-thinkpad-t490" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              <button type="button" class="product-fav-btn" data-id="lenovo-thinkpad-t490"
+                aria-label="Tambah ke Favorit">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/laptop/thinkpad-t490.jpg" alt="Lenovo ThinkPad T490" class="product-card-img" loading="lazy">
+              <img src="/static/images/laptop/thinkpad-t490.jpg" alt="Lenovo ThinkPad T490" class="product-card-img"
+                loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -270,22 +290,28 @@
               <div><small>Mulai dari</small><strong>Rp4.250.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=lenovo-thinkpad-t490" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="Lenovo ThinkPad T490" data-price="4250000" data-image="/static/images/laptop/thinkpad-t490.jpg" data-brand="Lenovo">Beli</button>
+                <button class="buy-button" data-product="Lenovo ThinkPad T490" data-price="4250000"
+                  data-image="/static/images/laptop/thinkpad-t490.jpg" data-brand="Lenovo">Beli</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="laptop-card" data-id="asus-tuf-gaming-a15" data-category="gaming" data-brand="asus" data-price="8900000" data-name="ASUS TUF Gaming A15">
+        <article class="laptop-card" data-id="asus-tuf-gaming-a15" data-category="gaming" data-brand="asus"
+          data-price="8900000" data-name="ASUS TUF Gaming A15">
           <a href="/detail-produk?id=asus-tuf-gaming-a15" class="card-visual-link">
             <div class="product-visual product-visual--blue">
               <span class="product-badge">Gaming Ready</span>
-              <button type="button" class="product-fav-btn" data-id="asus-tuf-gaming-a15" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              <button type="button" class="product-fav-btn" data-id="asus-tuf-gaming-a15"
+                aria-label="Tambah ke Favorit">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/laptop/asus-tuf-a15.jpg" alt="ASUS TUF Gaming A15" class="product-card-img" loading="lazy">
+              <img src="/static/images/laptop/asus-tuf-a15.jpg" alt="ASUS TUF Gaming A15" class="product-card-img"
+                loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -301,22 +327,28 @@
               <div><small>Mulai dari</small><strong>Rp8.900.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=asus-tuf-gaming-a15" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="ASUS TUF Gaming A15" data-price="8900000" data-image="/static/images/laptop/asus-tuf-a15.jpg" data-brand="ASUS">Beli</button>
+                <button class="buy-button" data-product="ASUS TUF Gaming A15" data-price="8900000"
+                  data-image="/static/images/laptop/asus-tuf-a15.jpg" data-brand="ASUS">Beli</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="laptop-card" data-id="hp-elitebook-840-g7" data-category="business" data-brand="hp" data-price="5150000" data-name="HP EliteBook 840 G7">
+        <article class="laptop-card" data-id="hp-elitebook-840-g7" data-category="business" data-brand="hp"
+          data-price="5150000" data-name="HP EliteBook 840 G7">
           <a href="/detail-produk?id=hp-elitebook-840-g7" class="card-visual-link">
             <div class="product-visual product-visual--silver">
               <span class="product-badge">Best Seller</span>
-              <button type="button" class="product-fav-btn" data-id="hp-elitebook-840-g7" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              <button type="button" class="product-fav-btn" data-id="hp-elitebook-840-g7"
+                aria-label="Tambah ke Favorit">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/laptop/hp-elitebook-840.jpg" alt="HP EliteBook 840 G7" class="product-card-img" loading="lazy">
+              <img src="/static/images/laptop/hp-elitebook-840.jpg" alt="HP EliteBook 840 G7" class="product-card-img"
+                loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -332,22 +364,27 @@
               <div><small>Mulai dari</small><strong>Rp5.150.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=hp-elitebook-840-g7" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="HP EliteBook 840 G7" data-price="5150000" data-image="/static/images/laptop/hp-elitebook-840.jpg" data-brand="HP">Beli</button>
+                <button class="buy-button" data-product="HP EliteBook 840 G7" data-price="5150000"
+                  data-image="/static/images/laptop/hp-elitebook-840.jpg" data-brand="HP">Beli</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="laptop-card" data-id="macbook-air-m1" data-category="creative" data-brand="apple" data-price="11900000" data-name="MacBook Air M1">
+        <article class="laptop-card" data-id="macbook-air-m1" data-category="creative" data-brand="apple"
+          data-price="11900000" data-name="MacBook Air M1">
           <a href="/detail-produk?id=macbook-air-m1" class="card-visual-link">
             <div class="product-visual product-visual--stone">
               <span class="product-badge">Like New</span>
               <button type="button" class="product-fav-btn" data-id="macbook-air-m1" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/laptop/macbook-air-m1.jpg" alt="MacBook Air M1" class="product-card-img" loading="lazy">
+              <img src="/static/images/laptop/macbook-air-m1.jpg" alt="MacBook Air M1" class="product-card-img"
+                loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -363,22 +400,27 @@
               <div><small>Mulai dari</small><strong>Rp11.900.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=macbook-air-m1" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="MacBook Air M1" data-price="11900000" data-image="/static/images/laptop/macbook-air-m1.jpg" data-brand="Apple">Beli</button>
+                <button class="buy-button" data-product="MacBook Air M1" data-price="11900000"
+                  data-image="/static/images/laptop/macbook-air-m1.jpg" data-brand="Apple">Beli</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="laptop-card" data-id="asus-vivobook-14" data-category="office" data-brand="asus" data-price="4650000" data-name="ASUS VivoBook 14">
+        <article class="laptop-card" data-id="asus-vivobook-14" data-category="office" data-brand="asus"
+          data-price="4650000" data-name="ASUS VivoBook 14">
           <a href="/detail-produk?id=asus-vivobook-14" class="card-visual-link">
             <div class="product-visual product-visual--mint">
               <span class="product-badge">Unit Teruji</span>
               <button type="button" class="product-fav-btn" data-id="asus-vivobook-14" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/laptop/asus-vivobook-14.jpg" alt="ASUS VivoBook 14" class="product-card-img" loading="lazy">
+              <img src="/static/images/laptop/asus-vivobook-14.jpg" alt="ASUS VivoBook 14" class="product-card-img"
+                loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -394,22 +436,28 @@
               <div><small>Mulai dari</small><strong>Rp4.650.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=asus-vivobook-14" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="ASUS VivoBook 14" data-price="4650000" data-image="/static/images/laptop/asus-vivobook-14.jpg" data-brand="ASUS">Beli</button>
+                <button class="buy-button" data-product="ASUS VivoBook 14" data-price="4650000"
+                  data-image="/static/images/laptop/asus-vivobook-14.jpg" data-brand="ASUS">Beli</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="laptop-card" data-id="lenovo-thinkpad-t14-gen-1" data-category="business" data-brand="lenovo" data-price="6350000" data-name="Lenovo ThinkPad T14 Gen 1">
+        <article class="laptop-card" data-id="lenovo-thinkpad-t14-gen-1" data-category="business" data-brand="lenovo"
+          data-price="6350000" data-name="Lenovo ThinkPad T14 Gen 1">
           <a href="/detail-produk?id=lenovo-thinkpad-t14-gen-1" class="card-visual-link">
             <div class="product-visual product-visual--navy">
               <span class="product-badge">Business Choice</span>
-              <button type="button" class="product-fav-btn" data-id="lenovo-thinkpad-t14-gen-1" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              <button type="button" class="product-fav-btn" data-id="lenovo-thinkpad-t14-gen-1"
+                aria-label="Tambah ke Favorit">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/laptop/thinkpad-t14.jpg" alt="Lenovo ThinkPad T14 Gen 1" class="product-card-img" loading="lazy">
+              <img src="/static/images/laptop/thinkpad-t14.jpg" alt="Lenovo ThinkPad T14 Gen 1" class="product-card-img"
+                loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -425,22 +473,27 @@
               <div><small>Mulai dari</small><strong>Rp6.350.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=lenovo-thinkpad-t14-gen-1" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="Lenovo ThinkPad T14 Gen 1" data-price="6350000" data-image="/static/images/laptop/thinkpad-t14.jpg" data-brand="Lenovo">Beli</button>
+                <button class="buy-button" data-product="Lenovo ThinkPad T14 Gen 1" data-price="6350000"
+                  data-image="/static/images/laptop/thinkpad-t14.jpg" data-brand="Lenovo">Beli</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="laptop-card" data-id="acer-nitro-5" data-category="gaming" data-brand="acer" data-price="7350000" data-name="Acer Nitro 5">
+        <article class="laptop-card" data-id="acer-nitro-5" data-category="gaming" data-brand="acer"
+          data-price="7350000" data-name="Acer Nitro 5">
           <a href="/detail-produk?id=acer-nitro-5" class="card-visual-link">
             <div class="product-visual product-visual--red">
               <span class="product-badge">Gaming Budget</span>
               <button type="button" class="product-fav-btn" data-id="acer-nitro-5" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/laptop/acer-nitro-5.jpg" alt="Acer Nitro 5" class="product-card-img" loading="lazy">
+              <img src="/static/images/laptop/acer-nitro-5.jpg" alt="Acer Nitro 5" class="product-card-img"
+                loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -456,22 +509,28 @@
               <div><small>Mulai dari</small><strong>Rp7.350.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=acer-nitro-5" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="Acer Nitro 5" data-price="7350000" data-image="/static/images/laptop/acer-nitro-5.jpg" data-brand="Acer">Beli</button>
+                <button class="buy-button" data-product="Acer Nitro 5" data-price="7350000"
+                  data-image="/static/images/laptop/acer-nitro-5.jpg" data-brand="Acer">Beli</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="laptop-card" data-id="asus-vivobook-pro-14" data-category="creative" data-brand="asus" data-price="10900000" data-name="ASUS Vivobook Pro 14">
+        <article class="laptop-card" data-id="asus-vivobook-pro-14" data-category="creative" data-brand="asus"
+          data-price="10900000" data-name="ASUS Vivobook Pro 14">
           <a href="/detail-produk?id=asus-vivobook-pro-14" class="card-visual-link">
             <div class="product-visual product-visual--purple">
               <span class="product-badge">Creator Choice</span>
-              <button type="button" class="product-fav-btn" data-id="asus-vivobook-pro-14" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              <button type="button" class="product-fav-btn" data-id="asus-vivobook-pro-14"
+                aria-label="Tambah ke Favorit">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/laptop/asus-vivobook-pro-14.jpg" alt="ASUS Vivobook Pro 14" class="product-card-img" loading="lazy">
+              <img src="/static/images/laptop/asus-vivobook-pro-14.jpg" alt="ASUS Vivobook Pro 14"
+                class="product-card-img" loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -487,22 +546,28 @@
               <div><small>Mulai dari</small><strong>Rp10.900.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=asus-vivobook-pro-14" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="ASUS Vivobook Pro 14" data-price="10900000" data-image="/static/images/laptop/asus-vivobook-pro-14.jpg" data-brand="ASUS">Beli</button>
+                <button class="buy-button" data-product="ASUS Vivobook Pro 14" data-price="10900000"
+                  data-image="/static/images/laptop/asus-vivobook-pro-14.jpg" data-brand="ASUS">Beli</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="laptop-card" data-id="thermal-printer-80mm" data-category="accessor" data-brand="iware" data-price="1725000" data-name="Thermal Printer 80mm iWare IW-J300H">
+        <article class="laptop-card" data-id="thermal-printer-80mm" data-category="accessor" data-brand="iware"
+          data-price="1725000" data-name="Thermal Printer 80mm iWare IW-J300H">
           <a href="/detail-produk?id=thermal-printer-80mm" class="card-visual-link">
             <div class="product-visual product-visual--black">
               <span class="product-badge">Best Seller</span>
-              <button type="button" class="product-fav-btn" data-id="thermal-printer-80mm" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              <button type="button" class="product-fav-btn" data-id="thermal-printer-80mm"
+                aria-label="Tambah ke Favorit">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/products/thermal-printer-80mm.jpg" alt="Thermal Printer 80mm iWare IW-J300H" class="product-card-img" loading="lazy">
+              <img src="/static/images/products/thermal-printer-80mm.jpg" alt="Thermal Printer 80mm iWare IW-J300H"
+                class="product-card-img" loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -518,22 +583,28 @@
               <div><small>Mulai dari</small><strong>Rp1.725.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=thermal-printer-80mm" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="Thermal Printer 80mm iWare IW-J300H" data-price="1725000" data-image="/static/images/products/thermal-printer-80mm.jpg" data-brand="iWare">Beli</button>
+                <button class="buy-button" data-product="Thermal Printer 80mm iWare IW-J300H" data-price="1725000"
+                  data-image="/static/images/products/thermal-printer-80mm.jpg" data-brand="iWare">Beli</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="laptop-card" data-id="rexus-gamepad-gx500v2" data-category="accessor" data-brand="rexus" data-price="575000" data-name="Rexus Gamepad GX-500-V2">
+        <article class="laptop-card" data-id="rexus-gamepad-gx500v2" data-category="accessor" data-brand="rexus"
+          data-price="575000" data-name="Rexus Gamepad GX-500-V2">
           <a href="/detail-produk?id=rexus-gamepad-gx500v2" class="card-visual-link">
             <div class="product-visual product-visual--blue">
               <span class="product-badge">New Arrival</span>
-              <button type="button" class="product-fav-btn" data-id="rexus-gamepad-gx500v2" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              <button type="button" class="product-fav-btn" data-id="rexus-gamepad-gx500v2"
+                aria-label="Tambah ke Favorit">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/products/rexus-gamepad-gx500v2.jpg" alt="Rexus Gamepad GX-500-V2" class="product-card-img" loading="lazy">
+              <img src="/static/images/products/rexus-gamepad-gx500v2.jpg" alt="Rexus Gamepad GX-500-V2"
+                class="product-card-img" loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -549,22 +620,27 @@
               <div><small>Mulai dari</small><strong>Rp575.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=rexus-gamepad-gx500v2" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="Rexus Gamepad GX-500-V2" data-price="575000" data-image="/static/images/products/rexus-gamepad-gx500v2.jpg" data-brand="Rexus">Beli</button>
+                <button class="buy-button" data-product="Rexus Gamepad GX-500-V2" data-price="575000"
+                  data-image="/static/images/products/rexus-gamepad-gx500v2.jpg" data-brand="Rexus">Beli</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="laptop-card" data-id="iphone-11-second" data-category="smartphone" data-brand="apple" data-price="4200000" data-name="Apple iPhone 11 128GB (Second Mulus)">
+        <article class="laptop-card" data-id="iphone-11-second" data-category="smartphone" data-brand="apple"
+          data-price="4200000" data-name="Apple iPhone 11 128GB (Second Mulus)">
           <a href="/detail-produk?id=iphone-11-second" class="card-visual-link">
             <div class="product-visual product-visual--purple">
               <span class="product-badge">Grade A+</span>
               <button type="button" class="product-fav-btn" data-id="iphone-11-second" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/products/iphone-11-second.jpg" alt="Apple iPhone 11 128GB (Second Mulus)" class="product-card-img" loading="lazy">
+              <img src="/static/images/products/iphone-11-second.jpg" alt="Apple iPhone 11 128GB (Second Mulus)"
+                class="product-card-img" loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -580,22 +656,27 @@
               <div><small>Mulai dari</small><strong>Rp4.200.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=iphone-11-second" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="Apple iPhone 11 128GB (Second Mulus)" data-price="4200000" data-image="/static/images/products/iphone-11-second.jpg" data-brand="Apple">Beli</button>
+                <button class="buy-button" data-product="Apple iPhone 11 128GB (Second Mulus)" data-price="4200000"
+                  data-image="/static/images/products/iphone-11-second.jpg" data-brand="Apple">Beli</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="laptop-card" data-id="ezviz-c6n-cctv" data-category="cctv" data-brand="ezviz" data-price="395000" data-name="Ezviz C6N 1080p Smart WiFi PTZ Camera">
+        <article class="laptop-card" data-id="ezviz-c6n-cctv" data-category="cctv" data-brand="ezviz"
+          data-price="395000" data-name="Ezviz C6N 1080p Smart WiFi PTZ Camera">
           <a href="/detail-produk?id=ezviz-c6n-cctv" class="card-visual-link">
             <div class="product-visual product-visual--mint">
               <span class="product-badge">Best Seller</span>
               <button type="button" class="product-fav-btn" data-id="ezviz-c6n-cctv" aria-label="Tambah ke Favorit">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                 </svg>
               </button>
-              <img src="/static/images/products/ezviz-c6n-cctv.jpg" alt="Ezviz C6N 1080p Smart WiFi PTZ Camera" class="product-card-img" loading="lazy">
+              <img src="/static/images/products/ezviz-c6n-cctv.jpg" alt="Ezviz C6N 1080p Smart WiFi PTZ Camera"
+                class="product-card-img" loading="lazy">
             </div>
           </a>
           <div class="product-card-body">
@@ -605,13 +686,15 @@
             </a>
             <p class="product-desc">CCTV 360° Full HD, Smart Tracking, Night Vision 10m & Two-Way Audio.</p>
             <div class="spec-list">
-              <span>Full HD 1080p</span><span>Pan/Tilt 360°</span><span>Night Vision 10m</span><span>Two-Way Audio</span>
+              <span>Full HD 1080p</span><span>Pan/Tilt 360°</span><span>Night Vision 10m</span><span>Two-Way
+                Audio</span>
             </div>
             <div class="card-bottom">
               <div><small>Mulai dari</small><strong>Rp395.000</strong></div>
               <div class="card-actions-row">
                 <a href="/detail-produk?id=ezviz-c6n-cctv" class="detail-link-btn">Detail</a>
-                <button class="buy-button" data-product="Ezviz C6N 1080p Smart WiFi PTZ Camera" data-price="395000" data-image="/static/images/products/ezviz-c6n-cctv.jpg" data-brand="Ezviz">Beli</button>
+                <button class="buy-button" data-product="Ezviz C6N 1080p Smart WiFi PTZ Camera" data-price="395000"
+                  data-image="/static/images/products/ezviz-c6n-cctv.jpg" data-brand="Ezviz">Beli</button>
               </div>
             </div>
           </div>
@@ -633,9 +716,9 @@
       <div class="cart-head-left">
         <div class="cart-head-icon">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <path d="M16 10a4 4 0 0 1-8 0"/>
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
           </svg>
         </div>
         <div class="cart-head-title-wrap">
@@ -644,7 +727,8 @@
         </div>
       </div>
       <button class="cart-close" id="cartClose" type="button" aria-label="Tutup keranjang">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
@@ -658,8 +742,8 @@
         <span>DETAIL ITEM</span>
         <button class="cart-clear-link" id="cartClear" type="button">
           <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="3 6 5 6 21 6"/>
-            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            <polyline points="3 6 5 6 21 6" />
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
           </svg>
           <span>Bersihkan Keranjang</span>
         </button>
@@ -671,7 +755,8 @@
       <!-- Empty State -->
       <div class="cart-empty-state" id="cartEmpty">
         <div class="cart-empty-icon">
-          <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6"
+            stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"></circle>
             <circle cx="20" cy="21" r="1"></circle>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -679,13 +764,14 @@
         </div>
         <h4>Keranjang Belanja Kosong</h4>
         <p>Belum ada unit laptop yang dipilih dari katalog.</p>
-        <button type="button" class="cart-empty-browse-btn" onclick="document.getElementById('cartClose').click()">+ Pilih Laptop</button>
+        <button type="button" class="cart-empty-browse-btn" onclick="document.getElementById('cartClose').click()">+
+          Pilih Laptop</button>
       </div>
 
       <!-- Form Pengiriman -->
       <div class="cart-form-section" id="cartFormSection">
         <h4 class="cart-form-heading">FORM PENGIRIMAN</h4>
-        
+
         <div class="cart-form-group">
           <label class="cart-form-label" for="cartPhone">Nomor WhatsApp Aktif</label>
           <input type="tel" class="cart-form-input" id="cartPhone" placeholder="contoh: 08123456789">
@@ -693,12 +779,14 @@
 
         <div class="cart-form-group">
           <label class="cart-form-label" for="cartAddress">Alamat Penerimaan Lengkap</label>
-          <input type="text" class="cart-form-input" id="cartAddress" placeholder="Nama jalan, nomor rumah, kecamatan, kabupaten">
+          <input type="text" class="cart-form-input" id="cartAddress"
+            placeholder="Nama jalan, nomor rumah, kecamatan, kabupaten">
         </div>
 
         <div class="cart-form-group">
           <label class="cart-form-label" for="cartNotes">Catatan Tambahan (Opsional)</label>
-          <input type="text" class="cart-form-input" id="cartNotes" placeholder="Request install software, packing kayu, dsb.">
+          <input type="text" class="cart-form-input" id="cartNotes"
+            placeholder="Request install software, packing kayu, dsb.">
         </div>
       </div>
 
@@ -732,9 +820,10 @@
     <div class="info-drawer-head">
       <div class="info-drawer-head-left">
         <div class="info-drawer-head-icon">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
           </svg>
         </div>
         <div class="info-drawer-head-titles">
@@ -743,7 +832,8 @@
         </div>
       </div>
       <button class="info-drawer-close" id="infoDrawerClose" type="button" aria-label="Tutup pusat informasi">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
@@ -754,7 +844,8 @@
     <div class="info-drawer-body">
       <!-- Tab Segmented Control -->
       <div class="info-tabs-row">
-        <button type="button" class="info-tab-pill active" id="tabUnread">Belum Dibaca (<span id="unreadCountBadge">3</span>)</button>
+        <button type="button" class="info-tab-pill active" id="tabUnread">Belum Dibaca (<span
+            id="unreadCountBadge">3</span>)</button>
         <button type="button" class="info-tab-pill" id="tabAll">Semua (<span id="allCountBadge">3</span>)</button>
       </div>
       <p class="info-helper-note">Menampilkan info baru. Klik "Tandai Sudah Dibaca" untuk mengarsipkannya.</p>
@@ -768,9 +859,11 @@
             <span class="info-unread-dot"></span>
           </div>
           <h4 class="info-item-title">Unit Teruji & Bergaransi Penuh</h4>
-          <p class="info-item-desc">Semua laptop second di Losari Computer lolos uji 21 titik teknisi (layar, keyboard, baterai, suhu, charging). Garansi toko 1 bulan siap lindungi unit Anda.</p>
+          <p class="info-item-desc">Semua laptop second di Losari Computer lolos uji 21 titik teknisi (layar, keyboard,
+            baterai, suhu, charging). Garansi toko 1 bulan siap lindungi unit Anda.</p>
           <button type="button" class="info-mark-read-btn" data-action="mark-read">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
             <span>Tandai Sudah Dibaca</span>
@@ -784,9 +877,11 @@
             <span class="info-unread-dot"></span>
           </div>
           <h4 class="info-item-title">Gratis Ongkir Makassar & Bonus Aksesoris</h4>
-          <p class="info-item-desc">Dapatkan pengiriman gratis instan untuk area Makassar, bonus tas laptop eksklusif, serta gratis instalasi software/Office siap pakai setiap transaksi.</p>
+          <p class="info-item-desc">Dapatkan pengiriman gratis instan untuk area Makassar, bonus tas laptop eksklusif,
+            serta gratis instalasi software/Office siap pakai setiap transaksi.</p>
           <button type="button" class="info-mark-read-btn" data-action="mark-read">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
             <span>Tandai Sudah Dibaca</span>
@@ -800,9 +895,11 @@
             <span class="info-unread-dot"></span>
           </div>
           <h4 class="info-item-title">Unit Laptop Baru Masuk Pekan Ini</h4>
-          <p class="info-item-desc">Koleksi ThinkPad series, ASUS ROG, Acer Nitro, dan MacBook second mulus telah diperbarui di katalog. Cek sekarang sebelum kehabisan!</p>
+          <p class="info-item-desc">Koleksi ThinkPad series, ASUS ROG, Acer Nitro, dan MacBook second mulus telah
+            diperbarui di katalog. Cek sekarang sebelum kehabisan!</p>
           <button type="button" class="info-mark-read-btn" data-action="mark-read">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
             <span>Tandai Sudah Dibaca</span>
@@ -812,9 +909,10 @@
 
       <!-- Empty State -->
       <div class="info-empty-state" id="infoEmptyState" style="display: none;">
-        <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
         </svg>
         <h5>Semua Informasi Telah Dibaca</h5>
         <p>Tidak ada pesan baru saat ini. Anda dapat melihat kembali arsip di tab <strong>Semua</strong>.</p>
@@ -835,7 +933,8 @@
       <div class="favorite-drawer-head-left">
         <div class="favorite-drawer-head-icon">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="#008080">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
           </svg>
         </div>
         <div class="favorite-drawer-head-titles">
@@ -844,7 +943,8 @@
         </div>
       </div>
       <button class="favorite-drawer-close" id="favoriteDrawerClose" type="button" aria-label="Tutup koleksi favorit">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
@@ -856,8 +956,10 @@
       <!-- Empty State (Image 1) -->
       <div class="favorite-empty-state" id="favEmptyState">
         <div class="favorite-empty-icon-circle">
-          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#f43f5e" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
           </svg>
         </div>
         <h4 class="favorite-empty-title">Daftar Favorit Kosong</h4>
@@ -889,29 +991,42 @@
                 <span class="ld-brand-tagline">Spesialis Laptop Second &amp; IT Solution</span>
               </div>
             </a>
-            <p class="ld-brand-desc">Pusat laptop second berkualitas. Teruji 20+ titik QC, bergaransi toko, siap kirim ke seluruh Indonesia.</p>
+            <p class="ld-brand-desc">Pusat laptop second berkualitas. Teruji 20+ titik QC, bergaransi toko, siap kirim
+              ke seluruh Indonesia.</p>
             <ul class="ld-social-icons">
               <li class="ld-soc-item soc-wa">
                 <span class="ld-soc-tooltip">WhatsApp</span>
-                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F" target="_blank" rel="noopener" class="ld-soc-link" aria-label="WhatsApp">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F"
+                  target="_blank" rel="noopener" class="ld-soc-link" aria-label="WhatsApp">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
                 </a>
               </li>
               <li class="ld-soc-item soc-instagram">
                 <span class="ld-soc-tooltip">Instagram</span>
-                <a href="https://www.instagram.com/losari_computer/" target="_blank" rel="noopener" class="ld-soc-link js-site-ig" aria-label="Instagram">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <a href="https://www.instagram.com/losari_computer/" target="_blank" rel="noopener"
+                  class="ld-soc-link js-site-ig" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path
+                      d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  </svg>
                 </a>
               </li>
               <li class="ld-soc-item soc-tiktok">
                 <span class="ld-soc-tooltip">TikTok</span>
-                <a href="https://tiktok.com/@losaricomputer" target="_blank" rel="noopener" class="ld-soc-link js-site-tiktok" aria-label="TikTok">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+                <a href="https://tiktok.com/@losaricomputer" target="_blank" rel="noopener"
+                  class="ld-soc-link js-site-tiktok" aria-label="TikTok">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path
+                      d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z" />
+                  </svg>
                 </a>
               </li>
 
             </ul>
-            </div>
+          </div>
           <div class="ld-nav-col">
             <h4 class="ld-col-head">Navigasi</h4>
             <ul class="ld-nav-list">
@@ -926,15 +1041,27 @@
             <h4 class="ld-col-head">Hubungi Kami</h4>
             <div class="ld-contact-info">
               <div class="ld-contact-item">
-                <span class="ld-c-icon ld-c-loc"><div class="ld-loc-loader"></div></span>
+                <span class="ld-c-icon ld-c-loc">
+                  <div class="ld-loc-loader"></div>
+                </span>
                 <span>Karebosi Link, Makassar &#8212; Sulawesi Selatan</span>
               </div>
               <div class="ld-contact-item">
-                <span class="ld-c-icon ld-c-phone"><svg class="ld-icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.47 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WA: <strong class="js-site-wa-text">+62 853-3299-0156</strong></a>
+                <span class="ld-c-icon ld-c-phone"><svg class="ld-icon-phone" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.47 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg></span>
+                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F"
+                  target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WA: <strong
+                    class="js-site-wa-text">+62 853-3299-0156</strong></a>
               </div>
               <div class="ld-contact-item">
-                <span class="ld-c-icon ld-c-clock"><svg class="ld-icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+                <span class="ld-c-icon ld-c-clock"><svg class="ld-icon-clock" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg></span>
                 <span>Setiap Hari: 09.00 &#8211; 21.00 WIB</span>
               </div>
             </div>
@@ -943,7 +1070,9 @@
         <div class="ld-bottom-row">
           <p class="ld-copyright-text">&copy; 2026 <strong>Losari Computer</strong>. Hak Cipta Dilindungi.</p>
           <div class="ld-bottom-nav">
-            <a href="/">Home</a><span>·</span><a href="/laptop">Shop</a><span>·</span><a href="/layanan">Service</a><span>·</span><a href="/tentang">Tentang</a><span>·</span><a href="/kontak">Kontak</a>
+            <a href="/">Home</a><span>·</span><a href="/laptop">Shop</a><span>·</span><a
+              href="/layanan">Service</a><span>·</span><a href="/tentang">Tentang</a><span>·</span><a
+              href="/kontak">Kontak</a>
           </div>
         </div>
       </div>
@@ -1079,7 +1208,7 @@
        the viewport. We move exactly one group width and
        then continue from the next identical group.
        ===================================================== */
-    (function initPromoMarquee(){
+    (function initPromoMarquee() {
       const marquee = document.querySelector('.promo-marquee');
       const track = document.querySelector('.promo-track');
       const sourceGroup = track ? track.querySelector('.promo-group') : null;
@@ -1092,7 +1221,7 @@
       let speed = 52; // px/s; diperlambat sedikit agar lebih nyaman dibaca
       let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-      function rebuild(){
+      function rebuild() {
         cancelAnimationFrame(rafId);
         track.querySelectorAll('.promo-group:not(:first-child)').forEach(el => el.remove());
 
@@ -1104,7 +1233,7 @@
         const targetWidth = marquee.clientWidth * 3 + loopWidth;
         while (track.scrollWidth < targetWidth) {
           const clone = sourceGroup.cloneNode(true);
-          clone.setAttribute('aria-hidden','true');
+          clone.setAttribute('aria-hidden', 'true');
           track.appendChild(clone);
         }
 
@@ -1114,7 +1243,7 @@
         if (!reducedMotion.matches) rafId = requestAnimationFrame(tick);
       }
 
-      function tick(now){
+      function tick(now) {
         const dt = Math.min(50, now - lastTime);
         lastTime = now;
         offset -= speed * dt / 1000;
@@ -1127,7 +1256,7 @@
         rafId = requestAnimationFrame(tick);
       }
 
-      function handleMotionChange(){
+      function handleMotionChange() {
         cancelAnimationFrame(rafId);
         if (reducedMotion.matches) {
           track.style.transform = 'translate3d(0,0,0)';
@@ -1138,7 +1267,7 @@
       }
 
       rebuild();
-      window.addEventListener('resize', rebuild, {passive:true});
+      window.addEventListener('resize', rebuild, { passive: true });
       if (reducedMotion.addEventListener) {
         reducedMotion.addEventListener('change', handleMotionChange);
       } else if (reducedMotion.addListener) {
@@ -1148,4 +1277,5 @@
 
   </script>
 </body>
+
 </html>

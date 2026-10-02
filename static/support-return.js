@@ -70,10 +70,21 @@
     // Update navigator pills
     navPills.forEach(function (pill) {
       var pillScreen = parseInt(pill.getAttribute("data-screen"), 10);
+      var badge = pill.querySelector(".pill-badge");
       if (pillScreen === screenNum) {
         pill.classList.add("active");
+        pill.classList.remove("completed");
+        if (badge) badge.textContent = pillScreen;
+      } else if (pillScreen < screenNum) {
+        pill.classList.remove("active");
+        pill.classList.add("completed");
+        if (badge) {
+          badge.innerHTML = '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+        }
       } else {
         pill.classList.remove("active");
+        pill.classList.remove("completed");
+        if (badge) badge.textContent = pillScreen;
       }
     });
 

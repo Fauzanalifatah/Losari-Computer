@@ -76,33 +76,85 @@
 
       <div class="nav-tools">
         <button class="icon-button" type="button" aria-label="Cari"
-          onclick="goToScreen(1); document.getElementById('supportSearchInput').focus();">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-        </button>
+          onclick="goToScreen(1); document.getElementById('supportSearchInput').focus();">⌕</button>
 
-        <a class="icon-button" href="/laptop" aria-label="Keranjang Belanja">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <path d="M16 10a4 4 0 0 1-8 0"></path>
-          </svg>
-        </a>
-
+        <!-- User Profile Trigger & Dropdown Modal -->
         <div class="user-menu-wrap" id="userMenuWrap">
-          <button class="user-avatar-btn" id="userAvatarBtn" type="button" aria-label="Profil Akun Pengguna">
-            <div class="user-avatar-circle">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+          <button class="user-avatar-btn" id="userAvatarBtn" type="button" aria-label="Profil Akun Pengguna"
+            aria-expanded="false">
+            <div class="user-avatar-circle" id="userAvatarCircle">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
             </div>
+            <span class="user-badge-count" id="userBadgeCount" style="display:none;">0</span>
           </button>
+
+          <!-- Dropdown Card matching other pages -->
+          <div class="user-dropdown-card" id="userDropdownCard">
+            <!-- Header section -->
+            <div class="user-dropdown-header">
+              <h4 class="user-name" id="dropdownUserName">Tamu Losari Computer</h4>
+              <p class="user-status-text" id="dropdownUserStatus">Belum tersambung Google</p>
+              <div class="user-pill-badge" id="dropdownPillBadge">
+                <span id="dropdownPillText">MODE TAMU / OFFLINE</span>
+              </div>
+            </div>
+            <div class="user-dropdown-divider"></div>
+
+            <!-- List section -->
+            <div class="user-dropdown-list">
+              <!-- Item 1: Favorit Saya -->
+              <button type="button" class="user-menu-item" id="itemFavorites">
+                <div class="user-item-icon-box box--pink">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ef4444" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                  </svg>
+                </div>
+                <div class="user-item-texts">
+                  <span class="user-item-title">Favorit Saya</span>
+                  <span class="user-item-sub" id="favSubCount">Laptop tersimpan</span>
+                </div>
+              </button>
+
+              <!-- Item 2: Keranjang Belanja -->
+              <button type="button" class="user-menu-item" id="itemCart">
+                <div class="user-item-icon-box box--amber">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#f59e0b" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                  </svg>
+                  <span class="item-inner-badge" id="cartItemInnerBadge" style="display:none;">0</span>
+                </div>
+                <div class="user-item-texts">
+                  <span class="user-item-title">Keranjang Belanja</span>
+                  <span class="user-item-sub" id="cartSubCount">Total 0 item</span>
+                </div>
+              </button>
+
+              <!-- Item 3: Edit Profil / Hubungkan Google -->
+              <a href="/?openGoogle=1" class="user-menu-item item--google" id="btnConnectGoogle"
+                style="text-decoration:none;">
+                <div class="user-item-icon-box box--gray" id="googleBoxIcon">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#64748b" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div class="user-item-texts">
+                  <span class="user-item-title" id="googleActionTitle">Edit Profil</span>
+                  <span class="user-item-sub" id="googleActionSub">Nama Lengkap &amp; Kontak</span>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
 
         <button class="menu-button" id="menuButton" type="button" aria-label="Buka menu"
@@ -127,106 +179,63 @@
 
       <!-- Premium Workflow Progress Stepper (5 Screens Return Journey) -->
       <nav class="return-screen-navigator" aria-label="Alur Pengajuan Retur">
-        <!-- Progress Bar Indicator -->
-        <div class="stepper-progress-track">
-          <div class="stepper-progress-bar" id="stepperProgressBar" style="width: 20%;"></div>
-        </div>
+        <!-- Step 1: Pusat Bantuan -->
+        <button type="button" class="screen-nav-pill active" data-screen="1" title="Langkah 1: Pusat Bantuan">
+          <span class="pill-badge">1</span>
+          <span class="pill-label">Pusat Bantuan</span>
+        </button>
 
-        <div class="stepper-items-flex">
-          <!-- Step 1: Pusat Bantuan -->
-          <button type="button" class="screen-nav-pill active" data-screen="1" title="Langkah 1: Pusat Bantuan">
-            <span class="pill-badge">
-              <span class="badge-num">1</span>
-              <svg class="badge-check-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </span>
-            <div class="pill-text-col">
-              <span class="pill-title">Pusat Bantuan</span>
-              <span class="pill-desc">Pusat Layanan</span>
-            </div>
-          </button>
+        <span class="pill-arrow-sep" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </span>
 
-          <span class="pill-arrow-sep" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </span>
+        <!-- Step 2: Form Retur -->
+        <button type="button" class="screen-nav-pill" data-screen="2" title="Langkah 2: Form Ajukan Retur">
+          <span class="pill-badge">2</span>
+          <span class="pill-label">Form Retur</span>
+        </button>
 
-          <!-- Step 2: Form Ajukan Retur -->
-          <button type="button" class="screen-nav-pill" data-screen="2" title="Langkah 2: Form Ajukan Retur">
-            <span class="pill-badge">
-              <span class="badge-num">2</span>
-              <svg class="badge-check-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </span>
-            <div class="pill-text-col">
-              <span class="pill-title">Form Retur</span>
-              <span class="pill-desc">Isi Formulir</span>
-            </div>
-          </button>
+        <span class="pill-arrow-sep" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </span>
 
-          <span class="pill-arrow-sep" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </span>
+        <!-- Step 3: Konfirmasi -->
+        <button type="button" class="screen-nav-pill" data-screen="3" title="Langkah 3: Konfirmasi Pengajuan">
+          <span class="pill-badge">3</span>
+          <span class="pill-label">Konfirmasi</span>
+        </button>
 
-          <!-- Step 3: Konfirmasi Pengajuan -->
-          <button type="button" class="screen-nav-pill" data-screen="3" title="Langkah 3: Konfirmasi Pengajuan">
-            <span class="pill-badge">
-              <span class="badge-num">3</span>
-              <svg class="badge-check-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </span>
-            <div class="pill-text-col">
-              <span class="pill-title">Konfirmasi</span>
-              <span class="pill-desc">Tiket Retur</span>
-            </div>
-          </button>
+        <span class="pill-arrow-sep" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </span>
 
-          <span class="pill-arrow-sep" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </span>
+        <!-- Step 4: Status Retur -->
+        <button type="button" class="screen-nav-pill" data-screen="4" title="Langkah 4: Status Retur">
+          <span class="pill-badge">4</span>
+          <span class="pill-label">Status Retur</span>
+        </button>
 
-          <!-- Step 4: Status Retur -->
-          <button type="button" class="screen-nav-pill" data-screen="4" title="Langkah 4: Status Retur">
-            <span class="pill-badge">
-              <span class="badge-num">4</span>
-              <svg class="badge-check-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </span>
-            <div class="pill-text-col">
-              <span class="pill-title">Status Retur</span>
-              <span class="pill-desc">Pantau Progres</span>
-            </div>
-          </button>
+        <span class="pill-arrow-sep" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </span>
 
-          <span class="pill-arrow-sep" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </span>
-
-          <!-- Step 5: Retur Selesai -->
-          <button type="button" class="screen-nav-pill" data-screen="5" title="Langkah 5: Retur Selesai">
-            <span class="pill-badge">
-              <span class="badge-num">5</span>
-              <svg class="badge-check-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </span>
-            <div class="pill-text-col">
-              <span class="pill-title">Retur Selesai</span>
-              <span class="pill-desc">Solusi Tuntas</span>
-            </div>
-          </button>
-        </div>
+        <!-- Step 5: Retur Selesai -->
+        <button type="button" class="screen-nav-pill" data-screen="5" title="Langkah 5: Retur Selesai">
+          <span class="pill-badge">5</span>
+          <span class="pill-label">Retur Selesai</span>
+        </button>
       </nav>
 
       <!-- ========================================================
@@ -1186,6 +1195,211 @@
   </footer>
 
   <script src="/static/support-return.js"></script>
+  <script>
+    /* ==================== USER PROFILE DROPDOWN CONTROLLER ==================== */
+    (function initUserProfile() {
+      const STORAGE_KEY = 'losari_google_user';
+      const CART_KEY = 'losari-cart';
+      const FAV_KEY = 'losari_favorites';
+
+      const avatarBtn = document.getElementById('userAvatarBtn');
+      const dropdownCard = document.getElementById('userDropdownCard');
+      const avatarCircle = document.getElementById('userAvatarCircle');
+      const badgeCount = document.getElementById('userBadgeCount');
+
+      const userNameEl = document.getElementById('dropdownUserName');
+      const userStatusEl = document.getElementById('dropdownUserStatus');
+      const pillBadgeEl = document.getElementById('dropdownPillBadge');
+      const pillTextEl = document.getElementById('dropdownPillText');
+
+      const itemFavorites = document.getElementById('itemFavorites');
+      const favSubCount = document.getElementById('favSubCount');
+      const itemCart = document.getElementById('itemCart');
+      const cartSubCount = document.getElementById('cartSubCount');
+      const cartInnerBadge = document.getElementById('cartItemInnerBadge');
+
+      const btnConnectGoogle = document.getElementById('btnConnectGoogle');
+      const googleBoxIcon = document.getElementById('googleBoxIcon');
+      const googleActionTitle = document.getElementById('googleActionTitle');
+      const googleActionSub = document.getElementById('googleActionSub');
+
+      function getSavedUser() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY));
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function getCartCount() {
+        try {
+          const cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+          if (!Array.isArray(cart)) return 0;
+          return cart.reduce((sum, i) => sum + (Number(i.qty) || 1), 0);
+        } catch (e) {
+          return 0;
+        }
+      }
+
+      function getFavCount() {
+        try {
+          const favs = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+          return Array.isArray(favs) ? favs.length : 0;
+        } catch (e) {
+          return 0;
+        }
+      }
+
+      function syncCounts() {
+        const cartCnt = getCartCount();
+        const favCnt = getFavCount();
+
+        if (cartSubCount) cartSubCount.textContent = `Total ${cartCnt} item`;
+        if (cartInnerBadge) {
+          cartInnerBadge.textContent = cartCnt;
+          cartInnerBadge.style.display = cartCnt > 0 ? 'inline-flex' : 'none';
+        }
+        if (badgeCount) {
+          badgeCount.textContent = String(cartCnt);
+          badgeCount.style.display = cartCnt > 0 ? 'grid' : 'none';
+        }
+        if (favSubCount) {
+          favSubCount.textContent = favCnt === 1 ? '1 laptop tersimpan' : `${favCnt} laptop tersimpan`;
+        }
+      }
+
+      function renderUserState() {
+        syncCounts();
+        const user = getSavedUser();
+
+        if (user && user.connected) {
+          if (userNameEl) userNameEl.textContent = user.name || 'Pengguna Losari';
+          if (userStatusEl) userStatusEl.textContent = user.email || 'fauzan.losari@gmail.com';
+          if (pillBadgeEl) {
+            pillBadgeEl.style.display = 'inline-block';
+            pillBadgeEl.className = 'user-pill-badge is-connected';
+            if (pillTextEl) pillTextEl.textContent = 'TERHUBUNG GOOGLE ✓';
+          }
+
+          if (avatarCircle) {
+            if (user.avatar) {
+              avatarCircle.innerHTML = `<img src="${user.avatar}" alt="${user.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+            } else {
+              const initial = (user.name || 'G').charAt(0).toUpperCase();
+              avatarCircle.innerHTML = `<span style="font-weight:800; font-size:16px; color:#075ec5;">${initial}</span>`;
+            }
+          }
+
+          if (googleBoxIcon) {
+            googleBoxIcon.className = 'user-item-icon-box box--pink';
+            googleBoxIcon.innerHTML = `
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+            `;
+          }
+          if (googleActionTitle) {
+            googleActionTitle.textContent = 'Putuskan Akun Google';
+            googleActionTitle.style.color = '#ef4444';
+          }
+          if (googleActionSub) {
+            googleActionSub.textContent = 'Keluar dari akun Google ini';
+          }
+        } else {
+          if (userNameEl) userNameEl.textContent = 'Tamu Losari Computer';
+          if (userStatusEl) userStatusEl.textContent = 'Belum tersambung Google';
+          if (pillBadgeEl) {
+            pillBadgeEl.style.display = 'inline-block';
+            pillBadgeEl.className = 'user-pill-badge';
+            if (pillTextEl) pillTextEl.textContent = 'MODE TAMU / OFFLINE';
+          }
+
+          if (avatarCircle) {
+            avatarCircle.innerHTML = `
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            `;
+          }
+
+          if (googleBoxIcon) {
+            googleBoxIcon.className = 'user-item-icon-box box--gray';
+            googleBoxIcon.innerHTML = `
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            `;
+          }
+          if (googleActionTitle) {
+            googleActionTitle.textContent = 'Edit Profil';
+            googleActionTitle.style.color = '#0f172a';
+          }
+          if (googleActionSub) {
+            googleActionSub.textContent = 'Nama Lengkap & Kontak';
+          }
+        }
+      }
+
+      // Dropdown toggle
+      if (avatarBtn && dropdownCard) {
+        avatarBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = dropdownCard.classList.toggle('is-open');
+          avatarBtn.setAttribute('aria-expanded', isOpen);
+          syncCounts();
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!dropdownCard.contains(e.target) && !avatarBtn.contains(e.target)) {
+            dropdownCard.classList.remove('is-open');
+            avatarBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // Item Actions
+      if (itemFavorites) {
+        itemFavorites.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (dropdownCard) dropdownCard.classList.remove('is-open');
+          if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'false');
+          window.location.href = '/laptop?openFavorites=1';
+        });
+      }
+
+      if (itemCart) {
+        itemCart.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (dropdownCard) dropdownCard.classList.remove('is-open');
+          if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'false');
+          window.location.href = '/laptop?openCart=1';
+        });
+      }
+
+      if (btnConnectGoogle) {
+        btnConnectGoogle.addEventListener('click', (e) => {
+          const user = getSavedUser();
+          if (user && user.connected) {
+            e.preventDefault();
+            if (confirm('Apakah Anda yakin ingin memutuskan akun Google dari sesi ini?')) {
+              localStorage.removeItem(STORAGE_KEY);
+              renderUserState();
+              if (dropdownCard) dropdownCard.classList.remove('is-open');
+              if (avatarBtn) avatarBtn.setAttribute('aria-expanded', 'false');
+              alert('Akun Google berhasil diputuskan.');
+            }
+          }
+        });
+      }
+
+      window.addEventListener('storage', renderUserState);
+      renderUserState();
+    })();
+  </script>
 </body>
 
 </html>
