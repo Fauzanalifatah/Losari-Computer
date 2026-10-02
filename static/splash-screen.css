@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
 
 /* ─── Losari Splash Screen Overlay ───────────────────────── */
+/* Hidden by default so internal menu navigation (Shop, Service, etc.) is instant */
 #losari-splash {
+  display: none;
+}
+
+/* Only display splash screen when html has show-splash (on browser refresh/reload or preview) */
+html.show-splash #losari-splash {
   position: fixed;
   inset: 0;
   width: 100vw;
@@ -24,7 +30,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-#losari-splash.splash-hidden {
+html.show-splash #losari-splash.splash-hidden {
   opacity: 0;
   visibility: hidden;
   transform: scale(1.02);

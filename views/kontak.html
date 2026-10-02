@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Kontak Kami - Losari Computer</title><link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/splash-screen.css"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Kontak Kami - Losari Computer</title><link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/splash-screen.css"><script src="/static/splash-screen.js"></script></head>
 <body>
   <!-- Preloader Splash Screen (Losari Computer) -->
   <div id="losari-splash" aria-label="Memuat Losari Computer">
@@ -102,6 +102,5 @@
     </div>
   </footer>
   <script src="/static/site-config.js"></script>
-  <script src="/static/splash-screen.js"></script>
 <script>const menuToggle=document.querySelector('.menu-toggle');const menu=document.querySelector('#main-menu');const menuOverlay=document.querySelector('.menu-overlay');function setMenuState(isOpen){menu.classList.toggle('is-open',isOpen);menuOverlay.classList.toggle('is-open',isOpen);document.body.classList.toggle('menu-open',isOpen);menuToggle.setAttribute('aria-expanded',String(isOpen));menuToggle.setAttribute('aria-label',isOpen?'Tutup menu':'Buka menu')}menuToggle.addEventListener('click',()=>setMenuState(!menu.classList.contains('is-open')));menuOverlay.addEventListener('click',()=>setMenuState(false));menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenuState(false)));</script>
 </body></html>
