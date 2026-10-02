@@ -125,28 +125,108 @@
   <main class="return-page-wrapper" id="return-main-anchor">
     <div class="return-container">
 
-      <!-- Step Navigator Pills (Exact 5 Screens from User Mockup) -->
+      <!-- Premium Workflow Progress Stepper (5 Screens Return Journey) -->
       <nav class="return-screen-navigator" aria-label="Alur Pengajuan Retur">
-        <button type="button" class="screen-nav-pill active" data-screen="1">
-          <span class="pill-badge">1</span>
-          <span>Pusat Bantuan</span>
-        </button>
-        <button type="button" class="screen-nav-pill" data-screen="2">
-          <span class="pill-badge">2</span>
-          <span>Form Ajukan Retur</span>
-        </button>
-        <button type="button" class="screen-nav-pill" data-screen="3">
-          <span class="pill-badge">3</span>
-          <span>Konfirmasi Pengajuan</span>
-        </button>
-        <button type="button" class="screen-nav-pill" data-screen="4">
-          <span class="pill-badge">4</span>
-          <span>Status Retur</span>
-        </button>
-        <button type="button" class="screen-nav-pill" data-screen="5">
-          <span class="pill-badge">5</span>
-          <span>Retur Selesai</span>
-        </button>
+        <!-- Progress Bar Indicator -->
+        <div class="stepper-progress-track">
+          <div class="stepper-progress-bar" id="stepperProgressBar" style="width: 20%;"></div>
+        </div>
+
+        <div class="stepper-items-flex">
+          <!-- Step 1: Pusat Bantuan -->
+          <button type="button" class="screen-nav-pill active" data-screen="1" title="Langkah 1: Pusat Bantuan">
+            <span class="pill-badge">
+              <span class="badge-num">1</span>
+              <svg class="badge-check-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <div class="pill-text-col">
+              <span class="pill-title">Pusat Bantuan</span>
+              <span class="pill-desc">Pusat Layanan</span>
+            </div>
+          </button>
+
+          <span class="pill-arrow-sep" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+
+          <!-- Step 2: Form Ajukan Retur -->
+          <button type="button" class="screen-nav-pill" data-screen="2" title="Langkah 2: Form Ajukan Retur">
+            <span class="pill-badge">
+              <span class="badge-num">2</span>
+              <svg class="badge-check-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <div class="pill-text-col">
+              <span class="pill-title">Form Retur</span>
+              <span class="pill-desc">Isi Formulir</span>
+            </div>
+          </button>
+
+          <span class="pill-arrow-sep" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+
+          <!-- Step 3: Konfirmasi Pengajuan -->
+          <button type="button" class="screen-nav-pill" data-screen="3" title="Langkah 3: Konfirmasi Pengajuan">
+            <span class="pill-badge">
+              <span class="badge-num">3</span>
+              <svg class="badge-check-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <div class="pill-text-col">
+              <span class="pill-title">Konfirmasi</span>
+              <span class="pill-desc">Tiket Retur</span>
+            </div>
+          </button>
+
+          <span class="pill-arrow-sep" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+
+          <!-- Step 4: Status Retur -->
+          <button type="button" class="screen-nav-pill" data-screen="4" title="Langkah 4: Status Retur">
+            <span class="pill-badge">
+              <span class="badge-num">4</span>
+              <svg class="badge-check-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <div class="pill-text-col">
+              <span class="pill-title">Status Retur</span>
+              <span class="pill-desc">Pantau Progres</span>
+            </div>
+          </button>
+
+          <span class="pill-arrow-sep" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+
+          <!-- Step 5: Retur Selesai -->
+          <button type="button" class="screen-nav-pill" data-screen="5" title="Langkah 5: Retur Selesai">
+            <span class="pill-badge">
+              <span class="badge-num">5</span>
+              <svg class="badge-check-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <div class="pill-text-col">
+              <span class="pill-title">Retur Selesai</span>
+              <span class="pill-desc">Solusi Tuntas</span>
+            </div>
+          </button>
+        </div>
       </nav>
 
       <!-- ========================================================
@@ -194,11 +274,10 @@
             </button>
           </div>
 
-          <!-- Card 2: Pengajuan Retur (HIGHLIGHTED FEATURE) -->
-          <div class="support-hub-card"
-            style="border-color: #93c5fd; background: linear-gradient(180deg, #ffffff 0%, #f9fcff 100%);">
+          <!-- Card 2: Pengajuan Retur -->
+          <div class="support-hub-card">
             <div>
-              <div class="hub-card-icon-box" style="background:#071a2d; color:#ffffff;">
+              <div class="hub-card-icon-box">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="1 4 1 10 7 10"></polyline>
@@ -208,7 +287,7 @@
               <h2 class="hub-card-title">Pengajuan Retur</h2>
               <p class="hub-card-desc">Ajukan pengembalian barang dengan mudah.</p>
             </div>
-            <button type="button" class="btn-retur-action" onclick="goToScreen(2)">
+            <button type="button" class="btn-ghost-action" onclick="goToScreen(2)">
               <span>Ajukan Retur</span>
               <span>→</span>
             </button>
