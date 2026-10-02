@@ -211,43 +211,75 @@
     .detail-thumbs {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 18px;
+      gap: 10px;
+      margin-top: 16px;
     }
 
     .detail-thumb {
-      background: #f1f4f8;
-      border: 2px solid transparent;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
       border-radius: 12px;
-      padding: 10px 8px;
+      padding: 10px 6px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       font-size: 11px;
       font-weight: 700;
-      color: #536475;
+      color: #475569;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      position: relative;
     }
 
     .detail-thumb:hover {
-      background: #e8eef5;
-      border-color: #cbd7e4;
-      color: #0b2540;
+      background: #f8fafc;
+      border-color: #94a3b8;
+      color: #0f172a;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
     }
 
     .detail-thumb.active {
-      background: #e6f9f6;
-      border-color: #10bfae;
-      color: #0b685e;
-      box-shadow: 0 4px 12px rgba(16, 191, 174, 0.18);
+      background: #eff6ff;
+      border-color: #2563eb;
+      color: #1d4ed8;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+    }
+
+    .detail-thumb.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1.5px;
+      left: 20%;
+      right: 20%;
+      height: 2.5px;
+      background: #2563eb;
+      border-radius: 99px;
     }
 
     .detail-thumb-icon {
-      font-size: 20px;
-      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      color: inherit;
+      transition: all 0.2s;
+    }
+
+    .detail-thumb:hover .detail-thumb-icon {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .detail-thumb.active .detail-thumb-icon {
+      background: #dbeafe;
+      color: #2563eb;
     }
 
     /* Trust guarantees grid */
@@ -255,42 +287,81 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      margin-top: 22px;
-      padding-top: 20px;
-      border-top: 1px solid #edf1f6;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid #eef2f6;
     }
 
     .detail-trust-item {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 12px;
+      padding: 12px 14px;
+      background: #f8fafc;
+      border: 1px solid #edf2f7;
+      border-radius: 14px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .detail-trust-item:hover {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+      transform: translateY(-2px);
     }
 
     .detail-trust-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 9px;
-      background: #e8f8f5;
-      color: #0b8f74;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      font-size: 15px;
+      transition: transform 0.2s;
+    }
+
+    .detail-trust-item:hover .detail-trust-icon {
+      transform: scale(1.06);
+    }
+
+    .trust--warranty .detail-trust-icon {
+      background: #ecfdf5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
+    }
+
+    .trust--verified .detail-trust-icon {
+      background: #eff6ff;
+      color: #2563eb;
+      border: 1px solid #bfdbfe;
+    }
+
+    .trust--bonus .detail-trust-icon {
+      background: #fffbeb;
+      color: #d97706;
+      border: 1px solid #fde68a;
+    }
+
+    .trust--shipping .detail-trust-icon {
+      background: #faf5ff;
+      color: #7c3aed;
+      border: 1px solid #e9d5ff;
     }
 
     .detail-trust-text h5 {
       margin: 0;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 800;
-      color: #10273f;
+      color: #0f172a;
+      letter-spacing: -0.01em;
     }
 
     .detail-trust-text p {
-      margin: 2px 0 0;
+      margin: 3px 0 0;
       font-size: 11px;
-      color: #6a7989;
-      line-height: 1.4;
+      color: #64748b;
+      line-height: 1.45;
     }
 
     /* Right: Product Info & Buy */
@@ -308,34 +379,63 @@
     }
 
     .category-chip {
-      background: #e6f8f6;
-      color: #087d72;
+      background: #e0f2fe;
+      color: #0369a1;
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 5px 12px;
       border-radius: 999px;
+      border: 1px solid #bae6fd;
     }
 
     .brand-chip {
-      background: #eff3f8;
-      color: #3b4e63;
+      background: #f1f5f9;
+      color: #334155;
       font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
-      padding: 5px 11px;
+      padding: 5px 12px;
       border-radius: 999px;
+      border: 1px solid #e2e8f0;
     }
 
     .rating-pill {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 5px 12px;
+      border-radius: 999px;
       font-size: 12px;
-      font-weight: 700;
-      color: #d97706;
       margin-left: auto;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+
+    .rating-stars {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      color: #f59e0b;
+    }
+
+    .rating-stars .star-icon {
+      width: 14px;
+      height: 14px;
+      display: block;
+    }
+
+    .rating-val {
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .rating-reviews {
+      color: #64748b;
+      font-weight: 500;
+      font-size: 11.5px;
     }
 
     .detail-title {
@@ -359,7 +459,7 @@
       background: #ffffff;
       border: 1px solid #e1e7ee;
       border-radius: 16px;
-      padding: 20px;
+      padding: 20px 22px;
       box-shadow: 0 6px 20px rgba(9, 25, 43, 0.03);
     }
 
@@ -388,72 +488,138 @@
       color: #dc2626;
       font-size: 12px;
       font-weight: 800;
-      padding: 4px 9px;
+      padding: 4px 10px;
       border-radius: 6px;
+      border: 1px solid #fecaca;
     }
 
     .detail-installment {
       display: flex;
       align-items: center;
-      gap: 7px;
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid #f1f4f8;
+      gap: 9px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid #f1f5f9;
       font-size: 12.5px;
-      color: #55687c;
+      color: #475569;
+      flex-wrap: wrap;
+    }
+
+    .detail-installment-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: #ecfdf5;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
     .detail-installment strong {
-      color: #088069;
+      color: #0f766e;
+      font-weight: 800;
+    }
+
+    .partner-tag {
+      display: inline-block;
+      background: #f1f5f9;
+      color: #334155;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
     }
 
     /* Key Specs Pills Row */
     .detail-spec-chips {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
     }
 
     .detail-spec-chip {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 12px 14px;
       display: flex;
       align-items: center;
       gap: 12px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+
+    .detail-spec-chip:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
     }
 
     .spec-icon-wrap {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: #f0f4f9;
-      color: #092a48;
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
       flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .detail-spec-chip:hover .spec-icon-wrap {
+      transform: scale(1.08);
+    }
+
+    .chip--cpu .spec-icon-wrap {
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      color: #0284c7;
+      border: 1px solid #7dd3fc;
+    }
+
+    .chip--ram .spec-icon-wrap {
+      background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+      color: #7c3aed;
+      border: 1px solid #c4b5fd;
+    }
+
+    .chip--ssd .spec-icon-wrap {
+      background: linear-gradient(135deg, #ecfdf5 0%, #bbf7d0 100%);
+      color: #059669;
+      border: 1px solid #86efac;
+    }
+
+    .chip--screen .spec-icon-wrap {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      color: #d97706;
+      border: 1px solid #fcd34d;
+    }
+
+    .spec-text-wrap {
+      min-width: 0;
+      flex: 1;
     }
 
     .spec-text-wrap small {
       display: block;
-      font-size: 10.5px;
+      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #728294;
+      letter-spacing: 0.06em;
+      color: #64748b;
       font-weight: 700;
     }
 
     .spec-text-wrap span {
       display: block;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 800;
-      color: #081e35;
+      color: #0f172a;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      margin-top: 2px;
     }
 
     /* Upgrade Selectors */
@@ -464,17 +630,31 @@
       padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
     }
 
     .config-group-title {
       font-size: 13px;
       font-weight: 800;
-      color: #0b233a;
+      color: #0f172a;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 8px;
+    }
+
+    .config-group-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0d9488;
+      background: #f0fdfa;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid #ccfbf1;
     }
 
     .config-options-row {
@@ -485,43 +665,72 @@
 
     .config-opt-btn {
       flex: 1;
-      min-width: 140px;
-      background: #f8fafc;
-      border: 1.5px solid #dbe2e9;
-      border-radius: 10px;
-      padding: 10px 14px;
+      min-width: 150px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 14px;
       text-align: left;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
     }
 
     .config-opt-btn:hover {
-      background: #f1f5f9;
+      background: #f8fafc;
       border-color: #cbd5e1;
+      transform: translateY(-1px);
     }
 
     .config-opt-btn.active {
-      background: #eefaf7;
-      border-color: #0ea593;
-      box-shadow: 0 0 0 1px #0ea593;
+      background: #f0fdfa;
+      border-color: #0d9488;
+      box-shadow: 0 0 0 1.5px #0d9488;
+    }
+
+    .config-opt-header {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .config-radio-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: transparent;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .config-opt-btn.active .config-radio-circle {
+      border-color: #0d9488;
+      background: #0d9488;
+      color: #ffffff;
     }
 
     .config-opt-btn strong {
       display: block;
       font-size: 13px;
-      color: #0f273f;
+      font-weight: 700;
+      color: #0f172a;
     }
 
-    .config-opt-btn span {
+    .config-opt-sub {
       display: block;
       font-size: 11px;
       color: #64748b;
-      margin-top: 2px;
+      margin-top: 4px;
+      padding-left: 27px;
     }
 
-    .config-opt-btn.active span {
-      color: #0b7568;
+    .config-opt-btn.active .config-opt-sub {
+      color: #0f766e;
       font-weight: 700;
     }
 
@@ -539,7 +748,7 @@
 
     .btn-buy-now {
       flex: 1.4;
-      background: linear-gradient(135deg, #092036 0%, #0d385c 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
       color: #ffffff;
       border: none;
       border-radius: 12px;
@@ -550,21 +759,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-      box-shadow: 0 6px 18px rgba(9, 32, 54, 0.22);
-      transition: transform 0.2s, box-shadow 0.2s;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.2);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .btn-buy-now:hover {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
       transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(9, 32, 54, 0.35);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.28);
     }
 
     .btn-add-cart {
       flex: 1;
       background: #ffffff;
-      color: #0b2a47;
-      border: 2px solid #0d385c;
+      color: #0f172a;
+      border: 1.5px solid #0f172a;
       border-radius: 12px;
       padding: 13px 16px;
       font-size: 13.5px;
@@ -573,13 +783,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 7px;
       transition: all 0.2s;
     }
 
     .btn-add-cart:hover {
-      background: #f0f6fc;
-      border-color: #092036;
+      background: #f8fafc;
+      border-color: #334155;
+      transform: translateY(-1px);
     }
 
     .btn-add-cart.added {
@@ -589,11 +800,11 @@
     }
 
     .btn-detail-fav {
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       border-radius: 12px;
       background: #ffffff;
-      border: 2px solid #e2e8f0;
+      border: 1.5px solid #e2e8f0;
       color: #94a3b8;
       display: flex;
       align-items: center;
@@ -622,36 +833,38 @@
 
     .btn-whatsapp-ask {
       width: 100%;
-      background: #25d366;
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
       color: #ffffff;
       border: none;
       border-radius: 12px;
-      padding: 11px 18px;
+      padding: 12px 18px;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 700;
       cursor: pointer;
       text-decoration: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.22);
-      transition: background 0.2s, transform 0.2s;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(34, 197, 94, 0.25);
+      transition: all 0.2s ease;
     }
 
     .btn-whatsapp-ask:hover {
-      background: #20bd5a;
+      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
       transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.35);
+      color: #ffffff;
     }
 
     /* Tabs Section below */
     .detail-tabs-section {
       margin-top: 50px;
       background: #ffffff;
-      border: 1px solid #e1e7ee;
+      border: 1px solid #e2e8f0;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 8px 30px rgba(9, 25, 43, 0.04);
+      box-shadow: 0 6px 24px rgba(9, 25, 43, 0.04);
     }
 
     .detail-tabs-nav {
@@ -663,13 +876,13 @@
     }
 
     .tab-btn {
-      padding: 18px 26px;
+      padding: 16px 24px;
       background: transparent;
       border: none;
       border-bottom: 3px solid transparent;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 800;
-      color: #55697d;
+      color: #64748b;
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.2s;
@@ -679,14 +892,18 @@
     }
 
     .tab-btn:hover {
-      color: #0b233a;
+      color: #0f172a;
       background: rgba(0, 0, 0, 0.02);
     }
 
     .tab-btn.active {
-      color: #082845;
+      color: #0f172a;
       background: #ffffff;
-      border-bottom-color: #0ea593;
+      border-bottom-color: #2563eb;
+    }
+
+    .tab-btn.active svg {
+      color: #2563eb;
     }
 
     .tab-content-wrap {
@@ -745,19 +962,26 @@
       display: flex;
       align-items: flex-start;
       gap: 12px;
+      transition: all 0.2s;
+    }
+
+    .qc-card:hover {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+      transform: translateY(-1px);
     }
 
     .qc-check-icon {
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      background: #dcfce7;
-      color: #15803d;
+      background: #ecfdf5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 900;
-      font-size: 13px;
       flex-shrink: 0;
     }
 
@@ -1642,48 +1866,100 @@
         <!-- Thumbnails Selector -->
         <div class="detail-thumbs">
           <button type="button" class="detail-thumb active" data-angle="front">
-            <span class="detail-thumb-icon">💻</span>
+            <span class="detail-thumb-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="12" rx="2" />
+                <path d="M2 20h20" />
+              </svg>
+            </span>
             <span>Tampak Depan</span>
           </button>
           <button type="button" class="detail-thumb" data-angle="keyboard">
-            <span class="detail-thumb-icon">⌨️</span>
+            <span class="detail-thumb-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <line x1="6" y1="8" x2="6.01" y2="8" />
+                <line x1="10" y1="8" x2="10.01" y2="8" />
+                <line x1="14" y1="8" x2="14.01" y2="8" />
+                <line x1="18" y1="8" x2="18.01" y2="8" />
+                <line x1="6" y1="12" x2="6.01" y2="12" />
+                <line x1="10" y1="12" x2="10.01" y2="12" />
+                <line x1="14" y1="12" x2="14.01" y2="12" />
+                <line x1="18" y1="12" x2="18.01" y2="12" />
+                <line x1="7" y1="16" x2="17" y2="16" />
+              </svg>
+            </span>
             <span>Keyboard & Port</span>
           </button>
           <button type="button" class="detail-thumb" data-angle="screen">
-            <span class="detail-thumb-icon">🖥️</span>
+            <span class="detail-thumb-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </span>
             <span>Panel & Layar</span>
           </button>
           <button type="button" class="detail-thumb" data-angle="qc">
-            <span class="detail-thumb-icon">🔍</span>
+            <span class="detail-thumb-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <polyline points="9 12 11 14 15 10" />
+              </svg>
+            </span>
             <span>30-Titik Cek</span>
           </button>
         </div>
 
         <!-- Guarantees Strip -->
         <div class="detail-trust-cards">
-          <div class="detail-trust-item">
-            <div class="detail-trust-icon">🛡️</div>
+          <div class="detail-trust-item trust--warranty">
+            <div class="detail-trust-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <polyline points="9 12 11 14 15 10" />
+              </svg>
+            </div>
             <div class="detail-trust-text">
               <h5>Garansi Toko 1 Bulan</h5>
               <p>Jaminan tukar unit jika ada kendala fungsi mesin.</p>
             </div>
           </div>
-          <div class="detail-trust-item">
-            <div class="detail-trust-icon">✨</div>
+          <div class="detail-trust-item trust--verified">
+            <div class="detail-trust-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+            </div>
             <div class="detail-trust-text">
               <h5>Mesin 100% Original</h5>
               <p>Bukan barang servisan atau bekas kanibal.</p>
             </div>
           </div>
-          <div class="detail-trust-item">
-            <div class="detail-trust-icon">🎒</div>
+          <div class="detail-trust-item trust--bonus">
+            <div class="detail-trust-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 12 20 22 4 22 4 12" />
+                <rect x="2" y="7" width="20" height="5" />
+                <line x1="12" y1="22" x2="12" y2="7" />
+                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+              </svg>
+            </div>
             <div class="detail-trust-text">
               <h5>Free Tas & Mouse</h5>
               <p>Langsung siap digunakan untuk kerja atau kuliah.</p>
             </div>
           </div>
-          <div class="detail-trust-item">
-            <div class="detail-trust-icon">📦</div>
+          <div class="detail-trust-item trust--shipping">
+            <div class="detail-trust-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                <line x1="12" y1="22.08" x2="12" y2="12" />
+              </svg>
+            </div>
             <div class="detail-trust-text">
               <h5>Packing Kayu Aman</h5>
               <p>Kirim se-Indonesia dengan bubble tebal & asuransi.</p>
@@ -1697,9 +1973,26 @@
         <div class="detail-header-tag">
           <span class="category-chip" id="categoryChip">OFFICE & KULIAH</span>
           <span class="brand-chip" id="brandChip">LENOVO</span>
-          <div class="rating-pill">
-            <span>★★★★★</span>
-            <span>4.9 (42 Ulasan)</span>
+          <div class="rating-pill" id="ratingPill">
+            <div class="rating-stars" aria-label="Rating 4.9 dari 5 bintang">
+              <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            </div>
+            <strong class="rating-val">4.9</strong>
+            <span class="rating-reviews">(42 Ulasan)</span>
           </div>
         </div>
 
@@ -1715,42 +2008,69 @@
             <span class="detail-discount-badge" id="displayDiscount">Hemat 20%</span>
           </div>
           <div class="detail-installment">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="5" width="20" height="14" rx="2" />
-              <line x1="2" y1="10" x2="22" y2="10" />
-            </svg>
-            <span>Cicilan 0% mulai <strong id="displayInstallment">Rp354.000/bln</strong> via Indodana / Kredivo /
-              SPayLater</span>
+            <div class="detail-installment-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="2" />
+                <line x1="2" y1="10" x2="22" y2="10" />
+                <line x1="6" y1="15" x2="8" y2="15" />
+              </svg>
+            </div>
+            <span>Cicilan 0% mulai <strong id="displayInstallment">Rp354.000/bln</strong> via <span class="partner-tag">Indodana</span> <span class="partner-tag">Kredivo</span> <span class="partner-tag">SPayLater</span></span>
           </div>
         </div>
 
         <!-- Quick Spec Chips -->
         <div class="detail-spec-chips">
-          <div class="detail-spec-chip">
-            <div class="spec-icon-wrap">⚡</div>
+          <div class="detail-spec-chip chip--cpu">
+            <div class="spec-icon-wrap" id="specIconCpu">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2" />
+                <rect x="9" y="9" width="6" height="6" />
+                <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
+              </svg>
+            </div>
             <div class="spec-text-wrap">
-              <small>PROSESOR</small>
+              <small id="specLabelCpu">PROSESOR</small>
               <span id="specCpu">Intel Core i5-8365U</span>
             </div>
           </div>
-          <div class="detail-spec-chip">
-            <div class="spec-icon-wrap">💾</div>
+          <div class="detail-spec-chip chip--ram">
+            <div class="spec-icon-wrap" id="specIconRam">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 19v-3M10 19v-3M14 19v-3M18 19v-3M2 8h20v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8z" />
+                <path d="M6 5v3M10 5v3M14 5v3M18 5v3" />
+              </svg>
+            </div>
             <div class="spec-text-wrap">
-              <small>MEMORI RAM</small>
+              <small id="specLabelRam">MEMORI RAM</small>
               <span id="specRam">RAM 16GB DDR4</span>
             </div>
           </div>
-          <div class="detail-spec-chip">
-            <div class="spec-icon-wrap">🚀</div>
+          <div class="detail-spec-chip chip--ssd">
+            <div class="spec-icon-wrap" id="specIconSsd">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <line x1="7" y1="8" x2="17" y2="8" />
+                <line x1="7" y1="12" x2="17" y2="12" />
+                <line x1="7" y1="16" x2="11" y2="16" />
+                <circle cx="16" cy="16" r="1.5" fill="currentColor" />
+              </svg>
+            </div>
             <div class="spec-text-wrap">
-              <small>PENYIMPANAN</small>
+              <small id="specLabelSsd">PENYIMPANAN</small>
               <span id="specSsd">SSD 512GB NVMe</span>
             </div>
           </div>
-          <div class="detail-spec-chip">
-            <div class="spec-icon-wrap">🖥️</div>
+          <div class="detail-spec-chip chip--screen">
+            <div class="spec-icon-wrap" id="specIconScreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
             <div class="spec-text-wrap">
-              <small>LAYAR & PANEL</small>
+              <small id="specLabelScreen">LAYAR & PANEL</small>
               <span id="specScreen">14" FHD IPS Anti-Glare</span>
             </div>
           </div>
@@ -1762,17 +2082,36 @@
           <div>
             <div class="config-group-title">
               <span>Pilihan Konfigurasi RAM</span>
-              <small style="color:#0ea593; font-weight:700;">Bisa Upgrade</small>
+              <span class="config-group-badge">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Bisa Upgrade
+              </span>
             </div>
             <div class="config-options-row" id="ramOptionsRow">
               <button type="button" class="config-opt-btn active" data-upgrade="ram" data-add="0" data-label="Bawaan">
-                <strong id="optRamDefaultLabel">16GB (Bawaan)</strong>
-                <span>Termasuk dalam harga</span>
+                <div class="config-opt-header">
+                  <span class="config-radio-circle">
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <strong id="optRamDefaultLabel">16GB (Bawaan)</strong>
+                </div>
+                <span class="config-opt-sub">Termasuk dalam harga</span>
               </button>
               <button type="button" class="config-opt-btn" data-upgrade="ram" data-add="350000"
                 data-label="Upgrade 32GB">
-                <strong id="optRamUpgradeLabel">Upgrade 32GB DDR4</strong>
-                <span>+ Rp350.000</span>
+                <div class="config-opt-header">
+                  <span class="config-radio-circle">
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <strong id="optRamUpgradeLabel">Upgrade 32GB DDR4</strong>
+                </div>
+                <span class="config-opt-sub">+ Rp350.000</span>
               </button>
             </div>
           </div>
@@ -1781,17 +2120,36 @@
           <div>
             <div class="config-group-title">
               <span>Pilihan Kapasitas SSD</span>
-              <small style="color:#0ea593; font-weight:700;">NVMe Kencang</small>
+              <span class="config-group-badge">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                NVMe Kencang
+              </span>
             </div>
             <div class="config-options-row" id="ssdOptionsRow">
               <button type="button" class="config-opt-btn active" data-upgrade="ssd" data-add="0" data-label="Bawaan">
-                <strong id="optSsdDefaultLabel">512GB NVMe</strong>
-                <span>Termasuk dalam harga</span>
+                <div class="config-opt-header">
+                  <span class="config-radio-circle">
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <strong id="optSsdDefaultLabel">512GB NVMe</strong>
+                </div>
+                <span class="config-opt-sub">Termasuk dalam harga</span>
               </button>
               <button type="button" class="config-opt-btn" data-upgrade="ssd" data-add="400000"
                 data-label="Upgrade 1TB">
-                <strong>Upgrade 1TB NVMe</strong>
-                <span>+ Rp400.000</span>
+                <div class="config-opt-header">
+                  <span class="config-radio-circle">
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <strong>Upgrade 1TB NVMe</strong>
+                </div>
+                <span class="config-opt-sub">+ Rp400.000</span>
               </button>
             </div>
           </div>
@@ -1840,13 +2198,27 @@
     <section class="detail-tabs-section">
       <div class="detail-tabs-nav">
         <button type="button" class="tab-btn active" data-tab="specs">
-          <span>📋</span> Spesifikasi Lengkap
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14" /><line x1="4" y1="10" x2="4" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="12" /><line x1="12" y1="8" x2="12" y2="3" />
+            <line x1="20" y1="21" x2="20" y2="16" /><line x1="20" y1="12" x2="20" y2="3" />
+            <line x1="1" y1="14" x2="7" y2="14" /><line x1="9" y1="8" x2="15" y2="8" /><line x1="17" y1="16" x2="23" y2="16" />
+          </svg>
+          <span>Spesifikasi Lengkap</span>
         </button>
         <button type="button" class="tab-btn" data-tab="qc">
-          <span>🔍</span> Hasil Uji QC 30 Titik
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <polyline points="9 12 11 14 15 10" />
+          </svg>
+          <span>Hasil Uji QC 30 Titik</span>
         </button>
         <button type="button" class="tab-btn" data-tab="warranty">
-          <span>🛡️</span> Garansi & Kelengkapan
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6" />
+            <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+          </svg>
+          <span>Garansi & Kelengkapan</span>
         </button>
       </div>
 
@@ -1862,42 +2234,66 @@
         <div class="tab-panel" id="tab-qc">
           <div class="qc-grid">
             <div class="qc-card">
-              <div class="qc-check-icon">✓</div>
+              <div class="qc-check-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
               <div class="qc-info">
                 <h4>Kesehatan Baterai</h4>
                 <p id="qcBattery">Baterai sehat 89% optimal, mampu bertahan 4-5 jam kerja normal.</p>
               </div>
             </div>
             <div class="qc-card">
-              <div class="qc-check-icon">✓</div>
+              <div class="qc-check-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
               <div class="qc-info">
                 <h4>Panel Layar</h4>
                 <p>100% bebas white spot, dead pixel, dan flickering. Backlight seragam.</p>
               </div>
             </div>
             <div class="qc-card">
-              <div class="qc-check-icon">✓</div>
+              <div class="qc-check-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
               <div class="qc-info">
                 <h4>Keyboard & Touchpad</h4>
                 <p>Semua tombol empuk dan terbaca 100% tanpa delay, trackpad presisi.</p>
               </div>
             </div>
             <div class="qc-card">
-              <div class="qc-check-icon">✓</div>
+              <div class="qc-check-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
               <div class="qc-info">
                 <h4>Suhu & Kipas Pendingin</h4>
                 <p>Lolos benchmark stress test, suhu idle 41°C, max 69°C tanpa throttling.</p>
               </div>
             </div>
             <div class="qc-card">
-              <div class="qc-check-icon">✓</div>
+              <div class="qc-check-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
               <div class="qc-info">
                 <h4>Port & Konektivitas</h4>
                 <p>Semua port Type-C, USB-A, HDMI, audio jack, Wi-Fi & Bluetooth dites aktif.</p>
               </div>
             </div>
             <div class="qc-card">
-              <div class="qc-check-icon">✓</div>
+              <div class="qc-check-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
               <div class="qc-info">
                 <h4>Kamera & Speaker</h4>
                 <p>Webcam HD jernih, dual-microphone stereo aktif, speaker kencang tanpa distorsi.</p>
@@ -1965,7 +2361,12 @@
           <span class="cart-head-subtitle" id="cartCountSubtitle">0 BARANG PILIHAN</span>
         </div>
       </div>
-      <button class="cart-close" id="cartClose" type="button" aria-label="Tutup keranjang">×</button>
+      <button class="cart-close" id="cartClose" type="button" aria-label="Tutup keranjang">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
 
     <!-- Scrollable Body -->
@@ -1987,7 +2388,13 @@
 
       <!-- Empty State -->
       <div class="cart-empty-state" id="cartEmpty">
-        <div class="cart-empty-icon">🛒</div>
+        <div class="cart-empty-icon">
+          <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </div>
         <h4>Keranjang Belanja Kosong</h4>
         <p>Belum ada unit laptop yang dipilih dari katalog.</p>
         <button type="button" class="cart-empty-browse-btn" onclick="document.getElementById('cartClose').click()">+
@@ -2057,7 +2464,12 @@
           <span>Pembaruan & Diskon</span>
         </div>
       </div>
-      <button class="info-drawer-close" id="infoDrawerClose" type="button" aria-label="Tutup pusat informasi">✕</button>
+      <button class="info-drawer-close" id="infoDrawerClose" type="button" aria-label="Tutup pusat informasi">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
 
     <!-- Scrollable Body -->
@@ -2163,7 +2575,12 @@
         </div>
       </div>
       <button class="favorite-drawer-close" id="favoriteDrawerClose" type="button"
-        aria-label="Tutup koleksi favorit">✕</button>
+        aria-label="Tutup koleksi favorit">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
 
     <!-- Body -->
@@ -2687,25 +3104,61 @@
 
       // Specs Quick Chips
       if (isPrinter) {
+        document.getElementById('specLabelCpu').textContent = 'KECEPATAN CETAK';
         document.getElementById('specCpu').textContent = '300mm/s';
-        document.getElementById('specRam').textContent = '5 Port';
-        document.getElementById('specSsd').textContent = '80mm';
+        document.getElementById('specLabelRam').textContent = 'KONEKTIVITAS';
+        document.getElementById('specRam').textContent = '5 Port (USB/LAN/WiFi)';
+        document.getElementById('specLabelSsd').textContent = 'LEBAR KERTAS';
+        document.getElementById('specSsd').textContent = '80mm Thermal';
+        document.getElementById('specLabelScreen').textContent = 'FITUR CUTTER';
         document.getElementById('specScreen').textContent = 'Auto Cutter';
+
+        document.getElementById('specIconCpu').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>`;
+        document.getElementById('specIconRam').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v7M12 15v7M2 12h7M15 12h7"/></svg>`;
+        document.getElementById('specIconSsd').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/></svg>`;
+        document.getElementById('specIconScreen').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>`;
       } else if (isSmartphone) {
+        document.getElementById('specLabelCpu').textContent = 'CHIPSET';
         document.getElementById('specCpu').textContent = 'A13 Bionic';
+        document.getElementById('specLabelRam').textContent = 'MEMORI RAM';
         document.getElementById('specRam').textContent = '4GB RAM';
+        document.getElementById('specLabelSsd').textContent = 'PENYIMPANAN';
         document.getElementById('specSsd').textContent = '128GB NVMe';
+        document.getElementById('specLabelScreen').textContent = 'LAYAR';
         document.getElementById('specScreen').textContent = '6.1" Liquid Retina';
+
+        document.getElementById('specIconCpu').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>`;
+        document.getElementById('specIconRam').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 19v-3M10 19v-3M14 19v-3M18 19v-3M2 8h20v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8z"/><path d="M6 5v3M10 5v3M14 5v3M18 5v3"/></svg>`;
+        document.getElementById('specIconSsd').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="11" y2="16"/><circle cx="16" cy="16" r="1.5" fill="currentColor"/></svg>`;
+        document.getElementById('specIconScreen').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>`;
       } else if (isCCTV) {
+        document.getElementById('specLabelCpu').textContent = 'RESOLUSI';
         document.getElementById('specCpu').textContent = '1080p Full HD';
+        document.getElementById('specLabelRam').textContent = 'ROTASI';
         document.getElementById('specRam').textContent = '360° Pan/Tilt';
+        document.getElementById('specLabelSsd').textContent = 'PENYIMPANAN';
         document.getElementById('specSsd').textContent = 'MicroSD 256GB';
+        document.getElementById('specLabelScreen').textContent = 'NIGHT VISION';
         document.getElementById('specScreen').textContent = 'Night Vision 10m';
+
+        document.getElementById('specIconCpu').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`;
+        document.getElementById('specIconRam').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>`;
+        document.getElementById('specIconSsd').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="11" y2="16"/><circle cx="16" cy="16" r="1.5" fill="currentColor"/></svg>`;
+        document.getElementById('specIconScreen').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
       } else {
+        document.getElementById('specLabelCpu').textContent = 'PROSESOR';
         document.getElementById('specCpu').textContent = product.specs.cpu.split('(')[0].trim();
+        document.getElementById('specLabelRam').textContent = 'MEMORI RAM';
         document.getElementById('specRam').textContent = product.specs.ram.split('(')[0].trim();
+        document.getElementById('specLabelSsd').textContent = 'PENYIMPANAN';
         document.getElementById('specSsd').textContent = product.specs.ssd.split('(')[0].trim();
+        document.getElementById('specLabelScreen').textContent = 'LAYAR & PANEL';
         document.getElementById('specScreen').textContent = product.specs.screen.split('(')[0].trim();
+
+        document.getElementById('specIconCpu').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>`;
+        document.getElementById('specIconRam').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 19v-3M10 19v-3M14 19v-3M18 19v-3M2 8h20v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8z"/><path d="M6 5v3M10 5v3M14 5v3M18 5v3"/></svg>`;
+        document.getElementById('specIconSsd').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="11" y2="16"/><circle cx="16" cy="16" r="1.5" fill="currentColor"/></svg>`;
+        document.getElementById('specIconScreen').innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`;
       }
 
       // RAM/SSD Upgrade options — hide for non-laptops (printers, smartphones, cctv)
@@ -2785,30 +3238,42 @@
         </div>
       `).join('');
 
-      // Update thumbnail labels for smartphone / CCTV
+      // Update thumbnail labels & SVGs for smartphone / CCTV / printer
       if (isSmartphone) {
         const thumbSpans = document.querySelectorAll('.detail-thumbs .detail-thumb');
         if (thumbSpans.length >= 4) {
-          thumbSpans[0].querySelector('.detail-thumb-icon').textContent = '📱';
+          thumbSpans[0].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>`;
           thumbSpans[0].querySelector('span:last-child').textContent = 'Bodi Depan';
-          thumbSpans[1].querySelector('.detail-thumb-icon').textContent = '📸';
+          thumbSpans[1].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`;
           thumbSpans[1].querySelector('span:last-child').textContent = 'Kamera Belakang';
-          thumbSpans[2].querySelector('.detail-thumb-icon').textContent = '🔋';
+          thumbSpans[2].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="11" x2="23" y2="13"/><polyline points="11 10 9 12 11 14"/></svg>`;
           thumbSpans[2].querySelector('span:last-child').textContent = 'Layar & Battery';
-          thumbSpans[3].querySelector('.detail-thumb-icon').textContent = '🔍';
+          thumbSpans[3].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" /></svg>`;
           thumbSpans[3].querySelector('span:last-child').textContent = '30-Titik Cek';
         }
       } else if (isCCTV) {
         const thumbSpans = document.querySelectorAll('.detail-thumbs .detail-thumb');
         if (thumbSpans.length >= 4) {
-          thumbSpans[0].querySelector('.detail-thumb-icon').textContent = '📷';
+          thumbSpans[0].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`;
           thumbSpans[0].querySelector('span:last-child').textContent = 'Bodi Depan';
-          thumbSpans[1].querySelector('.detail-thumb-icon').textContent = '🔄';
+          thumbSpans[1].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>`;
           thumbSpans[1].querySelector('span:last-child').textContent = 'Rotasi 360°';
-          thumbSpans[2].querySelector('.detail-thumb-icon').textContent = '🌙';
+          thumbSpans[2].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
           thumbSpans[2].querySelector('span:last-child').textContent = 'Night Vision';
-          thumbSpans[3].querySelector('.detail-thumb-icon').textContent = '🛡️';
+          thumbSpans[3].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" /></svg>`;
           thumbSpans[3].querySelector('span:last-child').textContent = 'Garansi Resmi';
+        }
+      } else if (isPrinter) {
+        const thumbSpans = document.querySelectorAll('.detail-thumbs .detail-thumb');
+        if (thumbSpans.length >= 4) {
+          thumbSpans[0].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>`;
+          thumbSpans[0].querySelector('span:last-child').textContent = 'Tampak Depan';
+          thumbSpans[1].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v7M12 15v7M2 12h7M15 12h7"/></svg>`;
+          thumbSpans[1].querySelector('span:last-child').textContent = 'Port & Koneksi';
+          thumbSpans[2].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>`;
+          thumbSpans[2].querySelector('span:last-child').textContent = 'Auto Cutter';
+          thumbSpans[3].querySelector('.detail-thumb-icon').innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" /></svg>`;
+          thumbSpans[3].querySelector('span:last-child').textContent = 'Uji Test Cetak';
         }
       }
 
