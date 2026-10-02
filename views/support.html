@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pusat Bantuan & Pengajuan Retur — Losari Computer</title>
+  <meta name="description"
+    content="Layanan bantuan pelanggan dan alur pengajuan retur barang resmi Losari Computer Makassar. Proses jelas, transparan, dan dapat dipantau online.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/splash-screen.css">
+  <link rel="stylesheet" href="/static/support-return.css">
+  <script src="/static/splash-screen.js"></script>
+</head>
+
+<body>
+  <!-- Preloader Splash Screen (Losari Computer) -->
+  <div id="losari-splash" aria-label="Memuat Pusat Bantuan">
+    <div class="splash-center-wrap">
+      <div class="splash-brand-row">
+        <div class="splash-logo-card">
+          <img src="/static/videos/img/Logo.png" alt="Logo Losari Computer">
+        </div>
+        <div class="splash-brand-text">
+          <h1 class="splash-brand-title">Losari</h1>
+          <span class="splash-brand-sub">C O M P U T E R</span>
+        </div>
+      </div>
+      <p class="splash-tagline">SOUTH SULAWESI LAPTOP CENTER<br>PUSAT LAPTOP & TEKNOLOGI</p>
+    </div>
+    <div class="splash-bottom-wrap">
+      <div class="splash-spinner" role="status" aria-label="Loading"></div>
+      <span class="splash-loading-text">MEMUAT PUSAT BANTUAN</span>
+    </div>
+  </div>
+
+  <!-- Top Strip -->
+  <div class="store-topline">
+    <div class="store-shell store-topline-inner">
+      <div class="brand-family">
+        <span>LOSARI COMPUTER</span>
+        <span class="family-separator"></span>
+        <span class="muted-brand">SECOND LAPTOP</span>
+        <span class="family-separator"></span>
+        <span class="muted-brand">IT SOLUTION</span>
+      </div>
+      <div class="top-links">
+        <a href="/">Promo</a>
+        <a href="#flow-guide">Garansi & Retur</a>
+        <a href="/support">Bantuan</a>
+        <a href="https://wa.me/6285332990156" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="store-header" id="site-header">
+    <div class="store-shell nav-inner">
+      <a class="store-logo" href="/" aria-label="Losari Computer">
+        <img src="/static/videos/img/Logo.png" alt="Losari Computer">
+        <span>Losari Computer</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <a href="/">Home</a>
+        <a href="/laptop">Shop</a>
+        <a href="/layanan">Service</a>
+        <a href="/tentang">Tentang</a>
+        <a class="active" href="/support">Support</a>
+      </nav>
+
+      <div class="nav-tools">
+        <button class="icon-button" type="button" aria-label="Cari"
+          onclick="goToScreen(1); document.getElementById('supportSearchInput').focus();">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <a class="icon-button" href="/laptop" aria-label="Keranjang Belanja">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+        </a>
+
+        <div class="user-menu-wrap" id="userMenuWrap">
+          <button class="user-avatar-btn" id="userAvatarBtn" type="button" aria-label="Profil Akun Pengguna">
+            <div class="user-avatar-circle">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </div>
+          </button>
+        </div>
+
+        <button class="menu-button" id="menuButton" type="button" aria-label="Buka menu"
+          onclick="document.getElementById('mobileNav').classList.toggle('active')">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="/">Home</a>
+      <a href="/laptop">Shop</a>
+      <a href="/layanan">Service</a>
+      <a href="/tentang">Tentang</a>
+      <a class="active" href="/support">Support</a>
+    </div>
+  </header>
+
+  <!-- Main Return Feature Workflow Wrapper -->
+  <main class="return-page-wrapper" id="return-main-anchor">
+    <div class="return-container">
+
+      <!-- Step Navigator Pills (Exact 5 Screens from User Mockup) -->
+      <nav class="return-screen-navigator" aria-label="Alur Pengajuan Retur">
+        <button type="button" class="screen-nav-pill active" data-screen="1">
+          <span class="pill-badge">1</span>
+          <span>Pusat Bantuan</span>
+        </button>
+        <button type="button" class="screen-nav-pill" data-screen="2">
+          <span class="pill-badge">2</span>
+          <span>Form Ajukan Retur</span>
+        </button>
+        <button type="button" class="screen-nav-pill" data-screen="3">
+          <span class="pill-badge">3</span>
+          <span>Konfirmasi Pengajuan</span>
+        </button>
+        <button type="button" class="screen-nav-pill" data-screen="4">
+          <span class="pill-badge">4</span>
+          <span>Status Retur</span>
+        </button>
+        <button type="button" class="screen-nav-pill" data-screen="5">
+          <span class="pill-badge">5</span>
+          <span>Retur Selesai</span>
+        </button>
+      </nav>
+
+      <!-- ========================================================
+           SCREEN 1: HALAMAN SUPPORT / PUSAT BANTUAN
+           ======================================================== -->
+      <section id="screen-support-hub" class="ret-screen-view" style="display: block;">
+        <!-- Hero Box -->
+        <div class="support-hero-box">
+          <h1 class="support-hero-title">Pusat Bantuan</h1>
+          <p class="support-hero-sub">Kami siap membantu kebutuhan Anda.</p>
+          <div class="support-search-wrap">
+            <span class="support-search-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            <input type="text" id="supportSearchInput" class="support-search-input"
+              placeholder="Cari bantuan atau nomor pesanan...">
+          </div>
+        </div>
+
+        <!-- 4 Action Cards Grid matching Mockup -->
+        <div class="support-action-grid">
+          <!-- Card 1: Status Pesanan -->
+          <div class="support-hub-card">
+            <div>
+              <div class="hub-card-icon-box">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                  </path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+              </div>
+              <h2 class="hub-card-title">Status Pesanan</h2>
+              <p class="hub-card-desc">Cek status dan detail pesanan Anda.</p>
+            </div>
+            <button type="button" class="btn-ghost-action" onclick="goToScreen(4)">
+              <span>Lacak Pesanan</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <!-- Card 2: Pengajuan Retur (HIGHLIGHTED FEATURE) -->
+          <div class="support-hub-card"
+            style="border-color: #93c5fd; background: linear-gradient(180deg, #ffffff 0%, #f9fcff 100%);">
+            <div>
+              <div class="hub-card-icon-box" style="background:#071a2d; color:#ffffff;">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="1 4 1 10 7 10"></polyline>
+                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                </svg>
+              </div>
+              <h2 class="hub-card-title">Pengajuan Retur</h2>
+              <p class="hub-card-desc">Ajukan pengembalian barang dengan mudah.</p>
+            </div>
+            <button type="button" class="btn-retur-action" onclick="goToScreen(2)">
+              <span>Ajukan Retur</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <!-- Card 3: Pertanyaan Umum -->
+          <div class="support-hub-card">
+            <div>
+              <div class="hub-card-icon-box">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+              </div>
+              <h2 class="hub-card-title">Pertanyaan Umum</h2>
+              <p class="hub-card-desc">Temukan jawaban untuk pertanyaan yang sering ditanyakan.</p>
+            </div>
+            <a href="#faq-section" class="btn-ghost-action">
+              <span>Lihat FAQ</span>
+              <span>↓</span>
+            </a>
+          </div>
+
+          <!-- Card 4: Hubungi Kami -->
+          <div class="support-hub-card">
+            <div>
+              <div class="hub-card-icon-box">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                  <path
+                    d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
+                  </path>
+                </svg>
+              </div>
+              <h2 class="hub-card-title">Hubungi Kami</h2>
+              <p class="hub-card-desc">Hubungi tim kami untuk bantuan lebih lanjut.</p>
+            </div>
+            <button type="button" class="btn-ghost-action" onclick="contactAdminRetur()">
+              <span>Chat WhatsApp</span>
+              <span>↗</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SCREEN 2: FORM AJUKAN RETUR
+           ======================================================== -->
+      <section id="screen-form-retur" class="ret-screen-view ret-card-box" style="display: none;">
+        <div class="form-card-container">
+          <nav class="ret-breadcrumb" aria-label="Breadcrumb">
+            <a href="javascript:void(0)" onclick="goToScreen(1)">Support</a>
+            <span class="sep">&gt;</span>
+            <span class="curr">Pengajuan Retur</span>
+          </nav>
+
+          <h2 class="form-header-title">Ajukan Retur</h2>
+          <p class="form-header-sub">Silakan isi formulir berikut untuk mengajukan retur.</p>
+
+          <form id="formAjukanRetur">
+            <!-- Field 1: Nomor Pesanan * -->
+            <div class="ret-form-group">
+              <label class="ret-form-label" for="inputNomorPesanan">
+                Nomor Pesanan <span class="req">*</span>
+              </label>
+              <div class="ret-input-search-box">
+                <input type="text" id="inputNomorPesanan" value="#LC20261001-1234" required
+                  placeholder="#LC20261001-1234">
+                <button type="button" aria-label="Cek nomor pesanan"
+                  onclick="showToast('Nomor pesanan terverifikasi.')">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Field 2: Pilih Produk * -->
+            <div class="ret-form-group">
+              <label class="ret-form-label">
+                Pilih Produk <span class="req">*</span>
+              </label>
+              <div class="ret-product-select-card" id="productSelectCard" role="button" tabindex="0">
+                <div class="ret-product-info-left">
+                  <img class="ret-product-thumb" src="/static/images/laptop/thinkpad-t490.jpg"
+                    alt="Lenovo ThinkPad T490" onerror="this.src='/static/videos/img/Logo.png'">
+                  <div class="ret-product-meta">
+                    <h4>Lenovo ThinkPad T490</h4>
+                    <p>SKU: LP-T490-001</p>
+                    <span class="ret-prod-price">Rp 4.500.000</span>
+                  </div>
+                </div>
+                <div class="ret-product-chevron">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Field 3: Kondisi Retur * -->
+            <div class="ret-form-group">
+              <label class="ret-form-label">
+                Kondisi Retur <span class="req">*</span>
+              </label>
+              <div class="ret-radio-group">
+                <label class="ret-radio-label">
+                  <input type="radio" name="kondisi_retur" value="Barang rusak" checked>
+                  <span>Barang rusak</span>
+                </label>
+                <label class="ret-radio-label">
+                  <input type="radio" name="kondisi_retur" value="Salah barang atau varian">
+                  <span>Salah barang atau varian</span>
+                </label>
+                <label class="ret-radio-label">
+                  <input type="radio" name="kondisi_retur" value="Tidak sesuai deskripsi">
+                  <span>Tidak sesuai deskripsi</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Field 4: Upload Foto / Video * -->
+            <div class="ret-form-group">
+              <label class="ret-form-label">
+                Upload Foto / Video <span class="req">*</span>
+              </label>
+              <div class="ret-upload-zone" id="retDropZone">
+                <input type="file" id="retFileInput" multiple accept="image/*,video/*" style="display: none;">
+                <div class="ret-upload-icon">
+                  <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                  </svg>
+                </div>
+                <p class="ret-upload-main-text">Klik untuk upload atau drag &amp; drop</p>
+                <p class="ret-upload-sub-text">(JPG, PNG, MP4. Maks. 5 file, 10MB/file)</p>
+              </div>
+              <div class="ret-file-preview-list" id="retFilePreviewList"></div>
+            </div>
+
+            <!-- Field 5: Alasan Retur * -->
+            <div class="ret-form-group">
+              <label class="ret-form-label" for="inputAlasanRetur">
+                Alasan Retur <span class="req">*</span>
+              </label>
+              <textarea id="inputAlasanRetur" class="ret-textarea" placeholder="Jelaskan detail alasan retur..."
+                required>Layar bergaris vertikal saat pertama kali dinyalakan dan touchpad kadang tidak responsif.</textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-ret-submit">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              <span>Kirim Pengajuan</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SCREEN 3: KONFIRMASI PENGAJUAN
+           ======================================================== -->
+      <section id="screen-konfirmasi-retur" class="ret-screen-view ret-card-box" style="display: none;">
+        <div class="confirm-box-container">
+          <!-- Shared Vector Gradients for Professional Sparkles -->
+          <svg width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden;" aria-hidden="true">
+            <defs>
+              <linearGradient id="proStarGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fef08a" />
+                <stop offset="45%" stop-color="#f59e0b" />
+                <stop offset="100%" stop-color="#d97706" />
+              </linearGradient>
+              <linearGradient id="proStarEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a7f3d0" />
+                <stop offset="50%" stop-color="#10b981" />
+                <stop offset="100%" stop-color="#059669" />
+              </linearGradient>
+              <linearGradient id="proStarCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#bae6fd" />
+                <stop offset="100%" stop-color="#0284c7" />
+              </linearGradient>
+              <linearGradient id="proStarViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#e9d5ff" />
+                <stop offset="100%" stop-color="#8b5cf6" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <!-- Canvas for celebratory confetti -->
+          <canvas class="celebrate-confetti-canvas" id="confettiCanvas3"></canvas>
+
+          <!-- Celebratory Badge Wrapper with Professional Vector Sparkles -->
+          <div class="celebrate-badge-wrap" onclick="triggerCelebrationBurst(3, true)" title="Klik untuk selebrasi!">
+            <!-- Concentric Orbit Ring -->
+            <svg class="celebrate-orbit-ring" viewBox="0 0 130 130" width="130" height="130" aria-hidden="true">
+              <circle cx="65" cy="65" r="58" fill="none" stroke="rgba(16, 185, 129, 0.28)" stroke-width="1.5"
+                stroke-dasharray="6 8" />
+            </svg>
+
+            <!-- Aura Ripples -->
+            <div class="celebrate-ripple rip-1"></div>
+            <div class="celebrate-ripple rip-2"></div>
+            <div class="celebrate-ripple rip-3"></div>
+
+            <!-- Professional E-Commerce Vector Sparkles -->
+            <div class="pro-sparkle-item spk-tl-gold" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="url(#proStarGold)" />
+              </svg>
+            </div>
+            <div class="pro-sparkle-item spk-tl-sub" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="12" height="12">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="#fde047" />
+              </svg>
+            </div>
+
+            <div class="pro-sparkle-item spk-tr-emerald" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="url(#proStarEmerald)" />
+              </svg>
+            </div>
+            <div class="pro-sparkle-item spk-tr-cross" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#38bdf8" stroke-width="2"
+                stroke-linecap="round">
+                <line x1="8" y1="2" x2="8" y2="14" />
+                <line x1="2" y1="8" x2="14" y2="8" />
+              </svg>
+            </div>
+
+            <div class="pro-sparkle-item spk-r-cyan" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="17" height="17">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="url(#proStarCyan)" />
+              </svg>
+            </div>
+
+            <div class="pro-sparkle-item spk-br-violet" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="url(#proStarViolet)" />
+              </svg>
+            </div>
+            <div class="pro-sparkle-item spk-br-ring" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="2 3"
+                  opacity="0.9" />
+              </svg>
+            </div>
+
+            <div class="pro-sparkle-item spk-bl-gold" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="url(#proStarGold)" />
+              </svg>
+            </div>
+            <div class="pro-sparkle-item spk-bl-sub" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="11" height="11">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="#fde047" />
+              </svg>
+            </div>
+
+            <div class="confirm-check-badge celebrate-main-badge">
+              <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="3.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline class="draw-check" points="4 12 9 17 20 6"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <h2 class="confirm-title">Retur Berhasil Diajukan</h2>
+          <p class="confirm-desc">Pengajuan retur Anda telah kami terima. Tim kami akan melakukan verifikasi terlebih
+            dahulu.</p>
+
+          <!-- Confirmation Details Card -->
+          <div class="confirm-meta-card">
+            <div class="confirm-meta-row">
+              <div class="confirm-meta-label">Nomor Retur</div>
+              <div class="confirm-ret-id-row">
+                <span class="confirm-ret-id-val" id="confirmReturnId">RT-LC20261001-001</span>
+                <button type="button" class="btn-copy-id" onclick="copyReturnId()">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Salin</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="confirm-meta-row">
+              <div class="confirm-meta-label">Nomor Pesanan</div>
+              <div class="confirm-meta-val" id="confirmOrderId">#LC20261001-1234</div>
+            </div>
+
+            <div class="confirm-meta-row">
+              <div class="confirm-meta-label">Tanggal Pengajuan</div>
+              <div class="confirm-meta-sub">1 Oktober 2026, 14:30</div>
+            </div>
+
+            <div class="confirm-meta-row">
+              <div class="confirm-meta-label">Status</div>
+              <span class="ret-status-badge badge-warning">Menunggu Verifikasi</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="confirm-action-row">
+            <button type="button" class="btn-confirm-primary" onclick="goToScreen(4)">
+              Lihat Status Retur
+            </button>
+            <a href="/" class="btn-confirm-ghost">
+              Kembali ke Beranda
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SCREEN 4: STATUS RETUR
+           ======================================================== -->
+      <section id="screen-status-retur" class="ret-screen-view ret-card-box" style="display: none;">
+        <div class="status-card-container">
+          <nav class="ret-breadcrumb" aria-label="Breadcrumb">
+            <a href="javascript:void(0)" onclick="goToScreen(1)">Support</a>
+            <span class="sep">&gt;</span>
+            <span class="curr">Status Retur</span>
+          </nav>
+
+          <div class="status-header-top">
+            <div class="status-header-left">
+              <span class="confirm-meta-label">Nomor Retur</span>
+              <h2 class="status-ret-id" id="statusReturnId">RT-LC20261001-001</h2>
+              <div class="status-order-info">
+                <span>Nomor Pesanan: <strong id="statusOrderId">#LC20261001-1234</strong></span>
+                <span>•</span>
+                <span>Tanggal Pengajuan: <strong>1 Oktober 2026, 14:30</strong></span>
+              </div>
+            </div>
+            <div>
+              <span class="ret-status-badge badge-warning" id="status-stage-badge">Menunggu Verifikasi</span>
+            </div>
+          </div>
+
+          <!-- Horizontal 6-Step Stepper -->
+          <div class="ret-stepper-wrap">
+            <div class="ret-stepper-track">
+              <div class="ret-stepper-progress" style="width: 0%;"></div>
+            </div>
+
+            <!-- Step 1: Pengajuan -->
+            <div class="ret-step-item active" data-step-index="1" title="Klik untuk simulasi langkah ini">
+              <div class="ret-step-circle">1</div>
+              <span class="ret-step-label">Pengajuan</span>
+            </div>
+
+            <!-- Step 2: Verifikasi -->
+            <div class="ret-step-item" data-step-index="2" title="Klik untuk simulasi langkah ini">
+              <div class="ret-step-circle">2</div>
+              <span class="ret-step-label">Verifikasi</span>
+            </div>
+
+            <!-- Step 3: Barang Dikembalikan -->
+            <div class="ret-step-item" data-step-index="3" title="Klik untuk simulasi langkah ini">
+              <div class="ret-step-circle">3</div>
+              <span class="ret-step-label">Barang Dikembalikan</span>
+            </div>
+
+            <!-- Step 4: Inspeksi -->
+            <div class="ret-step-item" data-step-index="4" title="Klik untuk simulasi langkah ini">
+              <div class="ret-step-circle">4</div>
+              <span class="ret-step-label">Inspeksi</span>
+            </div>
+
+            <!-- Step 5: Refund / Replacement -->
+            <div class="ret-step-item" data-step-index="5" title="Klik untuk simulasi langkah ini">
+              <div class="ret-step-circle">5</div>
+              <span class="ret-step-label">Refund / Replacement</span>
+            </div>
+
+            <!-- Step 6: Selesai -->
+            <div class="ret-step-item" data-step-index="6" title="Klik untuk melihat Retur Selesai">
+              <div class="ret-step-circle">6</div>
+              <span class="ret-step-label">Selesai</span>
+            </div>
+          </div>
+
+          <!-- Detail Status Timeline matching mockup -->
+          <div class="ret-timeline-wrap">
+            <h3 class="ret-timeline-title">Detail Status</h3>
+            <div class="ret-timeline-list">
+              <!-- Item 1: Pengajuan -->
+              <div class="timeline-item active">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">1 Oktober 2026, 14:30</div>
+                <div class="timeline-head">Pengajuan retur berhasil dikirim</div>
+                <p class="timeline-desc">Menunggu verifikasi oleh tim kami.</p>
+              </div>
+
+              <!-- Item 2: Verifikasi -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-head">Verifikasi</div>
+                <p class="timeline-desc">Dalam proses</p>
+              </div>
+
+              <!-- Item 3: Barang Dikembalikan -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-head">Barang dikembalikan</div>
+                <p class="timeline-desc">Menunggu barang diterima di gudang.</p>
+              </div>
+
+              <!-- Item 4: Inspeksi -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-head">Inspeksi</div>
+                <p class="timeline-desc">Menunggu hasil pengecekan barang.</p>
+              </div>
+
+              <!-- Item 5: Refund / Replacement -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-head">Refund / Replacement</div>
+                <p class="timeline-desc">Menunggu keputusan.</p>
+              </div>
+
+              <!-- Item 6: Selesai -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-head">Selesai</div>
+                <p class="timeline-desc">Proses retur selesai.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action Buttons on Screen 4 -->
+          <div class="status-action-row">
+            <button type="button" class="btn-contact-cs" onclick="contactAdminRetur()">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                <path
+                  d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
+                </path>
+              </svg>
+              <span>Hubungi Kami</span>
+            </button>
+
+            <button type="button" class="btn-cancel-retur" onclick="cancelReturn()">
+              Batalkan Pengajuan
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SCREEN 5: RETUR SELESAI
+           ======================================================== -->
+      <section id="screen-retur-selesai" class="ret-screen-view ret-card-box" style="display: none;">
+        <div class="completed-card-container">
+          <!-- Canvas for celebratory confetti -->
+          <canvas class="celebrate-confetti-canvas" id="confettiCanvas5"></canvas>
+
+          <!-- Celebratory Badge Wrapper with Professional Vector Sparkles -->
+          <div class="celebrate-badge-wrap" onclick="triggerCelebrationBurst(5, true)" title="Klik untuk selebrasi!">
+            <!-- Concentric Orbit Ring -->
+            <svg class="celebrate-orbit-ring" viewBox="0 0 130 130" width="130" height="130" aria-hidden="true">
+              <circle cx="65" cy="65" r="58" fill="none" stroke="rgba(16, 185, 129, 0.28)" stroke-width="1.5"
+                stroke-dasharray="6 8" />
+            </svg>
+
+            <!-- Aura Ripples -->
+            <div class="celebrate-ripple rip-1"></div>
+            <div class="celebrate-ripple rip-2"></div>
+            <div class="celebrate-ripple rip-3"></div>
+
+            <!-- Professional E-Commerce Vector Sparkles -->
+            <div class="pro-sparkle-item spk-tl-gold" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="url(#proStarGold)" />
+              </svg>
+            </div>
+            <div class="pro-sparkle-item spk-tl-sub" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="12" height="12">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="#fde047" />
+              </svg>
+            </div>
+
+            <div class="pro-sparkle-item spk-tr-emerald" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="url(#proStarEmerald)" />
+              </svg>
+            </div>
+            <div class="pro-sparkle-item spk-tr-cross" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#38bdf8" stroke-width="2"
+                stroke-linecap="round">
+                <line x1="8" y1="2" x2="8" y2="14" />
+                <line x1="2" y1="8" x2="14" y2="8" />
+              </svg>
+            </div>
+
+            <div class="pro-sparkle-item spk-r-cyan" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="17" height="17">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="url(#proStarCyan)" />
+              </svg>
+            </div>
+
+            <div class="pro-sparkle-item spk-br-violet" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="url(#proStarViolet)" />
+              </svg>
+            </div>
+            <div class="pro-sparkle-item spk-br-ring" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="2 3"
+                  opacity="0.9" />
+              </svg>
+            </div>
+
+            <div class="pro-sparkle-item spk-bl-gold" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="url(#proStarGold)" />
+              </svg>
+            </div>
+            <div class="pro-sparkle-item spk-bl-sub" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="11" height="11">
+                <path d="M12 1 Q12 12 1 12 Q12 12 12 23 Q12 12 23 12 Q12 12 12 1 Z" fill="#fde047" />
+              </svg>
+            </div>
+
+            <div class="completed-check-icon celebrate-main-badge">
+              <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="3.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline class="draw-check" points="4 12 9 17 20 6"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <h2 class="completed-title">Retur Selesai</h2>
+          <p class="completed-sub">Proses retur Anda telah selesai. Terima kasih telah berbelanja di Losari Computer.
+          </p>
+
+          <!-- Summary Box -->
+          <div class="completed-summary-box">
+            <div class="summary-2col-grid">
+              <div class="summary-col-item">
+                <span class="summary-col-label">Nomor Retur</span>
+                <span class="summary-col-val">RT-LC20261001-001</span>
+              </div>
+              <div class="summary-col-item">
+                <span class="summary-col-label">Nomor Pesanan</span>
+                <span class="summary-col-val">#LC20261001-1234</span>
+              </div>
+              <div class="summary-col-item">
+                <span class="summary-col-label">Keputusan</span>
+                <div>
+                  <span class="ret-status-badge badge-success">Replacement</span>
+                </div>
+              </div>
+              <div class="summary-col-item">
+                <span class="summary-col-label">Tanggal Selesai</span>
+                <span class="summary-col-val">5 Oktober 2026, 10:20</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detail Tindak Lanjut Card -->
+          <div class="followup-card">
+            <h3 class="followup-head-title">Detail Tindak Lanjut</h3>
+            <div class="followup-prod-row">
+              <div class="followup-prod-left">
+                <img class="followup-prod-img" src="/static/images/laptop/thinkpad-t490.jpg" alt="Lenovo ThinkPad T490"
+                  onerror="this.src='/static/videos/img/Logo.png'">
+                <div>
+                  <h4 style="margin:0 0 2px; font-size:13.5px; font-weight:700; color:var(--ret-navy);">Lenovo ThinkPad
+                    T490</h4>
+                  <p style="margin:0; font-size:12px; color:var(--ret-slate);">SKU: LP-T490-001</p>
+                </div>
+              </div>
+
+              <!-- Shipping Replacement Tracking Badge -->
+              <div class="followup-shipping-badge">
+                <div class="shipping-badge-icon">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="3" width="15" height="13"></rect>
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                  </svg>
+                </div>
+                <div class="shipping-badge-texts">
+                  <span class="shipping-title">Barang pengganti telah dikirim</span>
+                  <span class="shipping-resi">Nomor resi: <strong>JTO123456789</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blue Stock Information Banner -->
+          <div class="stock-info-banner">
+            <div class="stock-info-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </div>
+            <p class="stock-info-text">
+              <strong>Informasi Stok:</strong> Barang yang diretur setelah inspeksi dinyatakan layak jual dan telah
+              masuk kembali ke stok.
+            </p>
+          </div>
+
+          <!-- Action Button: Lihat Riwayat Retur -->
+          <button type="button" class="btn-view-history"
+            onclick="goToScreen(1); showToast('Riwayat retur Anda tercatat aktif.');">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>Lihat Riwayat Retur</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           BOTTOM BANNER: CUSTOMER FLOW PENGAJUAN RETUR
+           (Directly matching the bottom banner of user's image)
+           ======================================================== -->
+      <section class="ret-flow-guide-card" id="flow-guide">
+        <div class="flow-guide-header">
+          <div class="flow-guide-title-box">
+            <h2 class="flow-guide-main-title">Customer Flow Pengajuan Retur</h2>
+            <span class="flow-guide-badge">6 Langkah Mudah</span>
+          </div>
+          <p style="margin:0; font-size:12.5px; color:var(--ret-slate);">
+            Proses jelas, transparan, dan dapat dipantau langsung dari dashboard pelanggan.
+          </p>
+        </div>
+
+        <div class="flow-steps-grid">
+          <!-- Step 1 -->
+          <div class="flow-step-box">
+            <span class="flow-step-num">1</span>
+            <div class="flow-step-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+            </div>
+            <div class="flow-step-name">Customer Ajukan Retur</div>
+            <p class="flow-step-desc">Mengisi form retur di website dan melampirkan bukti.</p>
+            <span class="flow-arrow-sep">→</span>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flow-step-box">
+            <span class="flow-step-num">2</span>
+            <div class="flow-step-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="flow-step-name">Verifikasi Admin</div>
+            <p class="flow-step-desc">Tim admin memeriksa kelengkapan data dan bukti.</p>
+            <span class="flow-arrow-sep">→</span>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flow-step-box">
+            <span class="flow-step-num">3</span>
+            <div class="flow-step-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                </path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              </svg>
+            </div>
+            <div class="flow-step-name">Barang Dikembalikan</div>
+            <p class="flow-step-desc">Customer mengirim barang kembali sesuai instruksi.</p>
+            <span class="flow-arrow-sep">→</span>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="flow-step-box">
+            <span class="flow-step-num">4</span>
+            <div class="flow-step-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <div class="flow-step-name">Inspeksi</div>
+            <p class="flow-step-desc">Tim melakukan pengecekan kondisi barang.</p>
+            <span class="flow-arrow-sep">→</span>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="flow-step-box">
+            <span class="flow-step-num">5</span>
+            <div class="flow-step-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+            </div>
+            <div class="flow-step-name">Refund / Replacement</div>
+            <p class="flow-step-desc">Keputusan diberikan sesuai hasil inspeksi.</p>
+            <span class="flow-arrow-sep">→</span>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="flow-step-box">
+            <span class="flow-step-num">6</span>
+            <div class="flow-step-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <div class="flow-step-name">Restock / Disposal</div>
+            <p class="flow-step-desc">Barang layak masuk kembali ke stok, jika tidak akan didisposal.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section Accordion -->
+      <section class="ret-flow-guide-card" id="faq-section" style="margin-top: 24px;">
+        <h2 style="font-size: 18px; font-weight: 800; color: var(--ret-navy); margin: 0 0 16px;">
+          Pertanyaan Umum Seputar Garansi &amp; Retur
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <details
+            style="background:#f8fafc; border:1px solid var(--ret-border); border-radius:12px; padding:12px 16px; cursor:pointer;"
+            open>
+            <summary style="font-weight:700; color:var(--ret-navy); font-size:13.5px;">Berapa lama batas waktu pengajuan
+              retur barang?</summary>
+            <p style="margin:8px 0 0; font-size:13px; color:var(--ret-slate); line-height:1.6;">
+              Pengajuan retur dapat dilakukan maksimal <strong>7 hari kalender</strong> sejak unit laptop atau produk
+              diterima oleh pembeli, dengan menyertakan bukti video unboxing serta foto kondisi unit.
+            </p>
+          </details>
+
+          <details
+            style="background:#f8fafc; border:1px solid var(--ret-border); border-radius:12px; padding:12px 16px; cursor:pointer;">
+            <summary style="font-weight:700; color:var(--ret-navy); font-size:13.5px;">Apakah ongkos kirim pengembalian
+              ditanggung toko?</summary>
+            <p style="margin:8px 0 0; font-size:13px; color:var(--ret-slate); line-height:1.6;">
+              Ya, jika retur disebabkan oleh kesalahan pengiriman atau barang cacat/rusak dari toko, seluruh biaya
+              ongkos kirim penukaran ditanggung penuh oleh Losari Computer.
+            </p>
+          </details>
+
+          <details
+            style="background:#f8fafc; border:1px solid var(--ret-border); border-radius:12px; padding:12px 16px; cursor:pointer;">
+            <summary style="font-weight:700; color:var(--ret-navy); font-size:13.5px;">Berapa lama proses inspeksi
+              barang di gudang?</summary>
+            <p style="margin:8px 0 0; font-size:13px; color:var(--ret-slate); line-height:1.6;">
+              Tim teknisi kami melakukan pengecekan 21 titik uji dalam waktu <strong>1x24 jam kerja</strong> setelah
+              barang sampai di workshop kami di Karebosi Link, Makassar.
+            </p>
+          </details>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Losari Computer — Professional Footer -->
+  <footer class="ld-wave-footer" id="siteFooter">
+    <div class="ld-wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,32 C240,6 480,62 720,56 C960,50 1200,10 1440,28 L1440,72 L0,72 Z" fill="#090f1c"></path>
+      </svg>
+    </div>
+    <div class="ld-wave-body">
+      <div class="ld-wave-inner">
+        <div class="ld-footer-grid">
+          <div class="ld-brand-block">
+            <a href="/" class="ld-brand-badge" aria-label="Losari Computer">
+              <img src="/static/videos/img/Logo.png" alt="Losari Computer" class="ld-brand-logo-img">
+              <div class="ld-brand-meta">
+                <span class="ld-brand-name">Losari Computer</span>
+                <span class="ld-brand-tagline">Spesialis Laptop Second &amp; IT Solution</span>
+              </div>
+            </a>
+            <p class="ld-brand-desc">Pusat laptop second berkualitas. Teruji 20+ titik QC, bergaransi toko, siap kirim
+              ke seluruh Indonesia.</p>
+            <ul class="ld-social-icons">
+              <li class="ld-soc-item soc-wa">
+                <span class="ld-soc-tooltip">WhatsApp</span>
+                <a href="https://wa.me/6285332990156" target="_blank" rel="noopener" class="ld-soc-link"
+                  aria-label="WhatsApp">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
+                </a>
+              </li>
+              <li class="ld-soc-item soc-instagram">
+                <span class="ld-soc-tooltip">Instagram</span>
+                <a href="https://www.instagram.com/losari_computer/" target="_blank" rel="noopener" class="ld-soc-link"
+                  aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path
+                      d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  </svg>
+                </a>
+              </li>
+              <li class="ld-soc-item soc-tiktok">
+                <span class="ld-soc-tooltip">TikTok</span>
+                <a href="https://tiktok.com/@losaricomputer" target="_blank" rel="noopener" class="ld-soc-link"
+                  aria-label="TikTok">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path
+                      d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z" />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="ld-nav-col">
+            <h4 class="ld-col-head">Navigasi</h4>
+            <ul class="ld-nav-list">
+              <li><a href="/">Beranda</a></li>
+              <li><a href="/laptop">Katalog Laptop</a></li>
+              <li><a href="/layanan">Layanan &amp; Servis</a></li>
+              <li><a href="/tentang">Tentang Kami</a></li>
+              <li><a href="/support">Pusat Bantuan</a></li>
+            </ul>
+          </div>
+          <div class="ld-nav-col">
+            <h4 class="ld-col-head">Hubungi Kami</h4>
+            <div class="ld-contact-info">
+              <div class="ld-contact-item">
+                <span class="ld-c-icon ld-c-loc">
+                  <div class="ld-loc-loader"></div>
+                </span>
+                <span>Karebosi Link, Makassar &#8212; Sulawesi Selatan</span>
+              </div>
+              <div class="ld-contact-item">
+                <span class="ld-c-icon ld-c-phone"><svg class="ld-icon-phone" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.47 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg></span>
+                <a href="https://wa.me/6285332990156" target="_blank" rel="noopener"
+                  style="color:inherit;text-decoration:none;">WA: <strong>+62 853-3299-0156</strong></a>
+              </div>
+              <div class="ld-contact-item">
+                <span class="ld-c-icon ld-c-clock"><svg class="ld-icon-clock" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg></span>
+                <span>Setiap Hari: 09.00 &#8211; 21.00 WIB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ld-bottom-row">
+          <p class="ld-copyright-text">&copy; 2026 <strong>Losari Computer</strong>. Hak Cipta Dilindungi.</p>
+          <div class="ld-bottom-nav">
+            <a href="/">Home</a><span>·</span><a href="/laptop">Shop</a><span>·</span><a
+              href="/layanan">Service</a><span>·</span><a href="/tentang">Tentang</a><span>·</span><a
+              href="/support">Support</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/support-return.js"></script>
+</body>
+
+</html>
