@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ─── Losari Splash Screen Overlay ───────────────────────── */
+#losari-splash {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-color: #f2f6f6;
+  z-index: 99999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 24px 80px;
+  box-sizing: border-box;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+#losari-splash.splash-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.02);
+  pointer-events: none;
+}
+
+/* Center Brand Section */
+.splash-center-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 440px;
+  margin-top: 40px;
+}
+
+.splash-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Rounded Icon Card Badge */
+.splash-logo-card {
+  width: 82px;
+  height: 82px;
+  background: #ffffff;
+  border: 1.5px solid #dbe6e6;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 25px -4px rgba(13, 126, 116, 0.1),
+              0 4px 10px rgba(0, 0, 0, 0.03);
+  flex-shrink: 0;
+}
+
+.splash-logo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Brand Text */
+.splash-brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.splash-brand-title {
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 46px;
+  font-weight: 800;
+  color: #0f3833;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.splash-brand-sub {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #e65100;
+  letter-spacing: 0.38em;
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+/* Tagline below brand */
+.splash-tagline {
+  margin: 28px 0 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #5e8386;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.8;
+  max-width: 320px;
+}
+
+/* Bottom Loading Section */
+.splash-bottom-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+/* Circular Arc Spinner */
+.splash-spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #dce8e8;
+  border-top-color: #0d7e74;
+  animation: splashSpin 0.9s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
+}
+
+@keyframes splashSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.splash-loading-text {
+  margin: 18px 0 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #5e8386;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  #losari-splash {
+    padding: 40px 20px 60px;
+  }
+  .splash-logo-card {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    padding: 8px;
+  }
+  .splash-brand-title {
+    font-size: 38px;
+  }
+  .splash-brand-sub {
+    font-size: 11.5px;
+    letter-spacing: 0.32em;
+  }
+  .splash-tagline {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    margin-top: 24px;
+    max-width: 280px;
+  }
+  .splash-spinner {
+    width: 34px;
+    height: 34px;
+    border-width: 2.5px;
+  }
+  .splash-loading-text {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    margin-top: 14px;
+  }
+}

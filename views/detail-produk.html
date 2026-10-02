@@ -14,15 +14,19 @@
     rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/laptop-catalog.css">
+  <link rel="stylesheet" href="/static/splash-screen.css">
   <style>
     /* =========================================================
        DETAIL PRODUK PAGE SPECIFIC STYLES
        ========================================================= */
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
-    html, body.detail-page {
+    html,
+    body.detail-page {
       background: #f7f9fc;
       color: #0d1b2a;
       min-height: 100vh;
@@ -1212,7 +1216,8 @@
         align-items: center;
       }
 
-      .category-chip, .brand-chip {
+      .category-chip,
+      .brand-chip {
         font-size: 9.5px;
         padding: 3px 7px;
       }
@@ -1413,7 +1418,7 @@
         gap: 10px;
       }
 
-      #tab-warranty > div {
+      #tab-warranty>div {
         grid-template-columns: 1fr !important;
         gap: 16px !important;
       }
@@ -1684,6 +1689,25 @@
 </head>
 
 <body class="detail-page">
+  <!-- Preloader Splash Screen (Losari Computer) -->
+  <div id="losari-splash" aria-label="Memuat Losari Computer">
+    <div class="splash-center-wrap">
+      <div class="splash-brand-row">
+        <div class="splash-logo-card">
+          <img src="/static/videos/img/Logo.png" alt="Logo Losari Computer">
+        </div>
+        <div class="splash-brand-text">
+          <h1 class="splash-brand-title">Losari</h1>
+          <span class="splash-brand-sub">C O M P U T E R</span>
+        </div>
+      </div>
+      <p class="splash-tagline">SOUTH SULAWESI LAPTOP CENTER<br>PUSAT LAPTOP & TEKNOLOGI</p>
+    </div>
+    <div class="splash-bottom-wrap">
+      <div class="splash-spinner" role="status" aria-label="Loading"></div>
+      <span class="splash-loading-text">MEMUAT KATALOG</span>
+    </div>
+  </div>
 
   <!-- Top Line Bar -->
   <div class="store-topline">
@@ -1867,7 +1891,8 @@
         <div class="detail-thumbs">
           <button type="button" class="detail-thumb active" data-angle="front">
             <span class="detail-thumb-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="4" width="18" height="12" rx="2" />
                 <path d="M2 20h20" />
               </svg>
@@ -1876,7 +1901,8 @@
           </button>
           <button type="button" class="detail-thumb" data-angle="keyboard">
             <span class="detail-thumb-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <line x1="6" y1="8" x2="6.01" y2="8" />
                 <line x1="10" y1="8" x2="10.01" y2="8" />
@@ -1893,7 +1919,8 @@
           </button>
           <button type="button" class="detail-thumb" data-angle="screen">
             <span class="detail-thumb-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="3" width="20" height="14" rx="2" />
                 <line x1="8" y1="21" x2="16" y2="21" />
                 <line x1="12" y1="17" x2="12" y2="21" />
@@ -1903,7 +1930,8 @@
           </button>
           <button type="button" class="detail-thumb" data-angle="qc">
             <span class="detail-thumb-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 <polyline points="9 12 11 14 15 10" />
               </svg>
@@ -1916,7 +1944,8 @@
         <div class="detail-trust-cards">
           <div class="detail-trust-item trust--warranty">
             <div class="detail-trust-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 <polyline points="9 12 11 14 15 10" />
               </svg>
@@ -1928,8 +1957,10 @@
           </div>
           <div class="detail-trust-item trust--verified">
             <div class="detail-trust-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             </div>
             <div class="detail-trust-text">
@@ -1939,7 +1970,8 @@
           </div>
           <div class="detail-trust-item trust--bonus">
             <div class="detail-trust-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="20 12 20 22 4 22 4 12" />
                 <rect x="2" y="7" width="20" height="5" />
                 <line x1="12" y1="22" x2="12" y2="7" />
@@ -1954,8 +1986,10 @@
           </div>
           <div class="detail-trust-item trust--shipping">
             <div class="detail-trust-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
                 <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
                 <line x1="12" y1="22.08" x2="12" y2="12" />
               </svg>
@@ -1976,19 +2010,24 @@
           <div class="rating-pill" id="ratingPill">
             <div class="rating-stars" aria-label="Rating 4.9 dari 5 bintang">
               <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
               <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
               <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
               <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
               <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
             </div>
             <strong class="rating-val">4.9</strong>
@@ -2009,13 +2048,16 @@
           </div>
           <div class="detail-installment">
             <div class="detail-installment-icon">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="5" width="20" height="14" rx="2" />
                 <line x1="2" y1="10" x2="22" y2="10" />
                 <line x1="6" y1="15" x2="8" y2="15" />
               </svg>
             </div>
-            <span>Cicilan 0% mulai <strong id="displayInstallment">Rp354.000/bln</strong> via <span class="partner-tag">Indodana</span> <span class="partner-tag">Kredivo</span> <span class="partner-tag">SPayLater</span></span>
+            <span>Cicilan 0% mulai <strong id="displayInstallment">Rp354.000/bln</strong> via <span
+                class="partner-tag">Indodana</span> <span class="partner-tag">Kredivo</span> <span
+                class="partner-tag">SPayLater</span></span>
           </div>
         </div>
 
@@ -2023,7 +2065,8 @@
         <div class="detail-spec-chips">
           <div class="detail-spec-chip chip--cpu">
             <div class="spec-icon-wrap" id="specIconCpu">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <rect x="4" y="4" width="16" height="16" rx="2" />
                 <rect x="9" y="9" width="6" height="6" />
                 <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
@@ -2036,7 +2079,8 @@
           </div>
           <div class="detail-spec-chip chip--ram">
             <div class="spec-icon-wrap" id="specIconRam">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 19v-3M10 19v-3M14 19v-3M18 19v-3M2 8h20v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8z" />
                 <path d="M6 5v3M10 5v3M14 5v3M18 5v3" />
               </svg>
@@ -2048,7 +2092,8 @@
           </div>
           <div class="detail-spec-chip chip--ssd">
             <div class="spec-icon-wrap" id="specIconSsd">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="4" width="18" height="16" rx="2" />
                 <line x1="7" y1="8" x2="17" y2="8" />
                 <line x1="7" y1="12" x2="17" y2="12" />
@@ -2063,7 +2108,8 @@
           </div>
           <div class="detail-spec-chip chip--screen">
             <div class="spec-icon-wrap" id="specIconScreen">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="3" width="20" height="14" rx="2" />
                 <line x1="8" y1="21" x2="16" y2="21" />
                 <line x1="12" y1="17" x2="12" y2="21" />
@@ -2093,7 +2139,8 @@
               <button type="button" class="config-opt-btn active" data-upgrade="ram" data-add="0" data-label="Bawaan">
                 <div class="config-opt-header">
                   <span class="config-radio-circle">
-                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </span>
@@ -2105,7 +2152,8 @@
                 data-label="Upgrade 32GB">
                 <div class="config-opt-header">
                   <span class="config-radio-circle">
-                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </span>
@@ -2131,7 +2179,8 @@
               <button type="button" class="config-opt-btn active" data-upgrade="ssd" data-add="0" data-label="Bawaan">
                 <div class="config-opt-header">
                   <span class="config-radio-circle">
-                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </span>
@@ -2143,7 +2192,8 @@
                 data-label="Upgrade 1TB">
                 <div class="config-opt-header">
                   <span class="config-radio-circle">
-                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3"
+                      stroke-linecap="round" stroke-linejoin="round">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </span>
@@ -2198,23 +2248,31 @@
     <section class="detail-tabs-section">
       <div class="detail-tabs-nav">
         <button type="button" class="tab-btn active" data-tab="specs">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="4" y1="21" x2="4" y2="14" /><line x1="4" y1="10" x2="4" y2="3" />
-            <line x1="12" y1="21" x2="12" y2="12" /><line x1="12" y1="8" x2="12" y2="3" />
-            <line x1="20" y1="21" x2="20" y2="16" /><line x1="20" y1="12" x2="20" y2="3" />
-            <line x1="1" y1="14" x2="7" y2="14" /><line x1="9" y1="8" x2="15" y2="8" /><line x1="17" y1="16" x2="23" y2="16" />
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14" />
+            <line x1="4" y1="10" x2="4" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12" y2="3" />
+            <line x1="20" y1="21" x2="20" y2="16" />
+            <line x1="20" y1="12" x2="20" y2="3" />
+            <line x1="1" y1="14" x2="7" y2="14" />
+            <line x1="9" y1="8" x2="15" y2="8" />
+            <line x1="17" y1="16" x2="23" y2="16" />
           </svg>
           <span>Spesifikasi Lengkap</span>
         </button>
         <button type="button" class="tab-btn" data-tab="qc">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             <polyline points="9 12 11 14 15 10" />
           </svg>
           <span>Hasil Uji QC 30 Titik</span>
         </button>
         <button type="button" class="tab-btn" data-tab="warranty">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="8" r="6" />
             <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
           </svg>
@@ -2235,7 +2293,8 @@
           <div class="qc-grid">
             <div class="qc-card">
               <div class="qc-check-icon">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
@@ -2246,7 +2305,8 @@
             </div>
             <div class="qc-card">
               <div class="qc-check-icon">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
@@ -2257,7 +2317,8 @@
             </div>
             <div class="qc-card">
               <div class="qc-check-icon">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
@@ -2268,7 +2329,8 @@
             </div>
             <div class="qc-card">
               <div class="qc-check-icon">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
@@ -2279,7 +2341,8 @@
             </div>
             <div class="qc-card">
               <div class="qc-check-icon">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
@@ -2290,7 +2353,8 @@
             </div>
             <div class="qc-card">
               <div class="qc-check-icon">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
@@ -2362,7 +2426,8 @@
         </div>
       </div>
       <button class="cart-close" id="cartClose" type="button" aria-label="Tutup keranjang">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
@@ -2389,7 +2454,8 @@
       <!-- Empty State -->
       <div class="cart-empty-state" id="cartEmpty">
         <div class="cart-empty-icon">
-          <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6"
+            stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"></circle>
             <circle cx="20" cy="21" r="1"></circle>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -2465,7 +2531,8 @@
         </div>
       </div>
       <button class="info-drawer-close" id="infoDrawerClose" type="button" aria-label="Tutup pusat informasi">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
@@ -2574,9 +2641,9 @@
           <span id="favDrawerCountText">0 LAPTOP DISUKAI</span>
         </div>
       </div>
-      <button class="favorite-drawer-close" id="favoriteDrawerClose" type="button"
-        aria-label="Tutup koleksi favorit">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <button class="favorite-drawer-close" id="favoriteDrawerClose" type="button" aria-label="Tutup koleksi favorit">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
@@ -2623,29 +2690,42 @@
                 <span class="ld-brand-tagline">Spesialis Laptop Second &amp; IT Solution</span>
               </div>
             </a>
-            <p class="ld-brand-desc">Pusat laptop second berkualitas. Teruji 20+ titik QC, bergaransi toko, siap kirim ke seluruh Indonesia.</p>
+            <p class="ld-brand-desc">Pusat laptop second berkualitas. Teruji 20+ titik QC, bergaransi toko, siap kirim
+              ke seluruh Indonesia.</p>
             <ul class="ld-social-icons">
               <li class="ld-soc-item soc-wa">
                 <span class="ld-soc-tooltip">WhatsApp</span>
-                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F" target="_blank" rel="noopener" class="ld-soc-link" aria-label="WhatsApp">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F"
+                  target="_blank" rel="noopener" class="ld-soc-link" aria-label="WhatsApp">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
                 </a>
               </li>
               <li class="ld-soc-item soc-instagram">
                 <span class="ld-soc-tooltip">Instagram</span>
-                <a href="https://www.instagram.com/losari_computer/" target="_blank" rel="noopener" class="ld-soc-link js-site-ig" aria-label="Instagram">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <a href="https://www.instagram.com/losari_computer/" target="_blank" rel="noopener"
+                  class="ld-soc-link js-site-ig" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path
+                      d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  </svg>
                 </a>
               </li>
               <li class="ld-soc-item soc-tiktok">
                 <span class="ld-soc-tooltip">TikTok</span>
-                <a href="https://tiktok.com/@losaricomputer" target="_blank" rel="noopener" class="ld-soc-link js-site-tiktok" aria-label="TikTok">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+                <a href="https://tiktok.com/@losaricomputer" target="_blank" rel="noopener"
+                  class="ld-soc-link js-site-tiktok" aria-label="TikTok">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path
+                      d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z" />
+                  </svg>
                 </a>
               </li>
 
             </ul>
-            </div>
+          </div>
           <div class="ld-nav-col">
             <h4 class="ld-col-head">Navigasi</h4>
             <ul class="ld-nav-list">
@@ -2660,15 +2740,27 @@
             <h4 class="ld-col-head">Hubungi Kami</h4>
             <div class="ld-contact-info">
               <div class="ld-contact-item">
-                <span class="ld-c-icon ld-c-loc"><div class="ld-loc-loader"></div></span>
+                <span class="ld-c-icon ld-c-loc">
+                  <div class="ld-loc-loader"></div>
+                </span>
                 <span>Karebosi Link, Makassar &#8212; Sulawesi Selatan</span>
               </div>
               <div class="ld-contact-item">
-                <span class="ld-c-icon ld-c-phone"><svg class="ld-icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.47 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WA: <strong class="js-site-wa-text">+62 853-3299-0156</strong></a>
+                <span class="ld-c-icon ld-c-phone"><svg class="ld-icon-phone" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.47 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg></span>
+                <a href="https://wa.me/6285332990156?text=Halo%20admin%20Losari%20Computer%2C%20saya%20ingin%20konsultasi%20laptop%20second%20berkualitas.%20Apakah%20ada%20unit%20yang%20ready%20saat%20ini%3F"
+                  target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">WA: <strong
+                    class="js-site-wa-text">+62 853-3299-0156</strong></a>
               </div>
               <div class="ld-contact-item">
-                <span class="ld-c-icon ld-c-clock"><svg class="ld-icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+                <span class="ld-c-icon ld-c-clock"><svg class="ld-icon-clock" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg></span>
                 <span>Setiap Hari: 09.00 &#8211; 21.00 WIB</span>
               </div>
             </div>
@@ -2677,7 +2769,9 @@
         <div class="ld-bottom-row">
           <p class="ld-copyright-text">&copy; 2026 <strong>Losari Computer</strong>. Hak Cipta Dilindungi.</p>
           <div class="ld-bottom-nav">
-            <a href="/">Home</a><span>·</span><a href="/laptop">Shop</a><span>·</span><a href="/layanan">Service</a><span>·</span><a href="/tentang">Tentang</a><span>·</span><a href="/kontak">Kontak</a>
+            <a href="/">Home</a><span>·</span><a href="/laptop">Shop</a><span>·</span><a
+              href="/layanan">Service</a><span>·</span><a href="/tentang">Tentang</a><span>·</span><a
+              href="/kontak">Kontak</a>
           </div>
         </div>
       </div>
@@ -3977,6 +4071,7 @@
   </script>
   <script src="/static/site-config.js"></script>
   <script src="/static/favorite-drawer.js"></script>
+  <script src="/static/splash-screen.js"></script>
 </body>
 
 </html>

@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/splash-screen.css">
 <!-- Midtrans Snap JS (Production) -->
 <script src="https://app.midtrans.com/snap/snap.js" data-client-key="Mid-client-Ll8H0OZAIRotVdbn"></script>
 <style>
@@ -647,6 +648,25 @@ textarea.chk-input {
 </style>
 </head>
 <body>
+  <!-- Preloader Splash Screen (Losari Computer) -->
+  <div id="losari-splash" aria-label="Memuat Losari Computer">
+    <div class="splash-center-wrap">
+      <div class="splash-brand-row">
+        <div class="splash-logo-card">
+          <img src="/static/videos/img/Logo.png" alt="Logo Losari Computer">
+        </div>
+        <div class="splash-brand-text">
+          <h1 class="splash-brand-title">Losari</h1>
+          <span class="splash-brand-sub">C O M P U T E R</span>
+        </div>
+      </div>
+      <p class="splash-tagline">SOUTH SULAWESI LAPTOP CENTER<br>PUSAT LAPTOP & TEKNOLOGI</p>
+    </div>
+    <div class="splash-bottom-wrap">
+      <div class="splash-spinner" role="status" aria-label="Loading"></div>
+      <span class="splash-loading-text">MEMUAT CHECKOUT</span>
+    </div>
+  </div>
 
 <header class="chk-header">
   <div class="chk-header-inner">
@@ -1070,5 +1090,6 @@ btn.onclick = async () => {
 };
 </script>
 <script src="/static/site-config.js"></script>
+<script src="/static/splash-screen.js"></script>
 </body>
 </html>
