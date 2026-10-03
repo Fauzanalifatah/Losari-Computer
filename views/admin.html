@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Losari Computer</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/admin-dashboard.css?v=1">
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-bg-overlay"></div>
+  <div class="login-box">
+    <div class="login-brand">
+      <img src="/static/videos/img/Logo.png" alt="Losari Computer" onerror="this.style.display='none'">
+      <div><h1>Losari Computer</h1><span>Admin Panel</span></div>
+    </div>
+    <h2 class="login-title">Selamat Datang, Admin</h2>
+    <p class="login-sub">Masuk untuk mengelola toko Losari Computer</p>
+    <form id="loginForm" autocomplete="off" onsubmit="adminLogin(event)">
+      <div class="login-field">
+        <label for="loginUser">Username</label>
+        <div class="login-input-wrap">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <input type="text" id="loginUser" placeholder="admin" autocomplete="username">
+        </div>
+      </div>
+      <div class="login-field">
+        <label for="loginPass">Password</label>
+        <div class="login-input-wrap">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <input type="password" id="loginPass" placeholder="password" autocomplete="current-password">
+        </div>
+      </div>
+      <div id="loginError" class="login-error" style="display:none">Username atau password salah.</div>
+      <button type="submit" class="btn-login" id="btnLogin">Masuk ke Dashboard</button>
+    </form>
+    <p class="login-hint">Default: <code>admin</code> / <code>losari2026</code></p>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD APP ===== -->
+<div id="dashboardApp" class="dash-app" style="display:none">
+
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="sidebar-brand">
+      <img src="/static/videos/img/Logo.png" alt="Losari" onerror="this.style.display='none'">
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Losari</span>
+        <span class="sidebar-brand-sub">COMPUTER</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">UTAMA</div>
+      <button class="nav-item active" data-page="dashboard" onclick="navigateTo('dashboard')">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Dashboard</span>
+      </button>
+      <button class="nav-item" data-page="products" onclick="navigateTo('products')">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <span>Produk</span><span class="nav-badge" id="navBadgeProd">12</span>
+      </button>
+      <button class="nav-item" data-page="orders" onclick="navigateTo('orders')">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Pesanan</span><span class="nav-badge nav-badge--warn" id="navBadgeOrd">3</span>
+      </button>
+      <button class="nav-item" data-page="payments" onclick="navigateTo('payments')">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <span>Pembayaran</span>
+      </button>
+      <div class="nav-section-label">LAYANAN</div>
+      <button class="nav-item" data-page="returns" onclick="navigateTo('returns')">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-5.51"/></svg>
+        <span>Retur</span><span class="nav-badge nav-badge--red" id="navBadgeRet">2</span>
+      </button>
+      <button class="nav-item" data-page="analytics" onclick="navigateTo('analytics')">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span>Analitik</span>
+      </button>
+      <div class="nav-section-label">SISTEM</div>
+      <button class="nav-item" data-page="settings" onclick="navigateTo('settings')">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Pengaturan</span>
+      </button>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="/" target="_blank" class="btn-view-site">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        <span>Lihat Website</span>
+      </a>
+      <button class="btn-logout" onclick="adminLogout()">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <span>Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN AREA -->
+  <div class="dash-main">
+    <!-- TOPBAR -->
+    <header class="dash-topbar">
+      <div class="topbar-left">
+        <button class="btn-sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topbar-search">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="globalSearch" placeholder="Cari produk, pesanan, pelanggan..." oninput="globalSearchFn(this.value)">
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="topbar-notif" onclick="navigateTo('orders')" title="Pesanan pending">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-dot" id="notifDot">3</span>
+        </button>
+        <div class="topbar-admin">
+          <div class="admin-avatar" id="topAdminAvatar">A</div>
+          <div class="admin-info">
+            <span class="admin-name" id="topAdminName">Admin</span>
+            <span class="admin-role">Administrator</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="dash-content" id="dashContent">
+
+      <!-- PAGE: DASHBOARD -->
+      <section class="page-section" id="page-dashboard">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Dashboard</h1>
+            <p class="page-sub" id="dashGreeting">Selamat datang kembali!</p>
+          </div>
+          <div class="page-header-actions">
+            <span class="dash-date" id="dashDate"></span>
+            <button class="btn-primary" onclick="navigateTo('products');setTimeout(openAddProductModal,300)">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Tambah Produk
+            </button>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card stat-card--blue">
+            <div class="stat-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div class="stat-body"><span class="stat-label">Total Produk</span><span class="stat-val" id="statTotalProd">12</span><span class="stat-trend stat-trend--up">+2 bulan ini</span></div>
+          </div>
+          <div class="stat-card stat-card--green">
+            <div class="stat-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="stat-body"><span class="stat-label">Pesanan Masuk</span><span class="stat-val" id="statOrders">24</span><span class="stat-trend stat-trend--up">+8 minggu ini</span></div>
+          </div>
+          <div class="stat-card stat-card--purple">
+            <div class="stat-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <div class="stat-body"><span class="stat-label">Omzet Bulan Ini</span><span class="stat-val" id="statRevenue">Rp 134,7 jt</span><span class="stat-trend stat-trend--up">+12% vs lalu</span></div>
+          </div>
+          <div class="stat-card stat-card--orange">
+            <div class="stat-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-5.51"/></svg></div>
+            <div class="stat-body"><span class="stat-label">Retur Aktif</span><span class="stat-val" id="statReturns">2</span><span class="stat-trend stat-trend--down">Menunggu verifikasi</span></div>
+          </div>
+        </div>
+        <div class="dash-grid-2col">
+          <div class="dash-card">
+            <div class="dash-card-header"><h3>Penjualan 7 Hari Terakhir</h3><span class="dash-card-badge">Rp juta</span></div>
+            <div class="chart-wrap"><canvas id="salesChart"></canvas></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header"><h3>Metode Pembayaran</h3><span class="dash-card-badge">Bulan ini</span></div>
+            <div class="payment-method-list">
+              <div class="pm-item"><div class="pm-icon pm-icon--qris">QRIS</div><div class="pm-info"><span class="pm-name">GoPay / QRIS</span><div class="pm-bar"><div class="pm-bar-fill" style="width:45%;background:#10b981"></div></div></div><span class="pm-pct">45%</span></div>
+              <div class="pm-item"><div class="pm-icon pm-icon--transfer">TF</div><div class="pm-info"><span class="pm-name">Transfer Bank</span><div class="pm-bar"><div class="pm-bar-fill" style="width:30%;background:#3b82f6"></div></div></div><span class="pm-pct">30%</span></div>
+              <div class="pm-item"><div class="pm-icon pm-icon--cc">CC</div><div class="pm-info"><span class="pm-name">Kartu Kredit</span><div class="pm-bar"><div class="pm-bar-fill" style="width:15%;background:#8b5cf6"></div></div></div><span class="pm-pct">15%</span></div>
+              <div class="pm-item"><div class="pm-icon pm-icon--va">VA</div><div class="pm-info"><span class="pm-name">Virtual Account</span><div class="pm-bar"><div class="pm-bar-fill" style="width:10%;background:#f59e0b"></div></div></div><span class="pm-pct">10%</span></div>
+            </div>
+            <div class="midtrans-status-box">
+              <div class="midtrans-label">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Midtrans Terkoneksi
+              </div>
+              <button class="btn-check-midtrans" onclick="navigateTo('payments')">Cek Status</button>
+            </div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><h3>Pesanan Terbaru</h3><button class="btn-text" onclick="navigateTo('orders')">Lihat semua</button></div>
+          <div class="table-responsive">
+            <table class="dash-table">
+              <thead><tr><th>No. Pesanan</th><th>Pelanggan</th><th>Produk</th><th>Total</th><th>Metode</th><th>Status</th><th>Aksi</th></tr></thead>
+              <tbody id="recentOrdersTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: PRODUCTS -->
+      <section class="page-section" id="page-products" style="display:none">
+        <div class="page-header">
+          <div><h1 class="page-title">Manajemen Produk</h1><p class="page-sub">Kelola semua produk laptop dan aksesoris di katalog</p></div>
+          <div class="page-header-actions">
+            <input type="text" class="search-input" id="prodSearch" placeholder="Cari produk..." oninput="filterProductTable(this.value)">
+            <select class="select-input" id="prodCatFilter" onchange="filterProductTable(document.getElementById('prodSearch').value)">
+              <option value="">Semua Kategori</option>
+              <option value="office">Office &amp; Kuliah</option><option value="gaming">Gaming</option>
+              <option value="creative">Desain &amp; Kreatif</option><option value="business">Bisnis</option>
+              <option value="accessor">Aksesoris</option><option value="smartphone">Smartphone</option><option value="cctv">CCTV</option>
+            </select>
+            <button class="btn-primary" onclick="openAddProductModal()">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Tambah Produk
+            </button>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="table-responsive">
+            <table class="dash-table">
+              <thead><tr><th>Foto</th><th>Nama Produk</th><th>Kategori</th><th>Spesifikasi</th><th>Harga</th><th>Grade</th><th>Status</th><th>Aksi</th></tr></thead>
+              <tbody id="productsTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: ORDERS -->
+      <section class="page-section" id="page-orders" style="display:none">
+        <div class="page-header">
+          <div><h1 class="page-title">Manajemen Pesanan</h1><p class="page-sub">Lacak dan kelola semua transaksi pelanggan</p></div>
+          <div class="page-header-actions">
+            <input type="text" class="search-input" id="orderSearch" placeholder="Cari pesanan..." oninput="filterOrderTable(this.value)">
+            <select class="select-input" id="orderStatusFilter" onchange="filterOrderTable(document.getElementById('orderSearch').value)">
+              <option value="">Semua Status</option><option value="settlement">Berhasil</option><option value="pending">Pending</option><option value="expire">Kadaluarsa</option><option value="cancel">Dibatalkan</option>
+            </select>
+          </div>
+        </div>
+        <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px">
+          <div class="mini-stat"><span class="mini-stat-num" id="ordStatTotal">24</span><span class="mini-stat-label">Total Pesanan</span></div>
+          <div class="mini-stat mini-stat--green"><span class="mini-stat-num" id="ordStatSuccess">18</span><span class="mini-stat-label">Berhasil</span></div>
+          <div class="mini-stat mini-stat--yellow"><span class="mini-stat-num" id="ordStatPending">3</span><span class="mini-stat-label">Pending</span></div>
+          <div class="mini-stat mini-stat--red"><span class="mini-stat-num" id="ordStatFailed">3</span><span class="mini-stat-label">Gagal/Batal</span></div>
+        </div>
+        <div class="dash-card">
+          <div class="table-responsive">
+            <table class="dash-table">
+              <thead><tr><th>No. Pesanan</th><th>Tanggal</th><th>Pelanggan</th><th>Produk</th><th>Total</th><th>Metode</th><th>Status</th><th>Aksi</th></tr></thead>
+              <tbody id="ordersTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: PAYMENTS -->
+      <section class="page-section" id="page-payments" style="display:none">
+        <div class="page-header"><div><h1 class="page-title">Metode Pembayaran</h1><p class="page-sub">Konfigurasi Midtrans dan cek status transaksi</p></div></div>
+        <div class="dash-grid-2col">
+          <div class="dash-card">
+            <div class="dash-card-header"><h3>Konfigurasi Midtrans</h3><span class="badge badge--green">Terhubung</span></div>
+            <div class="config-field-list">
+              <div class="config-field"><label>Merchant ID</label><div class="config-val"><code id="cfgMerchant">M354998408</code></div></div>
+              <div class="config-field"><label>Client Key</label><div class="config-val"><code id="cfgClientKey">Mid-client-Ll8H0OZA...</code></div></div>
+              <div class="config-field"><label>Server Key</label><div class="config-val"><code>Mid-server-&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;</code><span class="masked-note"> (Tersembunyi)</span></div></div>
+              <div class="config-field"><label>Mode</label><div class="config-val"><span class="badge badge--green" id="cfgMode">Production</span></div></div>
+              <div class="config-field"><label>Snap.js URL</label><div class="config-val"><code id="cfgSnapUrl">app.midtrans.com/snap/snap.js</code></div></div>
+            </div>
+            <button class="btn-outline mt-16" onclick="testMidtransConfig()">Tes Koneksi Midtrans</button>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header"><h3>Cek Status Transaksi</h3></div>
+            <div class="payment-check-form">
+              <label class="form-label">Nomor Order ID</label>
+              <div class="input-group">
+                <input type="text" id="checkOrderId" class="form-input" placeholder="LOSARI-1698765432-123">
+                <button class="btn-primary" onclick="checkMidtransStatus()">Cek Status</button>
+              </div>
+              <div id="paymentCheckResult" class="payment-check-result" style="display:none"></div>
+            </div>
+            <div class="dash-card-header" style="margin-top:20px"><h3>Metode Aktif di Midtrans</h3></div>
+            <div class="payment-gates-list">
+              <div class="gate-item gate-item--active"><div class="gate-icon">&#x1F4B3;</div><div class="gate-info"><strong>Kartu Kredit/Debit</strong><span>Visa, Mastercard, JCB</span></div><span class="badge badge--green">Aktif</span></div>
+              <div class="gate-item gate-item--active"><div class="gate-icon">&#x1F4F1;</div><div class="gate-info"><strong>GoPay &amp; QRIS</strong><span>QR Code pembayaran</span></div><span class="badge badge--green">Aktif</span></div>
+              <div class="gate-item gate-item--active"><div class="gate-icon">&#x1F3E6;</div><div class="gate-info"><strong>Transfer Bank</strong><span>BCA, BRI, BNI, Mandiri</span></div><span class="badge badge--green">Aktif</span></div>
+              <div class="gate-item gate-item--active"><div class="gate-icon">&#x1F4BB;</div><div class="gate-info"><strong>Virtual Account</strong><span>BCA VA, BRI VA, BNI VA</span></div><span class="badge badge--green">Aktif</span></div>
+              <div class="gate-item gate-item--active"><div class="gate-icon">&#x1F6D2;</div><div class="gate-info"><strong>ShopeePay</strong><span>Dompet digital</span></div><span class="badge badge--green">Aktif</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><h3>Riwayat Transaksi</h3><button class="btn-text" onclick="loadPaymentHistory()">Muat Data</button></div>
+          <div class="table-responsive">
+            <table class="dash-table">
+              <thead><tr><th>Order ID</th><th>Pelanggan</th><th>Nominal</th><th>Metode</th><th>Waktu</th><th>Status</th><th>Aksi</th></tr></thead>
+              <tbody id="paymentHistoryTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: RETURNS -->
+      <section class="page-section" id="page-returns" style="display:none">
+        <div class="page-header"><div><h1 class="page-title">Manajemen Retur</h1><p class="page-sub">Kelola pengajuan retur dan klaim garansi dari pelanggan</p></div></div>
+        <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px">
+          <div class="mini-stat mini-stat--yellow"><span class="mini-stat-num">2</span><span class="mini-stat-label">Menunggu Verifikasi</span></div>
+          <div class="mini-stat mini-stat--blue"><span class="mini-stat-num">1</span><span class="mini-stat-label">Sedang Diproses</span></div>
+          <div class="mini-stat mini-stat--green"><span class="mini-stat-num">8</span><span class="mini-stat-label">Selesai Bulan Ini</span></div>
+          <div class="mini-stat mini-stat--red"><span class="mini-stat-num">1</span><span class="mini-stat-label">Ditolak</span></div>
+        </div>
+        <div class="dash-card">
+          <div class="table-responsive">
+            <table class="dash-table">
+              <thead><tr><th>ID Retur</th><th>Tanggal</th><th>Pelanggan</th><th>Produk</th><th>No. Pesanan</th><th>Alasan</th><th>Status</th><th>Aksi</th></tr></thead>
+              <tbody id="returnsTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: ANALYTICS -->
+      <section class="page-section" id="page-analytics" style="display:none">
+        <div class="page-header">
+          <div><h1 class="page-title">Analitik &amp; Statistik</h1><p class="page-sub">Laporan penjualan, produk terlaris, dan tren pelanggan</p></div>
+          <div class="page-header-actions">
+            <select class="select-input" id="analyticsPeriod" onchange="refreshAnalytics()">
+              <option value="7">7 Hari Terakhir</option><option value="30" selected>30 Hari Terakhir</option><option value="90">3 Bulan</option>
+            </select>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card stat-card--blue"><div class="stat-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="stat-body"><span class="stat-label">Omzet Total</span><span class="stat-val">Rp 134,7 jt</span><span class="stat-trend stat-trend--up">+12% vs lalu</span></div></div>
+          <div class="stat-card stat-card--green"><div class="stat-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><div class="stat-body"><span class="stat-label">Unit Terjual</span><span class="stat-val">24 unit</span><span class="stat-trend stat-trend--up">+8 vs lalu</span></div></div>
+          <div class="stat-card stat-card--purple"><div class="stat-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="stat-body"><span class="stat-label">Pelanggan Baru</span><span class="stat-val">19</span><span class="stat-trend stat-trend--up">+5 vs lalu</span></div></div>
+          <div class="stat-card stat-card--orange"><div class="stat-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="stat-body"><span class="stat-label">Konversi</span><span class="stat-val">75%</span><span class="stat-trend stat-trend--up">+5% vs lalu</span></div></div>
+        </div>
+        <div class="dash-grid-2col">
+          <div class="dash-card">
+            <div class="dash-card-header"><h3>Tren Penjualan</h3></div>
+            <div class="chart-wrap"><canvas id="analyticsChart"></canvas></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header"><h3>Produk Terlaris</h3></div>
+            <div class="bestseller-list">
+              <div class="bs-item"><span class="bs-rank bs-rank--gold">1</span><img src="/static/images/laptop/macbook-air-m1.jpg" alt="MacBook" onerror="this.src='/static/videos/img/Logo.png'"><div class="bs-info"><strong>MacBook Air M1</strong><span>8 unit terjual</span></div><span class="bs-rev">Rp 95,2 jt</span></div>
+              <div class="bs-item"><span class="bs-rank bs-rank--silver">2</span><img src="/static/images/laptop/hp-elitebook-840.jpg" alt="HP" onerror="this.src='/static/videos/img/Logo.png'"><div class="bs-info"><strong>HP EliteBook 840 G7</strong><span>5 unit terjual</span></div><span class="bs-rev">Rp 25,7 jt</span></div>
+              <div class="bs-item"><span class="bs-rank bs-rank--bronze">3</span><img src="/static/images/laptop/thinkpad-t490.jpg" alt="ThinkPad" onerror="this.src='/static/videos/img/Logo.png'"><div class="bs-info"><strong>Lenovo ThinkPad T490</strong><span>4 unit terjual</span></div><span class="bs-rev">Rp 17 jt</span></div>
+              <div class="bs-item"><span class="bs-rank">4</span><img src="/static/images/laptop/asus-tuf-a15.jpg" alt="ASUS" onerror="this.src='/static/videos/img/Logo.png'"><div class="bs-info"><strong>ASUS TUF Gaming A15</strong><span>4 unit terjual</span></div><span class="bs-rev">Rp 35,6 jt</span></div>
+              <div class="bs-item"><span class="bs-rank">5</span><img src="/static/images/laptop/dell-latitude-5410.jpg" alt="Dell" onerror="this.src='/static/videos/img/Logo.png'"><div class="bs-info"><strong>Dell Latitude 5410</strong><span>3 unit terjual</span></div><span class="bs-rev">Rp 15,6 jt</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: SETTINGS -->
+      <section class="page-section" id="page-settings" style="display:none">
+        <div class="page-header"><div><h1 class="page-title">Pengaturan Website</h1><p class="page-sub">Konfigurasi kontak, media sosial, dan info toko</p></div></div>
+        <div class="dash-grid-2col">
+          <div class="dash-card">
+            <div class="dash-card-header"><h3>Info Kontak &amp; Toko</h3></div>
+            <div class="settings-form">
+              <div class="settings-field"><label class="settings-label">Nomor WhatsApp</label><input type="text" class="form-input" id="setWaNumber" value="6285332990156"><span class="settings-hint">Format: 62xxx (tanpa + atau spasi)</span></div>
+              <div class="settings-field"><label class="settings-label">Nomor Tampilan</label><input type="text" class="form-input" id="setWaDisplay" value="+62 853-3299-0156"></div>
+              <div class="settings-field"><label class="settings-label">Pesan Default WhatsApp</label><textarea class="form-textarea" id="setWaMsg" rows="3">Halo admin Losari Computer, saya ingin konsultasi laptop second berkualitas. Apakah ada unit yang ready saat ini?</textarea></div>
+              <div class="settings-field"><label class="settings-label">Alamat Toko</label><input type="text" class="form-input" id="setLocation" value="Karebosi Link, Makassar — Sulawesi Selatan"></div>
+              <button class="btn-primary" onclick="saveContactSettings()">Simpan Perubahan</button>
+            </div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header"><h3>Media Sosial &amp; Admin</h3></div>
+            <div class="settings-form">
+              <div class="settings-field"><label class="settings-label">Username Instagram</label><div class="input-prefix-wrap"><span class="input-prefix">instagram.com/</span><input type="text" class="form-input form-input--prefix" id="setIg" value="losari_computer"></div></div>
+              <div class="settings-field"><label class="settings-label">Username TikTok</label><div class="input-prefix-wrap"><span class="input-prefix">tiktok.com/@</span><input type="text" class="form-input form-input--prefix" id="setTiktok" value="losaricomputer"></div></div>
+              <div class="settings-field"><label class="settings-label">Username Admin</label><input type="text" class="form-input" id="setAdminUser" value="admin"></div>
+              <div class="settings-field"><label class="settings-label">Password Admin Baru</label><input type="password" class="form-input" id="setAdminPass" placeholder="Kosongkan jika tidak ingin mengubah"></div>
+              <button class="btn-primary" onclick="saveSocialSettings()">Simpan Perubahan</button>
+            </div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><h3>Tautan Cepat ke Halaman Website</h3></div>
+          <div class="quick-links-grid">
+            <a href="/" target="_blank" class="quick-link-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Beranda</span></a>
+            <a href="/laptop" target="_blank" class="quick-link-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span>Katalog Laptop</span></a>
+            <a href="/support" target="_blank" class="quick-link-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg><span>Support &amp; Retur</span></a>
+            <a href="/payment" target="_blank" class="quick-link-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg><span>Status Pembayaran</span></a>
+            <a href="/layanan" target="_blank" class="quick-link-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span>Layanan Service</span></a>
+            <a href="/tentang" target="_blank" class="quick-link-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Tentang Kami</span></a>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- end dash-content -->
+  </div><!-- end dash-main -->
+</div><!-- end dashboardApp -->
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" class="modal-overlay" style="display:none">
+  <div class="modal-backdrop" onclick="closeProductModal()"></div>
+  <div class="modal-container modal-container--wide" role="dialog">
+    <div class="modal-header">
+      <h2 class="modal-title" id="productModalTitle">Tambah Produk Baru</h2>
+      <button class="modal-close" onclick="closeProductModal()"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <form id="productForm">
+        <input type="hidden" id="pf_id">
+        <div class="form-grid-2">
+          <div class="form-group"><label class="form-label">Nama Produk <span class="req">*</span></label><input type="text" class="form-input" id="pf_name" placeholder="Contoh: Lenovo ThinkPad T490" required></div>
+          <div class="form-group"><label class="form-label">ID Produk / Slug <span class="req">*</span></label><input type="text" class="form-input" id="pf_slug" placeholder="lenovo-thinkpad-t490" required></div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group"><label class="form-label">Harga (Rp) <span class="req">*</span></label><input type="number" class="form-input" id="pf_price" placeholder="4250000" min="0" required></div>
+          <div class="form-group"><label class="form-label">Kategori <span class="req">*</span></label><select class="form-input" id="pf_category" required><option value="">Pilih kategori</option><option value="office">Office &amp; Kuliah</option><option value="gaming">Gaming</option><option value="creative">Desain &amp; Kreatif</option><option value="business">Bisnis</option><option value="accessor">Aksesoris &amp; POS</option><option value="smartphone">Smartphone</option><option value="cctv">CCTV &amp; Smart Security</option></select></div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group"><label class="form-label">Brand</label><input type="text" class="form-input" id="pf_brand" placeholder="Lenovo, ASUS, HP, Apple, Dell, Acer..."></div>
+          <div class="form-group"><label class="form-label">Grade / Kondisi</label><select class="form-input" id="pf_grade"><option value="Grade A+">Grade A+ (Seperti Baru)</option><option value="Grade A">Grade A (Sangat Baik)</option><option value="Grade B+">Grade B+ (Baik)</option><option value="Like New">Like New</option><option value="Best Seller">Best Seller</option><option value="Gaming Ready">Gaming Ready</option><option value="Business Choice">Business Choice</option><option value="Unit Teruji">Unit Teruji</option></select></div>
+        </div>
+        <div class="form-grid-4">
+          <div class="form-group"><label class="form-label">Processor</label><input type="text" class="form-input" id="pf_spec1" placeholder="Intel Core i5"></div>
+          <div class="form-group"><label class="form-label">RAM</label><input type="text" class="form-input" id="pf_ram" placeholder="16GB"></div>
+          <div class="form-group"><label class="form-label">Storage</label><input type="text" class="form-input" id="pf_storage" placeholder="SSD 512GB"></div>
+          <div class="form-group"><label class="form-label">Layar</label><input type="text" class="form-input" id="pf_screen" placeholder='14" FHD'></div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group"><label class="form-label">Deskripsi Singkat</label><textarea class="form-textarea" id="pf_desc" rows="2" placeholder="Deskripsi singkat untuk kartu produk..."></textarea></div>
+          <div class="form-group"><label class="form-label">Status Produk</label><select class="form-input" id="pf_status"><option value="active">Aktif (Tampilkan)</option><option value="hidden">Disembunyikan</option><option value="sold">Terjual Habis</option></select></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Gambar Produk</label>
+          <div class="input-group">
+            <input type="text" class="form-input" id="pf_image" placeholder="/static/images/laptop/thinkpad-t490.jpg" oninput="previewProductImg(this.value)">
+            <button type="button" class="btn-outline" onclick="document.getElementById('pf_imgUpload').click()">Upload Foto</button>
+            <input type="file" id="pf_imgUpload" accept="image/*" style="display:none" onchange="handleImgUpload(this)">
+          </div>
+          <div class="product-img-preview" id="productImgPreview" style="display:none"><img id="productImgPreviewEl" src="" alt="Preview"></div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeProductModal()">Batal</button>
+      <button class="btn-primary" onclick="saveProduct()">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        Simpan Produk
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER DETAIL MODAL -->
+<div id="orderModal" class="modal-overlay" style="display:none">
+  <div class="modal-backdrop" onclick="closeOrderModal()"></div>
+  <div class="modal-container" role="dialog">
+    <div class="modal-header"><h2 class="modal-title">Detail Pesanan</h2><button class="modal-close" onclick="closeOrderModal()"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="modal-body" id="orderModalBody"></div>
+    <div class="modal-footer"><button class="btn-outline" onclick="closeOrderModal()">Tutup</button><button class="btn-outline" onclick="checkCurrentOrderStatus()" id="btnCheckOrderStatus">Cek Status Midtrans</button></div>
+  </div>
+</div>
+
+<!-- RETURN DETAIL MODAL -->
+<div id="returnModal" class="modal-overlay" style="display:none">
+  <div class="modal-backdrop" onclick="closeReturnModal()"></div>
+  <div class="modal-container" role="dialog">
+    <div class="modal-header"><h2 class="modal-title">Detail Pengajuan Retur</h2><button class="modal-close" onclick="closeReturnModal()"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="modal-body" id="returnModalBody"></div>
+    <div class="modal-footer"><button class="btn-outline" onclick="closeReturnModal()">Tutup</button><button class="btn-danger" onclick="updateReturnStatus('rejected')" id="btnRejectReturn">Tolak Retur</button><button class="btn-primary" onclick="updateReturnStatus('approved')" id="btnApproveReturn">Setujui Retur</button></div>
+  </div>
+</div>
+
+<!-- CONFIRM MODAL -->
+<div id="confirmModal" class="modal-overlay" style="display:none">
+  <div class="modal-backdrop" onclick="closeConfirmModal()"></div>
+  <div class="modal-container modal-container--sm" role="dialog">
+    <div class="modal-header"><h2 class="modal-title" id="confirmTitle">Konfirmasi</h2><button class="modal-close" onclick="closeConfirmModal()"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="modal-body"><p id="confirmMsg" style="margin:0;color:#374151;font-size:15px;line-height:1.6"></p></div>
+    <div class="modal-footer"><button class="btn-outline" onclick="closeConfirmModal()">Batal</button><button class="btn-danger" id="confirmOkBtn">Ya, Lanjutkan</button></div>
+  </div>
+</div>
+
+<div id="adminToast" class="admin-toast" style="display:none"></div>
+<script src="/static/admin-dashboard.js?v=1"></script>
+</body>
+</html>

@@ -26,6 +26,7 @@ app.get(["/support", "/support.html", "/retur", "/retur.html", "/kontak", "/kont
 app.get(["/checkout-produk", "/checkout-produk.html"], (req, res) => renderPage(res, "checkout-produk"));
 app.get(["/checkout", "/checkout.html"], (req, res) => renderPage(res, "checkout-produk"));
 app.get(["/payment", "/payment.html"], (req, res) => res.sendFile(path.join(__dirname, "views", "payment", "payment-status.html")));
+app.get(["/admin", "/admin.html"], (req, res) => renderPage(res, "admin"));
 app.get(["/detail-produk", "/detail-produk.html", "/detail", "/detail.html", "/detail-produk/:id", "/detail/:id"], (req, res) => renderPage(res, "detail-produk"));
 
 // Dynamic fallback route for any html page in views/
