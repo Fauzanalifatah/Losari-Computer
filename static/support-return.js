@@ -25,9 +25,7 @@
     trackingNo: "JTO123456789"
   };
 
-  var uploadedFiles = [
-    { name: "foto_kerusakan_layar.jpg", size: "2.4 MB" }
-  ];
+  var uploadedFiles = [];
 
   // DOM Elements
   var screenViews = {
@@ -66,6 +64,9 @@
         }
       }, 140);
     }
+
+    // Refresh file previews on screen switch
+    renderFilePreviews();
 
     // Update navigator pills
     navPills.forEach(function (pill) {
@@ -220,6 +221,19 @@
     retForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
+      if (uploadedFiles.length === 0) {
+        showToast("Harap upload minimal 1 foto atau video bukti kerusakan unit.");
+        var dropZone = document.getElementById("retDropZone");
+        if (dropZone) {
+          dropZone.classList.add("dragover");
+          dropZone.scrollIntoView({ behavior: "smooth", block: "center" });
+          setTimeout(function () {
+            dropZone.classList.remove("dragover");
+          }, 1500);
+        }
+        return;
+      }
+
       var orderIdInput = document.getElementById("inputNomorPesanan");
       var reasonInput = document.getElementById("inputAlasanRetur");
       var conditionInput = document.querySelector('input[name="kondisi_retur"]:checked');
@@ -290,30 +304,511 @@
     });
   }
 
+  function escapeHtml(str) {
+    if (!str) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
   function handleFiles(files) {
+    if (!files || files.length === 0) return;
+    var addedCount = 0;
+
     for (var i = 0; i < files.length; i++) {
+      if (uploadedFiles.length >= 5) {
+        showToast("Maksimal 5 file bukti yang dapat diunggah.");
+        break;
+      }
       var f = files[i];
+
+      // Check max size (10 MB)
+      if (f.size > 10 * 1024 * 1024) {
+        showToast("File '" + f.name + "' melebihi batas 10MB.");
+        continue;
+      }
+
+      var isVideo = (f.type && f.type.startsWith("video/")) || /\.(mp4|webm|mov|mkv)$/i.test(f.name);
+      var isImage = (f.type && f.type.startsWith("image/")) || /\.(jpg|jpeg|png|webp|gif|bmp)$/i.test(f.name);
+
+      if (!isVideo && !isImage) {
+        showToast("Format file '" + f.name + "' tidak didukung. Harap upload gambar (JPG, PNG) atau video (MP4).");
+        continue;
+      }
+
       var sizeMb = (f.size / (1024 * 1024)).toFixed(1) + " MB";
-      uploadedFiles.push({ name: f.name, size: sizeMb });
+      var objectUrl = URL.createObjectURL(f);
+
+      uploadedFiles.push({
+        name: f.name,
+        size: sizeMb,
+        type: isVideo ? "video" : "image",
+        url: objectUrl,
+        file: f
+      });
+      addedCount++;
     }
+
+    if (fileInput) fileInput.value = "";
     renderFilePreviews();
-    showToast(files.length + " file berhasil ditambahkan.");
+    if (addedCount > 0) {
+      showToast(addedCount + " file berhasil ditambahkan. Klik file untuk melihat pratinjau.");
+    }
   }
 
   function renderFilePreviews() {
-    if (!previewList) return;
-    previewList.innerHTML = "";
-    uploadedFiles.forEach(function (file, index) {
-      var chip = document.createElement("div");
-      chip.className = "ret-file-chip";
-      chip.innerHTML = '<span>📄 ' + file.name + ' (' + file.size + ')</span><button type="button" class="ret-file-chip-remove" onclick="removeUploadFile(' + index + ')">×</button>';
-      previewList.appendChild(chip);
+    var targets = [
+      { el: document.getElementById("retFilePreviewList"), allowRemove: true },
+      { el: document.getElementById("statusEvidenceList"), allowRemove: false }
+    ];
+
+    targets.forEach(function (t) {
+      if (!t.el) return;
+      t.el.innerHTML = "";
+
+      if (uploadedFiles.length === 0) {
+        if (!t.allowRemove) {
+          t.el.innerHTML = '<span style="font-size:12px; color:var(--ret-slate); font-style:italic;">Tidak ada bukti terlampir</span>';
+        }
+        return;
+      }
+
+      uploadedFiles.forEach(function (file, index) {
+        var chip = document.createElement("div");
+        chip.className = "ret-file-chip";
+        chip.title = "Klik untuk melihat " + (file.type === "video" ? "video" : "foto") + ": " + file.name;
+        chip.onclick = function () {
+          openMediaPreview(index);
+        };
+
+        var thumbContent = "";
+        if (file.type === "video") {
+          thumbContent = '<div class="ret-file-chip-thumb is-video">' +
+            '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">' +
+              '<polygon points="6 4 20 12 6 20 6 4"/>' +
+            '</svg>' +
+          '</div>';
+        } else if (file.url) {
+          thumbContent = '<div class="ret-file-chip-thumb">' +
+            '<img src="' + file.url + '" alt="thumb" onerror="this.parentElement.innerHTML=\'📄\'">' +
+          '</div>';
+        } else {
+          thumbContent = '<div class="ret-file-chip-thumb">📄</div>';
+        }
+
+        var removeBtn = t.allowRemove
+          ? '<button type="button" class="ret-file-chip-remove" onclick="event.stopPropagation(); removeUploadFile(' + index + ')" title="Hapus file" aria-label="Hapus file">×</button>'
+          : '';
+
+        chip.innerHTML = '<div class="ret-file-chip-main">' +
+            thumbContent +
+            '<div class="ret-file-chip-info">' +
+              '<span class="ret-file-chip-name" title="' + escapeHtml(file.name) + '">' + escapeHtml(file.name) + '</span>' +
+              '<span class="ret-file-chip-size">' + escapeHtml(file.size) + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="ret-file-chip-actions">' +
+            '<button type="button" class="ret-file-chip-view-badge" onclick="event.stopPropagation(); openMediaPreview(' + index + ')" title="Lihat foto/video">' +
+              '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
+                '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>' +
+                '<circle cx="12" cy="12" r="3"></circle>' +
+              '</svg>' +
+              '<span>Lihat</span>' +
+            '</button>' +
+            removeBtn +
+          '</div>';
+
+        t.el.appendChild(chip);
+      });
     });
   }
 
   window.removeUploadFile = function (index) {
-    uploadedFiles.splice(index, 1);
-    renderFilePreviews();
+    if (index >= 0 && index < uploadedFiles.length) {
+      var item = uploadedFiles[index];
+      if (item && item.url && item.url.startsWith("blob:")) {
+        try { URL.revokeObjectURL(item.url); } catch (e) { }
+      }
+      uploadedFiles.splice(index, 1);
+      renderFilePreviews();
+      showToast("File berhasil dihapus.");
+    }
+  };
+
+  // Media Preview Modal Controller
+  var currentPreviewIndex = 0;
+
+  window.openMediaPreview = function (index) {
+    index = parseInt(index, 10);
+    if (isNaN(index) || index < 0 || index >= uploadedFiles.length) return;
+    currentPreviewIndex = index;
+
+    var file = uploadedFiles[index];
+    var modal = document.getElementById("mediaPreviewModal");
+    var titleEl = document.getElementById("mediaPreviewTitle");
+    var sizeEl = document.getElementById("mediaPreviewSize");
+    var badgeEl = document.getElementById("mediaPreviewBadge");
+    var counterEl = document.getElementById("mediaPreviewCounter");
+    var imgEl = document.getElementById("mediaPreviewImage");
+    var videoEl = document.getElementById("mediaPreviewVideo");
+    var downloadEl = document.getElementById("mediaDownloadBtn");
+    var prevBtn = document.getElementById("mediaPrevBtn");
+    var nextBtn = document.getElementById("mediaNextBtn");
+
+    if (!modal) return;
+
+    if (titleEl) titleEl.textContent = file.name;
+    if (sizeEl) sizeEl.textContent = "(" + file.size + ")";
+    if (badgeEl) {
+      badgeEl.textContent = file.type === "video" ? "VIDEO" : "FOTO";
+      badgeEl.className = "ret-media-type-badge " + (file.type === "video" ? "type-video" : "type-image");
+    }
+    if (counterEl) {
+      counterEl.textContent = "File " + (index + 1) + " dari " + uploadedFiles.length;
+    }
+
+    if (downloadEl) {
+      downloadEl.href = file.url || "#";
+      downloadEl.setAttribute("download", file.name);
+    }
+
+    // Toggle nav buttons
+    if (prevBtn) prevBtn.style.display = uploadedFiles.length > 1 ? "flex" : "none";
+    if (nextBtn) nextBtn.style.display = uploadedFiles.length > 1 ? "flex" : "none";
+
+    // Show Image or Video
+    if (file.type === "video") {
+      if (imgEl) {
+        imgEl.style.display = "none";
+        imgEl.src = "";
+      }
+      if (videoEl) {
+        videoEl.style.display = "block";
+        videoEl.src = file.url;
+        videoEl.load();
+        videoEl.play().catch(function () { });
+      }
+    } else {
+      if (videoEl) {
+        videoEl.pause();
+        videoEl.src = "";
+        videoEl.style.display = "none";
+      }
+      if (imgEl) {
+        imgEl.style.display = "block";
+        imgEl.src = file.url;
+        imgEl.alt = file.name;
+      }
+    }
+
+    modal.style.display = "flex";
+    modal.setAttribute("aria-hidden", "false");
+    setTimeout(function () {
+      modal.classList.add("modal-open");
+    }, 10);
+    document.body.style.overflow = "hidden";
+  };
+
+  window.closeMediaPreview = function () {
+    var modal = document.getElementById("mediaPreviewModal");
+    var videoEl = document.getElementById("mediaPreviewVideo");
+    if (videoEl) {
+      videoEl.pause();
+      videoEl.src = "";
+    }
+    if (modal) {
+      modal.setAttribute("aria-hidden", "true");
+      modal.classList.remove("modal-open");
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 200);
+    }
+    document.body.style.overflow = "";
+  };
+
+  window.navigateMediaPreview = function (direction) {
+    if (!uploadedFiles.length) return;
+    var nextIdx = currentPreviewIndex + direction;
+    if (nextIdx < 0) nextIdx = uploadedFiles.length - 1;
+    if (nextIdx >= uploadedFiles.length) nextIdx = 0;
+    openMediaPreview(nextIdx);
+  };
+
+  // Keyboard navigation for preview & picker modals
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      var pickerModal = document.getElementById("productPickerModal");
+      if (pickerModal && pickerModal.style.display !== "none") {
+        closeProductPickerModal();
+        return;
+      }
+      var mediaModal = document.getElementById("mediaPreviewModal");
+      if (mediaModal && mediaModal.style.display !== "none") {
+        closeMediaPreview();
+        return;
+      }
+    }
+
+    var modal = document.getElementById("mediaPreviewModal");
+    if (!modal || modal.style.display === "none") return;
+
+    if (e.key === "ArrowLeft") {
+      navigateMediaPreview(-1);
+    } else if (e.key === "ArrowRight") {
+      navigateMediaPreview(1);
+    }
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // PRODUCT PICKER MODAL LOGIC (Pilih / Ganti Produk Lain)
+  // ─────────────────────────────────────────────────────────────
+  var returnableProducts = [
+    {
+      orderId: "#LC20261001-1234",
+      orderDate: "28 Sep 2026",
+      name: "Lenovo ThinkPad T490",
+      sku: "LP-T490-001",
+      price: "Rp 4.500.000",
+      img: "/static/images/laptop/thinkpad-t490.jpg",
+      warrantyStatus: "Garansi Retur Aktif (sisa 4 hari)",
+      eligible: true
+    },
+    {
+      orderId: "#LC20260928-8821",
+      orderDate: "27 Sep 2026",
+      name: "Dell Latitude 5410",
+      sku: "LP-LAT5410-002",
+      price: "Rp 5.200.000",
+      img: "/static/images/laptop/dell-latitude-5410.jpg",
+      warrantyStatus: "Garansi Retur Aktif (sisa 3 hari)",
+      eligible: true
+    },
+    {
+      orderId: "#LC20260925-3419",
+      orderDate: "25 Sep 2026",
+      name: "ASUS TUF Gaming A15",
+      sku: "LP-TUF15-003",
+      price: "Rp 11.500.000",
+      img: "/static/images/laptop/asus-tuf-a15.jpg",
+      warrantyStatus: "Garansi Retur Aktif (sisa 1 hari)",
+      eligible: true
+    },
+    {
+      orderId: "#LC20260920-9942",
+      orderDate: "20 Sep 2026",
+      name: "Apple MacBook Air M1",
+      sku: "LP-MBA-M1-004",
+      price: "Rp 10.800.000",
+      img: "/static/images/laptop/macbook-air-m1.jpg",
+      warrantyStatus: "Garansi Retur Aktif (sisa 2 hari)",
+      eligible: true
+    },
+    {
+      orderId: "#LC20260918-6204",
+      orderDate: "18 Sep 2026",
+      name: "Lenovo ThinkPad T14 Gen 2",
+      sku: "LP-T14G2-006",
+      price: "Rp 6.800.000",
+      img: "/static/images/laptop/thinkpad-t14.jpg",
+      warrantyStatus: "Garansi Retur Aktif (sisa 5 hari)",
+      eligible: true
+    },
+    {
+      orderId: "#LC20260915-4105",
+      orderDate: "15 Sep 2026",
+      name: "Acer Swift 3 Infinity 4",
+      sku: "LP-SWIFT3-005",
+      price: "Rp 7.300.000",
+      img: "/static/images/laptop/acer-swift-3.jpg",
+      warrantyStatus: "Garansi Retur Aktif (sisa 4 hari)",
+      eligible: true
+    }
+  ];
+
+  window.openProductPickerModal = function () {
+    var modal = document.getElementById("productPickerModal");
+    if (!modal) return;
+    var searchInput = document.getElementById("pickerSearchInput");
+    if (searchInput) searchInput.value = "";
+
+    renderProductPickerList(returnableProducts, "");
+    modal.style.display = "flex";
+    modal.setAttribute("aria-hidden", "false");
+    setTimeout(function () {
+      modal.classList.add("modal-open");
+      if (searchInput) searchInput.focus();
+    }, 15);
+    document.body.style.overflow = "hidden";
+  };
+
+  window.closeProductPickerModal = function () {
+    var modal = document.getElementById("productPickerModal");
+    if (!modal) return;
+    modal.setAttribute("aria-hidden", "true");
+    modal.classList.remove("modal-open");
+    setTimeout(function () {
+      modal.style.display = "none";
+    }, 200);
+    document.body.style.overflow = "";
+  };
+
+  window.filterProductPicker = function (query) {
+    query = (query || "").toLowerCase().trim();
+    if (!query) {
+      renderProductPickerList(returnableProducts, "");
+      return;
+    }
+    var filtered = returnableProducts.filter(function (prod) {
+      return (
+        prod.name.toLowerCase().indexOf(query) !== -1 ||
+        prod.sku.toLowerCase().indexOf(query) !== -1 ||
+        prod.orderId.toLowerCase().indexOf(query) !== -1
+      );
+    });
+    renderProductPickerList(filtered, query);
+  };
+
+  function renderProductPickerList(items, query) {
+    var listEl = document.getElementById("pickerProductList");
+    if (!listEl) return;
+
+    if (!items || items.length === 0) {
+      listEl.innerHTML = '<div class="ret-picker-empty">' +
+        '<div class="ret-picker-empty-icon">' +
+        '<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+        '<circle cx="11" cy="11" r="8"></circle>' +
+        '<line x1="21" y1="21" x2="16.65" y2="16.65"></line>' +
+        '<line x1="8" y1="11" x2="14" y2="11"></line>' +
+        '</svg>' +
+        '</div>' +
+        '<h4 class="ret-picker-empty-title">Produk tidak ditemukan</h4>' +
+        '<p class="ret-picker-empty-desc">Tidak ada produk pesanan yang cocok dengan "' + (escapeHtml(query) || "") + '". Coba kata kunci atau nomor pesanan lain.</p>' +
+        '</div>';
+      return;
+    }
+
+    var html = "";
+    items.forEach(function (prod) {
+      var isCurrent = (sampleReturn.orderId === prod.orderId && sampleReturn.product.sku === prod.sku);
+      var prodIndex = returnableProducts.findIndex(function (p) { return p.sku === prod.sku && p.orderId === prod.orderId; });
+
+      html += '<div class="ret-picker-item' + (isCurrent ? ' is-selected' : '') + '" onclick="selectReturnProduct(' + prodIndex + ')">';
+      
+      // Thumbnail & info left
+      html += '<div class="ret-picker-item-left">';
+      html += '<img class="ret-picker-item-thumb" src="' + prod.img + '" alt="' + escapeHtml(prod.name) + '" onerror="this.src=\'/static/videos/img/Logo.png\'">';
+      
+      // Info
+      html += '<div class="ret-picker-item-info">';
+      html += '<div class="ret-picker-item-order">';
+      html += '<span class="picker-order-id">' + escapeHtml(prod.orderId) + '</span>';
+      html += '<span class="picker-order-date">Beli: ' + escapeHtml(prod.orderDate) + '</span>';
+      html += '<span class="picker-warranty-badge">✓ ' + escapeHtml(prod.warrantyStatus) + '</span>';
+      html += '</div>';
+      html += '<h4 class="picker-item-name">' + escapeHtml(prod.name) + '</h4>';
+      html += '<div class="picker-item-meta">';
+      html += '<span class="picker-item-sku">SKU: ' + escapeHtml(prod.sku) + '</span>';
+      html += '<span class="picker-item-price">' + escapeHtml(prod.price) + '</span>';
+      html += '</div>';
+      html += '</div>'; // .ret-picker-item-info
+      html += '</div>'; // .ret-picker-item-left
+
+      // Action button
+      html += '<div class="ret-picker-item-right" onclick="event.stopPropagation()">';
+      if (isCurrent) {
+        html += '<button type="button" class="btn-picker-select btn-active" disabled>';
+        html += '<span>✓ Sedang Dipilih</span>';
+        html += '</button>';
+      } else {
+        html += '<button type="button" class="btn-picker-select" onclick="selectReturnProduct(' + prodIndex + ')">';
+        html += '<span>Pilih Produk Ini</span>';
+        html += '</button>';
+      }
+      html += '</div>'; // .ret-picker-item-right
+
+      html += '</div>'; // .ret-picker-item
+    });
+
+    listEl.innerHTML = html;
+  }
+
+  function escapeHtml(str) {
+    if (!str) return "";
+    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  window.selectReturnProduct = function (index) {
+    var prod = returnableProducts[index];
+    if (!prod) return;
+
+    // Update internal state
+    sampleReturn.orderId = prod.orderId;
+    sampleReturn.product = {
+      name: prod.name,
+      sku: prod.sku,
+      price: prod.price,
+      img: prod.img
+    };
+
+    // Update Screen 2 Form inputs
+    var inputOrder = document.getElementById("inputNomorPesanan");
+    if (inputOrder) inputOrder.value = prod.orderId;
+
+    var selImg = document.getElementById("retSelectedProdImg");
+    if (selImg) {
+      selImg.src = prod.img;
+      selImg.alt = prod.name;
+    }
+    var selName = document.getElementById("retSelectedProdName");
+    if (selName) selName.textContent = prod.name;
+
+    var selSku = document.getElementById("retSelectedProdSku");
+    if (selSku) selSku.textContent = "SKU: " + prod.sku;
+
+    var selPrice = document.getElementById("retSelectedProdPrice");
+    if (selPrice) selPrice.textContent = prod.price;
+
+    // Update Screen 3 Confirmation values
+    var confOrder = document.getElementById("confirmOrderId");
+    if (confOrder) confOrder.textContent = prod.orderId;
+
+    // Update Screen 4 Status values
+    var statusOrder = document.getElementById("statusOrderId");
+    if (statusOrder) statusOrder.textContent = prod.orderId;
+
+    // Update Screen 5 Completed values
+    var compOrder = document.getElementById("completedOrderId");
+    if (compOrder) compOrder.textContent = prod.orderId;
+
+    var follImg = document.getElementById("followupProdImg");
+    if (follImg) {
+      follImg.src = prod.img;
+      follImg.alt = prod.name;
+    }
+    var follName = document.getElementById("followupProdName");
+    if (follName) follName.textContent = prod.name;
+
+    var follSku = document.getElementById("followupProdSku");
+    if (follSku) follSku.textContent = "SKU: " + prod.sku;
+
+    // Visual feedback highlight on product card
+    var card = document.getElementById("productSelectCard");
+    if (card) {
+      card.style.borderColor = "var(--ret-blue)";
+      card.style.backgroundColor = "rgba(0, 114, 206, 0.06)";
+      card.style.boxShadow = "0 0 0 3px rgba(0, 114, 206, 0.18)";
+      setTimeout(function () {
+        card.style.borderColor = "";
+        card.style.backgroundColor = "";
+        card.style.boxShadow = "";
+      }, 1200);
+    }
+
+    closeProductPickerModal();
+    showToast("Produk berhasil dipilih: " + prod.name);
   };
 
   // WhatsApp Contact Direct Link

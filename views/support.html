@@ -14,7 +14,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/splash-screen.css">
-  <link rel="stylesheet" href="/static/support-return.css">
+  <link rel="stylesheet" href="/static/support-return.css?v=20261003_v3">
   <script src="/static/splash-screen.js"></script>
 </head>
 
@@ -368,8 +368,7 @@
               <div class="ret-input-search-box">
                 <input type="text" id="inputNomorPesanan" value="#LC20261001-1234" required
                   placeholder="#LC20261001-1234">
-                <button type="button" aria-label="Cek nomor pesanan"
-                  onclick="showToast('Nomor pesanan terverifikasi.')">
+                <button type="button" aria-label="Cari pesanan" onclick="openProductPickerModal()" title="Cari produk dari riwayat pesanan">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="11" cy="11" r="8"></circle>
@@ -379,26 +378,32 @@
               </div>
             </div>
 
-            <!-- Field 2: Pilih Produk * -->
+            <!-- Field 2: Produk yang Diretur * -->
             <div class="ret-form-group">
-              <label class="ret-form-label">
-                Pilih Produk <span class="req">*</span>
-              </label>
-              <div class="ret-product-select-card" id="productSelectCard" role="button" tabindex="0">
+              <div class="ret-label-row">
+                <label class="ret-form-label" style="margin-bottom: 0;">
+                  Produk yang Diretur <span class="req">*</span>
+                </label>
+                <button type="button" class="btn-change-prod-link" onclick="openProductPickerModal()" title="Pilih produk lain dari riwayat pesanan">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                  <span>Pilih / Ganti Produk Lain</span>
+                </button>
+              </div>
+              <div class="ret-product-select-card" id="productSelectCard" onclick="openProductPickerModal()" title="Klik untuk mengganti produk dari riwayat pesanan Anda">
                 <div class="ret-product-info-left">
-                  <img class="ret-product-thumb" src="/static/images/laptop/thinkpad-t490.jpg"
+                  <img class="ret-product-thumb" id="retSelectedProdImg" src="/static/images/laptop/thinkpad-t490.jpg"
                     alt="Lenovo ThinkPad T490" onerror="this.src='/static/videos/img/Logo.png'">
                   <div class="ret-product-meta">
-                    <h4>Lenovo ThinkPad T490</h4>
-                    <p>SKU: LP-T490-001</p>
-                    <span class="ret-prod-price">Rp 4.500.000</span>
+                    <h4 id="retSelectedProdName">Lenovo ThinkPad T490</h4>
+                    <p id="retSelectedProdSku">SKU: LP-T490-001</p>
+                    <span class="ret-prod-price" id="retSelectedProdPrice">Rp 4.500.000</span>
                   </div>
                 </div>
-                <div class="ret-product-chevron">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
+                <div class="ret-product-action-badge">
+                  <span class="ret-btn-switch">Ganti</span>
                 </div>
               </div>
             </div>
@@ -692,6 +697,22 @@
             </div>
           </div>
 
+          <!-- Lampiran Bukti Foto / Video Pelanggan -->
+          <div class="ret-evidence-card">
+            <div class="ret-evidence-header">
+              <div class="ret-evidence-title-group">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                <h3 class="ret-evidence-title">Bukti Foto / Video yang Dilampirkan</h3>
+              </div>
+              <span class="ret-evidence-hint">Klik file untuk melihat pratinjau</span>
+            </div>
+            <div class="ret-file-preview-list" id="statusEvidenceList"></div>
+          </div>
+
           <!-- Detail Status Timeline matching mockup -->
           <div class="ret-timeline-wrap">
             <h3 class="ret-timeline-title">Detail Status</h3>
@@ -853,11 +874,11 @@
             <div class="summary-2col-grid">
               <div class="summary-col-item">
                 <span class="summary-col-label">Nomor Retur</span>
-                <span class="summary-col-val">RT-LC20261001-001</span>
+                <span class="summary-col-val" id="completedReturnId">RT-LC20261001-001</span>
               </div>
               <div class="summary-col-item">
                 <span class="summary-col-label">Nomor Pesanan</span>
-                <span class="summary-col-val">#LC20261001-1234</span>
+                <span class="summary-col-val" id="completedOrderId">#LC20261001-1234</span>
               </div>
               <div class="summary-col-item">
                 <span class="summary-col-label">Keputusan</span>
@@ -877,12 +898,12 @@
             <h3 class="followup-head-title">Detail Tindak Lanjut</h3>
             <div class="followup-prod-row">
               <div class="followup-prod-left">
-                <img class="followup-prod-img" src="/static/images/laptop/thinkpad-t490.jpg" alt="Lenovo ThinkPad T490"
+                <img class="followup-prod-img" id="followupProdImg" src="/static/images/laptop/thinkpad-t490.jpg" alt="Lenovo ThinkPad T490"
                   onerror="this.src='/static/videos/img/Logo.png'">
                 <div>
-                  <h4 style="margin:0 0 2px; font-size:13.5px; font-weight:700; color:var(--ret-navy);">Lenovo ThinkPad
+                  <h4 id="followupProdName" style="margin:0 0 2px; font-size:13.5px; font-weight:700; color:var(--ret-navy);">Lenovo ThinkPad
                     T490</h4>
-                  <p style="margin:0; font-size:12px; color:var(--ret-slate);">SKU: LP-T490-001</p>
+                  <p id="followupProdSku" style="margin:0; font-size:12px; color:var(--ret-slate);">SKU: LP-T490-001</p>
                 </div>
               </div>
 
@@ -1087,6 +1108,108 @@
         </div>
       </section>
 
+      <!-- Media Preview Modal (Lightbox) for Uploaded Photos & Videos -->
+      <div id="mediaPreviewModal" class="ret-media-modal" aria-hidden="true" style="display: none;">
+        <div class="ret-media-modal-backdrop" onclick="closeMediaPreview()"></div>
+        <div class="ret-media-modal-container" role="dialog" aria-modal="true" aria-labelledby="mediaPreviewTitle">
+          <div class="ret-media-modal-header">
+            <div class="ret-media-modal-title-wrap">
+              <span class="ret-media-type-badge" id="mediaPreviewBadge">FOTO</span>
+              <h3 class="ret-media-modal-title" id="mediaPreviewTitle">foto_kerusakan_layar.jpg</h3>
+              <span class="ret-media-modal-size" id="mediaPreviewSize">(2.4 MB)</span>
+            </div>
+            <button type="button" class="ret-media-modal-close" onclick="closeMediaPreview()" aria-label="Tutup preview">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          
+          <div class="ret-media-modal-body">
+            <div class="ret-media-view-wrapper" id="mediaPreviewWrapper">
+              <img id="mediaPreviewImage" src="" alt="Bukti Retur" style="display: none;">
+              <video id="mediaPreviewVideo" controls playsinline style="display: none;"></video>
+            </div>
+
+            <!-- Navigation buttons -->
+            <button type="button" class="ret-media-nav-btn prev" id="mediaPrevBtn" onclick="navigateMediaPreview(-1)" aria-label="File sebelumnya">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button type="button" class="ret-media-nav-btn next" id="mediaNextBtn" onclick="navigateMediaPreview(1)" aria-label="File berikutnya">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div class="ret-media-modal-footer">
+            <span class="ret-media-counter" id="mediaPreviewCounter">File 1 dari 1</span>
+            <div class="ret-media-footer-btns">
+              <a id="mediaDownloadBtn" href="#" target="_blank" download class="ret-media-download-link">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Buka / Unduh</span>
+              </a>
+              <button type="button" class="ret-media-close-btn" onclick="closeMediaPreview()">
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Pilih Produk Retur (Product Picker Modal) -->
+      <div id="productPickerModal" class="ret-media-modal" aria-hidden="true" style="display: none;">
+        <div class="ret-media-modal-backdrop" onclick="closeProductPickerModal()"></div>
+        <div class="ret-picker-modal-container" role="dialog" aria-modal="true" aria-labelledby="pickerModalTitle">
+          <div class="ret-picker-header">
+            <div class="ret-picker-header-text">
+              <h3 class="ret-picker-title" id="pickerModalTitle">Pilih Produk yang Ingin Diretur</h3>
+              <p class="ret-picker-sub">Menampilkan produk dari riwayat pesanan Anda yang masih dalam masa garansi retur (7 hari).</p>
+            </div>
+            <button type="button" class="ret-media-modal-close" onclick="closeProductPickerModal()" aria-label="Tutup pilihan produk">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Search filter inside modal -->
+          <div class="ret-picker-search-wrap">
+            <div class="ret-picker-search-box">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="pickerSearchInput" placeholder="Cari nama laptop, SKU, atau nomor pesanan..." oninput="filterProductPicker(this.value)">
+            </div>
+          </div>
+
+          <!-- Product item list -->
+          <div class="ret-picker-list" id="pickerProductList"></div>
+
+          <!-- Footer tip & close button -->
+          <div class="ret-picker-footer">
+            <div class="ret-picker-footer-tip">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>Pesanan lain tidak tercantum? Hubungi CS untuk verifikasi manual.</span>
+            </div>
+            <button type="button" class="ret-picker-btn-close" onclick="closeProductPickerModal()">Batal</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -1194,7 +1317,7 @@
     </div>
   </footer>
 
-  <script src="/static/support-return.js"></script>
+  <script src="/static/support-return.js?v=20261003_v4"></script>
   <script>
     /* ==================== USER PROFILE DROPDOWN CONTROLLER ==================== */
     (function initUserProfile() {
